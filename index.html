@@ -3,690 +3,159 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Japan Trip 2026 Preview</title>
+  <title>Japan Trip 2026</title>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
   <style>
-    body { margin: 0; background: #faf8f3; }
+    :root{--bg:#faf7f2;--paper:#fff;--text:#20160f;--muted:#7c6a5b;--line:#e9dfd3;--nav:#1a0800;--gold:#ffd79b;--osaka:#f97316;--kyoto:#8b5cf6;--tokyo:#3b82f6;--green:#15803d;--orange:#c2410c;--blue:#1d4ed8;--red:#b91c1c}
+    *{box-sizing:border-box} html,body,#root{margin:0;padding:0;min-height:100%;background:var(--bg)} body{font-family:-apple-system,BlinkMacSystemFont,"DM Sans",sans-serif;color:var(--text)}
+    .wrap{max-width:560px;margin:0 auto;min-height:100vh;padding-bottom:28px} .fade{animation:f .18s ease} @keyframes f{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+    .press{cursor:pointer;transition:.15s ease} .press:active{transform:scale(.985);opacity:.86} .top{position:sticky;top:0;z-index:20;background:linear-gradient(155deg,#1a0800 0,#3b1306 42%,#6a1f0e 76%,#8c3514 100%);color:#fff;border-bottom-left-radius:22px;border-bottom-right-radius:22px;box-shadow:0 12px 30px rgba(60,20,5,.16);padding:42px 18px 18px}
+    .kicker{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,215,155,.7);margin-bottom:10px}.title{font-family:Georgia,serif;font-size:42px;line-height:1;margin:0}.sub{font-family:Georgia,serif;font-style:italic;font-size:21px;color:rgba(255,215,155,.92);margin-top:6px}.meta{font-size:12px;color:rgba(255,255,255,.62);margin-top:10px;line-height:1.4}
+    .chips,.tabs{display:flex;gap:6px;overflow-x:auto}.chips{margin-top:14px;padding-bottom:2px}.tabs{margin:14px 14px 0;padding-bottom:2px}.chip,.tab,.mini{border:none;border-radius:999px;padding:7px 11px;font-size:11px;font-weight:700;white-space:nowrap}
+    .chip{background:rgba(255,255,255,.08);color:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.16)} .chip.on{background:rgba(255,255,255,.12);color:#fff} .tab{background:#ede7df;color:#6b5748} .tab.on{background:var(--nav);color:var(--gold)}
+    .main{padding:12px 14px 36px} .sec{display:none} .sec.on{display:block} .lbl{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#a16207;margin:14px 0 8px}
+    .banner{border-radius:14px;padding:14px 15px;margin-bottom:14px;border:1.5px solid #f3c96b;background:#fff7dd}.banner.dep{background:linear-gradient(135deg,#22120a,#3c1a0e);border-color:#f97316;color:#fff}.banner.ret{background:linear-gradient(135deg,#101c35,#172554);border-color:#3b82f6;color:#fff}
+    .flrow{display:flex;align-items:center;gap:8px}.badge{font-size:10px;font-weight:900;letter-spacing:1px;padding:3px 8px;border-radius:6px}.badge.dep{background:#f97316;color:#fff}.badge.ret{background:#3b82f6;color:#fff}.apt{font-size:22px;font-weight:900;letter-spacing:-.5px}.arrow{color:rgba(255,255,255,.7);font-size:16px}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}.item .k{font-size:10px;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:1px}.item .v{font-size:12px;font-weight:700;margin-top:2px}.note{font-size:11px;color:rgba(255,255,255,.72);margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.16);line-height:1.45}
+    .day,.card,.r-card,.s-card,.hotel{background:var(--paper);border:1.5px solid #ece2d6;border-radius:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.04)} .day{margin-bottom:9px}.day.open{box-shadow:0 4px 18px rgba(0,0,0,.06)}
+    .hdr2{display:flex;align-items:flex-start;gap:10px;padding:12px 13px}.num{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:13px}.mid{flex:1;min-width:0}.dttl{font-size:13px;font-weight:800}.dsub{font-size:11px;color:#8a7566;margin-top:2px;line-height:1.35}.dtags{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}.tag{font-size:10px;padding:2px 7px;border-radius:999px;background:#f4efe8;color:#7c5f44;border:1px solid #eadfcd}
+    .chev{color:#9f8f82;font-size:12px;flex-shrink:0;margin-top:3px;transition:.18s}.day.open .chev{transform:rotate(180deg)} .body{display:none;padding:0 13px 13px}.day.open .body{display:block}.timeline{position:relative;padding-left:20px}.timeline:before{content:'';position:absolute;left:6px;top:4px;bottom:4px;width:1px;background:#ece2d6}.tl{position:relative;margin-bottom:14px}.dot{position:absolute;left:-17px;top:6px;width:7px;height:7px;border-radius:50%;border:1.5px solid #faf7f2}.tt{font-size:10px;font-weight:800;color:#8f8276;margin-bottom:3px;letter-spacing:1px}.tttl{font-size:14px;font-weight:700}.td{font-size:12px;color:#8a7566;margin-top:3px;line-height:1.55}.trans{display:inline-flex;align-items:center;gap:5px;font-size:11px;margin:5px 5px 0 0;padding:4px 9px;border-radius:6px;background:#f4efe8;color:#6b5c4e}.tip{background:#f4efe8;border-radius:8px;padding:8px 10px;font-size:11px;color:#6b5c4e;margin-top:8px;border-left:3px solid #999}.hotelbar{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;margin:10px 0;background:#fff8ef}.hi{font-size:20px}.hn{font-size:13px;font-weight:800}.hd{font-size:11px;color:#8a7566;margin-top:2px;line-height:1.4}
+    .rbtns{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}.rbtn{border:none;border-radius:999px;padding:6px 11px;font-size:11px;font-weight:800;background:#ede7df;color:#6b5748}.rbtn.on{background:var(--nav);color:var(--gold)} .rbtn.os.on{background:var(--osaka);color:#fff}.rbtn.ky.on{background:var(--kyoto);color:#fff}.rbtn.to.on{background:var(--tokyo);color:#fff}
+    .rcard,.scard{margin-bottom:8px}.rhead{display:flex;align-items:flex-start;gap:10px;padding:12px 14px}.ricon{font-size:24px;flex-shrink:0}.rpi{flex:1;min-width:0}.rname{font-size:14px;font-weight:800}.rtype{font-size:11px;color:#8a7566;margin-top:2px;line-height:1.3}.rmeta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px}.b{font-size:10px;padding:2px 7px;border-radius:999px;background:#f4efe8;color:#7c5f44;border:1px solid #eadfcd}.station{font-size:11px;color:#8a7566;background:#f4efe8;padding:3px 8px;border-radius:6px}.rchev{color:#9f8f82;font-size:12px;flex-shrink:0;margin-top:3px;transition:.18s}.r-card.open .rchev,.s-card.open .rchev{transform:rotate(180deg)}.rdet{display:none;padding:0 14px 14px;border-top:1px solid #ece2d6}.r-card.open .rdet,.s-card.open .sdet{display:block}.dlbl{font-size:10px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#9b8d81;margin:12px 0 6px}.orders{display:flex;flex-wrap:wrap;gap:6px}.order{background:#f4efe8;border-radius:8px;padding:5px 10px;font-size:12px}.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.mitem .k{font-size:10px;color:#8a7566}.mitem .v{font-size:12px;font-weight:700;margin-top:2px}.branch{margin-top:6px}.brow{display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-bottom:1px solid #ece2d6;font-size:12px}.brow:last-child{border:none}.bcity{font-size:10px;font-weight:900;padding:2px 7px;border-radius:4px;white-space:nowrap;flex-shrink:0}.bcity.os{background:rgba(249,115,22,.16);color:var(--osaka)}.bcity.ky{background:rgba(139,92,246,.16);color:var(--kyoto)}.bcity.to{background:rgba(59,130,246,.16);color:var(--tokyo)}.note2{font-size:11px;color:#8a7566;background:#f4efe8;padding:8px 10px;border-radius:8px;margin-top:8px;line-height:1.45}
+    .shead{display:flex;align-items:flex-start;gap:10px;padding:12px 14px}.stid{width:38px;text-align:right;flex-shrink:0;padding-top:2px}.stime{font-size:10px;color:#9f8f82;font-weight:800;letter-spacing:1px}.sbar{width:3px;border-radius:2px;flex-shrink:0;background:#ccc;min-height:36px}.scontent{flex:1;min-width:0}.stitle{font-size:12.5px;font-weight:800;color:#20160f;line-height:1.35}.sdesc{font-size:11px;color:#8a7566;line-height:1.45;margin-top:2px}.sdet{display:none;padding:0 14px 14px;border-top:1px solid #ece2d6}.s-card.open .sdet{display:block}.hotelbox{margin-bottom:8px}
+    .cities{margin-bottom:18px}.citycard{margin-bottom:16px}.citytop{padding:16px 16px 14px;border-radius:14px 14px 0 0;color:#fff;background:linear-gradient(135deg,#999 0,#777 100%)}.citytop.os{background:linear-gradient(135deg,var(--osaka) 0,#c2410c 100%)}.citytop.ky{background:linear-gradient(135deg,var(--kyoto) 0,#6d28d9 100%)}.citytop.to{background:linear-gradient(135deg,var(--tokyo) 0,#1d4ed8 100%)}.cityname{font-family:Georgia,serif;font-size:29px;font-weight:700;line-height:1}.citystay{font-size:11px;color:rgba(255,255,255,.72);margin-top:4px}.citybody{background:#fff;border:1.5px solid #ddd;border-top:none;border-radius:0 0 14px 14px;padding:12px 14px 14px}.bullet{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px}.dot2{width:5px;height:5px;border-radius:50%;margin-top:6px;background:#bbb;flex-shrink:0}.citychips{display:flex;gap:5px;flex-wrap:wrap;margin-top:12px}.mini{padding:5px 9px;background:#f4efe8;color:#7c5f44;border:1px solid #eadfcd}
+    .tips{padding:12px 14px 36px}.tipcard{background:#fff;border-radius:14px;padding:14px 15px;margin-bottom:9px;border:1.5px solid #ece2d6;box-shadow:0 1px 4px rgba(0,0,0,.04)}.tipttl{font-size:13.5px;font-weight:800;color:#20160f;margin-bottom:6px}.tipbody{font-size:12.5px;color:#6b5c4e;line-height:1.65}.footer{margin-top:12px;background:linear-gradient(135deg,#1a0800,#3d1408);border-radius:14px;padding:16px;text-align:center}.f1{font-family:Georgia,serif;font-size:20px;font-style:italic;color:rgba(255,215,150,.9)}.f2{font-size:11px;color:rgba(255,255,255,.55);margin-top:4px}
   </style>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="text/babel">
-    const { useMemo, useState } = React;
+<div id="root"></div>
+<script type="text/babel">
+const {useMemo,useState} = React;
 
-    const FONT_STYLE = `
-      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&display=swap');
-      * { box-sizing: border-box; }
-      html, body, #root { margin: 0; padding: 0; min-height: 100%; background: #faf8f3; }
-      body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; }
-      button, input { font: inherit; }
-      .fade-in { animation: fadeIn .22s ease; }
-      @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
-      .pressable { transition: transform .15s ease, opacity .15s ease, background .2s ease, border-color .2s ease; cursor: pointer; }
-      .pressable:active { opacity: .8; transform: scale(.985); }
-      ::-webkit-scrollbar { width: 4px; height: 4px; }
-      ::-webkit-scrollbar-thumb { background: #d4c4b0; border-radius: 999px; }
-    `;
+const CITY={osaka:{name:'Osaka',color:'var(--osaka)',bg:'#fff4ee',border:'#fdba74',deep:'#7c2d12'},kyoto:{name:'Kyoto',color:'var(--kyoto)',bg:'#f5f3ff',border:'#c4b5fd',deep:'#4c1d95'},tokyo:{name:'Tokyo',color:'var(--tokyo)',bg:'#eff6ff',border:'#93c5fd',deep:'#1e3a8a'}};
+const TYPE={flight:'#b5281c',transit:'#6b7280',hotel:'#b45309',food:'#15803d',restaurant:'#15803d',cafe:'#92400e',shopping:'#0f766e',highlight:'#c44b0e',explore:'#6d28d9',autumn:'#dc2626'};
 
-    const CITY_CFG = {
-      Osaka: { color: "#C44B0E", bg: "#FFF4EE", border: "#FDBA74", deep: "#7C2D12" },
-      Kyoto: { color: "#155E3E", bg: "#F0FDF4", border: "#6EE7B7", deep: "#14532D" },
-      Tokyo: { color: "#1E3A8A", bg: "#EFF6FF", border: "#93C5FD", deep: "#172554" },
-      Transit: { color: "#7C3AED", bg: "#F5F3FF", border: "#C4B5FD", deep: "#5B21B6" },
-    };
+const HOTELS=[{city:'osaka',name:'The Basement Hotel Osaka Honmachi',dates:'25–28 Nov',nights:3,area:'Near Honmachi Station'},{city:'kyoto',name:'Kiori Exec Muromachi',dates:'28 Nov–2 Dec',nights:4,area:'Near Karasuma Oike Station'},{city:'tokyo',name:'N Hotel Akihabara No.2',dates:'2–7 Dec',nights:5,area:'Near Akihabara Station'}];
 
-    const TYPE_COLOR = {
-      flight: "#B5281C",
-      transit: "#6B7280",
-      hotel: "#B45309",
-      food: "#15803D",
-      cafe: "#92400E",
-      highlight: "#C44B0E",
-      explore: "#6D28D9",
-      autumn: "#DC2626",
-    };
+const DAYS=[
+{n:1,date:'25 Nov',dow:'Wed',city:'osaka',theme:'Arrival · Hozenji Yokocho First Bites',tags:['Arrival','Easy Day','Alley Walk'],items:[{time:'08:35',title:'Land at Kansai Airport',desc:'Arrival in KIX. Clear immigration, collect luggage, and head to the station. Use the airport Wi‑Fi or SIM to check live train timing.',type:'flight'},{time:'10:30',title:'Check in at hotel',desc:'Drop bags at The Basement Hotel Osaka Honmachi and freshen up.',type:'hotel'},{time:'12:30',title:'Kuromon Ichiba Market lunch',desc:'Try fresh seafood, wagyu skewers, and grilled bites. Good first Osaka lunch.',type:'food'},{time:'14:30',title:'Hozenji Yokocho',desc:'Lantern-lit alley near Namba with a strong old-Osaka mood.',type:'highlight'},{time:'16:00',title:'Namba back-street wander',desc:'Explore the side streets around Namba and Shinsaibashi.',type:'explore'},{time:'18:30',title:'Dotonbori at dusk',desc:'Photos only: neon reflections and Glico sign.',type:'explore'},{time:'19:30',title:'Dinner in Osaka',desc:'Small okonomiyaki or teppanyaki spot away from the main tourist strip.',type:'food'}]},
+{n:2,date:'26 Nov',dow:'Thu',city:'osaka',theme:'Universal Studios Japan',tags:['USJ','Pre-book Tickets','Full Day'],items:[{time:'07:30',title:'Head to USJ early',desc:'JR Yumesaki Line to Universal City Station, around 30 min from Honmachi.',trans:['JR Yumesaki Line','Osaka → Universal City'],type:'transit'},{time:'08:30',title:'Universal Studios Japan full day',desc:'Super Nintendo World, Harry Potter, Hollywood Dream, shows, and merch.',type:'highlight'},{time:'12:30',title:'Lunch inside USJ',desc:'Butterbeer, themed food, and snacks worth trying once.',type:'food'},{time:'17:30',title:'USJ souvenir shopping',desc:'Nintendo and Wizarding World gifts before exit.',type:'shopping'},{time:'20:00',title:'Dinner in Umeda',desc:'Ramen or conveyor sushi to wind down.',type:'food'}]},
+{n:3,date:'27 Nov',dow:'Fri',city:'osaka',theme:'Minoh Waterfall · Shinsekai',tags:['Autumn Foliage','Day Trip','Retro Osaka'],items:[{time:'09:00',title:'Head to Minoh',desc:'Hankyu line from Umeda, about 45 min total.',trans:['Hankyu Line','Umeda → Minoh'],type:'transit'},{time:'10:00',title:'Minoh Waterfall Trail',desc:'Maple forest trail and momiji tempura from stalls.',type:'autumn'},{time:'13:00',title:'Lunch in Minoh',desc:'Quiet tofu or soba lunch in a peaceful local area.',type:'food'},{time:'15:30',title:'Shinsekai retro district',desc:'Old-school Osaka mood and good photo spots.',type:'explore'},{time:'16:30',title:'Kushikatsu at Shinsekai',desc:'Go for a smaller counter spot rather than a chain.',type:'food'},{time:'18:30',title:'Tenjinbashisuji stroll',desc:'Long covered arcade with a very local feel.',type:'shopping'},{time:'20:00',title:'Small izakaya dinner',desc:'Slow final Osaka night.',type:'food'}]},
+{n:4,date:'28 Nov',dow:'Sat',city:'kyoto',theme:'Kyoto Arrival · Sannen-zaka · Kodaiji Night',tags:['Travel Day','Kiyomizudera','Kodaiji'],items:[{time:'09:00',title:'Last Osaka breakfast kissaten',desc:'One old-school coffee stop before checking out.',type:'cafe'},{time:'10:30',title:'Check out hotel',desc:'Head to Shin-Osaka Station.',type:'hotel'},{time:'11:30',title:'Shinkansen to Kyoto',desc:'Shin-Osaka → Kyoto in about 15 minutes. Reserve seats if possible.',trans:['Shinkansen','Shin-Osaka → Kyoto','~15 min'],type:'transit'},{time:'13:00',title:'Check in Kyoto hotel',desc:'Kiori Exec Muromachi, then rest briefly.',type:'hotel'},{time:'14:00',title:'Sannen-zaka and Ninen-zaka walk',desc:'The classic Kyoto hill streets, ideal for wandering and photos.',type:'highlight'},{time:'15:00',title:'Arabica Higashiyama',desc:'Hill-path coffee stop near the walk route.',type:'cafe'},{time:'16:00',title:'Kiyomizudera Temple',desc:'Autumn view and golden light.',type:'autumn'},{time:'18:00',title:'Kodaiji night illumination',desc:'Maples lit after dark with reflection pools.',type:'autumn'},{time:'20:00',title:'Dinner in Pontocho',desc:'Lantern-lit Kyoto first night dinner.',type:'food'}]},
+{n:5,date:'29 Nov',dow:'Sun',city:'kyoto',theme:'Arashiyama · Riverside Coffee',tags:['Autumn Foliage','Bamboo Grove','Caf View'],items:[{time:'07:45',title:'Head to Arashiyama early',desc:'Arrive before the crowds.',trans:['Hankyu / JR','Kyoto → Arashiyama','~25 min'],type:'transit'},{time:'08:30',title:'Arashiyama Bamboo Grove',desc:'Best early morning before tour groups arrive.',type:'highlight'},{time:'09:15',title:'Temple stop in the hills',desc:'Pagoda, stone steps, and autumn maples.',type:'autumn'},{time:'10:15',title:'Arabica Arashiyama',desc:'Riverfront coffee with one of Kyoto’s best views.',type:'cafe'},{time:'11:30',title:'Tenryu-ji Garden',desc:'UNESCO garden with maple reflections.',type:'autumn'},{time:'13:00',title:'Lunch by the river',desc:'Warm yudofu-style Kyoto lunch.',type:'food'},{time:'15:00',title:'Togetsukyo Bridge walk',desc:'Bridge, river, and late-afternoon scenery.',type:'explore'},{time:'17:00',title:'Nishiki Market before closing',desc:'Pickles, tofu, snacks, and spices.',type:'shopping'},{time:'19:00',title:'Dinner near hotel',desc:'Low-key meal near Muromachi.',type:'food'}]},
+{n:6,date:'30 Nov',dow:'Mon',city:'kyoto',theme:'Amanohashidate · Ine Funaya',tags:['Day Trip','Hidden Japan','Coastal Views'],items:[{time:'07:30',title:'Depart Kyoto for Amanohashidate',desc:'Book limited express seats in advance.',trans:['Tango / Limited Express','Kyoto → Amanohashidate','~2 hr'],type:'transit'},{time:'09:30',title:'Amanohashidate sand bar',desc:'One of Japan’s Top 3 Views.',type:'highlight'},{time:'11:30',title:'Ine Funaya village',desc:'Boat houses on the water and a very different side of Japan.',type:'highlight'},{time:'13:00',title:'Seafood lunch in Ine',desc:'Fresh and simple bay-side meal.',type:'food'},{time:'15:00',title:'Wander Ine Bay slowly',desc:'Water, fishing boats, and almost no rush.',type:'explore'},{time:'16:30',title:'Return to Kyoto',desc:'Long transit back—keep dinner easy.',trans:['Limited Express / local transit','Amanohashidate → Kyoto','~2.5 hr'],type:'transit'},{time:'19:30',title:'Easy dinner near hotel',desc:'Konbini bento or simple ramen is fine.',type:'food'}]},
+{n:7,date:'1 Dec',dow:'Tue',city:'kyoto',theme:'Ruriko-in · Caf Hopping',tags:['Ruriko-in','Best Autumn Spot','Caf Day'],items:[{time:'09:30',title:'Ruriko-in pre-booked entry',desc:'Tatami reflection room with maple view.',type:'autumn'},{time:'11:00',title:'Kibune Shrine river walk',desc:'Deep-forest shrine mood and river scenery.',type:'explore'},{time:'12:30',title:'Lunch in Kibune / Kurama',desc:'Warm soba or tofu set lunch.',type:'food'},{time:'14:30',title:'Return to central Kyoto',desc:'Back by Eizan Railway.',trans:['Eizan Railway','Kurama → Demachiyanagi','~30 min'],type:'transit'},{time:'15:30',title:'Weekenders Coffee Tominokoji',desc:'Specialty coffee in a quiet Kyoto alley.',type:'cafe'},{time:'16:30',title:'Elephant Factory Coffee',desc:'Warm basement cafe with old kissaten feel.',type:'cafe'},{time:'18:00',title:'Philosopher’s Path at dusk',desc:'Quiet canal walk in fading light.',type:'autumn'},{time:'19:30',title:'Last Kyoto dinner',desc:'Make it special.',type:'food'}]},
+{n:8,date:'2 Dec',dow:'Wed',city:'tokyo',theme:'Nishijin Walk · Shinkansen · Akihabara',tags:['Travel Day','Shinkansen','Tokyo Arrival'],items:[{time:'09:00',title:'Nishijin textile neighborhood walk',desc:'Quiet breakfast stroll near the hotel.',type:'explore'},{time:'10:30',title:'Last Kyoto coffee',desc:'Slow morning near Muromachi.',type:'cafe'},{time:'12:00',title:'Check out Kyoto hotel',desc:'Head to Kyoto Station.',type:'hotel'},{time:'13:00',title:'Nozomi Shinkansen to Tokyo',desc:'Reserve a window seat if you want Fuji views.',trans:['Nozomi Shinkansen','Kyoto → Tokyo','~2 hr 15 min'],type:'transit'},{time:'15:30',title:'Check in at N Hotel Akihabara No.2',desc:'Freshen up after travel.',type:'hotel'},{time:'17:00',title:'Akihabara Electric Town',desc:'Electronics, arcades, and easy first Tokyo wander.',type:'explore'},{time:'19:30',title:'Dinner in Kanda / Akihabara',desc:'Easy first Tokyo dinner nearby.',type:'food'}]},
+{n:9,date:'3 Dec',dow:'Thu',city:'tokyo',theme:'Nakameguro · Daikanyama · Shimokitazawa',tags:['Caf Day','Canal Autumn Leaves','Indie Tokyo'],items:[{time:'10:00',title:'Nakameguro canal walk',desc:'Amber leaves and a romantic Tokyo morning.',type:'autumn'},{time:'10:30',title:'Cafe hop in Nakameguro',desc:'Onibus, Reserve Roastery, and canal-side stops.',type:'cafe'},{time:'13:00',title:'Daikanyama T-Site',desc:'Beautiful bookstore complex and slower Tokyo pace.',type:'explore'},{time:'14:30',title:'Head to Shimokitazawa',desc:'Tokio’s indie neighbourhood.',trans:['Train / subway','Daikanyama → Shimokitazawa','~20 min'],type:'transit'},{time:'15:00',title:'Shimokitazawa wander',desc:'Vintage shops, live music, small streets.',type:'explore'},{time:'16:00',title:'Cafe hop in Shimokitazawa',desc:'Tiny local places in side streets.',type:'cafe'},{time:'19:00',title:'Dinner in Shimokitazawa',desc:'Local casual meal and a low-pressure night.',type:'food'}]},
+{n:10,date:'4 Dec',dow:'Fri',city:'tokyo',theme:'Kawaguchiko · Mt Fuji · Chureito Pagoda',tags:['Day Trip','Mt Fuji','Chureito'],items:[{time:'07:00',title:'Bus to Kawaguchiko',desc:'Pre-book from Shinjuku.',trans:['Keio bus','Shinjuku → Kawaguchiko','~2 hr'],type:'transit'},{time:'09:00',title:'Lake Kawaguchi Fuji reflections',desc:'Best chance for clear Fuji views in the morning.',type:'highlight'},{time:'10:30',title:'Kachi Kachi Ropeway',desc:'Panoramic Fuji and lake views.',type:'highlight'},{time:'12:00',title:'Lunch: Hoto noodles',desc:'Classic Kawaguchiko specialty.',type:'food'},{time:'14:00',title:'Chureito Pagoda',desc:'Iconic pagoda-and-Fuji photo spot.',type:'highlight'},{time:'16:30',title:'Return to Tokyo',desc:'Back toward Shinjuku in the evening.',trans:['Bus','Kawaguchiko → Shinjuku','~2 hr'],type:'transit'},{time:'19:00',title:'Dinner in Shinjuku',desc:'Reward meal after the Fuji day trip.',type:'food'}]},
+{n:11,date:'5 Dec',dow:'Sat',city:'tokyo',theme:'Senso-ji · Yanaka Ginza · KAYABA',tags:['Senso-ji','Old Tokyo','Yanaka'],items:[{time:'08:30',title:'Senso-ji early morning',desc:'Best before the tour crowds build.',type:'highlight'},{time:'10:00',title:'Nakamise browse',desc:'Traditional snacks and crafts.',type:'shopping'},{time:'11:30',title:'Head to Yanaka',desc:'Short train hop into old Tokyo.',trans:['Train','Asakusa → Yanaka','~15 min'],type:'transit'},{time:'12:00',title:'Yanaka Ginza shopping alley',desc:'Retro lane with snacks and local feel.',type:'shopping'},{time:'13:00',title:'KAYABA COFFEE',desc:'1938 building cafe and true institution.',type:'cafe'},{time:'14:30',title:'Yanaka cemetery stroll',desc:'Peaceful streets and old trees.',type:'explore'},{time:'16:30',title:'Ueno Park',desc:'Easy late-afternoon wander.',type:'explore'},{time:'19:00',title:'Dinner in Ueno / Akihabara',desc:'Warm low-key Tokyo night out.',type:'food'}]},
+{n:12,date:'6 Dec',dow:'Sun',city:'tokyo',theme:'Gotokuji · Shinjuku Gyoen · Farewell',tags:['Gotokuji','Last Full Day','Autumn Garden'],items:[{time:'10:00',title:'Gotokuji Temple',desc:'Lucky cat shrine with a gentler Tokyo mood.',type:'highlight'},{time:'12:00',title:'Omoide Yokocho lunch',desc:'Go at lunch for an easier seat.',type:'food'},{time:'14:00',title:'Shinjuku Gyoen',desc:'Calm autumn garden afternoon.',type:'autumn'},{time:'16:30',title:'Omotesando / Tomigaya cafe hunt',desc:'Design-led cafes and back alleys.',type:'cafe'},{time:'18:30',title:'Ginza evening browse',desc:'Itoya, Uniqlo Ginza, and city lights.',type:'shopping'},{time:'20:00',title:'Farewell dinner',desc:'Final treat before departure.',type:'food'}]},
+{n:13,date:'7 Dec',dow:'Mon',city:'tokyo',theme:'Slow Morning · Fly Home',tags:['Departure','Haneda','Flight 2020'],items:[{time:'09:00',title:'Slow cafe breakfast',desc:'Last sit-down Tokyo cafe moment.',type:'cafe'},{time:'11:00',title:'Check out hotel',desc:'Store bags if needed.',type:'hotel'},{time:'13:00',title:'Tokyo Station B1 omiyage run',desc:'KitKat sets, Tokyo Banana, wagashi, stationery.',type:'shopping'},{time:'16:30',title:'Head to Haneda Airport',desc:'Allow enough time before departure.',trans:['Keikyu Line / taxi','Shinagawa → Haneda','~13 min by train'],type:'transit'},{time:'18:30',title:'Haneda check-in and duty free',desc:'Final shopping and airport buffer time.',type:'shopping'},{time:'20:20',title:'Depart Haneda → Singapore → Jakarta',desc:'Safe flight home.',trans:['Singapore Airlines SQxxx','HND → SIN → CGK','~8–9 hr total including transit'],type:'flight'}]}];
 
-    const HOTELS = [
-      { city: "Osaka", name: "The Basement Hotel Osaka Honmachi", dates: "25–28 Nov", nights: 3, area: "Near Honmachi Station" },
-      { city: "Kyoto", name: "Kiori Exec Muromachi", dates: "28 Nov–2 Dec", nights: 4, area: "Near Karasuma Oike Station" },
-      { city: "Tokyo", name: "N+ Hotel Akihabara No.2", dates: "2–7 Dec", nights: 5, area: "Near Akihabara Station" },
-    ];
+const RESTAURANTS={
+ osaka:[
+  {icon:'🍜',name:'Ganso Aburado Abura Soba',type:'Ramen',station:'Sugamo Station',walk:'5 min walk',hours:'Open · Closes 10:30 pm',addr:'Sugamo area, Tokyo',orders:['Abura Soba','Extra Egg','Chashu'],branch:['Sugamo Station · Tokyo branch']},
+  {icon:'🍡',name:'Sennari Monaka Sugamo',type:'Japanese confectionery shop',station:'Sugamo Station',walk:'4 min walk',hours:'Open · Closes 6:00 pm',addr:'Sugamo area, Tokyo',orders:['Dorayaki','Monaka'],branch:[]},
+  {icon:'🍣',name:'Kaiten Sushi Toriton',type:'Sushi',station:'Oshiage Station',walk:'5 min walk',hours:'Open · Closes 10:00 pm',addr:'Tokyo Skytree Town Solamachi 6F',orders:['Uni','Ikura','Seasonal Nigiri'],branch:['Ikebukuro Tobu Dept. 11F']},
+  {icon:'🍜',name:'Mallory Pork Steak Jiyugaoka',type:'Steak',station:'Namba Station',walk:'1 min from Exit B14',hours:'Closed · Opens 5:00 pm',addr:'Namba CITY B1F, Osaka',orders:['Pork Steak Set','Garlic Rice','Pork Belly Bowl'],branch:[]},
+  {icon:'🍺',name:'Sapporo Draft Beer Black Label THE BAR',type:'Beer hall',station:'--',walk:'--',hours:'Open · Closes 10:00 pm',addr:'--',orders:['Draft Beer','Beer Set','Snack Platter'],branch:[]},
+  {icon:'🍢',name:'YAKITORI Torikizoku Dotonbori Store',type:'Yakitori',station:'Dotonbori / Namba',walk:'--',hours:'Closed · Opens 5:00 pm',addr:'Dotonbori area, Osaka',orders:['Yakitori Set','Negima','Tsukune'],branch:['Shibuya Jinnan Store · Tokyo branch']},
+  {icon:'🍢',name:'鳥貴族 近鉄日本橋店',type:'Yakitori',station:'Kintetsu-Nipponbashi Station',walk:'--',hours:'Closed · Opens 5:00 pm',addr:'Osaka',orders:['Yakitori Set','Negima','Tsukune'],branch:[]},
+  {icon:'🍜',name:'Moeyo Mensuke Ramen',type:'Ramen',station:'--',walk:'--',hours:'Closed · Opens 11:00 am Tue',addr:'--',orders:['Duck Ramen'],branch:[]},
+  {icon:'🍜',name:'Mutekiya',type:'Ramen',station:'Ikebukuro Station East Exit',walk:'5 min walk',hours:'Open · Closes 4:00 am',addr:'Ikebukuro, Tokyo',orders:['Tonkotsu Ramen','Chashu Extra','Kaedama'],branch:[]},
+  {icon:'🍜',name:'Menya Musashi Bukotsu Gaiden',type:'Ramen',station:'--',walk:'--',hours:'Open · Closes 10:30 pm',addr:'Tokyo',orders:['Double Soup Ramen','Tsukemen','Chashu'],branch:[]},
+  {icon:'🥢',name:'TsuruTonTan UDON NOODLE Brasserie 銀座',type:'Udon noodles',station:'Ginza Station',walk:'2 min walk',hours:'Open · Closes 11:00 pm',addr:'Ginza, Tokyo',orders:['Truffle Cream Udon','Mentaiko Udon','Sukiyaki Udon'],branch:['Roppongi branch · 24hrs','Shinjuku branch']},
+  {icon:'🥟',name:'Harajuku Gyozarou',type:'Dumpling',station:'Meiji-Jingumae Station',walk:'4 min walk',hours:'Open · Closes 9:30 pm',addr:'Harajuku, Tokyo',orders:['Boiled Gyoza','Pan-fried Gyoza','Gyoza Beer Set'],branch:[]},
+  {icon:'🍖',name:'Red Rock Harajuku',type:'Steak',station:'Meiji-Jingumae Station',walk:'3 min walk',hours:'Open · Closes 9:30 pm',addr:'Harajuku, Tokyo',orders:['Wagyu Roast Beef Don','Add Onsen Tamago'],branch:[]},
+  {icon:'🍣',name:'Mawashi Sushi Katsu Seibu Shibuya',type:'Sushi',station:'Shibuya Station',walk:'--',hours:'Open · Closes 10:00 pm',addr:'Seibu Shibuya',orders:['Seared Flounder Fin (miso)','Nigiri Set'],branch:[]},
+  {icon:'🍱',name:'Kappō Shishikura',type:'Authentic Japanese',station:'Daikanyama Station',walk:'5 min walk',hours:'Closed · Opens 6:00 pm',addr:'Ebisu-Nishi, Tokyo',orders:['Omakase Course','Seasonal Fish Dish','Grilled Wagyu'],branch:[]},
+  {icon:'🍣',name:'Tsujihan',type:'Seafood donburi',station:'Mitsukoshimae Station',walk:'2 min from Exit A1',hours:'Open · Closes 10:00 pm',addr:'Nihonbashi Muromachi, Tokyo',orders:['Sashimi Mountain Don','Special Uni Don','Ochazuke Finish'],branch:['Kagurazaka branch · 3 min from Iidabashi Station']},
+  {icon:'🍜',name:'Godaime Hanayama Udon Haneda',type:'Udon noodles',station:'Haneda Airport',walk:'--',hours:'Opens soon · 5:30 pm',addr:'Haneda Airport, Tokyo',orders:['Zaru Udon','Kama-age Udon','Tempura'],branch:[]},
+  {icon:'🍜',name:'Godaime Hanayama Udon Ginza',type:'Udon noodles',station:'Ginza Station',walk:'2 min walk',hours:'Opens soon · 5:30 pm',addr:'Ginza, Tokyo',orders:['Zaru Udon','Kama-age Udon','Tempura'],branch:[]},
+  {icon:'🍜',name:'Godaime Hanayama Udon Nihonbashi',type:'Udon noodles',station:'Mitsukoshimae Station',walk:'2 min walk',hours:'Open · Closes 10:00 pm',addr:'Nihonbashi, Tokyo',orders:['Zaru Udon','Kama-age Udon','Tempura'],branch:[]},
+ ],
+ kyoto:[
+  {icon:'🍜',name:'701 TARESOBA KYOTO',type:'Soba noodle restaurant',station:'Karasuma Station',walk:'9 min walk',hours:'Lunch 11:30–14:00 · Dinner 17:00–22:00 · Closed Sun',addr:'Nishikiyamachi-dori, Kyoto',orders:['Cold Taresoba','Tare Dipping Soba','Seasonal Toppings'],branch:[]},
+  {icon:'🧂',name:'Ochanokosaisai Nishiki',type:'Spice / souvenir store',station:'Shijo Station',walk:'3 min walk',hours:'Open · Closes 5:30 pm',addr:'Nishiki Market, Kyoto',orders:['Chili Oil','Furikake','Sansho'],branch:['Arashiyama branch','Kyoto Tower branch']},
+  {icon:'🧂',name:'Ochanokosaisai Arashiyama',type:'Spice / souvenir store',station:'Arashiyama Station',walk:'--',hours:'Open · Closes 5:30 pm',addr:'Arashiyama, Kyoto',orders:['Chili Oil','Furikake','Sansho'],branch:[]},
+  {icon:'🥢',name:'Ginza Tenryu',type:'Mandarin restaurant',station:'Ginza Station',walk:'3 min walk',hours:'Open · Closes 9:30 pm',addr:'Ginza, Tokyo',orders:['Jumbo Gyoza','Pan-fried Set','Gyoza Teishoku'],branch:[]},
+  {icon:'🍺',name:'Centre The Bakery',type:'Artisan bread cafe',station:'Ginza-Itchome Station',walk:'1 min walk',hours:'Open · Closes 7:00 pm',addr:'Ginza, Tokyo',orders:['Shokupan Bread Flight','Toast Butter Set','Seasonal Jam Pairing'],branch:[]},
+  {icon:'🍜',name:'701 Taresoba Kyoto',type:'Soba noodle restaurant',station:'Karasuma Station',walk:'9 min walk',hours:'Lunch 11:30–14:00 · Dinner 17:00–22:00 · Closed Sun',addr:'Kyoto',orders:['Cold Taresoba','Tare Dipping Soba'],branch:[]},
+ ],
+ tokyo:[
+  {icon:'🍣',name:'Tsukiji Itadori Bekkan',type:'Seafood donburi',station:'Tsukiji Station',walk:'5 min walk',hours:'Open · Closes 10:00 pm',addr:'Tsukiji Outer Market alley, Tokyo',orders:['Kaisendon','Grilled Fish Set','Morning Sushi'],branch:[]},
+  {icon:'🍖',name:'Moeyo Mensuke Ramen',type:'Ramen',station:'--',walk:'--',hours:'Closed · Opens 11:00 am Tue',addr:'Tokyo',orders:['Duck Ramen'],branch:[]},
+  {icon:'🍜',name:'Mutekiya',type:'Ramen',station:'Ikebukuro Station East Exit',walk:'5 min walk',hours:'Open · Closes 4:00 am',addr:'Tokyo',orders:['Tonkotsu Ramen','Chashu Extra','Kaedama'],branch:[]},
+  {icon:'🍜',name:'Menya Musashi Bukotsu Gaiden',type:'Ramen',station:'--',walk:'--',hours:'Open · Closes 10:30 pm',addr:'Tokyo',orders:['Double Soup Ramen','Tsukemen','Chashu'],branch:[]},
+  {icon:'🥢',name:'TsuruTonTan UDON NOODLE Brasserie 銀座',type:'Udon noodles',station:'Ginza Station',walk:'2 min walk',hours:'Open · Closes 11:00 pm',addr:'Ginza, Tokyo',orders:['Truffle Cream Udon','Mentaiko Udon','Sukiyaki Udon'],branch:['Roppongi branch · 24hrs','Shinjuku branch']},
+  {icon:'🥟',name:'Harajuku Gyozarou',type:'Dumpling',station:'Meiji-Jingumae Station',walk:'4 min walk',hours:'Open · Closes 9:30 pm',addr:'Harajuku, Tokyo',orders:['Boiled Gyoza','Pan-fried Gyoza','Gyoza Beer Set'],branch:[]},
+  {icon:'🍖',name:'Red Rock Harajuku',type:'Steak',station:'Meiji-Jingumae Station',walk:'3 min walk',hours:'Open · Closes 9:30 pm',addr:'Harajuku, Tokyo',orders:['Wagyu Roast Beef Don','Add Onsen Tamago'],branch:[]},
+  {icon:'🍣',name:'Mawashi Sushi Katsu Seibu Shibuya',type:'Sushi',station:'Shibuya Station',walk:'--',hours:'Open · Closes 10:00 pm',addr:'Seibu Shibuya',orders:['Seared Flounder Fin (miso)','Nigiri Set'],branch:[]},
+  {icon:'🍗',name:'YAKITORI Torikizoku Shibuya Jinnan Store',type:'Yakitori',station:'Shibuya Station',walk:'--',hours:'Closed · Opens 5:00 pm',addr:'Shibuya Jinnan, Tokyo',orders:['Yakitori Set','Negima','Tsukune'],branch:[]},
+  {icon:'🍺',name:'Sapporo Draft Beer Black Label THE BAR',type:'Beer hall',station:'--',walk:'--',hours:'Open · Closes 10:00 pm',addr:'Tokyo',orders:['Draft Beer','Beer Set','Snack Platter'],branch:[]},
+  {icon:'🍜',name:'Godaime Hanayama Udon Haneda',type:'Udon noodles',station:'Haneda Airport',walk:'--',hours:'Opens soon · 5:30 pm',addr:'Haneda Airport, Tokyo',orders:['Zaru Udon','Kama-age Udon','Tempura'],branch:[]},
+  {icon:'🍜',name:'Godaime Hanayama Udon Ginza',type:'Udon noodles',station:'Ginza Station',walk:'2 min walk',hours:'Opens soon · 5:30 pm',addr:'Ginza, Tokyo',orders:['Zaru Udon','Kama-age Udon','Tempura'],branch:[]},
+  {icon:'🍜',name:'Godaime Hanayama Udon Nihonbashi',type:'Udon noodles',station:'Mitsukoshimae Station',walk:'2 min walk',hours:'Open · Closes 10:00 pm',addr:'Nihonbashi, Tokyo',orders:['Zaru Udon','Kama-age Udon','Tempura'],branch:[]},
+  {icon:'🍔',name:'Kappō Shishikura',type:'Authentic Japanese',station:'Daikanyama Station',walk:'5 min walk',hours:'Closed · Opens 6:00 pm',addr:'Ebisu-Nishi, Tokyo',orders:['Omakase Course','Seasonal Fish Dish','Grilled Wagyu'],branch:[]},
+  {icon:'🍝',name:'Moeyo Mensuke Ramen',type:'Ramen',station:'--',walk:'--',hours:'Closed · Opens 11:00 am Tue',addr:'Tokyo',orders:['Duck Ramen'],branch:[]},
+ ],
+};
 
-    const ACTIONS = [
-      { title: "Book Universal Studios Japan tickets online", desc: "1-Day Pass + Express Pass; sell out weeks ahead.", urgent: true },
-      { title: "Reserve Shinkansen seats", desc: "Shin-Osaka → Kyoto and Kyoto → Tokyo; get a Fuji-view window seat if possible.", urgent: true },
-      { title: "Book Ruriko-in timed entry", desc: "Autumn season slots are limited and must be pre-booked.", urgent: true },
-      { title: "Book Amanohashidate / Ine transport", desc: "Tango Railway seats can fill on popular autumn dates.", urgent: true },
-      { title: "Book Mt Fuji trip transport", desc: "Shinjuku → Kawaguchiko bus or train for the day trip.", urgent: true },
-      { title: "Apply for Japan eVisa", desc: "Allow enough processing time before departure.", urgent: true },
-      { title: "Collect ICOCA card at Kansai Airport", desc: "Works across Kansai and Tokyo.", urgent: false },
-      { title: "Prepare yen cash", desc: "Useful for local cafés, older shops, and temple entries.", urgent: false },
-    ];
+const SHOPS={
+ osaka:[
+  {icon:'🛍️',name:'Shinsaibashi-suji',station:'Shinsaibashi Station',walk:'--',hours:'10:00–21:00',items:['Fashion','Souvenirs','Cosmetics']},
+  {icon:'🛍️',name:'Namba Parks',station:'Namba Station',walk:'3 min',hours:'11:00–21:00',items:['Lifestyle brands','Gift shops','Cafe breaks']},
+  {icon:'🛍️',name:'LUCUA Osaka',station:'Osaka Station',walk:'1 min',hours:'10:30–20:30',items:['Station shopping','Beauty','Fashion']},
+  {icon:'🛍️',name:'Tenjinbashisuji Arcade',station:'Temma / Minami-Morimachi',walk:'--',hours:'Vary by shop',items:['Snacks','Local goods','Retro browsing']},
+ ],
+ kyoto:[
+  {icon:'🛍️',name:'Nishiki Market',station:'Shijo Station',walk:'3 min',hours:'10:00–18:00',items:['Pickles','Spices','Tea','Snacks']},
+  {icon:'🛍️',name:'Kyoto Tower Sando',station:'Kyoto Station',walk:'2 min',hours:'10:00–21:00',items:['Food souvenirs','Cosmetics','Gifts']},
+  {icon:'🛍️',name:'Teramachi Shopping Arcade',station:'Kyoto-Kawaramachi Station',walk:'2 min',hours:'10:00–20:00',items:['Fashion','Souvenirs','Drugs stores']},
+  {icon:'🛍️',name:'Arashiyama shopping lane',station:'Arashiyama Station',walk:'--',hours:'10:00–17:00',items:['Bamboo goods','Snacks','Small gifts']},
+ ],
+ tokyo:[
+  {icon:'🛍️',name:'Tokyo Station B1 Ekiben / Omiyage',station:'Tokyo Station',walk:'--',hours:'7:00–22:00',items:['KitKats','Tokyo Banana','Wagashi','Station bento']},
+  {icon:'🛍️',name:'Itoya Ginza',station:'Ginza Station',walk:'4 min',hours:'10:00–20:00',items:['Stationery','Cards','Planners']},
+  {icon:'🛍️',name:'Uniqlo Ginza',station:'Ginza Station',walk:'3 min',hours:'11:00–21:00',items:['Japan-exclusive basics','Collabs','Outerwear']},
+  {icon:'🛍️',name:'Don Quijote Shibuya',station:'Shibuya Station',walk:'--',hours:'24 hrs',items:['Snacks','Drugs','Souvenirs']},
+ ]
+};
 
-    const CHECKLIST = [
-      { name: "Get ICOCA IC Card at KIX Airport", sub: "Load around ¥3,000–5,000 to start." },
-      { name: "Arrange Japan SIM or pocket Wi‑Fi", sub: "Pre-order before leaving Jakarta or pick up at the airport." },
-      { name: "Exchange some Japanese yen", sub: "Small local spots may still prefer cash." },
-      { name: "Download Google Maps offline", sub: "Save Osaka, Kyoto, and Tokyo before you fly." },
-      { name: "Download Google Translate Japanese pack", sub: "Useful for menus and signage." },
-      { name: "Pack a Type A adapter", sub: "Japan uses flat 2-pin plugs." },
-      { name: "Bring a power bank", sub: "Long walking days drain batteries quickly." },
-      { name: "Pack layering clothes", sub: "Late Nov to early Dec can be cold, especially at night." },
-    ];
+const TIPS=[
+  {t:'IC Card',b:'Pick up ICOCA at Kansai Airport and use it on trains, buses, and many shops across Kansai and Tokyo.'},
+  {t:'Cash',b:'Keep yen cash ready. Smaller restaurants, cafes, and some local places still prefer cash.'},
+  {t:'Transit',b:'Reserve Shinkansen seats early for Kyoto → Tokyo and use Google Maps for platform transfers.'},
+  {t:'Weather',b:'Late Nov to early Dec is cool to cold. Bring layers and comfortable walking shoes.'},
+  {t:'Shopping timing',b:'Temples close early; shopping streets are best in the afternoon and evening.'},
+];
 
-    const DAYS = [
-      { n:1, date:"25 Nov", dow:"Wed", city:"Osaka", theme:"Arrival · Hozenji Yokocho · First Bites", emoji:"✈️", tags:["Arrival","Easy Day","Alley Walk"], events:[
-        { time:"08:35", icon:"✈️", title:"Land at Kansai Airport", sub:"SQ618 · Immigration · collect ICOCA card at airport kiosk", type:"flight" },
-        { time:"10:30", icon:"🏨", title:"Check in — The Basement Hotel Honmachi", sub:"Freshen up · rest a bit after the overnight flight", type:"hotel" },
-        { time:"12:30", icon:"🐟", title:"Kuromon Ichiba Market — first Osaka lunch", sub:"Try fresh seafood, wagyu skewers, or grilled bites inside the market", type:"food" },
-        { time:"14:30", icon:"🏮", title:"Hozenji Yokocho", sub:"Moss-covered lantern alley near Namba · atmospheric and photogenic", type:"highlight" },
-        { time:"16:00", icon:"🛍", title:"Namba back-street wander", sub:"Skip chain-heavy streets and explore the side alleys", type:"explore" },
-        { time:"18:30", icon:"🌆", title:"Dotonbori at dusk — photos only", sub:"Neon reflections and Glico sign, then eat elsewhere", type:"explore" },
-        { time:"19:30", icon:"🍳", title:"Dinner — local okonomiyaki or teppanyaki", sub:"Find a smaller non-chain counter spot", type:"food" },
-      ]},
-      { n:2, date:"26 Nov", dow:"Thu", city:"Osaka", theme:"Universal Studios Japan", emoji:"🎢", tags:["Full Day","USJ","Pre-book Tickets"], events:[
-        { time:"07:30", icon:"🚇", title:"Head to USJ early", sub:"JR Yumesaki Line → Universal City Station · around 30 min from Honmachi", type:"transit" },
-        { time:"08:30", icon:"🎢", title:"Universal Studios Japan — Full Day", sub:"Super Nintendo World · Harry Potter · Hollywood Dream coaster", type:"highlight" },
-        { time:"12:30", icon:"🍔", title:"Lunch inside USJ", sub:"Butterbeer and themed food are worth the splurge today", type:"food" },
-        { time:"17:30", icon:"🛍", title:"USJ souvenir shopping", sub:"Nintendo and Wizarding World gifts before exit", type:"explore" },
-        { time:"20:00", icon:"🍜", title:"Dinner — Umeda area", sub:"Ramen or conveyor sushi to wind down", type:"food" },
-      ]},
-      { n:3, date:"27 Nov", dow:"Fri", city:"Osaka", theme:"Minoh Waterfall Koyo · Shinsekai · Last Night", emoji:"🍁", tags:["Autumn Leaves","Local Area","Tenjinbashi"], events:[
-        { time:"09:00", icon:"🚇", title:"Head to Minoh", sub:"Hankyu line from Umeda · around 45 min total", type:"transit" },
-        { time:"10:00", icon:"🍁", title:"Minoh Waterfall Trail — peak koyo", sub:"Maple forest trail and momiji tempura from stalls", type:"autumn" },
-        { time:"13:00", icon:"🍱", title:"Lunch in Minoh", sub:"Quiet tofu or soba lunch in a peaceful local area", type:"food" },
-        { time:"15:30", icon:"🏙", title:"Shinsekai Retro District", sub:"Old-school Osaka mood and good photo spots", type:"explore" },
-        { time:"16:30", icon:"🍢", title:"Kushikatsu at a small Shinsekai bar", sub:"Go for a non-chain counter place", type:"food" },
-        { time:"18:30", icon:"🛒", title:"Tenjinbashisuji Shotengai evening stroll", sub:"Long covered arcade with a very local feel", type:"explore" },
-        { time:"20:00", icon:"🍶", title:"Small izakaya dinner in Tenjinbashi", sub:"Slow final Osaka night", type:"food" },
-      ]},
-      { n:4, date:"28 Nov", dow:"Sat", city:"Kyoto", theme:"Kyoto arrival · Sannen-zaka · Kodaiji Night", emoji:"🚅", tags:["Travel Day","Kiyomizudera","Kodaiji Illumination"], events:[
-        { time:"09:00", icon:"☕", title:"Last Osaka breakfast — kissaten", sub:"Old-school coffee shop near the hotel", type:"cafe" },
-        { time:"10:30", icon:"🏨", title:"Check out — The Basement Hotel", sub:"Head to Shin-Osaka Station", type:"hotel" },
-        { time:"11:30", icon:"🚅", title:"Shinkansen → Kyoto", sub:"Shin-Osaka → Kyoto · around 15 min · reserve seats in advance", type:"transit" },
-        { time:"13:00", icon:"🏨", title:"Check in — Kiori Exec Muromachi", sub:"Freshen up and rest briefly", type:"hotel" },
-        { time:"14:00", icon:"🏘", title:"Sannen-zaka and Ninen-zaka walk", sub:"Kyoto's most beautiful cobblestone hill streets", type:"highlight" },
-        { time:"15:00", icon:"☕", title:"% Arabica Higashiyama", sub:"Iconic Kyoto coffee stop on the hill path", type:"cafe" },
-        { time:"16:00", icon:"⛩", title:"Kiyomizudera Temple", sub:"Stay for the autumn view and golden light", type:"autumn" },
-        { time:"18:00", icon:"🌙", title:"Kodaiji Temple Night Illumination", sub:"Maples lit after dark with reflection pools", type:"autumn" },
-        { time:"20:00", icon:"🍽", title:"Dinner — Pontocho Alley", sub:"Lantern-lit Kyoto first night dinner", type:"food" },
-      ]},
-      { n:5, date:"29 Nov", dow:"Sun", city:"Kyoto", theme:"Arashiyama · River Coffee View", emoji:"🎋", tags:["Autumn Foliage","Bamboo Grove","Best Café View"], events:[
-        { time:"07:45", icon:"🚇", title:"Head to Arashiyama early", sub:"Arrive before the crowds", type:"transit" },
-        { time:"08:30", icon:"🎋", title:"Arashiyama Bamboo Grove", sub:"Most magical early in the morning", type:"highlight" },
-        { time:"09:15", icon:"🍁", title:"Temple stop in the hills", sub:"Pagoda, stone steps, and brilliant autumn maples", type:"autumn" },
-        { time:"10:15", icon:"☕", title:"% Arabica Arashiyama", sub:"Riverfront coffee with one of Kyoto's best views", type:"cafe" },
-        { time:"11:30", icon:"🏯", title:"Tenryu-ji Garden", sub:"UNESCO garden with maple reflections", type:"autumn" },
-        { time:"13:00", icon:"🍲", title:"Lunch — riverside tofu restaurant", sub:"Warm yudofu-style Kyoto lunch", type:"food" },
-        { time:"15:00", icon:"🌉", title:"Togetsukyo Bridge and river walk", sub:"Late afternoon bridge and river scenery", type:"explore" },
-        { time:"17:00", icon:"🛍", title:"Nishiki Market before closing", sub:"Kyoto snacks, tofu, pickles, and yatsuhashi", type:"food" },
-      ]},
-      { n:6, date:"30 Nov", dow:"Mon", city:"Kyoto", theme:"Ine Funaya · Amanohashidate Day Trip", emoji:"🚞", tags:["Day Trip","Hidden Japan","Coastal Views"], events:[
-        { time:"07:30", icon:"🚞", title:"Depart Kyoto → Amanohashidate", sub:"Book seats ahead for an easier day", type:"transit" },
-        { time:"09:30", icon:"🌊", title:"Amanohashidate Sand Bar", sub:"One of Japan's Top 3 Views", type:"highlight" },
-        { time:"11:30", icon:"🚐", title:"Ine Funaya Village", sub:"Boat houses on the water and a very different side of Japan", type:"highlight" },
-        { time:"13:00", icon:"🐟", title:"Seafood lunch in Ine", sub:"Fresh and simple bay-side meal", type:"food" },
-        { time:"15:00", icon:"🚶", title:"Wander Ine Bay slowly", sub:"Water, fishing boats, and almost no rush", type:"explore" },
-        { time:"16:30", icon:"🚞", title:"Return to Kyoto", sub:"Long transit back; keep dinner easy", type:"transit" },
-        { time:"19:30", icon:"🍱", title:"Easy dinner near hotel", sub:"Konbini or simple ramen is fine tonight", type:"food" },
-      ]},
-      { n:7, date:"1 Dec", dow:"Tue", city:"Kyoto", theme:"Ruriko-in · Kibune · Café Hopping", emoji:"🍂", tags:["Ruriko-in","Best Autumn Spot","Café Day"], events:[
-        { time:"09:30", icon:"🍁", title:"Ruriko-in Temple — pre-book", sub:"Tatami reflection room with maple view", type:"autumn" },
-        { time:"11:00", icon:"⛩", title:"Kibune Shrine river walk", sub:"Deep-forest shrine mood and river scenery", type:"explore" },
-        { time:"12:30", icon:"🍜", title:"Lunch in Kibune / Kurama area", sub:"Warm soba or tofu set lunch", type:"food" },
-        { time:"14:30", icon:"🚇", title:"Return to central Kyoto", sub:"Back by Eizan Railway", type:"transit" },
-        { time:"15:30", icon:"☕", title:"Weekenders Coffee Tominokoji", sub:"Beautiful alley coffee stop", type:"cafe" },
-        { time:"16:30", icon:"☕", title:"Elephant Factory Coffee", sub:"Dim warm basement café with local feel", type:"cafe" },
-        { time:"18:00", icon:"🍁", title:"Philosopher's Path at dusk", sub:"Quiet canal walk in fading light", type:"autumn" },
-        { time:"19:30", icon:"🍽", title:"Last Kyoto dinner", sub:"Make the final Kyoto night special", type:"food" },
-      ]},
-      { n:8, date:"2 Dec", dow:"Wed", city:"Tokyo", theme:"Shinkansen · Akihabara arrival", emoji:"🚄", tags:["Travel Day","Shinkansen","Tokyo Arrival"], events:[
-        { time:"09:00", icon:"🏘", title:"Nishijin neighbourhood walk", sub:"Quiet Kyoto streets and breakfast nearby", type:"explore" },
-        { time:"10:30", icon:"☕", title:"Last Kyoto coffee", sub:"Slow no-rush morning near Muromachi", type:"cafe" },
-        { time:"12:00", icon:"🏨", title:"Check out — Kiori Exec Muromachi", sub:"Head toward Kyoto Station", type:"hotel" },
-        { time:"13:00", icon:"🚄", title:"Nozomi Shinkansen → Tokyo", sub:"Kyoto → Tokyo around 2 hr 15 min · reserve seats", type:"transit" },
-        { time:"15:30", icon:"🏨", title:"Check in — N+ Hotel Akihabara No.2", sub:"Freshen up after travel", type:"hotel" },
-        { time:"17:00", icon:"🎮", title:"Akihabara Electric Town", sub:"Electronics, arcades, and easy first Tokyo wander", type:"explore" },
-        { time:"19:30", icon:"🍛", title:"Dinner in Kanda or Akihabara", sub:"Easy first Tokyo dinner nearby", type:"food" },
-      ]},
-      { n:9, date:"3 Dec", dow:"Thu", city:"Tokyo", theme:"Nakameguro · Daikanyama · Shimokitazawa", emoji:"☕", tags:["Café Day","Canal Leaves","Indie Tokyo"], events:[
-        { time:"10:00", icon:"🍁", title:"Nakameguro canal walk", sub:"Amber leaves and a romantic Tokyo morning", type:"autumn" },
-        { time:"10:30", icon:"☕", title:"Café hop Nakameguro", sub:"Onibus, Reserve Roastery, and canal-side stops", type:"cafe" },
-        { time:"13:00", icon:"📚", title:"Daikanyama T-Site", sub:"Beautiful bookstore complex and slower Tokyo pace", type:"explore" },
-        { time:"14:30", icon:"🚇", title:"Head to Shimokitazawa", sub:"Tokyo's indie neighbourhood", type:"transit" },
-        { time:"15:00", icon:"🧥", title:"Shimokitazawa wander", sub:"Vintage, small streets, and no fixed plan needed", type:"explore" },
-        { time:"16:00", icon:"☕", title:"More cafés in Shimokitazawa", sub:"Tiny local places in side streets", type:"cafe" },
-        { time:"19:00", icon:"🍽", title:"Dinner in Shimokitazawa", sub:"Local casual meal and a low-pressure Tokyo evening", type:"food" },
-      ]},
-      { n:10, date:"4 Dec", dow:"Fri", city:"Tokyo", theme:"Kawaguchiko · Mt Fuji · Chureito Pagoda", emoji:"🗻", tags:["Day Trip","Mt Fuji","Chureito"], events:[
-        { time:"07:00", icon:"🚌", title:"Bus / train to Kawaguchiko", sub:"Pre-book transport from Shinjuku", type:"transit" },
-        { time:"09:00", icon:"🗻", title:"Lake Kawaguchi Fuji reflections", sub:"Best chance for crisp morning Fuji views", type:"highlight" },
-        { time:"10:30", icon:"🚡", title:"Kachi Kachi Ropeway", sub:"Panoramic Fuji + lake views", type:"highlight" },
-        { time:"12:00", icon:"🍜", title:"Lunch — Hoto noodles", sub:"Classic Kawaguchiko specialty", type:"food" },
-        { time:"14:00", icon:"⛩", title:"Chureito Pagoda", sub:"Iconic pagoda-and-Fuji photo spot", type:"highlight" },
-        { time:"16:30", icon:"🚌", title:"Return to Tokyo", sub:"Back toward Shinjuku in the evening", type:"transit" },
-        { time:"19:00", icon:"🍣", title:"Dinner in Shinjuku", sub:"Reward meal after the Fuji day trip", type:"food" },
-      ]},
-      { n:11, date:"5 Dec", dow:"Sat", city:"Tokyo", theme:"Senso-ji · Yanaka Ginza · KAYABA", emoji:"🏮", tags:["Senso-ji","Old Tokyo","Yanaka"], events:[
-        { time:"08:30", icon:"⛩", title:"Senso-ji early morning", sub:"Best before the tour crowds build", type:"highlight" },
-        { time:"10:00", icon:"🛍", title:"Nakamise browse", sub:"Traditional snacks and crafts", type:"explore" },
-        { time:"11:30", icon:"🚇", title:"Head to Yanaka", sub:"Short train hop into old Tokyo", type:"transit" },
-        { time:"12:00", icon:"🏘", title:"Yanaka Ginza Shopping Alley", sub:"Retro Tokyo lane with local snacks", type:"highlight" },
-        { time:"13:00", icon:"☕", title:"KAYABA COFFEE", sub:"1938 building café and a true institution", type:"cafe" },
-        { time:"14:30", icon:"🌳", title:"Yanaka Cemetery walk", sub:"Peaceful streets and local atmosphere", type:"explore" },
-        { time:"16:30", icon:"🌆", title:"Ueno Park late afternoon", sub:"Browse nearby instead of doing museum time", type:"explore" },
-        { time:"19:00", icon:"🍺", title:"Dinner — izakaya in Ueno or Akihabara", sub:"Warm low-key night out", type:"food" },
-      ]},
-      { n:12, date:"6 Dec", dow:"Sun", city:"Tokyo", theme:"Gotokuji · Shinjuku Gyoen · Farewell", emoji:"🐱", tags:["Gotokuji","Last Full Day","Autumn Garden"], events:[
-        { time:"10:00", icon:"🐱", title:"Gotokuji Temple", sub:"Lucky cat shrine and a gentler Tokyo stop", type:"highlight" },
-        { time:"12:00", icon:"🍢", title:"Omoide Yokocho lunch", sub:"Go at lunch for an easier seat", type:"food" },
-        { time:"14:00", icon:"🍁", title:"Shinjuku Gyoen", sub:"Autumn garden afternoon and calmer city pace", type:"autumn" },
-        { time:"16:30", icon:"☕", title:"Omotesando / Tomigaya café hunt", sub:"Beautiful design-led cafés and back alleys", type:"cafe" },
-        { time:"18:30", icon:"🛍", title:"Ginza evening browse", sub:"Itoya, Uniqlo Ginza, and city lights", type:"explore" },
-        { time:"20:00", icon:"🥩", title:"Farewell dinner", sub:"Yakiniku, tonkatsu, omakase, or another final treat", type:"food" },
-      ]},
-      { n:13, date:"7 Dec", dow:"Mon", city:"Tokyo", theme:"Slow Morning · Fly Home", emoji:"🛫", tags:["Departure","Haneda","Flight 20:20"], events:[
-        { time:"09:00", icon:"☕", title:"Slow café breakfast in Akihabara", sub:"Last sit-down Tokyo café moment", type:"cafe" },
-        { time:"11:00", icon:"🏨", title:"Check out — N+ Hotel Akihabara No.2", sub:"Store bags if needed", type:"hotel" },
-        { time:"13:00", icon:"🎁", title:"Tokyo Station B1 omiyage run", sub:"KitKat sets, Tokyo Banana, wagashi, stationery", type:"explore" },
-        { time:"16:30", icon:"🚆", title:"Head to Haneda Airport", sub:"Allow enough time before departure", type:"transit" },
-        { time:"18:30", icon:"🛍", title:"Haneda check-in and duty free", sub:"Final shopping and airport buffer time", type:"transit" },
-        { time:"20:20", icon:"✈️", title:"Depart Haneda → Singapore → Jakarta", sub:"Safe flight home", type:"flight" },
-      ]},
-    ];
+function badgeColor(type){return TYPE[type]||'#999'}
+function Cfg(city){return CITY[city]}
 
-    const FOODCAFES = {
-      Osaka: {
-        cafes: [
-          { name:"% Arabica Osaka", area:"Dotonbori", hours:"8:00–19:00", station:"Namba Station", walk:"5 min walk", best:"Spanish Latte", note:"Minimal Japanese coffee brand with a cleaner atmosphere than most chains.", icon:"☕" },
-          { name:"Hario Café", area:"Osaka city", hours:"10:00–18:00", station:"Hommachi Station", walk:"7 min walk", best:"Hand-drip coffee", note:"Pour-over focused café from the glass equipment brand.", icon:"☕" },
-          { name:"Slow Bar / Horie cafés", area:"Horie / west of Namba", hours:"9:00–18:00", station:"Nishiohashi Station", walk:"6 min walk", best:"Single-origin pour over", note:"Better area than the main tourist drag for specialty coffee.", icon:"☕" },
-          { name:"Local kissaten retro cafés", area:"Honmachi / Semba", hours:"Morning–late afternoon", station:"Hommachi Station", walk:"5 min walk", best:"Egg sandwich set", note:"Dim lights, handwritten menus, drip coffee, and egg sandwiches.", icon:"☕" },
-        ],
-        food: [
-          { name:"Hozenji Yokocho", area:"Namba", note:"Atmospheric alley for izakaya and kappo-style dining." },
-          { name:"Kuromon Ichiba Market", area:"Nipponbashi", note:"Fresh seafood and sit-down options, not only walking snacks." },
-          { name:"Shinsekai counter bars", area:"Tennoji", note:"Good non-chain kushikatsu spots with local energy." },
-          { name:"Tenjinbashisuji Shotengai", area:"Tenjinbashi", note:"Long local arcade full of cheap eats and old cafés." },
-          { name:"Namba side alleys", area:"Namba", note:"Better for okonomiyaki and teppan counters than the main strip." },
-        ],
-      },
-      Kyoto: {
-        cafes: [
-          { name:"% Arabica Higashiyama", area:"Sannen-zaka", hours:"8:00–18:00", station:"Kiyomizu-Gojo Station", walk:"15 min walk", best:"Latte", note:"Iconic hill-path café and a perfect Day 4 stop.", icon:"☕" },
-          { name:"% Arabica Arashiyama", area:"Arashiyama", hours:"8:30–18:00", station:"Arashiyama Station", walk:"7 min walk", best:"Iced latte", note:"River and mountain view café; best in the morning.", icon:"☕" },
-          { name:"Weekenders Coffee Tominokoji", area:"Central Kyoto", hours:"8:00–18:00", station:"Karasuma Station", walk:"6 min walk", best:"Filter coffee", note:"Serious coffee in a quiet alley building.", icon:"☕" },
-          { name:"Elephant Factory Coffee", area:"Sanjo", hours:"10:00–18:00", station:"Kyoto Shiyakusho-mae Station", walk:"4 min walk", best:"Cappuccino", note:"Warm, dim basement café with old kissaten feeling.", icon:"☕" },
-          { name:"Walden Woods Kyoto", area:"Nakagyo", hours:"9:00–18:00", station:"Karasuma Oike Station", walk:"8 min walk", best:"Black coffee", note:"Minimal modern café popular with younger Kyoto crowd.", icon:"☕" },
-          { name:"Kissa Ichi", area:"Fushimi", hours:"10:00–17:00", station:"Fushimi Inari Station", walk:"10 min walk", best:"Coffee set", note:"Retro kissaten atmosphere and classic Japanese coffee mood.", icon:"☕" },
-        ],
-        food: [
-          { name:"Pontocho Alley", area:"Central Kyoto", note:"Lantern-lit dining lane and classic first/last-night Kyoto spot." },
-          { name:"Nishiki Market", area:"Shijo", note:"Kyoto kitchen for snacks, pickles, and local ingredients." },
-          { name:"Sannen-zaka / Ninen-zaka", area:"Higashiyama", note:"Touristy but still genuinely charming for sweets and snack stops." },
-          { name:"Muromachi / Nishijin lunch spots", area:"Near hotel", note:"Tiny lunch counters with very local pricing and handwritten menus." },
-        ],
-      },
-      Tokyo: {
-        cafes: [
-          { name:"KAYABA COFFEE", area:"Yanaka", hours:"8:00–18:00", station:"Nippori Station", walk:"8 min walk", best:"Egg sandwich", note:"1938 wooden building café with true old Tokyo charm.", icon:"☕" },
-          { name:"Onibus Coffee", area:"Nakameguro", hours:"8:00–19:00", station:"Nakameguro Station", walk:"6 min walk", best:"Flat white", note:"Strong specialty coffee stop for the canal day.", icon:"☕" },
-          { name:"Starbucks Reserve Roastery", area:"Nakameguro", hours:"7:00–22:00", station:"Nakameguro Station", walk:"13 min walk", best:"Reserve pour-over", note:"Worth it here more for the setting than the brand.", icon:"☕" },
-          { name:"Fuglen Tokyo", area:"Tomigaya", hours:"8:00–23:00", station:"Yoyogi-Koen Station", walk:"4 min walk", best:"Cinnamon bun + coffee", note:"Norwegian café by day, bar by night, near Yoyogi area.", icon:"☕" },
-          { name:"Bear Pond Espresso", area:"Shimokitazawa", hours:"11:00–19:00", station:"Shimokitazawa Station", walk:"5 min walk", best:"Espresso", note:"Tiny cult espresso bar with strong local reputation.", icon:"☕" },
-          { name:"BREAD, ESPRESSO", area:"Omotesando", hours:"8:00–19:00", station:"Omotesando Station", walk:"7 min walk", best:"Morning toast set", note:"Great design-heavy café option with famous toast.", icon:"☕" },
-          { name:"Daikanyama T-Site cafés", area:"Daikanyama", hours:"7:00–22:00", station:"Daikanyama Station", walk:"5 min walk", best:"Pastry + latte", note:"Perfect slow-down stop between bookstore browsing.", icon:"☕" },
-        ],
-        food: [
-          { name:"Omoide Yokocho", area:"Shinjuku", note:"Smoky yakitori alley best tackled at lunch or early evening." },
-          { name:"Yanaka Ginza", area:"Yanaka", note:"Retro shopping alley with snack stops and local feel." },
-          { name:"Harmonica Yokocho", area:"Kichijoji", note:"Tiny bars and restaurants with maze-like charm." },
-          { name:"Golden Gai", area:"Shinjuku", note:"Atmospheric small-bar grid; be ready for cover charges." },
-          { name:"Ameyoko Market", area:"Ueno", note:"Chaotic and colorful street-market browse for snacks." },
-          { name:"Tokyo Station B1 Omiyage", area:"Marunouchi", note:"One of the best souvenir food stops in Tokyo." },
-        ],
-      },
-    };
+function Header({city,setCity}){
+  const pills=['all','osaka','kyoto','tokyo'];
+  return <div className="top"><div className="kicker">Singapore Airlines · CGK → KIX → HND → CGK</div><h1 className="title">Japan 2026</h1><div className="sub">Osaka · Kyoto · Tokyo</div><div className="meta">25 Nov – 7 Dec 2026 · 13 Days · 12 Nights</div><div className="chips">{pills.map(p=><button key={p} className={`chip press ${city===p?'on':''}`} onClick={()=>setCity(p)}>{p==='all'?'All Cities':Cfg(p)?.name||'All Cities'}</button>)}</div></div>
+}
+function Tabs({tab,setTab}){return <div className="tabs">{[{id:'schedule',l:'Schedule'},{id:'restaurants',l:'Restaurants'},{id:'shopping',l:'Shopping'},{id:'prep',l:'Prep'},{id:'tips',l:'Tips'}].map(t=><button key={t.id} className={`tab press ${tab===t.id?'on':''}`} onClick={()=>setTab(t.id)}>{t.l}</button>)}</div>}
 
-    const EXTRA_FOODS = [
-      { city:"Osaka", icon:"🥩", name:"Mallory Pork Steak", type:"Pork Steak Restaurant", area:"Namba", station:"Namba Station", hours:"11:00–22:00", addr:"Namba CITY B1F, Osaka", orders:["Pork Steak Set","Garlic Rice","Pork Belly Bowl"], best:"Pork Steak Set", note:"Easy Osaka meal near Namba.", walk:"1 min walk" },
-      { city:"Kyoto", icon:"🍜", name:"701 Taresoba Kyoto", type:"Soba Noodle Restaurant", area:"Shimogyo", station:"Karasuma Station", hours:"Lunch 11:30–14:00 · Dinner 17:00–22:00 · Closed Sundays", addr:"Nishikiyamachi-dori, Kyoto", orders:["Cold Taresoba","Tare Dipping Soba","Seasonal Toppings"], best:"Cold Taresoba", note:"Popular spot; arrive early.", walk:"9 min walk" },
-      { city:"Kyoto", icon:"🌶️", name:"Ochanokosaisai", type:"Spice & Food Souvenir Shop", area:"Nishiki / Kyoto Tower", station:"Shijo Station", hours:"10:00–18:00 Nishiki · later at Kyoto Tower", addr:"Nishiki Market area, Kyoto", orders:["Signature Furikake","Yuzu Spice Blend","Sansho Pepper"], best:"Signature Furikake", note:"Great omiyage stop.", walk:"3 min walk" },
-      { city:"Tokyo", icon:"🍣", name:"Kaiten Sushi Toriton", type:"Conveyor Belt Sushi", area:"Skytree", station:"Oshiage Station", hours:"11:00–22:00", addr:"Tokyo Skytree Town Solamachi 6F", orders:["Uni","Ikura","Seasonal Nigiri"], best:"Uni", note:"Reliable Tokyo sushi option.", walk:"5 min walk" },
-      { city:"Tokyo", icon:"🐟", name:"Tsukiji Itadori Bekkan", type:"Seafood Market Restaurant", area:"Tsukiji", station:"Tsukiji Station", hours:"07:00–21:00", addr:"Tsukiji Outer Market alley", orders:["Kaisendon","Grilled Fish Set","Morning Sushi"], best:"Kaisendon", note:"Strong breakfast option in Tsukiji.", walk:"5 min walk" },
-      { city:"Tokyo", icon:"🥣", name:"Tsujihan", type:"Sashimi Rice Bowl", area:"Nihonbashi", station:"Mitsukoshimae Station", hours:"11:00–15:00 · 17:00–21:00 · Closed Mondays", addr:"Nihonbashi Muromachi, Tokyo", orders:["Sashimi Mountain Don","Uni Don","Ochazuke Finish"], best:"Sashimi Mountain Don", note:"Long queues; go early.", walk:"2 min walk" },
-      { city:"Tokyo", icon:"🥟", name:"Ginza Tenryu", type:"Gyoza Restaurant", area:"Ginza", station:"Ginza Station", hours:"11:30–21:30 · Closed Sundays & holidays", addr:"3-10-6 Ginza, Tokyo", orders:["Jumbo Gyoza","Pan-fried Set","Gyoza Teishoku"], best:"Jumbo Gyoza", note:"Known for giant gyoza.", walk:"3 min walk" },
-      { city:"Tokyo", icon:"🍥", name:"Menya Musashi", type:"Ramen & Tsukemen", area:"Shinjuku / Akihabara", station:"Akihabara Station", hours:"11:00–22:00", addr:"Multiple branches in Tokyo", orders:["Double Soup Ramen","Tsukemen","Thick-cut Chashu"], best:"Tsukemen", note:"Akihabara branch is convenient for your hotel area.", walk:"6 min walk" },
-    ];
+function DayCard({day,open,setOpen}){const c=Cfg(day.city);return <div className={`day ${open?'open':''}`}><div className="press hdr2" onClick={()=>setOpen(open?null:day.n)}><div className="num" style={{background:c.color}}>{day.n}</div><div className="mid"><div className="dttl">{day.date} · {day.dow} <span style={{fontWeight:700,color:c.color}}>· {c.name}</span></div><div className="dsub">{day.theme}</div><div className="dtags">{day.tags.map(t=><span key={t} className="tag">{t}</span>)}</div></div><div className="chev">▼</div></div><div className="body"><div className="hotelbox">{day.hotel&&<div className="hotelbar"><div className="hi">🏨</div><div><div className="hn">{day.hotel.name}</div><div className="hd">{day.hotel.dates} · {day.hotel.nights} nights · {day.hotel.area}</div></div></div>}{day.hotelEnd&&<div className="hotelbar"><div className="hi">📍</div><div><div className="hn">Check-out {day.hotelEnd.name}</div><div className="hd">{day.hotelEnd.dates}</div></div></div>}</div><div className="timeline">{day.items.map((it,i)=><div className="tl" key={i}><div className="tt">{it.time}</div><div className="tttl">{it.title}</div><div className="td">{it.desc}</div>{it.trans&&it.trans.map((tr,j)=><span key={j} className="trans" style={{background:'#f4efe8'}}>{tr}</span>)}{it.tip&&<div className="tip">💡 {it.tip}</div>}</div>)}</div></div></div>}
 
-    const EXTRA_CAFES = [
-      { city:"Tokyo", icon:"🍞", name:"Centre The Bakery", type:"Artisan Bread Café", area:"Ginza", station:"Ginza-Itchome Station", hours:"10:00–19:00 · Closed Mondays", addr:"1-2-1 Ginza, Tokyo", orders:["Shokupan Bread Flight","Toast Butter Set","Seasonal Jam Pairing"], best:"Toast Butter Set", note:"Famous for premium bread tasting.", walk:"1 min walk" },
-    ];
+function Schedule({city,open,setOpen}){const list=useMemo(()=>city==='all'?DAYS:DAYS.filter(d=>d.city===city),[city]);return <div className="fade"><div className="banner dep"><div className="flrow"><span className="badge dep">DEPART</span><span className="apt">CGK</span><span className="arrow">→</span><span className="apt">KIX</span></div><div className="grid"><div className="item"><div className="k">Date</div><div className="v">Wed, 25 Nov 2026</div></div><div className="item"><div className="k">Time</div><div className="v">08:35</div></div><div className="item"><div className="k">Flight</div><div className="v">Singapore Airlines SQ618</div></div><div className="item"><div className="k">Duration / Transit</div><div className="v">~8h 20m total · transit via Singapore</div></div></div><div className="note">Haruka train KIX → Shin-Osaka ~50 min · then subway Shin-Osaka → Namba ~20 min.</div></div><div className="banner ret" style={{marginTop:16}}><div className="flrow"><span className="badge ret">RETURN</span><span className="apt">HND</span><span className="arrow">→</span><span className="apt">CGK</span></div><div className="grid"><div className="item"><div className="k">Date</div><div className="v">Mon, 7 Dec 2026</div></div><div className="item"><div className="k">Time</div><div className="v">20:20</div></div><div className="item"><div className="k">Flight</div><div className="v">Singapore Airlines SQxxx</div></div><div className="item"><div className="k">Duration / Transit</div><div className="v">~8–9 hr total · transit via Singapore</div></div></div><div className="note">Keikyu Line Shinagawa → Haneda ~13 min. Leave hotel by 17:00.</div></div><div style={{marginTop:12}}>{list.map(d=><DayCard key={d.n} day={d} open={open===d.n} setOpen={setOpen}/>)}</div></div>}
 
-    const TIPS = [
-      { icon:"💳", title:"IC Card — ICOCA", body:"Pick up ICOCA at Kansai Airport on arrival. It works on trains, buses, and many konbini across Japan." },
-      { icon:"💴", title:"Cash", body:"Japan still leans cash-heavy for smaller cafés, old shops, and some local restaurants. Carry enough for the day." },
-      { icon:"📶", title:"SIM / Wi‑Fi", body:"Pre-order a Japan SIM or airport pickup Wi‑Fi and save offline maps before you land." },
-      { icon:"🚄", title:"Shinkansen", body:"No JR Pass needed for this route. Buying individual Nozomi tickets is more practical." },
-      { icon:"🍁", title:"Autumn Timing", body:"Late November is excellent for Osaka and Kyoto; early December works well for Tokyo foliage." },
-      { icon:"☕", title:"Finding Good Cafés", body:"Second-floor or basement cafés are often better, quieter, and more local than obvious street-level tourist spots." },
-      { icon:"🍜", title:"Eating Like a Local", body:"Side streets, handwritten menus, lunch-only teishoku places, and counter seats are usually great signs." },
-      { icon:"🧥", title:"Weather Packing", body:"Expect cool days and colder nights. Bring layers, a compact jacket, and comfortable walking shoes." },
-      { icon:"🕐", title:"Opening Hours", body:"Markets and many cafés close earlier than you might expect, so start food-focused days reasonably early." },
-      { icon:"🎁", title:"Best Omiyage", body:"Tokyo Station, Nishiki Market, Itoya Ginza, and Kyoto specialty snack shops are strong souvenir stops." },
-    ];
+function Card({p,city}){const c=Cfg(city);return <div className="r-card open"><div className="rhead"><div className="ricon">{p.icon}</div><div className="rpi"><div className="rname">{p.name}</div><div className="rtype">{p.type}</div><div className="rmeta"><span className="station">{p.station} · {p.walk}</span><span className="b">{p.hours}</span></div></div></div><div className="rdet"><div className="dlbl">Recommended items</div><div className="orders">{p.orders?.map(o=><span className="order" key={o}>{o}</span>)}</div><div className="mgrid"><div className="mitem"><div className="k">Address</div><div className="v">{p.addr}</div></div><div className="mitem"><div className="k">City</div><div className="v" style={{color:c.color}}>{c.name}</div></div></div>{p.branch?.length?<><div className="dlbl">Other branches</div><div className="branch">{p.branch.map((b,i)=><div className="brow" key={i}><span className={`bcity ${i%3===0?'os':i%3===1?'ky':'to'}`}>{b.includes('Tokyo')?'Tokyo':b.includes('Kyoto')?'Kyoto':b.includes('Osaka')?'Osaka':'Branch'}</span><span>{b}</span></div>)}</div></>:null}</div></div>}
+function Restaurants({city,setCity}){const list=city==='all'?[...RESTAURANTS.osaka,...RESTAURANTS.kyoto,...RESTAURANTS.tokyo]:RESTAURANTS[city];const [section,setSection]=useState('restaurant');return <div className="fade"><div className="rbtns"><button className={`rbtn ${city==='all'?'on':''}`} onClick={()=>setCity('all')}>All</button><button className={`rbtn os ${city==='osaka'?'on':''}`} onClick={()=>setCity('osaka')}>Osaka</button><button className={`rbtn ky ${city==='kyoto'?'on':''}`} onClick={()=>setCity('kyoto')}>Kyoto</button><button className={`rbtn to ${city==='tokyo'?'on':''}`} onClick={()=>setCity('tokyo')}>Tokyo</button></div><div>{list.map((p,i)=><Card key={i} p={p} city={city==='all'?(p.station.includes('Station')&&p.addr.includes('Tokyo')?'tokyo':p.addr.includes('Kyoto')?'kyoto':'osaka'):city}/>)}</div></div>}
 
-    const CITY_SUMMARY = [
-      { name: "Osaka", emoji: "🏮", stay: "25–28 Nov · 3 nights · The Basement Hotel Honmachi", dayNums: [1,2,3], vibes: ["Hozenji Yokocho lantern alley atmosphere","Universal Studios Japan full day","Minoh Waterfall peak koyo","Shinsekai and Tenjinbashi local side of Osaka"] },
-      { name: "Kyoto", emoji: "🍁", stay: "28 Nov–2 Dec · 4 nights · Kiori Exec Muromachi", dayNums: [4,5,6,7], vibes: ["Sannen-zaka and Kiyomizudera autumn views","Kodaiji night illumination","Arashiyama + riverside coffee morning","Ine / Amanohashidate hidden-coast day trip","Ruriko-in reflection room pre-book spot"] },
-      { name: "Tokyo", emoji: "🗼", stay: "2–7 Dec · 5 nights · N+ Hotel Akihabara No.2", dayNums: [8,9,10,11,12,13], vibes: ["Nakameguro, Daikanyama, and Shimokitazawa café day","Kawaguchiko + Chureito Pagoda Fuji day trip","Yanaka and KAYABA old Tokyo mood","Gotokuji and Shinjuku Gyoen","Akihabara base with easy transport"] },
-    ];
+function ShopCard({s,city}){const c=Cfg(city);return <div className="s-card open"><div className="shead"><div className="ricon">{s.icon}</div><div className="rpi"><div className="rname">{s.name}</div><div className="rtype">Nearest station: {s.station}</div><div className="rmeta"><span className="station">Walk: {s.walk}</span><span className="b">{s.hours}</span></div></div></div><div className="sdet"><div className="dlbl">Recommended items</div><div className="orders">{s.items.map(o=><span className="order" key={o}>{o}</span>)}</div></div></div>}
+function Shopping({city,setCity}){const list=city==='all'?Object.entries(SHOPS).flatMap(([k,v])=>v.map(x=>({...x,_city:k}))):SHOPS[city].map(x=>({...x,_city:city}));return <div className="fade"><div className="rbtns"><button className={`rbtn ${city==='all'?'on':''}`} onClick={()=>setCity('all')}>All</button><button className={`rbtn os ${city==='osaka'?'on':''}`} onClick={()=>setCity('osaka')}>Osaka</button><button className={`rbtn ky ${city==='kyoto'?'on':''}`} onClick={()=>setCity('kyoto')}>Kyoto</button><button className={`rbtn to ${city==='tokyo'?'on':''}`} onClick={()=>setCity('tokyo')}>Tokyo</button></div><div>{list.map((s,i)=><ShopCard key={i} s={s} city={s._city}/>)}</div></div>}
 
-    function getCityCfg(city) {
-      return CITY_CFG[city] || CITY_CFG.Transit;
-    }
+function Prep(){return <div className="fade"><div className="lbl">Before departure</div>{['Get ICOCA at KIX','Arrange SIM / pocket Wi‑Fi','Exchange some yen','Download offline maps','Download Google Translate pack','Pack Type A adapter','Bring power bank','Layering clothes for cold weather'].map(x=><div className="tipcard" key={x}><div className="tipttl">{x}</div><div className="tipbody">Keep it simple: do it before the flight so you don’t have to think later.</div></div>)}</div>}
+function Tips(){return <div className="tips fade"><div className="lbl">Practical tips</div>{TIPS.map(t=><div className="tipcard" key={t.t}><div className="tipttl">{t.t}</div><div className="tipbody">{t.b}</div></div>)}<div className="footer"><div className="f1">Osaka · Kyoto · Tokyo</div><div className="f2">Cleaned itinerary version</div></div></div>}
 
-    function SectionTitle({ eyebrow, title, subtitle, color = "#A16207" }) {
-      return (
-        <div style={{ marginBottom: 12 }}>
-          {eyebrow ? <div style={{ fontSize: 10, letterSpacing: 2.4, textTransform: "uppercase", color, fontWeight: 700, marginBottom: 6 }}>{eyebrow}</div> : null}
-          <div style={{ fontFamily: "Cormorant Garamond, serif", fontSize: 25, color: "#2D241B", lineHeight: 1.05 }}>{title}</div>
-          {subtitle ? <div style={{ fontSize: 11.5, color: "#7A6A5C", marginTop: 4, lineHeight: 1.45 }}>{subtitle}</div> : null}
-        </div>
-      );
-    }
-
-    function Header({ cityFilter, setCityFilter }) {
-      const cityPills = ["All", "Osaka", "Kyoto", "Tokyo"];
-      return (
-        <div style={{
-          background: "linear-gradient(155deg, #1A0800 0%, #3B1306 45%, #6A1F0E 80%, #8C3514 100%)",
-          padding: "42px 22px 18px",
-          color: "#fff",
-          position: "sticky",
-          top: 0,
-          zIndex: 5,
-          borderBottomLeftRadius: 22,
-          borderBottomRightRadius: 22,
-          boxShadow: "0 12px 30px rgba(60,20,5,0.16)",
-        }}>
-          <div style={{ fontSize: 10, letterSpacing: 3.2, color: "rgba(255,200,100,0.6)", textTransform: "uppercase", marginBottom: 10 }}>Singapore Airlines · CGK → KIX · HND → CGK</div>
-          <h1 style={{ fontFamily: "Cormorant Garamond, serif", fontSize: 46, fontWeight: 600, margin: "0 0 2px", lineHeight: 1.0, letterSpacing: -1 }}>Japan 2026</h1>
-          <div style={{ fontFamily: "Cormorant Garamond, serif", fontSize: 22, fontStyle: "italic", color: "rgba(255,215,155,0.92)", marginBottom: 12 }}>Osaka · Kyoto · Tokyo</div>
-          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.58)", letterSpacing: 0.4 }}>25 Nov – 7 Dec 2026 · 13 Days · 12 Nights</div>
-          <div style={{ display: "flex", gap: 6, marginTop: 14, overflowX: "auto", paddingBottom: 2 }}>
-            {cityPills.map((city) => {
-              const active = cityFilter === city;
-              const cfg = city === "All" ? { color: "#FFD080" } : getCityCfg(city);
-              return (
-                <button
-                  key={city}
-                  className="pressable"
-                  onClick={() => setCityFilter(city)}
-                  style={{
-                    padding: "6px 11px",
-                    borderRadius: 999,
-                    border: `1px solid ${active ? cfg.color : "rgba(255,255,255,0.18)"}`,
-                    background: active ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.06)",
-                    color: active ? "#fff" : "rgba(255,255,255,0.72)",
-                    fontSize: 11,
-                    fontWeight: 600,
-                    flexShrink: 0,
-                  }}
-                >
-                  {city === "All" ? "All Cities" : city}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      );
-    }
-
-    function TabBar({ tab, setTab }) {
-      const tabs = [
-        { id: "schedule", label: "📅 Schedule" },
-        { id: "cities", label: "🏙 Cities" },
-        { id: "food", label: "☕ Food & Cafés" },
-        { id: "prep", label: "✅ Prep" },
-        { id: "tips", label: "💡 Tips" },
-      ];
-      return (
-        <div style={{ margin: "14px 14px 0", display: "flex", gap: 5, overflowX: "auto" }}>
-          {tabs.map((t) => (
-            <button
-              key={t.id}
-              className="pressable"
-              onClick={() => setTab(t.id)}
-              style={{
-                flexShrink: 0,
-                padding: "8px 11px",
-                borderRadius: 22,
-                border: "none",
-                fontSize: 11.5,
-                fontWeight: 600,
-                background: tab === t.id ? "#1A0800" : "#EDE8E0",
-                color: tab === t.id ? "#FFD080" : "#6B5748",
-              }}
-            >
-              {t.label}
-            </button>
-          ))}
-        </div>
-      );
-    }
-
-    function FlightCard({ type, route, detail, colors }) {
-      return (
-        <div style={{ background: colors, borderRadius: 14, padding: "14px 15px", color: "#fff" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-            <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.4, color: type === "DEPART" ? "#FFD080" : "#BFDBFE" }}>{type}</span>
-            <span style={{ fontSize: 18, fontWeight: 800 }}>{route}</span>
-          </div>
-          <div style={{ fontSize: 11.5, color: "rgba(255,255,255,0.72)", lineHeight: 1.55 }}>{detail}</div>
-        </div>
-      );
-    }
-
-    function DayCard({ day, isOpen, onToggle }) {
-      const cfg = getCityCfg(day.city);
-      const hotel = HOTELS.find((h) => h.city === day.city);
-      return (
-        <div style={{ background: "#fff", borderRadius: 16, marginBottom: 10, overflow: "hidden", border: isOpen ? `1.5px solid ${cfg.border}` : "1.5px solid #EDE8E0", boxShadow: isOpen ? `0 6px 22px ${cfg.color}16` : "0 1px 3px rgba(0,0,0,0.04)" }}>
-          <div className="pressable" onClick={onToggle} style={{ display: "flex", gap: 10, padding: "12px 13px", background: isOpen ? cfg.bg : "#fff", alignItems: "flex-start" }}>
-            <div style={{ background: isOpen ? cfg.color : "#EDE8E0", color: isOpen ? "#fff" : "#8A7566", borderRadius: 10, width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700, flexShrink: 0 }}>{day.n}</div>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                <span style={{ fontSize: 13, fontWeight: 700, color: "#1A1208" }}>{day.date}</span>
-                <span style={{ fontSize: 11, color: "#B0A090" }}>{day.dow}</span>
-                <span style={{ fontSize: 10, color: cfg.color, fontWeight: 600, background: cfg.bg, padding: "2px 8px", borderRadius: 999, border: `1px solid ${cfg.border}`, marginLeft: "auto", flexShrink: 0 }}>{day.city}</span>
-              </div>
-              <div style={{ fontSize: 11.5, color: "#6B5C4E", marginTop: 2 }}>{day.emoji} {day.theme}</div>
-            </div>
-            <span style={{ color: "#B0A090", fontSize: 12, transform: isOpen ? "rotate(180deg)" : "none", transition: "transform 0.2s" }}>▾</span>
-          </div>
-
-          {isOpen ? (
-            <div className="fade-in">
-              <div style={{ display: "flex", gap: 5, padding: "0 13px 10px", flexWrap: "wrap" }}>
-                {day.tags.map((tag) => <span key={tag} style={{ fontSize: 10, color: cfg.color, background: cfg.bg, padding: "3px 9px", borderRadius: 999, fontWeight: 500, border: `1px solid ${cfg.border}` }}>{tag}</span>)}
-              </div>
-
-              {hotel ? (
-                <div style={{ margin: "0 13px 10px", background: cfg.bg, border: `1px solid ${cfg.border}`, borderRadius: 12, padding: "10px 12px", display: "flex", gap: 10, alignItems: "flex-start" }}>
-                  <div style={{ fontSize: 20 }}>🏨</div>
-                  <div>
-                    <div style={{ fontSize: 12.5, fontWeight: 700, color: cfg.deep }}>{hotel.name}</div>
-                    <div style={{ fontSize: 11, color: "#7A6A5C", marginTop: 2 }}>{hotel.dates} · {hotel.nights} nights · {hotel.area}</div>
-                  </div>
-                </div>
-              ) : null}
-
-              <div style={{ padding: "2px 13px 14px" }}>
-                {day.events.map((ev, i) => (
-                  <div key={`${day.n}-${i}`} style={{ display: "flex", gap: 9, paddingBottom: i < day.events.length - 1 ? 10 : 0, borderBottom: i < day.events.length - 1 ? "1px solid #F2EDE5" : "none", marginBottom: i < day.events.length - 1 ? 10 : 0 }}>
-                    <div style={{ width: 38, textAlign: "right", flexShrink: 0, paddingTop: 2 }}><span style={{ fontSize: 10, color: "#A09080", fontWeight: 600 }}>{ev.time}</span></div>
-                    <div style={{ width: 3, borderRadius: 2, flexShrink: 0, background: TYPE_COLOR[ev.type] || "#ccc", minHeight: 36 }} />
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 12.5, fontWeight: 600, color: "#1A1208", marginBottom: 2, lineHeight: 1.35 }}>{ev.icon} {ev.title}</div>
-                      <div style={{ fontSize: 11, color: "#8A7566", lineHeight: 1.5 }}>{ev.sub}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : null}
-        </div>
-      );
-    }
-
-    function ScheduleTab({ filteredDays, openDay, setOpenDay }) {
-      return (
-        <div className="fade-in">
-          <div style={{ display: "grid", gap: 10, marginBottom: 14 }}>
-            <FlightCard type="DEPART" route="CGK → KIX" detail="Wed, 25 Nov 2026 · via Singapore · arrive Kansai in the morning." colors="linear-gradient(135deg,#22120A,#3C1A0E)" />
-            <FlightCard type="RETURN" route="HND → CGK" detail="Mon, 7 Dec 2026 · depart 20:20 from Haneda." colors="linear-gradient(135deg,#101C35,#172554)" />
-          </div>
-
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12, padding: "10px 12px", background: "#fff", borderRadius: 12, border: "1px solid #EDE8E0" }}>
-            {[
-              { color: TYPE_COLOR.autumn, label: "Autumn" },
-              { color: TYPE_COLOR.cafe, label: "Café" },
-              { color: TYPE_COLOR.food, label: "Food" },
-              { color: TYPE_COLOR.highlight, label: "Highlight" },
-              { color: TYPE_COLOR.explore, label: "Explore" },
-              { color: TYPE_COLOR.transit, label: "Transit" },
-            ].map((l) => (
-              <div key={l.label} style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                <div style={{ width: 8, height: 8, borderRadius: 3, background: l.color }} />
-                <span style={{ fontSize: 10.5, color: "#8A7566" }}>{l.label}</span>
-              </div>
-            ))}
-          </div>
-
-          {filteredDays.map((day) => <DayCard key={day.n} day={day} isOpen={openDay === day.n} onToggle={() => setOpenDay(openDay === day.n ? null : day.n)} />)}
-        </div>
-      );
-    }
-
-    function CitiesTab({ cityFilter, setTab, setOpenDay }) {
-      const visible = cityFilter === "All" ? CITY_SUMMARY : CITY_SUMMARY.filter((city) => city.name === cityFilter);
-      return (
-        <div className="fade-in">
-          <SectionTitle eyebrow="Stay overview" title="Cities" subtitle="A cleaner overview of your route, hotels, and highlight mood in each city." color="#9A3412" />
-          {visible.map((city) => {
-            const cfg = getCityCfg(city.name);
-            return (
-              <div key={city.name} style={{ marginBottom: 18 }}>
-                <div style={{ background: `linear-gradient(135deg, ${cfg.color} 0%, ${cfg.deep} 100%)`, borderRadius: "14px 14px 0 0", padding: "16px 16px 14px", color: "#fff" }}>
-                  <div style={{ fontFamily: "Cormorant Garamond, serif", fontSize: 30, fontWeight: 600, lineHeight: 1 }}>{city.emoji} {city.name}</div>
-                  <div style={{ fontSize: 11, color: "rgba(255,255,255,0.78)", marginTop: 5 }}>{city.stay}</div>
-                </div>
-                <div style={{ background: "#fff", borderRadius: "0 0 14px 14px", border: `1.5px solid ${cfg.border}`, borderTop: "none", padding: "12px 14px 14px" }}>
-                  {city.vibes.map((v, i) => (
-                    <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 8, marginBottom: i < city.vibes.length - 1 ? 7 : 0 }}>
-                      <div style={{ width: 5, height: 5, borderRadius: "50%", background: cfg.color, marginTop: 7, flexShrink: 0 }} />
-                      <span style={{ fontSize: 12.5, color: "#3A2E26", lineHeight: 1.45 }}>{v}</span>
-                    </div>
-                  ))}
-                  <div style={{ display: "flex", gap: 6, marginTop: 12, flexWrap: "wrap" }}>
-                    {city.dayNums.map((n) => {
-                      const d = DAYS.find((x) => x.n === n);
-                      return (
-                        <button key={n} className="pressable" onClick={() => { setTab("schedule"); setOpenDay(n); }} style={{ background: cfg.bg, border: `1px solid ${cfg.border}`, borderRadius: 8, padding: "5px 9px" }}>
-                          <div style={{ fontSize: 9.5, color: cfg.color, fontWeight: 700 }}>Day {n} · {d?.date}</div>
-                          <div style={{ fontSize: 10, color: "#6B5C4E", marginTop: 1 }}>{d?.emoji} {d?.theme?.split("·")[0]}</div>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      );
-    }
-
-    function FoodCard({ place, city }) {
-      const cfg = getCityCfg(city);
-      const hours = place.hours || "Hours TBA";
-      const station = place.station || "Station TBA";
-      const walk = place.walk || "Walk TBA";
-      const best = place.best || (place.orders && place.orders[0]) || "Recommended item TBA";
-      return (
-        <div style={{ background: "#fff", borderRadius: 12, padding: "12px 14px", marginBottom: 9, border: `1.5px solid ${cfg.border}22`, boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: "#1A1208" }}>{place.icon ? `${place.icon} ` : ""}{place.name}</div>
-          <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 5 }}>
-            {place.area ? <span style={{ fontSize: 10, color: cfg.color, background: cfg.bg, padding: "2px 8px", borderRadius: 999, fontWeight: 600, border: `1px solid ${cfg.border}` }}>{place.area}</span> : null}
-            {place.type ? <span style={{ fontSize: 10, color: "#7A6A5C", background: "#fff", padding: "2px 8px", borderRadius: 999, fontWeight: 600, border: "1px solid #E6DDD2" }}>{place.type}</span> : null}
-          </div>
-          <div style={{ display: "grid", gap: 4, marginTop: 9, paddingTop: 9, borderTop: "1px solid #F2EDE5" }}>
-            <div style={{ fontSize: 11.1, color: "#6B5C4E", lineHeight: 1.45 }}>🕒 {hours}</div>
-            <div style={{ fontSize: 11.1, color: "#6B5C4E", lineHeight: 1.45 }}>🚉 {station} · {walk}</div>
-            <div style={{ fontSize: 11.1, color: "#6B5C4E", lineHeight: 1.45 }}>⭐ {best}</div>
-          </div>
-          {place.orders ? (
-            <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 9 }}>
-              {place.orders.map((o) => <span key={o} style={{ background: cfg.bg, color: cfg.color, fontSize: 10.5, fontWeight: 600, padding: "4px 8px", borderRadius: 999, border: `1px solid ${cfg.border}` }}>{o}</span>)}
-            </div>
-          ) : null}
-        </div>
-      );
-    }
-
-    function FoodTab({ foodCity, setFoodCity, foodSection, setFoodSection }) {
-      const cards = useMemo(() => {
-        const base = FOODCAFES[foodCity]?.[foodSection] || [];
-        const extras = (foodSection === "food" ? EXTRA_FOODS : EXTRA_CAFES).filter((x) => x.city === foodCity);
-        return [...base, ...extras];
-      }, [foodCity, foodSection]);
-
-      return (
-        <div className="fade-in">
-          <SectionTitle eyebrow="Merged spots" title="Food & Cafés" subtitle="All cards now use the same collapsed preview format for faster scanning." color="#2563EB" />
-
-          <div style={{ display: "flex", gap: 6, marginBottom: 12 }}>
-            {["Osaka", "Kyoto", "Tokyo"].map((c) => {
-              const cfg = getCityCfg(c);
-              const active = foodCity === c;
-              return <button key={c} className="pressable" onClick={() => setFoodCity(c)} style={{ flex: 1, padding: "9px 8px", borderRadius: 12, border: "none", background: active ? cfg.color : "#EDE8E0", color: active ? "#fff" : "#6B5748", fontSize: 12, fontWeight: 700 }}>{c}</button>;
-            })}
-          </div>
-
-          <div style={{ display: "flex", gap: 6, marginBottom: 14 }}>
-            {[{ id: "cafes", label: "☕ Cafés" }, { id: "food", label: "🍜 Food Spots" }].map((s) => {
-              const cfg = getCityCfg(foodCity);
-              const active = foodSection === s.id;
-              return <button key={s.id} className="pressable" onClick={() => setFoodSection(s.id)} style={{ flex: 1, padding: "8px", borderRadius: 22, border: `1.5px solid ${active ? cfg.color : "#EDE8E0"}`, background: active ? cfg.bg : "#fff", color: active ? cfg.color : "#8A7566", fontSize: 12, fontWeight: 600 }}>{s.label}</button>;
-            })}
-          </div>
-
-          {cards.map((place, i) => <FoodCard key={`${place.name}-${i}`} place={place} city={foodCity} />)}
-        </div>
-      );
-    }
-
-    function ActionCard({ action }) {
-      return (
-        <div style={{ background: "#fff", borderRadius: 12, padding: "12px 13px", border: "1px solid #FDE68A" }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
-            <div style={{ fontSize: 12.5, fontWeight: 700, color: "#1A1208" }}>{action.title}</div>
-            {action.urgent ? <span style={{ background: "#FEE2E2", color: "#B91C1C", fontSize: 9.5, fontWeight: 800, padding: "3px 7px", borderRadius: 999 }}>URGENT</span> : null}
-          </div>
-          <div style={{ fontSize: 11.2, color: "#7A6A5C", lineHeight: 1.45, marginTop: 5 }}>{action.desc}</div>
-        </div>
-      );
-    }
-
-    function ChecklistItem({ item, checked, onToggle }) {
-      const inputId = `todo-${item.name.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
-      return (
-        <label htmlFor={inputId} className="pressable" style={{ display: "flex", alignItems: "flex-start", gap: 10, padding: "10px 12px", background: "#fff", borderRadius: 10, marginBottom: 7, border: `1.5px solid ${checked ? "#BBF7D0" : "#EDE8E0"}`, opacity: checked ? 0.62 : 1 }}>
-          <input id={inputId} type="checkbox" checked={checked} onChange={onToggle} style={{ width: 18, height: 18, marginTop: 2, accentColor: "#22C55E", flexShrink: 0 }} />
-          <div>
-            <div style={{ fontSize: 13, fontWeight: 600, color: "#1A1208", textDecoration: checked ? "line-through" : "none" }}>{item.name}</div>
-            <div style={{ fontSize: 11, color: "#8A7566", marginTop: 2 }}>{item.sub}</div>
-          </div>
-        </label>
-      );
-    }
-
-    function HotelCard({ hotel }) {
-      const cfg = getCityCfg(hotel.city);
-      return (
-        <div style={{ background: "#fff", borderRadius: 12, marginBottom: 8, border: `1.5px solid ${cfg.border}55`, padding: "13px 15px", display: "flex", gap: 12, alignItems: "flex-start" }}>
-          <div style={{ fontSize: 24 }}>🏨</div>
-          <div>
-            <div style={{ fontSize: 14, fontWeight: 700 }}>{hotel.name}</div>
-            <div style={{ fontSize: 12, color: "#8A7566", marginTop: 3 }}>{hotel.dates} · {hotel.nights} nights · {hotel.area}</div>
-          </div>
-        </div>
-      );
-    }
-
-    function PrepTab({ actionsOpen, setActionsOpen, doneItems, toggleDone }) {
-      const doneCount = CHECKLIST.filter((item) => doneItems.includes(item.name)).length;
-      return (
-        <div className="fade-in">
-          <SectionTitle eyebrow="Before departure" title="Prep" subtitle="Action cards, a proper checkable to-do list, and your hotel confirmations in one place." color="#B45309" />
-
-          <div style={{ marginBottom: 18, background: "#FFFBEB", border: "1.5px solid #FDE68A", borderRadius: 14, overflow: "hidden" }}>
-            <div className="pressable" onClick={() => setActionsOpen(!actionsOpen)} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 14px" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <span style={{ fontSize: 15 }}>⚠️</span>
-                <span style={{ fontSize: 12.5, fontWeight: 700, color: "#92400E" }}>Action Required</span>
-              </div>
-              <span style={{ color: "#B45309", fontSize: 13, transform: actionsOpen ? "rotate(180deg)" : "none", transition: "transform 0.2s" }}>▾</span>
-            </div>
-            {actionsOpen ? <div style={{ padding: "0 14px 14px", display: "grid", gap: 8 }} className="fade-in">{ACTIONS.map((action) => <ActionCard key={action.title} action={action} />)}</div> : null}
-          </div>
-
-          <SectionTitle eyebrow="Checklist" title={`Pre-trip tasks · ${doneCount}/${CHECKLIST.length} done`} color="#7C2D12" />
-          {CHECKLIST.map((item) => <ChecklistItem key={item.name} item={item} checked={doneItems.includes(item.name)} onToggle={() => toggleDone(item.name)} />)}
-
-          <SectionTitle eyebrow="Hotels" title="Confirmations" color="#1D4ED8" />
-          {HOTELS.map((hotel) => <HotelCard key={hotel.name} hotel={hotel} />)}
-        </div>
-      );
-    }
-
-    function TipsTab() {
-      return (
-        <div className="fade-in">
-          <SectionTitle eyebrow="Practical" title="Japan tips" subtitle="Your original guidance remains here, with the combined app sections now living above it." color="#155E3E" />
-          {TIPS.map((tip) => (
-            <div key={tip.title} style={{ background: "#fff", borderRadius: 14, padding: "14px 15px", marginBottom: 9, border: "1.5px solid #EDE8E0", boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
-              <div style={{ fontSize: 13.5, fontWeight: 700, color: "#1A1208", marginBottom: 6 }}>{tip.icon} {tip.title}</div>
-              <div style={{ fontSize: 12.5, color: "#6B5C4E", lineHeight: 1.65 }}>{tip.body}</div>
-            </div>
-          ))}
-          <div style={{ background: "linear-gradient(135deg, #1A0800, #3D1408)", borderRadius: 14, padding: 16, marginTop: 4, textAlign: "center" }}>
-            <div style={{ fontFamily: "Cormorant Garamond, serif", fontSize: 20, fontStyle: "italic", color: "rgba(255,215,150,0.9)" }}>Osaka · Kyoto · Tokyo</div>
-            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginTop: 4 }}>25 Nov – 7 Dec 2026 · Cleaned React itinerary version</div>
-          </div>
-        </div>
-      );
-    }
-
-    function JapanTripCombined() {
-      const [tab, setTab] = useState("schedule");
-      const [openDay, setOpenDay] = useState(1);
-      const [actionsOpen, setActionsOpen] = useState(true);
-      const [foodCity, setFoodCity] = useState("Osaka");
-      const [foodSection, setFoodSection] = useState("cafes");
-      const [cityFilter, setCityFilter] = useState("All");
-      const [doneItems, setDoneItems] = useState([]);
-
-      const filteredDays = useMemo(() => {
-        if (cityFilter === "All") return DAYS;
-        return DAYS.filter((day) => day.city === cityFilter);
-      }, [cityFilter]);
-
-      const toggleDone = (name) => {
-        setDoneItems((prev) => prev.includes(name) ? prev.filter((x) => x !== name) : [...prev, name]);
-      };
-
-      return (
-        <div style={{ background: "#FAF8F3", minHeight: "100vh", maxWidth: 560, margin: "0 auto", fontFamily: "DM Sans, -apple-system, sans-serif", color: "#1A1208" }}>
-          <style>{FONT_STYLE}</style>
-          <Header cityFilter={cityFilter} setCityFilter={setCityFilter} />
-          <TabBar tab={tab} setTab={setTab} />
-
-          <div style={{ padding: "12px 14px 40px" }}>
-            {tab === "schedule" ? <ScheduleTab filteredDays={filteredDays} openDay={openDay} setOpenDay={setOpenDay} /> : null}
-            {tab === "cities" ? <CitiesTab cityFilter={cityFilter} setTab={setTab} setOpenDay={setOpenDay} /> : null}
-            {tab === "food" ? <FoodTab foodCity={foodCity} setFoodCity={setFoodCity} foodSection={foodSection} setFoodSection={setFoodSection} /> : null}
-            {tab === "prep" ? <PrepTab actionsOpen={actionsOpen} setActionsOpen={setActionsOpen} doneItems={doneItems} toggleDone={toggleDone} /> : null}
-            {tab === "tips" ? <TipsTab /> : null}
-          </div>
-        </div>
-      );
-    }
-
-    ReactDOM.createRoot(document.getElementById("root")).render(<JapanTripCombined />);
-  </script>
+function App(){const [city,setCity]=useState('all');const [tab,setTab]=useState('schedule');const [open,setOpen]=useState(1);return <div className="wrap"><Header city={city} setCity={setCity}/><Tabs tab={tab} setTab={setTab}/><div className="main">{tab==='schedule'&&<Schedule city={city} open={open} setOpen={setOpen}/>} {tab==='restaurants'&&<Restaurants city={city} setCity={setCity}/>} {tab==='shopping'&&<Shopping city={city} setCity={setCity}/>} {tab==='prep'&&<Prep/>} {tab==='tips'&&<Tips/>}</div></div>}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
 </body>
 </html>
