@@ -885,873 +885,650 @@
     ];
     // === JAPAN TRIP DATA: FLIGHTS (END) ===
 
-    // === JAPAN TRIP DATA: HOTELS (START) ===
-    const HOTELS = [
+    // === JAPAN TRIP DATA ITINERARY START ===
+const ITINERARY = [
+  {
+    dayNumber: 1,
+    date: "25 Nov",
+    dow: "Wed",
+    city: "Osaka",
+    title: "Arrival Osaka Castle Namba Night",
+    summary: "Arrival, castle park photos, retro alleys, and a classic Namba night.",
+    emoji: "🛬",
+    tags: ["Arrival", "Osaka Castle", "Retro Alleys", "Namba Night"],
+    events: [
       {
-        city: "Osaka",
-        name: "The Basement Hotel Osaka Honmachi",
-        dates: "25–28 Nov",
-        nights: 3,
-        area: "Near Honmachi Station"
+        time: "0830",
+        icon: "🛬",
+        title: "Arrive at Kansai Airport (KIX)",
+        sub: "Land around 08:30, clear immigration, and get your bearings.",
+        type: "flight"
       },
       {
-        city: "Kyoto",
-        name: "Kiori Exec Muromachi",
-        dates: "28 Nov–2 Dec",
-        nights: 4,
-        area: "Near Karasuma Oike Station"
+        time: "0915",
+        icon: "🚆",
+        title: "Nankai Rapi:t KIX → Namba",
+        sub: "Take the Nankai Rapi:t from KIX to Namba, about 35–40 minutes.",
+        type: "transit"
       },
       {
-        city: "Tokyo",
-        name: "N Hotel Akihabara No.2",
-        dates: "2–7 Dec",
-        nights: 5,
-        area: "Near Akihabara Station"
+        time: "1000",
+        icon: "🚇",
+        title: "Namba → Honmachi and hotel",
+        sub: "Osaka Metro Midosuji Line to Honmachi (~5–10 minutes), then walk to The Basement Hotel to drop luggage or check in.",
+        type: "hotel"
+      },
+      {
+        time: "1100",
+        icon: "🏯",
+        title: "Osaka Castle Park (exterior)",
+        sub: "Subway to Tanimachi 4-chome and walk into the park. Focus on moat, stone walls, and outer park paths for photos and light autumn foliage.",
+        type: "highlight"
+      },
+      {
+        time: "1300",
+        icon: "🏘️",
+        title: "Karahori Shotengai retro streets",
+        sub: "Head south by short subway or taxi. Explore the 800 m arcade, old wooden houses, and small cafés and snack spots.",
+        type: "explore"
+      },
+      {
+        time: "1600",
+        icon: "🛍️",
+        title: "Shinsaibashi arcade into Dotonbori",
+        sub: "Walk Shinsaibashi Shopping Arcade and continue down into Dotonbori for the canal, Glico sign, and street food.",
+        type: "explore"
+      },
+      {
+        time: "1830",
+        icon: "🍢",
+        title: "Ura-Namba back-alley dinner",
+        sub: "Duck into back alleys for izakaya, ramen, or kushikatsu. Aim for smaller local spots.",
+        type: "food"
+      },
+      {
+        time: "2100",
+        icon: "🚇",
+        title: "Return to Honmachi",
+        sub: "Subway ride back to the hotel and rest.",
+        type: "transit"
       }
-    ];
-    // === JAPAN TRIP DATA: HOTELS (END) ===
-
-    // === JAPAN TRIP DATA: PREP (START) ===
-    const ACTIONS = [
+    ]
+  },
+  {
+    dayNumber: 2,
+    date: "26 Nov",
+    dow: "Thu",
+    city: "Osaka",
+    title: "Katsuoji Minoh Nakazakicho Yodogawa",
+    summary: "Temple and waterfall nature, then retro alleys, cafés, and a river sunset.",
+    emoji: "🍁",
+    tags: ["Katsuoji", "Minoh Waterfall", "Nakazakicho", "Yodogawa Sunset"],
+    events: [
       {
-        title: "Book Universal Studios Japan tickets online",
-        desc: "1-Day Pass and Express Pass often sell out weeks ahead.",
-        urgent: true
+        time: "0730",
+        icon: "🚆",
+        title: "Transit to Katsuoji Temple",
+        sub: "Honmachi → Umeda by subway, then Hankyu and bus toward Minoh-Kayano and Katsuoji. Allow 60–90 minutes.",
+        type: "transit"
       },
       {
-        title: "Reserve Shinkansen seats",
-        desc: "Shin-Osaka → Kyoto and Kyoto → Tokyo; aim for a Fuji-view window seat if possible.",
-        urgent: true
+        time: "0900",
+        icon: "🛕",
+        title: "Katsuoji Temple",
+        sub: "Explore hillside temple grounds, Daruma dolls, and autumn foliage.",
+        type: "autumn"
       },
       {
-        title: "Book Ruriko-in timed entry",
-        desc: "Autumn season slots are limited and must be pre-booked.",
-        urgent: true
+        time: "1030",
+        icon: "🌲",
+        title: "Minoh Waterfall walk",
+        sub: "Bus back to Minoh area, then walk the forest path (~45–50 minutes) to the waterfall. Light snack or early lunch near the trail (soba, udon, momiji tempura).",
+        type: "autumn"
       },
       {
-        title: "Book Amanohashidate + Ine transport",
-        desc: "Tango Railway seats can fill on popular autumn dates.",
-        urgent: true
+        time: "1300",
+        icon: "🚆",
+        title: "Return to Osaka Umeda",
+        sub: "Hankyu line back toward Umeda, about 30–40 minutes.",
+        type: "transit"
       },
       {
-        title: "Book Mt Fuji trip transport",
-        desc: "Shinjuku → Kawaguchiko bus or train for the day trip.",
-        urgent: true
+        time: "1400",
+        icon: "☕",
+        title: "Nakazakicho cafés and retro alleys",
+        sub: "Walk from Umeda into Nakazakicho. Café hopping and exploring small streets and shops.",
+        type: "cafe"
       },
       {
-        title: "Apply for Japan eVisa",
-        desc: "Allow enough processing time before departure.",
-        urgent: true
+        time: "1630",
+        icon: "🌇",
+        title: "Yodogawa River / Umeda sunset",
+        sub: "Walk or short taxi to riverside park north of Umeda for free sunset views over the river and skyline.",
+        type: "highlight"
       },
       {
-        title: "Collect ICOCA card at Kansai Airport",
-        desc: "Works across Kansai and Tokyo.",
-        urgent: false
-      },
-      {
-        title: "Prepare yen cash",
-        desc: "Useful for local cafés, older shops, and temple entries.",
-        urgent: false
+        time: "1830",
+        icon: "🍜",
+        title: "Dinner in Umeda and back to Honmachi",
+        sub: "Casual dinner near Umeda, then subway back to Honmachi.",
+        type: "food"
       }
-    ];
-
-    const CHECKLIST = [
+    ]
+  },
+  {
+    dayNumber: 3,
+    date: "27 Nov",
+    dow: "Fri",
+    city: "Osaka",
+    title: "Kobe Hills Gardens Americamura Shinsekai",
+    summary: "Kobe ropeway and gardens, then Americamura, Horie, and a Shinsekai night.",
+    emoji: "🌿",
+    tags: ["Kobe", "Nunobiki", "Sorakuen", "Amerikamura", "Shinsekai"],
+    events: [
       {
-        name: "Get ICOCA IC Card at KIX Airport",
-        sub: "Load around 3,000–5,000 yen to start."
+        time: "0800",
+        icon: "🚆",
+        title: "Honmachi → Umeda → Kobe-Sannomiya",
+        sub: "Subway Honmachi → Umeda, then Hankyu or Hanshin to Sannomiya (~30 minutes from Umeda).",
+        type: "transit"
       },
       {
-        name: "Arrange Japan SIM or pocket Wi-Fi",
-        sub: "Pre-order before leaving Jakarta or pick up at the airport."
+        time: "0915",
+        icon: "🚡",
+        title: "Nunobiki Herb Garden & Ropeway",
+        sub: "Walk to the ropeway near Shin-Kobe and ride up. Garden stroll and viewpoints for about 2 hours.",
+        type: "highlight"
       },
       {
-        name: "Exchange some Japanese yen",
-        sub: "Small local spots may still prefer cash."
+        time: "1130",
+        icon: "🏘️",
+        title: "Kitano-cho / Ijinkan",
+        sub: "Walk the hillside Western-style district and photograph old residences.",
+        type: "explore"
       },
       {
-        name: "Download Google Maps offline",
-        sub: "Save Osaka, Kyoto, and Tokyo before you fly."
+        time: "1230",
+        icon: "🍽️",
+        title: "Lunch near Sannomiya",
+        sub: "Kobe beef set or a more casual lunch around the station.",
+        type: "food"
       },
       {
-        name: "Download Google Translate Japanese pack",
-        sub: "Useful for menus and signage."
+        time: "1330",
+        icon: "🌳",
+        title: "Sorakuen Garden",
+        sub: "Compact traditional garden with historic buildings, about 1 hour.",
+        type: "autumn"
       },
       {
-        name: "Pack a Type A adapter",
-        sub: "Japan uses flat 2-pin plugs."
+        time: "1430",
+        icon: "🚆",
+        title: "Train back to Osaka Umeda",
+        sub: "Return Sannomiya → Umeda by Hankyu or JR (~30 minutes).",
+        type: "transit"
       },
       {
-        name: "Bring a power bank",
-        sub: "Long walking days drain batteries quickly."
+        time: "1530",
+        icon: "🎨",
+        title: "Amerikamura afternoon",
+        sub: "Youth culture, street art around Triangle Park, and snacks.",
+        type: "explore"
       },
       {
-        name: "Pack layering clothes",
-        sub: "Late Nov to early Dec can be cold, especially at night."
+        time: "1700",
+        icon: "🛍️",
+        title: "Horie / Orange Street",
+        sub: "Walk west into Horie for design shops and cafés.",
+        type: "explore"
+      },
+      {
+        time: "1900",
+        icon: "🍢",
+        title: "Shinsekai dinner and night walk",
+        sub: "Subway to Shinsekai for kushikatsu dinner (e.g., Daruma or Yaekatsu), neon streets, and Tsutenkaku at night, then back to Honmachi.",
+        type: "food"
       }
-    ];
-    // === JAPAN TRIP DATA: PREP (END) ===
-
-    // === JAPAN TRIP DATA: ITINERARY (START) ===
-    const ITINERARY = [
+    ]
+  },
+  {
+    dayNumber: 4,
+    date: "28 Nov",
+    dow: "Sat",
+    city: "Osaka",
+    title: "Kitahama Brunch Transfer to Kyoto",
+    summary: "Slow riverside brunch, then Hankyu to Kyoto and a first Nishiki/Pontocho evening.",
+    emoji: "🥐",
+    tags: ["Kitahama", "Transfer", "Nishiki", "Pontocho"],
+    events: [
       {
-        dayNumber: 1,
-        date: "25 Nov",
-        dow: "Wed",
-        city: "Osaka",
-        title: "Arrival • Hozenji Yokocho • First Bites",
-        summary: "Easy landing day with market lunch, alley walk, and local dinner.",
-        emoji: "🛬",
-        tags: ["Arrival", "Easy Day", "Alley Walk"],
-        events: [
-          {
-            time: "08:35",
-            icon: "✈️",
-            title: "Land at Kansai Airport",
-            sub: "SQ618 • Immigration + collect ICOCA card at airport kiosk.",
-            type: "flight"
-          },
-          {
-            time: "10:30",
-            icon: "🏨",
-            title: "Check in at The Basement Hotel Honmachi",
-            sub: "Freshen up and rest a bit after the overnight flight.",
-            type: "hotel"
-          },
-          {
-            time: "12:30",
-            icon: "🍣",
-            title: "Kuromon Ichiba Market first Osaka lunch",
-            sub: "Try fresh seafood, wagyu skewers, or grilled bites inside the market.",
-            type: "food"
-          },
-          {
-            time: "14:30",
-            icon: "🏮",
-            title: "Hozenji Yokocho",
-            sub: "Moss-covered lantern alley near Namba; atmospheric and photogenic.",
-            type: "highlight"
-          },
-          {
-            time: "16:00",
-            icon: "🚶",
-            title: "Namba back-street wander",
-            sub: "Skip chain-heavy streets and explore the side alleys.",
-            type: "explore"
-          },
-          {
-            time: "18:30",
-            icon: "📸",
-            title: "Dotonbori at dusk",
-            sub: "Neon reflections and Glico sign photos, then eat elsewhere.",
-            type: "explore"
-          },
-          {
-            time: "19:30",
-            icon: "🥢",
-            title: "Dinner: local okonomiyaki or teppanyaki",
-            sub: "Find a smaller non-chain counter spot.",
-            type: "food"
-          }
-        ]
+        time: "0900",
+        icon: "🧳",
+        title: "Check out and store luggage",
+        sub: "Check out of The Basement Hotel Honmachi and store luggage at the hotel.",
+        type: "hotel"
       },
       {
-        dayNumber: 2,
-        date: "26 Nov",
-        dow: "Thu",
-        city: "Osaka",
-        title: "Universal Studios Japan",
-        summary: "Full theme park day; book early and keep dinner simple after.",
-        emoji: "🎢",
-        tags: ["Full Day", "USJ", "Pre-book Tickets"],
-        events: [
-          {
-            time: "07:30",
-            icon: "🚆",
-            title: "Head to USJ early",
-            sub: "JR Yumesaki Line to Universal City Station; around 30 min from Honmachi.",
-            type: "transit"
-          },
-          {
-            time: "08:30",
-            icon: "🎢",
-            title: "Universal Studios Japan full day",
-            sub: "Super Nintendo World, Harry Potter, Hollywood Dream coaster.",
-            type: "highlight"
-          },
-          {
-            time: "12:30",
-            icon: "🍔",
-            title: "Lunch inside USJ",
-            sub: "Butterbeer and themed food are worth the splurge today.",
-            type: "food"
-          },
-          {
-            time: "17:30",
-            icon: "🛍️",
-            title: "USJ souvenir shopping",
-            sub: "Nintendo and Wizarding World gifts before exit.",
-            type: "explore"
-          },
-          {
-            time: "20:00",
-            icon: "🍜",
-            title: "Dinner in Umeda",
-            sub: "Ramen or conveyor sushi to wind down.",
-            type: "food"
-          }
-        ]
+        time: "0915",
+        icon: "☕",
+        title: "Walk to Kitahama for brunch",
+        sub: "Walk about 10–15 minutes to Kitahama for riverside cafés like Brooklyn Roasting, MOUNT KITAHAMA, or &island.",
+        type: "cafe"
       },
       {
-        dayNumber: 3,
-        date: "27 Nov",
-        dow: "Fri",
-        city: "Osaka",
-        title: "Minoh Waterfall • Shinsekai • Last Night",
-        summary: "Autumn foliage, retro Osaka, and one slow final evening.",
-        emoji: "🍁",
-        tags: ["Autumn Leaves", "Local Area", "Tenjinbashi"],
-        events: [
-          {
-            time: "09:00",
-            icon: "🚆",
-            title: "Head to Minoh",
-            sub: "Hankyu line from Umeda; around 45 min total.",
-            type: "transit"
-          },
-          {
-            time: "10:00",
-            icon: "🍁",
-            title: "Minoh Waterfall Trail peak kōyō",
-            sub: "Maple forest trail and momiji tempura from stalls.",
-            type: "autumn"
-          },
-          {
-            time: "13:00",
-            icon: "🍲",
-            title: "Lunch in Minoh",
-            sub: "Quiet tofu or soba lunch in a peaceful local area.",
-            type: "food"
-          },
-          {
-            time: "15:30",
-            icon: "📍",
-            title: "Shinsekai retro district",
-            sub: "Old-school Osaka mood and good photo spots.",
-            type: "explore"
-          },
-          {
-            time: "16:30",
-            icon: "🍢",
-            title: "Kushikatsu at a small Shinsekai bar",
-            sub: "Go for a non-chain counter place.",
-            type: "food"
-          },
-          {
-            time: "18:30",
-            icon: "🛍️",
-            title: "Tenjinbashisuji Shotengai evening stroll",
-            sub: "Long covered arcade with a very local feel.",
-            type: "explore"
-          },
-          {
-            time: "20:00",
-            icon: "🍺",
-            title: "Small izakaya dinner in Tenjinbashi",
-            sub: "Slow final Osaka night.",
-            type: "food"
-          }
-        ]
+        time: "1100",
+        icon: "🚶",
+        title: "Walk back to hotel, pick up luggage",
+        sub: "Return on foot to the hotel and collect bags.",
+        type: "transit"
       },
       {
-        dayNumber: 4,
-        date: "28 Nov",
-        dow: "Sat",
-        city: "Kyoto",
-        title: "Kyoto Arrival Nishiki Pontocho Evening",
-        summary: "Settle in, keep the pace light, and ease into Kyoto with a simple first night.",
-        emoji: "🍵",
-        tags: ["Travel Day", "Easy Evening", "Nishiki", "Pontocho"],
-        events: [
-          { 
-            time: "09:30", 
-            icon: "🚆", 
-            title: "Transfer from Osaka to Kyoto and check in", 
-            sub: "Budget about 1.5–2 hours total for the transfer plus luggage handling. Keep the morning simple and do not force sightseeing.", 
-            type: "transit" 
-          },
-          { 
-            time: "12:30", 
-            icon: "🍜", 
-            title: "Lunch near Kyoto Station or Shijo Kawaramachi", 
-            sub: "From your hotel or arrival point, transit is usually about 10–20 minutes depending on where you stop.", 
-            type: "food" 
-          },
-          { 
-            time: "14:30", 
-            icon: "🛍️", 
-            title: "Nishiki Market and nearby lanes", 
-            sub: "Spend about 1.5–2 hours here. Walking from Muromachi to the Nishiki Shijo area is usually around 10–15 minutes.", 
-            type: "explore" 
-          },
-          { 
-            time: "18:00", 
-            icon: "🍽️", 
-            title: "Pontocho dinner and short Kamogawa walk", 
-            sub: "Dinner plus strolling should take about 2–3 hours. From Nishiki Shijo, Pontocho and the Kamo River are typically a 5–15 minute walk away.", 
-            type: "food" 
-          }
-        ]
+        time: "1130",
+        icon: "🚇",
+        title: "Honmachi → Umeda",
+        sub: "Short Osaka Metro Midosuji Line ride to Umeda (~4 minutes).",
+        type: "transit"
       },
       {
-        dayNumber: 5,
-        date: "29 Nov",
-        dow: "Sun",
-        city: "Kyoto",
-        title: "Kobe Half Day Trip • Toji Night",
-        summary: "Scenic Kobe morning, easy Kyoto night, and one autumn illumination stop.",
-        emoji: "🌿",
-        tags: ["Kobe", "Nunobiki", "Sorakuen", "Toji"],
-        events: [
-          {
-            time: "08:00",
-            icon: "🚆",
-            title: "Leave Kyoto for Kobe",
-            sub: "Kyoto to Sannomiya by JR Special Rapid takes about 50–60 minutes.",
-            type: "transit"
-          },
-          {
-            time: "09:15",
-            icon: "🌿",
-            title: "Nunobiki Herb Gardens",
-            sub: "From the Shin-Kobe side, allow about 10–15 minutes to reach the ropeway area. Spend around 2 hours including the ropeway and photo stops.",
-            type: "highlight"
-          },
-          {
-            time: "12:15",
-            icon: "🥪",
-            title: "Lunch in Sannomiya",
-            sub: "Coming down from Nunobiki plus lunch usually takes about 1.5 hours total.",
-            type: "food"
-          },
-          {
-            time: "14:00",
-            icon: "🍁",
-            title: "Sorakuen Garden",
-            sub: "Spend about 45–60 minutes here, then return from Kobe to Kyoto in around 50–60 minutes.",
-            type: "autumn"
-          },
-          {
-            time: "17:30",
-            icon: "🛍️",
-            title: "Central Kyoto stroll and early dinner",
-            sub: "strolling around Central Kyoto and a simple early dinner before the night event. Depending on where you eat, this can take about 1.5–2 hours.",
-            type: "explore"
-          },
-          {
-            time: "19:00",
-            icon: "✨",
-            title: "Toji night illumination",
-            sub: "From the Kyoto Station area, Toji is about 10–15 minutes by bus or taxi, or roughly 20–25 minutes including walking. Spend 1–1.5 hours there and fit dinner before or after.",
-            type: "autumn"
-          }
-        ]
+        time: "1200",
+        icon: "🚆",
+        title: "Hankyu Limited Express to Kyoto",
+        sub: "Take the Hankyu Kyoto Line Limited Express Umeda → Kawaramachi (~43 minutes).",
+        type: "transit"
       },
       {
-        dayNumber: 6,
-        date: "30 Nov",
-        dow: "Mon",
-        city: "Kyoto",
-        title: "Amanohashidate Ine • Gion Night",
-        summary: "Long scenic coastal day trip, then one classic Kyoto evening that feels special.",
-        emoji: "🌊",
-        tags: ["Day Trip", "Hidden Japan", "Coastal Views", "Gion"],
-        events: [
-          { 
-            time: "06:45", 
-            icon: "🚆", 
-            title: "Depart Kyoto very early", 
-            sub: "Leave around 0630–0700. Kyoto to the Amanohashidate area is about 2.5–3 hours one way including transfers.", 
-            type: "transit" 
-          },
-          { 
-            time: "10:00", 
-            icon: "🌉", 
-            title: "Amanohashidate sandbar and View Land", 
-            sub: "Plan about 2–2.5 hours total for the station area, sandbar, viewpoint, photos, and lunch buffer.", 
-            type: "highlight" 
-          },
-          { 
-            time: "13:00", 
-            icon: "🚌", 
-            title: "Transfer to Ine", 
-            sub: "The bus ride is usually about 45–60 minutes each way depending on the connection.", 
-            type: "transit" 
-          },
-          { 
-            time: "14:00", 
-            icon: "📷", 
-            title: "Ine waterfront stroll", 
-            sub: "Spend around 1.5 hours around the funaya waterfront for photos and a slower pace.", 
-            type: "explore" 
-          },
-          { 
-            time: "16:00", 
-            icon: "🚆", 
-            title: "Return to Kyoto", 
-            sub: "This is a long return block, so expect to get back in the late afternoon or evening and keep dinner simple.", 
-            type: "transit" 
-          },
-          { 
-            time: "20:00", 
-            icon: "🌙", 
-            title: "Gion and Kamo River at night", 
-            sub: "After dinner, do your single classic Kyoto evening stroll. From your hotel, Gion and the Kamo River are usually about 15–25 minutes away. Spend about 1.5–2 hours walking.", 
-            type: "explore" 
-          }
-        ]
+        time: "1330",
+        icon: "🏨",
+        title: "Walk to Kiori Exec Muromachi and check in",
+        sub: "Walk from central Kyoto to the hotel, check in, and rest.",
+        type: "hotel"
       },
       {
-        dayNumber: 7,
-        date: "1 Dec",
-        dow: "Tue",
-        city: "Kyoto",
-        title: "Eastern Kyoto Classics • Eikando Night",
-        summary: "The strongest east Kyoto day, then a real autumn night illumination highlight.",
-        emoji: "🏯",
-        tags: ["Kiyomizudera", "Higashiyama", "Gion", "Eikando"],
-        events: [
-          { 
-            time: "07:45", 
-            icon: "🚌", 
-            title: "Leave hotel for Kiyomizudera", 
-            sub: "Start around 0730–0800. Transit to the Kiyomizudera area is usually about 20–30 minutes by bus or taxi plus waiting time.", 
-            type: "transit" 
-          },
-          { 
-            time: "08:15", 
-            icon: "⛩️", 
-            title: "Kiyomizudera", 
-            sub: "Spend about 1–1.25 hours here and go early to beat the crowds.", 
-            type: "highlight" 
-          },
-          { 
-            time: "10:00", 
-            icon: "🚶", 
-            title: "Sannenzaka Ninenzaka Yasaka Pagoda", 
-            sub: "Walking between the temple and the old lanes takes about 15–20 minutes with photo stops. Spend about 1.5–2 hours in this whole zone.", 
-            type: "explore" 
-          },
-          { 
-            time: "12:30", 
-            icon: "🍱", 
-            title: "Lunch in Higashiyama or Gion", 
-            sub: "Keep about 45–60 minutes for lunch in the area.", 
-            type: "food" 
-          },
-          { 
-            time: "14:00", 
-            icon: "🍵", 
-            title: "Optional Kodaiji and cafe break", 
-            sub: "If you do Kodaiji, give it about 45–60 minutes, then keep the rest of the afternoon lighter so you still have energy at night.", 
-            type: "explore" 
-          },
-          { 
-            time: "18:00", 
-            icon: "✨", 
-            title: "Eikando night illumination", 
-            sub: "From central Kyoto or Higashiyama, transit is usually about 15–25 minutes. Spend around 1.5–2 hours there, then have dinner around Karasuma Shijo or back near the hotel.", 
-            type: "autumn" }
-        ]
+        time: "1500",
+        icon: "🛍️",
+        title: "Nishiki Market and nearby streets",
+        sub: "10–15 minute walk from the hotel. Explore food stalls, arcades, and side streets.",
+        type: "explore"
       },
       {
-        dayNumber: 8,
-        date: "2 Dec",
-        dow: "Wed",
-        city: "Kyoto",
-        title: "Arashiyama Kinkakuji • Akihabara Tokyo Arrival",
-        summary: "Very early west Kyoto start, then settle into Tokyo with an easy first evening.",
-        emoji: "🚅",
-        tags: ["Arashiyama", "Kinkakuji", "Travel Day", "Tokyo"],
-        events: [
-          { 
-            time: "07:00", 
-            icon: "🚆", 
-            title: "Head to Arashiyama early", 
-            sub: "Start around 0645–0715. Kyoto to Arashiyama is usually about 30–45 minutes.", 
-            type: "transit" 
-          },
-          { 
-            time: "07:45", 
-            icon: "🎋", 
-            title: "Arashiyama Bamboo Grove", 
-            sub: "Spend about 45–60 minutes if you arrive early, or up to 1.25 hours if you add extra strolling.", 
-            type: "highlight" 
-          },
-          { 
-            time: "09:00", 
-            icon: "🌉", 
-            title: "Togetsukyo Bridge and riverside", 
-            sub: "Walk about 15–20 minutes from the grove, then spend around 30–40 minutes by the bridge and river.", 
-            type: "explore" 
-          },
-          { 
-            time: "10:15", 
-            icon: "🍙", 
-            title: "Arashiyama lunch or snack", 
-            sub: "Keep this efficient before crossing the city.", 
-            type: "food" 
-          },
-          { 
-            time: "11:00", 
-            icon: "🚌", 
-            title: "Transit to Kinkakuji", 
-            sub: "From Arashiyama, allow about 35–45 minutes depending on bus timing and traffic.", 
-            type: "transit" 
-          },
-          { 
-            time: "12:00", 
-            icon: "🏯", 
-            title: "Kinkakuji", 
-            sub: "Visit for about 45–60 minutes.", 
-            type: "highlight" 
-          },
-          { 
-            time: "13:30", 
-            icon: "🧳", 
-            title: "Return for luggage and head to Kyoto Station", 
-            sub: "Pick up luggage if needed. Keep a 30–45 minute buffer for the transfer to Kyoto Station and boarding.", 
-            type: "hotel" 
-          },
-          { 
-            time: "14:30", 
-            icon: "🚅", 
-            title: "Shinkansen to Tokyo", 
-            sub: "Kyoto to Tokyo is about 2 hours 10 minutes to 2 hours 20 minutes. Arrive Tokyo, check in, and keep dinner easy.", 
-            type: "transit" 
-          },
-          { 
-            time: "17:30", 
-            icon: "🏨", 
-            title: "Check in N Hotel Akihabara No.2", 
-            sub: "Freshen up after travel.", 
-            type: "hotel" 
-          },
-          { 
-            time: "18:00", 
-            icon: "⚡", 
-            title: "Akihabara Electric Town", 
-            sub: "Electronics, arcades, and easy first Tokyo wander.", 
-            type: "explore" 
-          },
-          { 
-            time: "19:30", 
-            icon: "🍽️", 
-            title: "Dinner in Kanda or Akihabara", 
-            sub: "Easy first Tokyo dinner nearby.", 
-            type: "food" 
-          }
-        ]
+        time: "1700",
+        icon: "🌊",
+        title: "Kamo River stroll (Shijo–Sanjo)",
+        sub: "Walk along the river from Shijo toward Sanjo as the light softens.",
+        type: "explore"
       },
       {
-        dayNumber: 9,
-        date: "3 Dec",
-        dow: "Thu",
-        city: "Tokyo",
-        title: "Nakameguro • Daikanyama • Shimokitazawa",
-        summary: "One full café and neighborhood day with a looser, slower pace.",
-        emoji: "☕",
-        tags: ["Café Day", "Canal Leaves", "Indie Tokyo"],
-        events: [
-          {
-            time: "10:00",
-            icon: "🍁",
-            title: "Nakameguro canal walk",
-            sub: "Amber leaves and a romantic Tokyo morning.",
-            type: "autumn"
-          },
-          {
-            time: "10:30",
-            icon: "☕",
-            title: "Café hop in Nakameguro",
-            sub: "Onibus, Reserve Roastery, and canal-side stops.",
-            type: "cafe"
-          },
-          {
-            time: "13:00",
-            icon: "📚",
-            title: "Daikanyama T-Site",
-            sub: "Beautiful bookstore complex and a slower Tokyo pace.",
-            type: "explore"
-          },
-          {
-            time: "14:30",
-            icon: "🚆",
-            title: "Head to Shimokitazawa",
-            sub: "Tokyo’s indie neighbourhood.",
-            type: "transit"
-          },
-          {
-            time: "15:00",
-            icon: "🧥",
-            title: "Shimokitazawa wander",
-            sub: "Vintage, small streets, and no fixed plan needed.",
-            type: "explore"
-          },
-          {
-            time: "16:00",
-            icon: "☕",
-            title: "More cafés in Shimokitazawa",
-            sub: "Tiny local places in side streets.",
-            type: "cafe"
-          },
-          {
-            time: "19:00",
-            icon: "🍽️",
-            title: "Dinner in Shimokitazawa",
-            sub: "Local casual meal and a low-pressure Tokyo evening.",
-            type: "food"
-          }
-        ]
-      },
-      {
-        dayNumber: 10,
-        date: "4 Dec",
-        dow: "Fri",
-        city: "Tokyo",
-        title: "Kawaguchiko • Mt Fuji • Chureito",
-        summary: "Dedicated day trip for classic Fuji views and a reward dinner after.",
-        emoji: "🗻",
-        tags: ["Day Trip", "Mt Fuji", "Chureito"],
-        events: [
-          {
-            time: "07:00",
-            icon: "🚌",
-            title: "Bus / train to Kawaguchiko",
-            sub: "Pre-book transport from Shinjuku.",
-            type: "transit"
-          },
-          {
-            time: "09:00",
-            icon: "🗻",
-            title: "Lake Kawaguchi Fuji reflections",
-            sub: "Best chance for crisp morning Fuji views.",
-            type: "highlight"
-          },
-          {
-            time: "10:30",
-            icon: "🚠",
-            title: "Kachi Kachi Ropeway",
-            sub: "Panoramic Fuji + lake views.",
-            type: "highlight"
-          },
-          {
-            time: "12:00",
-            icon: "🍜",
-            title: "Lunch: hoto noodles",
-            sub: "Classic Kawaguchiko specialty.",
-            type: "food"
-          },
-          {
-            time: "14:00",
-            icon: "⛩️",
-            title: "Chureito Pagoda",
-            sub: "Iconic pagoda-and-Fuji photo spot.",
-            type: "highlight"
-          },
-          {
-            time: "16:30",
-            icon: "🚆",
-            title: "Return to Tokyo",
-            sub: "Back toward Shinjuku in the evening.",
-            type: "transit"
-          },
-          {
-            time: "19:00",
-            icon: "🥩",
-            title: "Dinner in Shinjuku",
-            sub: "Reward meal after the Fuji day trip.",
-            type: "food"
-          }
-        ]
-      },
-      {
-        dayNumber: 11,
-        date: "5 Dec",
-        dow: "Sat",
-        city: "Tokyo",
-        title: "Senso-ji • Yanaka • KAYABA",
-        summary: "Old Tokyo mood with an early temple visit and a classic café stop.",
-        emoji: "🏮",
-        tags: ["Senso-ji", "Old Tokyo", "Yanaka"],
-        events: [
-          {
-            time: "08:30",
-            icon: "⛩️",
-            title: "Senso-ji early morning",
-            sub: "Best before the tour crowds build.",
-            type: "highlight"
-          },
-          {
-            time: "10:00",
-            icon: "🍘",
-            title: "Nakamise browse",
-            sub: "Traditional snacks and crafts.",
-            type: "explore"
-          },
-          {
-            time: "11:30",
-            icon: "🚆",
-            title: "Head to Yanaka",
-            sub: "Short train hop into old Tokyo.",
-            type: "transit"
-          },
-          {
-            time: "12:00",
-            icon: "🏮",
-            title: "Yanaka Ginza Shopping Alley",
-            sub: "Retro Tokyo lane with local snacks.",
-            type: "highlight"
-          },
-          {
-            time: "13:00",
-            icon: "☕",
-            title: "KAYABA COFFEE",
-            sub: "1938 building café and a true institution.",
-            type: "cafe"
-          },
-          {
-            time: "14:30",
-            icon: "🌿",
-            title: "Yanaka Cemetery walk",
-            sub: "Peaceful streets and local atmosphere.",
-            type: "explore"
-          },
-          {
-            time: "16:30",
-            icon: "🌳",
-            title: "Ueno Park late afternoon",
-            sub: "Browse nearby instead of doing museum time.",
-            type: "explore"
-          },
-          {
-            time: "19:00",
-            icon: "🍢",
-            title: "Dinner in Ueno or Akihabara",
-            sub: "Warm, low-key night out.",
-            type: "food"
-          }
-        ]
-      },
-      {
-        dayNumber: 12,
-        date: "6 Dec",
-        dow: "Sun",
-        city: "Tokyo",
-        title: "Gotokuji • Shinjuku Gyoen • Farewell Night",
-        summary: "Gentler final full day with gardens, café time, and a last dinner.",
-        emoji: "🐱",
-        tags: ["Gotokuji", "Last Full Day", "Autumn Garden"],
-        events: [
-          {
-            time: "10:00",
-            icon: "🐱",
-            title: "Gotokuji Temple",
-            sub: "Lucky cat shrine and a gentler Tokyo stop.",
-            type: "highlight"
-          },
-          {
-            time: "12:00",
-            icon: "🍢",
-            title: "Omoide Yokocho lunch",
-            sub: "Go at lunch for an easier seat.",
-            type: "food"
-          },
-          {
-            time: "14:00",
-            icon: "🍁",
-            title: "Shinjuku Gyoen",
-            sub: "Autumn garden afternoon and calmer city pace.",
-            type: "autumn"
-          },
-          {
-            time: "16:30",
-            icon: "☕",
-            title: "Omotesando / Tomigaya café hunt",
-            sub: "Beautiful design-led cafés and back alleys.",
-            type: "cafe"
-          },
-          {
-            time: "18:30",
-            icon: "🛍️",
-            title: "Ginza evening browse",
-            sub: "Itoya, Uniqlo Ginza, and city lights.",
-            type: "explore"
-          },
-          {
-            time: "20:00",
-            icon: "🥂",
-            title: "Farewell dinner",
-            sub: "Yakiniku, tonkatsu, omakase, or another final treat.",
-            type: "food"
-          }
-        ]
-      },
-      {
-        dayNumber: 13,
-        date: "7 Dec",
-        dow: "Mon",
-        city: "Tokyo",
-        title: "Slow Morning • Omiyage Run • Fly Home",
-        summary: "One last Tokyo morning before airport transit and departure.",
-        emoji: "✈️",
-        tags: ["Departure", "Haneda", "Flight 22:55"],
-        events: [
-          {
-            time: "09:00",
-            icon: "☕",
-            title: "Slow café breakfast in Akihabara",
-            sub: "Last sit-down Tokyo café moment.",
-            type: "cafe"
-          },
-          {
-            time: "11:00",
-            icon: "🏨",
-            title: "Check out N Hotel Akihabara No.2",
-            sub: "Store bags if needed.",
-            type: "hotel"
-          },
-          {
-            time: "13:00",
-            icon: "🎁",
-            title: "Tokyo Station B1 omiyage run",
-            sub: "KitKat sets, Tokyo Banana, wagashi, and stationery.",
-            type: "explore"
-          },
-          {
-            time: "16:30",
-            icon: "🚆",
-            title: "Head to Haneda Airport",
-            sub: "Allow enough time before departure.",
-            type: "transit"
-          },
-          {
-            time: "18:30",
-            icon: "🛍️",
-            title: "Haneda check-in and duty free",
-            sub: "Final shopping and airport buffer time.",
-            type: "transit"
-          },
-          {
-            time: "22:55",
-            icon: "✈️",
-            title: "Depart Haneda • SQ635 via Singapore",
-            sub: "HND 22:55 → SIN layover 4h → SQ956 SIN 09:20 → CGK 10:15 next day.",
-            type: "flight"
-          }
-        ]
+        time: "1900",
+        icon: "🍽️",
+        title: "Pontocho dinner and alley walk",
+        sub: "Lantern-lit Pontocho alley dinner and short post-meal stroll.",
+        type: "food"
       }
-    ];
-    // === JAPAN TRIP DATA: ITINERARY (END) ===
+    ]
+  },
+  {
+    dayNumber: 5,
+    date: "29 Nov",
+    dow: "Sun",
+    city: "Kyoto",
+    title: "Arashiyama and Kinkakuji",
+    summary: "Early Arashiyama for bamboo and river views, then Kinkakuji in the afternoon.",
+    emoji: "🎋",
+    tags: ["Arashiyama", "Bamboo Grove", "Kinkakuji"],
+    events: [
+      {
+        time: "0645",
+        icon: "🚆",
+        title: "Transit to Arashiyama",
+        sub: "Hotel → Kyoto Station → JR San-in Line to Saga-Arashiyama (~30–45 minutes total).",
+        type: "transit"
+      },
+      {
+        time: "0730",
+        icon: "🎍",
+        title: "Arashiyama Bamboo Grove",
+        sub: "Walk the main bamboo path before the big crowds (about 1 hour).",
+        type: "highlight"
+      },
+      {
+        time: "0830",
+        icon: "🌉",
+        title: "Togetsukyo Bridge and riverbank",
+        sub: "River views and mountains with autumn colour along the Katsura River.",
+        type: "autumn"
+      },
+      {
+        time: "1000",
+        icon: "🍱",
+        title: "Late breakfast / early lunch in Arashiyama",
+        sub: "Simple meal around the station or near the river.",
+        type: "food"
+      },
+      {
+        time: "1130",
+        icon: "🚌",
+        title: "Transit Arashiyama → Kinkakuji",
+        sub: "About 35–45 minutes by bus or taxi across town.",
+        type: "transit"
+      },
+      {
+        time: "1300",
+        icon: "🏯",
+        title: "Kinkakuji",
+        sub: "Visit for about 45–60 minutes and enjoy golden pavilion reflections.",
+        type: "highlight"
+      },
+      {
+        time: "1500",
+        icon: "🚆",
+        title: "Return to central Kyoto",
+        sub: "Head back toward Shijo-Karasuma or the hotel, then keep the evening flexible.",
+        type: "transit"
+      },
+      {
+        time: "1800",
+        icon: "🍽️",
+        title: "Free evening dinner",
+        sub: "Dinner near Shijo-Karasuma or around Nishiki as you prefer.",
+        type: "food"
+      }
+    ]
+  },
+  {
+    dayNumber: 6,
+    date: "30 Nov",
+    dow: "Mon",
+    city: "Kyoto",
+    title: "Amanohashidate and Ine Day Trip",
+    summary: "Full-day coastal trip to Amanohashidate and Ine, then a Gion/Kamo evening.",
+    emoji: "🌊",
+    tags: ["Day Trip", "Amanohashidate", "Ine", "Gion Night"],
+    events: [
+      {
+        time: "0630",
+        icon: "🚆",
+        title: "Hotel → Kyoto Station",
+        sub: "Make your way to Kyoto Station for the early limited express.",
+        type: "transit"
+      },
+      {
+        time: "0700",
+        icon: "🚆",
+        title: "Limited Express to Amanohashidate",
+        sub: "JR Limited Express Hashidate to Amanohashidate (~2–2.5 hours).",
+        type: "transit"
+      },
+      {
+        time: "0930",
+        icon: "🏝️",
+        title: "Amanohashidate sandbar and viewpoints",
+        sub: "Explore the sandbar by foot or bike and ride up to a viewpoint (View Land / Kasamatsu Park). Quick lunch in the area.",
+        type: "highlight"
+      },
+      {
+        time: "1230",
+        icon: "🚌",
+        title: "Bus to Ine",
+        sub: "Bus Amanohashidate → Ine (~45–60 minutes).",
+        type: "transit"
+      },
+      {
+        time: "1330",
+        icon: "📷",
+        title: "Ine funaya waterfront",
+        sub: "Walk along the boathouse-lined waterfront, photos, and café stop.",
+        type: "explore"
+      },
+      {
+        time: "1500",
+        icon: "🚌",
+        title: "Bus back to Amanohashidate",
+        sub: "Return to the station area and prepare for the train back.",
+        type: "transit"
+      },
+      {
+        time: "1600",
+        icon: "🚆",
+        title: "Train back to Kyoto",
+        sub: "Limited express back to Kyoto Station, arriving early evening.",
+        type: "transit"
+      },
+      {
+        time: "1900",
+        icon: "🏮",
+        title: "Gion and Kamo River night walk",
+        sub: "Walk Hanamikoji and side alleys, then along the Kamo riverside. Dinner around Gion or Shijo.",
+        type: "explore"
+      }
+    ]
+  },
+  {
+    dayNumber: 7,
+    date: "1 Dec",
+    dow: "Tue",
+    city: "Kyoto",
+    title: "Eastern Kyoto and Eikando Night",
+    summary: "Kiyomizudera and old streets, then a calmer afternoon and Eikando illumination.",
+    emoji: "🍂",
+    tags: ["Kiyomizudera", "Higashiyama", "Gion", "Eikando"],
+    events: [
+      {
+        time: "0730",
+        icon: "🚕",
+        title: "Travel to Kiyomizudera area",
+        sub: "Bus or taxi from near the hotel, about 20–30 minutes including waiting time.",
+        type: "transit"
+      },
+      {
+        time: "0800",
+        icon: "⛩️",
+        title: "Kiyomizudera",
+        sub: "Aim to arrive early and spend about 75 minutes at the temple.",
+        type: "highlight"
+      },
+      {
+        time: "0915",
+        icon: "🏘️",
+        title: "Sannenzaka → Ninenzaka → Yasaka Pagoda",
+        sub: "1.5–2 hours walking the old stone streets, shops, and pagoda views.",
+        type: "explore"
+      },
+      {
+        time: "1130",
+        icon: "🍱",
+        title: "Lunch in Higashiyama or Gion",
+        sub: "Simple lunch in the area before you slow down the afternoon.",
+        type: "food"
+      },
+      {
+        time: "1300",
+        icon: "🪷",
+        title: "Optional Kodaiji or extra walk",
+        sub: "Around 45–60 minutes at Kodaiji if you still feel like another temple, or skip and keep things lighter.",
+        type: "explore"
+      },
+      {
+        time: "1400",
+        icon: "☕",
+        title: "Rest / café time",
+        sub: "Relax around Gion or near the hotel until evening.",
+        type: "cafe"
+      },
+      {
+        time: "1730",
+        icon: "🚕",
+        title: "Travel to Eikando",
+        sub: "About 15–25 minutes by bus or taxi depending on where you start.",
+        type: "transit"
+      },
+      {
+        time: "1800",
+        icon: "✨",
+        title: "Eikando night illumination",
+        sub: "Autumn maple leaves and pond reflections, about 1.5–2 hours.",
+        type: "autumn"
+      },
+      {
+        time: "2000",
+        icon: "🍽️",
+        title: "Late dinner near Shijo or hotel",
+        sub: "Return toward Karasuma/Shijo or Muromachi for a relaxed dinner.",
+        type: "food"
+      }
+    ]
+  },
+  {
+    dayNumber: 8,
+    date: "2 Dec",
+    dow: "Wed",
+    city: "Kyoto",
+    title: "Chill Central Kyoto Morning Shinkansen to Tokyo",
+    summary: "Slow central Kyoto morning, souvenirs and cafés, then shinkansen to Tokyo.",
+    emoji: "🚅",
+    tags: ["Chill Day", "Souvenirs", "Shinkansen", "Tokyo Arrival"],
+    events: [
+      {
+        time: "0900",
+        icon: "☕",
+        title: "Slow morning near the hotel",
+        sub: "Sleep in a bit, then head out around 09:00.",
+        type: "cafe"
+      },
+      {
+        time: "0930",
+        icon: "🛍️",
+        title: "Nishiki / Teramachi souvenir run",
+        sub: "Revisit Nishiki Market and Teramachi for gifts and snacks.",
+        type: "explore"
+      },
+      {
+        time: "1030",
+        icon: "📚",
+        title: "Kawaramachi / Sanjo cafés and shops",
+        sub: "Cafés, bookshops, and small select stores in central Kyoto.",
+        type: "cafe"
+      },
+      {
+        time: "1200",
+        icon: "🏨",
+        title: "Return to hotel, pack, and check out",
+        sub: "Head back, pack up, and check out from Kiori Exec Muromachi.",
+        type: "hotel"
+      },
+      {
+        time: "1300",
+        icon: "🚆",
+        title: "Head to Kyoto Station",
+        sub: "Allow 30–45 minutes to reach Kyoto Station by walk or subway.",
+        type: "transit"
+      },
+      {
+        time: "1430",
+        icon: "🚅",
+        title: "Shinkansen Kyoto → Tokyo",
+        sub: "Board a Nozomi train to Tokyo (~2h10–2h20). Arrival time depends on your chosen departure.",
+        type: "transit"
+      }
+      // Tokyo evening on arrival is handled from the next day in your Tokyo plan
+    ]
+  },
+  // --- existing Tokyo days (example structure, keep or tweak as needed) ---
+  {
+    dayNumber: 9,
+    date: "3 Dec",
+    dow: "Thu",
+    city: "Tokyo",
+    title: "Nakameguro Daikanyama Shimokitazawa",
+    summary: "One full caf and neighborhood day with a looser, slower pace.",
+    emoji: "☕",
+    tags: ["Caf Day", "Canal Leaves", "Indie Tokyo"],
+    events: [
+      { time: "1000", icon: "🍁", title: "Nakameguro canal walk", sub: "Amber leaves and a romantic Tokyo morning.", type: "autumn" },
+      { time: "1030", icon: "☕", title: "Caf hop in Nakameguro", sub: "Onibus, Reserve Roastery, and canal-side stops.", type: "cafe" },
+      { time: "1300", icon: "📚", title: "Daikanyama T-Site", sub: "Beautiful bookstore complex and a slower Tokyo pace.", type: "explore" },
+      { time: "1430", icon: "🚆", title: "Head to Shimokitazawa", sub: "Tokyos indie neighbourhood.", type: "transit" },
+      { time: "1500", icon: "🛍️", title: "Shimokitazawa wander", sub: "Vintage, small streets, and no fixed plan needed.", type: "explore" },
+      { time: "1600", icon: "☕", title: "More cafs in Shimokitazawa", sub: "Tiny local places in side streets.", type: "cafe" },
+      { time: "1900", icon: "🍽️", title: "Dinner in Shimokitazawa", sub: "Local casual meal and a low-pressure Tokyo evening.", type: "food" }
+    ]
+  },
+  {
+    dayNumber: 10,
+    date: "4 Dec",
+    dow: "Fri",
+    city: "Tokyo",
+    title: "Kawaguchiko Mt Fuji Chureito",
+    summary: "Dedicated day trip for classic Fuji views and a reward dinner after.",
+    emoji: "🗻",
+    tags: ["Day Trip", "Mt Fuji", "Chureito"],
+    events: [
+      { time: "0700", icon: "🚌", title: "Bus train to Kawaguchiko", sub: "Pre-book transport from Shinjuku.", type: "transit" },
+      { time: "0900", icon: "🗻", title: "Lake Kawaguchi Fuji reflections", sub: "Best chance for crisp morning Fuji views.", type: "highlight" },
+      { time: "1030", icon: "🚡", title: "Kachi Kachi Ropeway", sub: "Panoramic Fuji lake views.", type: "highlight" },
+      { time: "1200", icon: "🍜", title: "Lunch hoto noodles", sub: "Classic Kawaguchiko specialty.", type: "food" },
+      { time: "1400", icon: "⛩️", title: "Chureito Pagoda", sub: "Iconic pagoda-and-Fuji photo spot.", type: "highlight" },
+      { time: "1630", icon: "🚆", title: "Return to Tokyo", sub: "Back toward Shinjuku in the evening.", type: "transit" },
+      { time: "1900", icon: "🍽️", title: "Dinner in Shinjuku", sub: "Reward meal after the Fuji day trip.", type: "food" }
+    ]
+  },
+  {
+    dayNumber: 11,
+    date: "5 Dec",
+    dow: "Sat",
+    city: "Tokyo",
+    title: "Sensoji Yanaka KAYABA",
+    summary: "Old Tokyo mood with an early temple visit and a classic caf stop.",
+    emoji: "🏮",
+    tags: ["Senso-ji", "Old Tokyo", "Yanaka"],
+    events: [
+      { time: "0830", icon: "⛩️", title: "Sensoji early morning", sub: "Best before the tour crowds build.", type: "highlight" },
+      { time: "1000", icon: "🛍️", title: "Nakamise browse", sub: "Traditional snacks and crafts.", type: "explore" },
+      { time: "1130", icon: "🚆", title: "Head to Yanaka", sub: "Short train hop into old Tokyo.", type: "transit" },
+      { time: "1200", icon: "🏘️", title: "Yanaka Ginza Shopping Alley", sub: "Retro Tokyo lane with local snacks.", type: "highlight" },
+      { time: "1300", icon: "☕", title: "KAYABA COFFEE", sub: "1938 building caf and a true institution.", type: "cafe" },
+      { time: "1430", icon: "🚶", title: "Yanaka Cemetery walk", sub: "Peaceful streets and local atmosphere.", type: "explore" },
+      { time: "1630", icon: "🌳", title: "Ueno Park late afternoon", sub: "Browse nearby instead of doing museum time.", type: "explore" },
+      { time: "1900", icon: "🍽️", title: "Dinner in Ueno or Akihabara", sub: "Warm, low-key night out.", type: "food" }
+    ]
+  },
+  {
+    dayNumber: 12,
+    date: "6 Dec",
+    dow: "Sun",
+    city: "Tokyo",
+    title: "Gotokuji Shinjuku Gyoen Farewell Night",
+    summary: "Gentler final full day with gardens, caf time, and a last dinner.",
+    emoji: "🌳",
+    tags: ["Gotokuji", "Last Full Day", "Autumn Garden"],
+    events: [
+      { time: "1000", icon: "🐱", title: "Gotokuji Temple", sub: "Lucky cat shrine and a gentler Tokyo stop.", type: "highlight" },
+      { time: "1200", icon: "🍢", title: "Omoide Yokocho lunch", sub: "Go at lunch for an easier seat.", type: "food" },
+      { time: "1400", icon: "🍁", title: "Shinjuku Gyoen", sub: "Autumn garden afternoon and calmer city pace.", type: "autumn" },
+      { time: "1630", icon: "☕", title: "Omotesando Tomigaya caf hunt", sub: "Beautiful design-led cafs and back alleys.", type: "cafe" },
+      { time: "1830", icon: "✨", title: "Ginza evening browse", sub: "Itoya, Uniqlo Ginza, and city lights.", type: "explore" },
+      { time: "2000", icon: "🥩", title: "Farewell dinner", sub: "Yakiniku, tonkatsu, omakase, or another final treat.", type: "food" }
+    ]
+  },
+  {
+    dayNumber: 13,
+    date: "7 Dec",
+    dow: "Mon",
+    city: "Tokyo",
+    title: "Slow Morning Omiyage Run Fly Home",
+    summary: "One last Tokyo morning before airport transit and departure.",
+    emoji: "✈️",
+    tags: ["Departure", "Haneda", "Flight 2255"],
+    events: [
+      { time: "0900", icon: "☕", title: "Slow caf breakfast in Akihabara", sub: "Last sit-down Tokyo caf moment.", type: "cafe" },
+      { time: "1100", icon: "🏨", title: "Check out N Hotel Akihabara No.2", sub: "Store bags if needed.", type: "hotel" },
+      { time: "1300", icon: "🎁", title: "Tokyo Station B1 omiyage run", sub: "KitKat sets, Tokyo Banana, wagashi, and stationery.", type: "explore" },
+      { time: "1630", icon: "🚆", title: "Head to Haneda Airport", sub: "Allow enough time before departure.", type: "transit" },
+      { time: "1830", icon: "🛫", title: "Haneda check-in and duty free", sub: "Final shopping and airport buffer time.", type: "transit" },
+      { time: "2255", icon: "✈️", title: "Depart Haneda SQ635 via Singapore", sub: "HND 22:55 → SIN, layover, then SQ956 SIN 09:20 → CGK 10:15 next day.", type: "flight" }
+    ]
+  }
+];
+// === JAPAN TRIP DATA ITINERARY END ===
 
     // === JAPAN TRIP DATA: PLACES (START) ===
     const PLACES = [
