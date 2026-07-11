@@ -2811,89 +2811,247 @@ const HOTELS = [
     // === JAPAN TRIP DATA: PREP (START) ===
     const ACTIONS = [
       {
-        title: "Book Shinkansen Tickets",
+        title: "Make E-Passport",
         urgent: true,
-        desc: "Reserve Kyoto to Tokyo Nozomi tickets and book Oversized Baggage seats if your luggage exceeds 160cm."
+        desc: "Secure or renew your e-passport immediately. A valid biometric e-passport is strictly mandatory for the streamlined visa waiver."
       },
       {
-        title: "Reserve Limited Express Trains",
+        title: "Apply Visa Waiver",
+        urgent: true,
+        desc: "Submit your digital visa waiver application via the official registration system as soon as your e-passport is ready."
+      },
+      {
+        title: "Book Shinkansen: Kyoto → Tokyo",
         urgent: false,
-        desc: "Book Fuji Excursion (Kawaguchiko) and Hashidate (Amanohashidate) seats online, as these sell out quickly in autumn."
+        desc: "Lock in your Nozomi bullet train seats precisely 30 days before Dec 2nd. Explicitly select 'Oversized Baggage Area' seats."
       }
     ];
 
     const CHECKLIST = [
-      // Transportation & Transit
+      // 1. Travel Documents & Essentials
       {
-        category: "Transportation & Transit",
-        name: "Setup Digital IC Card",
-        sub: "Add Suica or ICOCA to your Apple/Google Wallet and load initial funds for seamless transit."
+        category: "Travel Documents & Essentials",
+        name: "Passports & Physical Copies",
+        sub: "Confirm passports are valid for at least 6 months and pack physical color prints of the photo pages."
       },
       {
-        category: "Transportation & Transit",
-        name: "Reserve Limited Express Seats",
-        sub: "Pre-book seats for the Fuji Excursion and the train to Amanohashidate."
+        category: "Travel Documents & Essentials",
+        name: "Approved Visa Waiver (Print & PDF)",
+        sub: "Save copies of the official clearance notification offline on your phone and print a physical backup."
       },
       {
-        category: "Transportation & Transit",
-        name: "Book Shinkansen Tickets",
-        sub: "Secure your Kyoto to Tokyo transfer, noting the oversized luggage requirements."
+        category: "Travel Documents & Essentials",
+        name: "Travel Insurance Certificates",
+        sub: "Print out emergency medical coverage details and save a copy to your offline files app."
       },
-      
-      // Digital & Documents
       {
-        category: "Digital & Documents",
+        category: "Travel Documents & Essentials",
         name: "Complete Visit Japan Web",
-        sub: "Fill out the online forms to get your QR codes for fast-track customs and immigration."
-      },
-      {
-        category: "Digital & Documents",
-        name: "Order Data SIM / Wi-Fi",
-        sub: "Arrange for a data SIM or pocket Wi-Fi pickup at Kansai Airport (KIX)."
-      },
-      {
-        category: "Digital & Documents",
-        name: "Offline Maps & Translate",
-        sub: "Download Google Maps for Osaka, Kyoto, and Tokyo, plus the offline Japanese language pack."
+        sub: "Fill out online immigration and customs forms to generate your QR codes for fast-track arrival."
       },
 
-      // Packing Essentials
+      // 2. Digital Setup & Offline Resources
       {
-        category: "Packing Essentials",
-        name: "Comfortable Walking Shoes",
-        sub: "Ensure your shoes are fully broken in—you will be walking heavily on temple days."
+        category: "Digital Setup & Offline Resources",
+        name: "Setup Digital IC Card (Suica/ICOCA)",
+        sub: "Add the digital card directly to your smartphone wallet and load initial funds for seamless transit."
       },
       {
-        category: "Packing Essentials",
-        name: "Layered Clothing",
-        sub: "Late November fluctuates wildly; pack easily removable layers and a light down jacket."
+        category: "Digital Setup & Offline Resources",
+        name: "Order Data eSIM / Pocket Wi-Fi",
+        sub: "Purchase your cellular data profile online and confirm activation steps for Kansai Airport arrival."
       },
       {
-        category: "Packing Essentials",
-        name: "Open-Ear Headphones",
-        sub: "Pack these for maximum comfort during your long 2.5-hour train rides to Amanohashidate and Kawaguchiko to prevent ear fatigue."
+        category: "Digital Setup & Offline Resources",
+        name: "Download Offline Google Maps",
+        sub: "Save entire regional map clusters for Osaka, Kyoto, and Tokyo to navigate seamlessly if cellular signals drop."
       },
       {
-        category: "Packing Essentials",
-        name: "Coin Pouch",
-        sub: "Bring a small, dedicated pouch for 100¥ and 500¥ coins used at vending machines and shrines."
+        category: "Digital Setup & Offline Resources",
+        name: "Offline Japanese Translation Pack",
+        sub: "Pre-download the Japanese language profile inside Google Translate for instant offline camera translations."
       },
 
-      // Money & Admin
+      // 3. Stays & Transport Bookings
       {
-        category: "Money & Admin",
-        name: "Exchange Physical Cash",
-        sub: "Prepare around 10,000–15,000 JPY to start. Many indie cafes and retro alleys are cash-only."
+        category: "Stays & Transport Bookings",
+        name: "Flight Check-ins & Printouts",
+        sub: "Confirm flight details for your Singapore Airlines legs and save digital boarding cards."
       },
       {
-        category: "Money & Admin",
-        name: "Notify Your Bank",
-        sub: "Set a travel notice on your credit and debit cards so they aren't blocked at 7-Eleven ATMs."
+        category: "Stays & Transport Bookings",
+        name: "Hotel Confirmation Slips",
+        sub: "Cross-check booking dates for your Honmachi, Muromachi, and Akihabara properties; save reservation codes offline."
       },
       {
-        category: "Money & Admin",
-        name: "Book Observation Decks",
-        sub: "Pre-book tickets for Roppongi Hills Mori Tower to guarantee your sunset time slot."
+        category: "Stays & Transport Bookings",
+        name: "Book Airport Transfer (KIX → Namba)",
+        sub: "Pre-book your Nankai Rapi:t train tickets to swiftly move from Kansai Airport into central Osaka."
+      },
+      {
+        category: "Stays & Transport Bookings",
+        name: "Book Shinkansen (Kyoto → Tokyo)",
+        sub: "Reserve your cross-country transit to Tokyo, ensuring your luggage allocations are logged."
+      },
+      {
+        category: "Stays & Transport Bookings",
+        name: "Book Airport Transfer (Tokyo → Haneda)",
+        sub: "Secure transit tickets (like the Tokyo Monorail or Airport Limousine) for a smooth departure."
+      },
+
+      // 4. Luggage & Bag Preparation
+      {
+        category: "Luggage & Bag Preparation",
+        name: "Main Suitcase Prep (Wife)",
+        sub: "Check wheels, test locks, and pre-allocate space for incoming Kyoto and Tokyo souvenirs."
+      },
+      {
+        category: "Luggage & Bag Preparation",
+        name: "Main Suitcase Prep (Husband)",
+        sub: "Check wheels, test locks, and ensure weight limits comply with Singapore Airlines allowances."
+      },
+      {
+        category: "Luggage & Bag Preparation",
+        name: "Daypack Setup (Wife)",
+        sub: "Pack a comfortable, lightweight daily bag structured to hold water, an umbrella, and camera gear for 20k+ daily steps."
+      },
+      {
+        category: "Luggage & Bag Preparation",
+        name: "Daypack Setup (Husband)",
+        sub: "Prepare a streamlined daily carry with secure compartments for wallets, passports, and tech backups."
+      },
+      {
+        category: "Luggage & Bag Preparation",
+        name: "Packing Cube System",
+        sub: "Categorize clothing by city or garment type into compression cubes to avoid suitcase chaos mid-trip."
+      },
+      {
+        category: "Luggage & Bag Preparation",
+        name: "Laundry & Shoe Organizers",
+        sub: "Pack dedicated drawstring bags to separate wet/dirty clothes and protect clean clothes from shoe soles."
+      },
+      {
+        category: "Luggage & Bag Preparation",
+        name: "Transit Comfort Pouch",
+        sub: "Group quick-access items like neck pillows, eye masks, and your open-ear headphones to completely bypass ear discomfort on long shinkansen rides."
+      },
+      {
+        category: "Luggage & Bag Preparation",
+        name: "Trash & Emergency Zip Bags",
+        sub: "Pack extra plastic zip pouches—street bins are rare in Japan, so you will need to carry your trash throughout the day."
+      },
+
+      // 5. Cold-Season Wardrobe
+      {
+        category: "Cold-Season Wardrobe",
+        name: "Thermal Base Layers",
+        sub: "Pack thin, heat-retaining thermal tops and bottoms (like Heattech) to handle freezing early morning photo walks."
+      },
+      {
+        category: "Cold-Season Wardrobe",
+        name: "Removable Mid-Layers",
+        sub: "Bring sweaters, cardigans, or zip-ups that are easy to take off. Indoor train cars and malls are heavily heated."
+      },
+      {
+        category: "Cold-Season Wardrobe",
+        name: "Windproof Outerwear",
+        sub: "Pack a compact down jacket or a high-quality wind-breaking shell coat for coastal breezes at Enoshima and Amanohashidate."
+      },
+      {
+        category: "Cold-Season Wardrobe",
+        name: "Broken-In Walking Shoes",
+        sub: "Verify that all chosen footwear is thoroughly broken in with good arch support to prevent blisters on heavy temple slopes."
+      },
+      {
+        category: "Cold-Season Wardrobe",
+        name: "Warm Socks & Insoles",
+        sub: "Pack thick wool or thermal socks, plus fresh cushioning insoles for consecutive days of heavy walking."
+      },
+      {
+        category: "Cold-Season Wardrobe",
+        name: "Winter Accessories",
+        sub: "Include a scarf, gloves, and a beanie that can easily slip into your jacket pockets when heading indoors."
+      },
+      {
+        category: "Cold-Season Wardrobe",
+        name: "Versatile Bottoms",
+        sub: "Select flexible trousers or jeans that block wind but allow comfortable squatting/bending for photography."
+      },
+
+      // 6. Toiletries & Personal Care Kit
+      {
+        category: "Toiletries & Personal Care Kit",
+        name: "Heavy Duty Moisturizers",
+        sub: "Pack rich face and body hydration creams; late autumn air in central Japan is incredibly dry and causes flaking."
+      },
+      {
+        category: "Toiletries & Personal Care Kit",
+        name: "Lip Balm & Salves",
+        sub: "Bring highly protective lip treatments to prevent severe chapping from the cold wind."
+      },
+      {
+        category: "Toiletries & Personal Care Kit",
+        name: "Travel Pharmacy Kit",
+        sub: "Pack personal painkillers, cold meds, and stomach relief. Local Japanese drugstores use different active formulations."
+      },
+      {
+        category: "Toiletries & Personal Care Kit",
+        name: "Blister Pads & Band-Aids",
+        sub: "Pre-pack hydrocolloid blister bandages for immediate heel relief during long walking days."
+      },
+      {
+        category: "Toiletries & Personal Care Kit",
+        name: "Dental Hygiene Kit",
+        sub: "Pack travel toothbrushes, quality toothpaste, and floss (Japanese hotel toothbrushes can be stiff)."
+      },
+      {
+        category: "Toiletries & Personal Care Kit",
+        name: "Cosmetics & Sunscreen",
+        sub: "Pack essential makeup and a reliable SPF—UV rays are still strong during clear winter days at high elevations."
+      },
+      {
+        category: "Toiletries & Personal Care Kit",
+        name: "Hand Sanitizer & Wipes",
+        sub: "Crucial for cleaning hands before eating street food at Nishiki Market or Tsukiji, where sinks are unavailable."
+      },
+
+      // 7. Electronics & Travel Tech
+      {
+        category: "Electronics & Travel Tech",
+        name: "High-Capacity Power Bank",
+        sub: "Pack a 10,000mAh+ external battery; constant navigation and raw photo shooting will exhaust your phone by noon."
+      },
+      {
+        category: "Electronics & Travel Tech",
+        name: "Flat Two-Pin Type-A Adapters",
+        sub: "Ensure you have at least 2 or 3 flat two-pin plugs that match the native socket styles of Japanese hotels."
+      },
+      {
+        category: "Electronics & Travel Tech",
+        name: "Device Charging Cables & Hubs",
+        sub: "Group charging lines for phones, smartwatches, and camera systems into one clear pouch."
+      },
+
+      // 8. Experiences & Reservations
+      {
+        category: "Experiences & Reservations",
+        name: "Book Mt. Fuji Kawaguchiko Day Trip (Klook)",
+        sub: "Secure your scenic bus tour or transit package to guarantee hassle-free lakeside Fuji views."
+      },
+      {
+        category: "Experiences & Reservations",
+        name: "Book Amanohashidate-Ine Day Trip (Klook)",
+        sub: "Book this deep-north coastal excursion package to simplify the logistics of reaching the remote boathouses."
+      },
+      {
+        category: "Experiences & Reservations",
+        name: "Autumn Night Illumination Passes",
+        sub: "Confirm entry procedures and opening window constraints for the Eikando night temple displays."
+      },
+      {
+        category: "Experiences & Reservations",
+        name: "Restaurant Priority Notes",
+        sub: "Save mapped links for targeted izakayas in Yurakucho and Shinsekai to bypass long waitlines."
       }
     ];
     // === JAPAN TRIP DATA: PREP (END) ===
