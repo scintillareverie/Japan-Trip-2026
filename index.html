@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Japan Trip 2026 Preview</title>
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&display=swap");
+   @import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&family=Prata&display=swap");
 
     :root {
       --bg: #faf8f3;
@@ -112,20 +112,22 @@
     }
 
     .hero-title {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 46px;
-      font-weight: 600;
-      line-height: 1;
-      letter-spacing: -1px;
-      margin: 0 0 2px;
+      font-family: "Prata", serif;
+      font-size: 48px;
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      margin: 0 0 12px; /* Increased from 2px to 12px for perfect breathing room */
     }
 
     .hero-subtitle {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 22px;
-      font-style: italic;
-      color: rgba(255, 215, 155, 0.92);
-      margin-bottom: 12px;
+      font-family: "DM Sans", sans-serif; /* Switched to clean sans-serif for premium contrast */
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px; /* Tracked out wide for a high-end designer look */
+      color: rgba(255, 215, 155, 0.95);
+      margin-bottom: 16px;
     }
 
     .hero-meta {
@@ -2994,7 +2996,7 @@ const HOTELS = [
         <header class="header">
           <div class="eyebrow">Singapore Airlines • CGK → KIX • HND → CGK</div>
           <h1 class="hero-title">Japan 2026</h1>
-          <div class="hero-subtitle">Osaka • Kyoto • Tokyo</div>
+          <div class="hero-subtitle">Osaka · Kyoto · Tokyo</div>
           <div class="hero-meta">25 Nov – 7 Dec 2026 • 13 Days • 12 Nights</div>
           <div class="pill-row">${cityPills}</div>
         </header>
