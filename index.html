@@ -948,10 +948,10 @@ const ITINERARY = [
       },
       {
         time: "21:00",
-        icon: "🚇",
+        icon: "🏨",
         title: "Return to Honmachi",
         sub: "Subway ride back to the hotel and rest.",
-        type: "transit"
+        type: "hotel"
       }
     ]
   },
@@ -1001,11 +1001,11 @@ const ITINERARY = [
         type: "cafe"
       },
       {
-        time: "16:30",
+        time: "16:00",
         icon: "🌇",
         title: "Yodogawa River / Umeda sunset",
         sub: "Walk or short taxi to riverside park north of Umeda for free sunset views over the river and skyline.",
-        type: "highlight"
+        type: "explore"
       },
       {
         time: "18:30",
@@ -1228,7 +1228,7 @@ const ITINERARY = [
       {
         time: "18:00",
         icon: "🍽️",
-        title: "Free evening dinner",
+        title: "Dinner in central Kyoto",
         sub: "Dinner near Shijo-Karasuma or around Nishiki as you prefer.",
         type: "food"
       }
@@ -1314,9 +1314,9 @@ const ITINERARY = [
     events: [
       {
         time: "07:30",
-        icon: "🚕",
+        icon: "🚌",
         title: "Travel to Kiyomizudera area",
-        sub: "Bus or taxi from near the hotel, about 20–30 minutes including waiting time.",
+        sub: "Bus from near the hotel, about 20–30 minutes including waiting time.",
         type: "transit"
       },
       {
@@ -1334,18 +1334,18 @@ const ITINERARY = [
         type: "explore"
       },
       {
+        time: "10:30",
+        icon: "🪷",
+        title: "Kodaiji Temple",
+        sub: "Explore the temple grounds and bamboo grove right at the bottom of Nene-no-michi street before heading into Gion.",
+        type: "highlight"
+      },
+      {
         time: "11:30",
         icon: "🍱",
         title: "Lunch in Higashiyama or Gion",
         sub: "Simple lunch in the area before you slow down the afternoon.",
         type: "food"
-      },
-      {
-        time: "13:00",
-        icon: "🪷",
-        title: "Optional Kodaiji or extra walk",
-        sub: "Around 45–60 minutes at Kodaiji if you still feel like another temple, or skip and keep things lighter.",
-        type: "explore"
       },
       {
         time: "14:00",
@@ -1449,7 +1449,7 @@ const ITINERARY = [
       icon: "🏮",
       title: "Sensoji Temple",
       sub: "Experience the famous temple at night. The main hall is closed, but the grounds remain open and the dramatic lighting is perfect for photos.",
-      type: "explore"
+      type: "highlight"
     },
     {
       time: "19:00",
@@ -1457,13 +1457,6 @@ const ITINERARY = [
       title: "Asakusa Alleys & Hoppy Street",
       sub: "Wander the lively backstreets next to the temple for dinner and drinks.",
       type: "food"
-    },
-    {
-      time: "20:30",
-      icon: "🥃",
-      title: "Shinjuku evening — Omoide Yokocho & free night view",
-      sub: "JR to Shinjuku (~20 min). Walk through Omoide Yokocho (Memory Lane) for atmosphere and photos. Then head to Tokyo Metropolitan Government Building South Observatory for free city night view (open until 23:00).",
-      type: "explore"
     },
     {
       time: "21:30",
@@ -1554,7 +1547,7 @@ const ITINERARY = [
       icon: "🏮",
       title: "Kagurazaka Backstreet Alleys",
       sub: "Short train hop from Shinjuku. Explore hidden, stone-paved old geisha alleys with moody evening lighting.",
-      type: "explore"
+      type: "explore" 
     },
     {
       time: "19:30",
@@ -1631,7 +1624,7 @@ const ITINERARY = [
       icon: "🗿",
       title: "Kōtoku-in Great Buddha",
       sub: "5-min walk from Hase-dera. The 13-meter bronze Buddha is iconic — good for photos. Keep the visit short (~30 min).",
-      type: "explore"
+      type: "highlight"
     },
     {
       time: "12:45",
@@ -1652,7 +1645,7 @@ const ITINERARY = [
       icon: "🏝️",
       title: "Enoshima Island",
       sub: "Cross to Enoshima Island and walk the main spine to the western viewpoint over Sagami Bay. On clear days Mt. Fuji is visible. Explore the Benzaiten Nakamise shopping street on the way up.",
-      type: "explore"
+      type: "highlight"
     },
     {
       time: "16:00",
@@ -1722,7 +1715,7 @@ const ITINERARY = [
       icon: "⛩️",
       title: "Meiji Jingu",
       sub: "Classic first-timer forest walk to the shrine. No rituals needed, just enjoy the scale and atmosphere.",
-      type: "nature"
+      type: "highlight"
     },
     {
       time: "11:30",
@@ -1736,21 +1729,21 @@ const ITINERARY = [
       icon: "🌿",
       title: "Starbucks Tokyu Plaza Omotesando 6F",
       sub: "Chill on the outdoor terrace with elevated views over the Harajuku intersection.",
-      type: "nature"
+      type: "highlight"
     },
     {
       time: "14:00",
       icon: "🚦",
       title: "Shibuya Crossing & Hikarie Sky Lobby 11F",
       sub: "Cross the scramble, then head up to Hikarie for free, elevated views of the crossing and city.",
-      type: "explore"
+      type: "highlight"
     },
     {
       time: "15:00",
       icon: "🏡",
       title: "Daikanyama & Kyu Asakura House",
       sub: "Premium cafes, boutiques, and Meiji-era maple gardens.",
-      type: "explore"
+      type: "explore" 
     },
     {
       time: "16:30",
@@ -1799,7 +1792,7 @@ const ITINERARY = [
       icon: "🍂",
       title: "Inokashira Park & Kichijoji Alleys",
       sub: "Morning walk for autumn foliage, followed by a coffee in the neighborhood backstreets.",
-      type: "explore"
+      type: "autumn"
     },
     {
       time: "11:00",
@@ -1813,7 +1806,7 @@ const ITINERARY = [
       icon: "🐱",
       title: "Gotokuji Temple — the Lucky Cat Temple",
       sub: "Iconic Lucky Cat photo stop amidst vibrant autumn leaves.",
-      type: "explore"
+      type: "highlight"
     },
     {
       time: "14:30",
@@ -1862,7 +1855,7 @@ const ITINERARY = [
       icon: "🍁",
       title: "Rikugien Gardens",
       sub: "Peak early-December red maples in a traditional landscape setting.",
-      type: "nature"
+      type: "autumn"
     },
     {
       time: "10:15",
@@ -1876,7 +1869,7 @@ const ITINERARY = [
       icon: "🍂",
       title: "SMarunouchi Street Park & Tokyo Station",
       sub: "European-style avenue and brick architecture backdrop.",
-      type: "nature"
+      type: "explore"
     },
     {
       time: "12:30",
@@ -2690,11 +2683,11 @@ const HOTELS = [
         stay: "25–28 Nov • 3 nights • The Basement Hotel Honmachi",
         dayNumbers: [1, 2, 3],
         vibes: [
-          "Hozenji Yokocho and Dotonbori neon for the first night.",
-          "Full day at Universal Studios Japan.",
-          "Minoh autumn waterfall hike and quieter local areas.",
-          "Shinsekai retro district and kushikatsu.",
-          "Tenjinbashisuji local shopping arcade."
+          "Arrival afternoon capturing Osaka Castle's autumn leaves, moving south through Karahori's retro architecture into the bustling heart of Namba.",
+          "Northern nature escape to Katsuoji Temple and Minoh Waterfall, followed by Nakazakicho indie cafes and a high-key riverside sunset at Yodogawa.",
+          "Half-day in Kobe for hillside gardens and ropeway views, returning for an afternoon of streetwear scouting in Horie.",
+          "Contrast-heavy, neon-lit portrait and street photography during a classic kushikatsu dinner in Shinsekai.",
+          "Slow, scenic Kitahama riverside brunch before a seamless Hankyu line transfer into central Kyoto."
         ]
       },
       {
@@ -2703,25 +2696,25 @@ const HOTELS = [
         stay: "28 Nov–2 Dec • 4 nights • Kiori Exec Muromachi",
         dayNumbers: [4, 5, 6, 7],
         vibes: [
-          "Nishiki Market, Pontocho, and Kamogawa easy first evening in Kyoto.",
-          "Kobe half day with Nunobiki and Sorakuen, then To-ji night illumination.",
-          "Ine and Amanohashidate scenic coastal day trip, then Gion and Kamo River.",
-          "Kiyomizu-dera, Ninenzaka, Sannenzaka, Yasaka Pagoda, and Kodaiji autumn walk.",
-          "Eikando autumn night illumination in eastern Kyoto.",
-          "Arashiyama riverside morning and Kinkakuji before the Tokyo transfer."
+          "Kitahama brunch in Osaka, then transfer to Kyoto for a relaxed first evening.",
+          "Classic sightseeing at the Arashiyama bamboo grove and Kinkakuji's golden pavilion.",
+          "Scenic coastal day trip north to Amanohashidate and the boathouses of Ine.",
+          "Eastern Kyoto autumn foliage walks culminating in the stunning Eikando night illumination.",
+          "Slow morning cafe-hopping and souvenir shopping at Nishiki Market before boarding the Shinkansen.",
         ]
       },
       {
         name: "Tokyo",
         emoji: "🗼",
-        stay: "2 Dec–7 Dec • 5 nights • N Hotel Akihabara No.2",
+        stay: "2 Dec–7 Dec • 5 nights • N+ Hotel Akihabara No.2",
         dayNumbers: [8, 9, 10, 11, 12, 13],
         vibes: [
-          "Nakameguro, Daikanyama, and Shimokitazawa café day.",
-          "Kawaguchiko + Chureito Pagoda Fuji day trip.",
-          "Yanaka and KAYABA old Tokyo mood.",
-          "Gotokuji and Shinjuku Gyoen.",
-          "Akihabara base with easy transport."
+          "Arrival evening with crowd-free Sensoji night photography and local dining at Asakusa's Hoppy Street.",
+          "Mt. Fuji and Kawaguchiko scenic day trip, followed by Kagurazaka's historic stone-paved alleys.",
+          "Kamakura and Enoshima coastal day trip, finishing at Yurakucho's retro brick-arch izakayas.",
+          "Shibuya crossing, Daikanyama and Nakameguro cafe walks, and Shinjuku's lantern-lit Omoide Yokocho.",
+          "Kichijoji and Shimokitazawa indie streets, Gotokuji lucky cats, Ginza's Sunday pedestrian paradise, and Roppongi illuminations."
+          "Rikugien autumn maples, Yanaka retro town, and bayside Hamarikyu Gardens before the Haneda departure."
         ]
       }
     ];
