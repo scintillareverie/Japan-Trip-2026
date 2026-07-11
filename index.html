@@ -104,7 +104,7 @@
     }
 
     .eyebrow {
-      font-size: 10px;
+      font-size: 11.5px; 
       letter-spacing: 3.2px;
       text-transform: uppercase;
       color: rgba(255, 200, 100, 0.6);
@@ -131,7 +131,7 @@
     }
 
     .hero-meta {
-      font-size: 12px;
+      font-size: 13.5px; 
       color: rgba(255, 255, 255, 0.58);
       letter-spacing: 0.4px;
     }
@@ -172,8 +172,8 @@
     }
 
     .city-pill {
-      padding: 6px 11px;
-      font-size: 11px;
+      padding: 7px 14px;
+      font-size: 13px; 
       font-weight: 600;
       background: rgba(255, 255, 255, 0.06);
       color: rgba(255, 255, 255, 0.72);
@@ -190,9 +190,9 @@
     }
 
     .tab-pill {
-      padding: 8px 11px;
+      padding: 9px 14px;
       border: none;
-      font-size: 11.5px;
+      font-size: 13.5px; 
       font-weight: 600;
       background: #ede8e0;
       color: #6b5748;
@@ -216,25 +216,25 @@
     }
 
     .section-title .small {
-      font-size: 10px;
+      font-size: 11.5px; 
       letter-spacing: 2.4px;
       text-transform: uppercase;
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 6px;
     }
 
     .section-title .main {
       font-family: "Cormorant Garamond", serif;
-      font-size: 25px;
+      font-size: 30px; 
       line-height: 1.05;
       color: #2d241b;
     }
 
     .section-title .sub {
-      font-size: 11.5px;
+      font-size: 13.5px; 
       color: #7a6a5c;
-      margin-top: 4px;
-      line-height: 1.45;
+      margin-top: 6px;
+      line-height: 1.5;
     }
 
     .card {
@@ -839,6 +839,31 @@
       color: #8A7566;
       text-transform: uppercase;
       letter-spacing: 1.5px;
+    }
+
+    .phrase-card {
+      margin-bottom: 10px;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+    }
+    
+    .phrase-cat-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 15px;
+      transition: background 0.2s ease;
+    }
+    
+    .phrase-cat-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    
+    .phrase-list-wrap {
+      padding: 0 13px 13px;
     }
 
     @media (max-width: 420px) {
@@ -2873,7 +2898,7 @@ const HOTELS = [
     ];
     // === JAPAN TRIP DATA: PREP (END) ===
 
-    // === JAPAN TRIP DATA: PHRASEBOOK (START) ===
+   // === JAPAN TRIP DATA: PHRASEBOOK (START) ===
     const PHRASES = [
       {
         category: "Greetings & Politeness",
@@ -2883,11 +2908,18 @@ const HOTELS = [
         nuance: "The most versatile word in Japanese. Used to get a waiter's attention, apologize for bumping into someone, or express gratitude when someone goes out of their way for you."
       },
       {
-        category: "Greetings & Politeness",
-        english: "Thank you (Polite)",
-        romaji: "Arigatou gozaimasu",
-        japanese: "ありがとうございます",
-        nuance: "Standard polite gratitude. Use 'Domo' (どうも) instead for a quick, casual 'thanks' (e.g., to a cashier handing you a receipt)."
+        category: "Social & Casual Nuances",
+        english: "Good work today / Cheers",
+        romaji: "Otsukaresama desu",
+        japanese: "お疲れ様です",
+        nuance: "A highly versatile social greeting. Used constantly between colleagues or friends to acknowledge effort. It functions as a professional greeting, a goodbye, or a simple 'cheers'."
+      },
+      {
+        category: "Social & Casual Nuances",
+        english: "Seriously? / Really?",
+        romaji: "Maji de?",
+        japanese: "マジで？",
+        nuance: "Strictly casual and slang-influenced. Use this only with friends or in relaxed social settings, never with service staff or professionals."
       },
       {
         category: "Dining & Ordering",
@@ -2904,18 +2936,32 @@ const HOTELS = [
         nuance: "Standard polite phrase for asking for the bill. You can also simply cross your index fingers into an 'X' to non-verbally signal for the check."
       },
       {
-        category: "Shopping & Photography",
+        category: "Shopping & Stores",
         english: "Do you have this in a larger size?",
         romaji: "Kore no ookii saizu wa arimasu ka?",
         japanese: "これの大きいサイズはありますか？",
         nuance: "Standard polite. Useful when browsing the vintage shops in Shimokitazawa or boutiques in Harajuku."
       },
       {
-        category: "Shopping & Photography",
+        category: "Photography & Portraits",
         english: "Is it okay to take a photo?",
         romaji: "Shashin o totte mo ii desu ka?",
         japanese: "写真を撮ってもいいですか？",
         nuance: "Crucial for street photography or inside smaller indie cafes where photography rules can be strict."
+      },
+      {
+        category: "Photography & Portraits",
+        english: "Could you stand over there?",
+        romaji: "Asoko ni tatte moraemasu ka?",
+        japanese: "あそこに立ってもらえますか？",
+        nuance: "Polite. Perfect for directing a subject into specific, dramatic lighting—like the shadows of Kagurazaka alleys or high-key spots in the gardens."
+      },
+      {
+        category: "Photography & Portraits",
+        english: "Just one more shot, please.",
+        romaji: "Mou ichimai onegaishimasu.",
+        japanese: "もう一枚お願いします。",
+        nuance: "Useful when you need to capture a backup frame or adjust your setup slightly."
       }
     ];
     // === JAPAN TRIP DATA: PHRASEBOOK (END) ===
@@ -3509,27 +3555,29 @@ const HOTELS = [
             const isOpen = STATE.openPhraseCategory === category;
             
             return `
-              <div class="phrase-cat-head pressable" onclick="appActions.togglePhraseCategory('${escapeHtml(category)}')">
-                <div class="phrase-cat-title">${escapeHtml(category)}</div>
-                <div class="chevron ${isOpen ? 'open' : ''}" style="color:#B91C1C;">⌄</div>
-              </div>
-              
-              ${isOpen ? `
-                <div class="fade-in">
-                  ${items.map(phrase => `
-                    <div class="card compact-card" style="margin-bottom: 10px;">
-                      <div style="font-size: 14.5px; font-weight: 700; color: var(--ink);">${escapeHtml(phrase.english)}</div>
-                      <div style="font-size: 13px; font-weight: 600; color: #B91C1C; margin-top: 4px;">${escapeHtml(phrase.romaji)}</div>
-                      <div style="font-size: 15px; margin-top: 2px;">${escapeHtml(phrase.japanese)}</div>
-                      ${phrase.nuance ? `
-                        <div style="font-size: 13px; color: #6b5748; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); line-height: 1.5;">
-                          <span style="font-weight:700;">Nuance:</span> ${escapeHtml(phrase.nuance)}
-                        </div>
-                      ` : ""}
-                    </div>
-                  `).join("")}
+              <div class="card phrase-card" style="border-color: ${isOpen ? '#FCA5A5' : '#EDE8E0'};">
+                <div class="phrase-cat-head pressable" style="background: ${isOpen ? '#FEF2F2' : '#fff'};" onclick="appActions.togglePhraseCategory('${escapeHtml(category)}')">
+                  <div class="phrase-cat-title" style="color: ${isOpen ? '#B91C1C' : '#8A7566'};">${escapeHtml(category)}</div>
+                  <div class="chevron ${isOpen ? 'open' : ''}" style="color: ${isOpen ? '#B91C1C' : '#b0a090'};">⌄</div>
                 </div>
-              ` : ""}
+                
+                ${isOpen ? `
+                  <div class="fade-in phrase-list-wrap">
+                    ${items.map(phrase => `
+                      <div class="card compact-card" style="margin-bottom: 10px; border-color: #FEE2E2;">
+                        <div style="font-size: 14.5px; font-weight: 700; color: var(--ink);">${escapeHtml(phrase.english)}</div>
+                        <div style="font-size: 13px; font-weight: 600; color: #B91C1C; margin-top: 4px;">${escapeHtml(phrase.romaji)}</div>
+                        <div style="font-size: 15px; margin-top: 2px;">${escapeHtml(phrase.japanese)}</div>
+                        ${phrase.nuance ? `
+                          <div style="font-size: 13px; color: #6b5748; margin-top: 8px; padding-top: 8px; border-top: 1px solid #FEE2E2; line-height: 1.5;">
+                            <span style="font-weight:700;">Nuance:</span> ${escapeHtml(phrase.nuance)}
+                          </div>
+                        ` : ""}
+                      </div>
+                    `).join("")}
+                  </div>
+                ` : ""}
+              </div>
             `;
           }).join("")}
         </section>
