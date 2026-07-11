@@ -307,7 +307,7 @@
     }
 
     .legend-label {
-      font-size: 10.5px;
+      font-size: 12px;
       color: #6b5748;
     }
 
@@ -476,9 +476,9 @@
     }
 
     .timeline-sub {
-      font-size: 11px;
+      font-size: 13px;
       color: #8a7566;
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
     .city-overview-card {
@@ -614,14 +614,14 @@
     }
 
     .place-line {
-      font-size: 11.5px;
+      font-size: 13px;
       color: #6b5748;
       margin-bottom: 5px;
       line-height: 1.5;
     }
 
     .place-note {
-      font-size: 11.5px;
+      font-size: 13px;
       color: #5a5040;
       line-height: 1.55;
     }
@@ -755,10 +755,10 @@
     }
 
     .check-sub {
-      font-size: 11px;
+      font-size: 13px;
       color: #8a7566;
-      margin-top: 2px;
-      line-height: 1.45;
+      margin-top: 3px;
+      line-height: 1.5;
     }
 
     .hotel-card {
@@ -2857,6 +2857,53 @@ const HOTELS = [
     ];
     // === JAPAN TRIP DATA: PREP (END) ===
 
+    // === JAPAN TRIP DATA: PHRASEBOOK (START) ===
+    const PHRASES = [
+      {
+        category: "Greetings & Politeness",
+        english: "Excuse me / I'm sorry / Thank you",
+        romaji: "Sumimasen",
+        japanese: "すみません",
+        nuance: "The most versatile word in Japanese. Used to get a waiter's attention, apologize for bumping into someone, or express gratitude when someone goes out of their way for you."
+      },
+      {
+        category: "Greetings & Politeness",
+        english: "Thank you (Polite)",
+        romaji: "Arigatou gozaimasu",
+        japanese: "ありがとうございます",
+        nuance: "Standard polite gratitude. Use 'Domo' (どうも) instead for a quick, casual 'thanks' (e.g., to a cashier handing you a receipt)."
+      },
+      {
+        category: "Dining & Ordering",
+        english: "One of this, please.",
+        romaji: "Kore o hitotsu onegaishimasu.",
+        japanese: "これを一つお願いします。",
+        nuance: "Very polite. Point at the menu while saying this. To order two, replace 'hitotsu' with 'futatsu' (二つ)."
+      },
+      {
+        category: "Dining & Ordering",
+        english: "Check, please.",
+        romaji: "Okaikei onegaishimasu.",
+        japanese: "お会計お願いします。",
+        nuance: "Standard polite phrase for asking for the bill. You can also simply cross your index fingers into an 'X' to non-verbally signal for the check."
+      },
+      {
+        category: "Shopping & Photography",
+        english: "Do you have this in a larger size?",
+        romaji: "Kore no ookii saizu wa arimasu ka?",
+        japanese: "これの大きいサイズはありますか？",
+        nuance: "Standard polite. Useful when browsing the vintage shops in Shimokitazawa or boutiques in Harajuku."
+      },
+      {
+        category: "Shopping & Photography",
+        english: "Is it okay to take a photo?",
+        romaji: "Shashin o totte mo ii desu ka?",
+        japanese: "写真を撮ってもいいですか？",
+        nuance: "Crucial for street photography or inside smaller indie cafes where photography rules can be strict."
+      }
+    ];
+    // === JAPAN TRIP DATA: PHRASEBOOK (END) ===
+
     const STATE = {
       tab: "schedule",
       cityFilter: "All",
@@ -3009,6 +3056,7 @@ const HOTELS = [
         { id: "cities", label: "Cities" },
         { id: "food", label: "Food & Cafés" },
         { id: "shopping", label: "Shopping" },
+        { id: "phrasebook", label: "Phrasebook" },
         { id: "prep", label: "Prep" },
         { id: "tips", label: "Tips" }
       ];
@@ -3422,6 +3470,42 @@ const HOTELS = [
       `;
     }
 
+    function renderPhrasebookTab() {
+      const categories = [...new Set(PHRASES.map(p => p.category))];
+
+      return `
+        <section class="section-block fade-in">
+          ${renderSectionTitle({
+            eyebrow: "Language",
+            title: "Phrasebook",
+            subtitle: "Essential phrases with pronunciation and situational nuances.",
+            color: "#B91C1C"
+          })}
+
+          ${categories.map(category => {
+            const items = PHRASES.filter(p => p.category === category);
+            return `
+              <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin: 24px 0 10px 4px;">
+                ${escapeHtml(category)}
+              </div>
+              ${items.map(phrase => `
+                <div class="card compact-card" style="margin-bottom: 10px;">
+                  <div style="font-size: 13.5px; font-weight: 700; color: var(--ink);">${escapeHtml(phrase.english)}</div>
+                  <div style="font-size: 13px; font-weight: 600; color: #B91C1C; margin-top: 4px;">${escapeHtml(phrase.romaji)}</div>
+                  <div style="font-size: 15px; margin-top: 2px;">${escapeHtml(phrase.japanese)}</div>
+                  ${phrase.nuance ? `
+                    <div style="font-size: 12px; color: #6b5748; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); line-height: 1.5;">
+                      <span style="font-weight:700;">Nuance:</span> ${escapeHtml(phrase.nuance)}
+                    </div>
+                  ` : ""}
+                </div>
+              `).join("")}
+            `;
+          }).join("")}
+        </section>
+      `;
+    }
+
     function renderPrepTab() {
       const doneCount = CHECKLIST.filter((item) => isDone(item.name)).length;
       
@@ -3501,25 +3585,6 @@ const HOTELS = [
             `;
           }).join("")}
 
-          ${renderSectionTitle({
-            eyebrow: "Hotels",
-            title: "Confirmations",
-            subtitle: "",
-            color: "#1D4ED8"
-          })}
-
-          ${HOTELS.map((hotel) => {
-            const cfg = getCityCfg(hotel.city);
-            return `
-              <div class="card hotel-card" style="border-color:${cfg.border}55;">
-                <div class="hotel-icon">${cfg.emoji}</div>
-                <div>
-                  <div class="hotel-name">${escapeHtml(hotel.name)}</div>
-                  <div class="hotel-meta">${escapeHtml(hotel.dates)} • ${hotel.nights} nights • ${escapeHtml(hotel.area)}</div>
-                </div>
-              </div>
-            `;
-          }).join("")}
         </section>
       `;
     }
@@ -3553,20 +3618,14 @@ const HOTELS = [
 
     function renderActiveTab() {
       switch (STATE.tab) {
-        case "schedule":
-          return renderScheduleTab();
-        case "cities":
-          return renderCitiesTab();
-        case "food":
-          return renderFoodTab();
-        case "shopping":
-          return renderShoppingTab();
-        case "prep":
-          return renderPrepTab();
-        case "tips":
-          return renderTipsTab();
-        default:
-          return renderScheduleTab();
+        case "schedule": return renderScheduleTab();
+        case "cities": return renderCitiesTab();
+        case "food": return renderFoodTab();
+        case "shopping": return renderShoppingTab();
+        case "phrasebook": return renderPhrasebookTab();
+        case "prep": return renderPrepTab(); 
+        case "tips": return renderTipsTab();
+        default: return renderScheduleTab();
       }
     }
 
