@@ -2719,7 +2719,7 @@ const HOTELS = [
       }
     ];
     // === JAPAN TRIP DATA: CITIES (END) ===
-    
+
 // === JAPAN TRIP DATA: TIPS (START) ===
     const TIPS = [
       {
@@ -2764,6 +2764,96 @@ const HOTELS = [
       }
     ];
     // === JAPAN TRIP DATA: TIPS (END) ===
+
+    // === JAPAN TRIP DATA: PREP (START) ===
+    const ACTIONS = [
+      {
+        title: "Book Shinkansen Tickets",
+        urgent: true,
+        desc: "Reserve Kyoto to Tokyo Nozomi tickets and book Oversized Baggage seats if your luggage exceeds 160cm."
+      },
+      {
+        title: "Reserve Limited Express Trains",
+        urgent: false,
+        desc: "Book Fuji Excursion (Kawaguchiko) and Hashidate (Amanohashidate) seats online, as these sell out quickly in autumn."
+      }
+    ];
+
+    const CHECKLIST = [
+      // Transportation & Transit
+      {
+        category: "Transportation & Transit",
+        name: "Setup Digital IC Card",
+        sub: "Add Suica or ICOCA to your Apple/Google Wallet and load initial funds for seamless transit."
+      },
+      {
+        category: "Transportation & Transit",
+        name: "Reserve Limited Express Seats",
+        sub: "Pre-book seats for the Fuji Excursion and the train to Amanohashidate."
+      },
+      {
+        category: "Transportation & Transit",
+        name: "Book Shinkansen Tickets",
+        sub: "Secure your Kyoto to Tokyo transfer, noting the oversized luggage requirements."
+      },
+      
+      // Digital & Documents
+      {
+        category: "Digital & Documents",
+        name: "Complete Visit Japan Web",
+        sub: "Fill out the online forms to get your QR codes for fast-track customs and immigration."
+      },
+      {
+        category: "Digital & Documents",
+        name: "Order Data SIM / Wi-Fi",
+        sub: "Arrange for a data SIM or pocket Wi-Fi pickup at Kansai Airport (KIX)."
+      },
+      {
+        category: "Digital & Documents",
+        name: "Offline Maps & Translate",
+        sub: "Download Google Maps for Osaka, Kyoto, and Tokyo, plus the offline Japanese language pack."
+      },
+
+      // Packing Essentials
+      {
+        category: "Packing Essentials",
+        name: "Comfortable Walking Shoes",
+        sub: "Ensure your shoes are fully broken in—you will be walking heavily on temple days."
+      },
+      {
+        category: "Packing Essentials",
+        name: "Layered Clothing",
+        sub: "Late November fluctuates wildly; pack easily removable layers and a light down jacket."
+      },
+      {
+        category: "Packing Essentials",
+        name: "Open-Ear Headphones",
+        sub: "Pack these for maximum comfort during your long 2.5-hour train rides to Amanohashidate and Kawaguchiko to prevent ear fatigue."
+      },
+      {
+        category: "Packing Essentials",
+        name: "Coin Pouch",
+        sub: "Bring a small, dedicated pouch for 100¥ and 500¥ coins used at vending machines and shrines."
+      },
+
+      // Money & Admin
+      {
+        category: "Money & Admin",
+        name: "Exchange Physical Cash",
+        sub: "Prepare around 10,000–15,000 JPY to start. Many indie cafes and retro alleys are cash-only."
+      },
+      {
+        category: "Money & Admin",
+        name: "Notify Your Bank",
+        sub: "Set a travel notice on your credit and debit cards so they aren't blocked at 7-Eleven ATMs."
+      },
+      {
+        category: "Money & Admin",
+        name: "Book Observation Decks",
+        sub: "Pre-book tickets for Roppongi Hills Mori Tower to guarantee your sunset time slot."
+      }
+    ];
+    // === JAPAN TRIP DATA: PREP (END) ===
 
     const STATE = {
       tab: "schedule",
@@ -3332,6 +3422,9 @@ const HOTELS = [
 
     function renderPrepTab() {
       const doneCount = CHECKLIST.filter((item) => isDone(item.name)).length;
+      
+      // Extract unique categories from the checklist
+      const categories = [...new Set(CHECKLIST.map(item => item.category))];
 
       return `
         <section class="section-block fade-in">
@@ -3375,26 +3468,34 @@ const HOTELS = [
           ${renderSectionTitle({
             eyebrow: "Checklist",
             title: `Pre-trip tasks • ${doneCount}/${CHECKLIST.length} done`,
-            subtitle: "",
+            subtitle: "Categorized lists to keep your planning organized.",
             color: "#7C2D12"
           })}
 
-          ${CHECKLIST.map((item) => {
-            const checked = isDone(item.name);
-            const inputId = `todo-${item.name.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
+          ${categories.map(category => {
+            const items = CHECKLIST.filter(item => item.category === category);
             return `
-              <label for="${inputId}" class="check-row pressable ${checked ? "done" : ""}">
-                <input
-                  id="${inputId}"
-                  type="checkbox"
-                  ${checked ? "checked" : ""}
-                  onchange="appActions.toggleDone('${escapeHtml(item.name).replace(/&#39;/g, "\\'")}')"
-                />
-                <div>
-                  <div class="check-title">${escapeHtml(item.name)}</div>
-                  <div class="check-sub">${escapeHtml(item.sub)}</div>
-                </div>
-              </label>
+              <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin: 20px 0 10px 4px;">
+                ${escapeHtml(category)}
+              </div>
+              ${items.map((item) => {
+                const checked = isDone(item.name);
+                const inputId = `todo-${item.name.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
+                return `
+                  <label for="${inputId}" class="check-row pressable ${checked ? "done" : ""}">
+                    <input
+                      id="${inputId}"
+                      type="checkbox"
+                      ${checked ? "checked" : ""}
+                      onchange="appActions.toggleDone('${escapeHtml(item.name).replace(/&#39;/g, "\\'")}')"
+                    />
+                    <div>
+                      <div class="check-title">${escapeHtml(item.name)}</div>
+                      <div class="check-sub">${escapeHtml(item.sub)}</div>
+                    </div>
+                  </label>
+                `;
+              }).join("")}
             `;
           }).join("")}
 
