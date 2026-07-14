@@ -4129,13 +4129,15 @@ const HOTELS = [
           </div>
 
           <!-- Dynamic Neighborhood Filter Dropdown -->
-          <div style="margin-bottom: 14px;">
+          <div style="position: relative; margin-bottom: 14px;">
+            <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 14px;">📍</span>
             <select 
               onchange="appActions.setFoodArea(this.value)"
-              style="width: 100%; padding: 11px 14px; border-radius: var(--radius-md); border: 1.5px solid var(--line); font-family: inherit; font-size: 13.5px; color: var(--ink); background: var(--paper); cursor: pointer; outline: none; box-shadow: 0 1px 3px rgba(0,0,0,0.02);"
+              style="width: 100%; appearance: none; -webkit-appearance: none; padding: 11px 36px 11px 38px; border-radius: var(--radius-md); border: 1.5px solid ${getCityCfg(STATE.foodCity).border}; font-family: inherit; font-size: 13px; font-weight: 700; color: ${getCityCfg(STATE.foodCity).deep}; background: #fff; cursor: pointer; outline: none; box-shadow: 0 1px 3px rgba(0,0,0,0.02);"
             >
               ${areaOptions.join("")}
             </select>
+            <span style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: ${getCityCfg(STATE.foodCity).color}; font-size: 14px; font-weight: bold;">⌄</span>
           </div>
 
           ${
@@ -4190,13 +4192,15 @@ const HOTELS = [
           </div>
 
           <!-- Dynamic Neighborhood Filter Dropdown -->
-          <div style="margin-bottom: 14px;">
+          <div style="position: relative; margin-bottom: 14px;">
+            <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 14px;">📍</span>
             <select 
               onchange="appActions.setShoppingArea(this.value)"
-              style="width: 100%; padding: 11px 14px; border-radius: var(--radius-md); border: 1.5px solid var(--line); font-family: inherit; font-size: 13.5px; color: var(--ink); background: var(--paper); cursor: pointer; outline: none; box-shadow: 0 1px 3px rgba(0,0,0,0.02);"
+              style="width: 100%; appearance: none; -webkit-appearance: none; padding: 11px 36px 11px 38px; border-radius: var(--radius-md); border: 1.5px solid ${getCityCfg(STATE.shoppingCity).border}; font-family: inherit; font-size: 13px; font-weight: 700; color: ${getCityCfg(STATE.shoppingCity).deep}; background: #fff; cursor: pointer; outline: none; box-shadow: 0 1px 3px rgba(0,0,0,0.02);"
             >
               ${areaOptions.join("")}
             </select>
+            <span style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: ${getCityCfg(STATE.shoppingCity).color}; font-size: 14px; font-weight: bold;">⌄</span>
           </div>
 
           ${
