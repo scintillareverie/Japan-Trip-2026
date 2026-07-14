@@ -3591,9 +3591,11 @@ const HOTELS = [
       openDay: 1,
       foodCity: "Osaka",
       foodCategory: "cafe",
+      foodArea: "All", // Tracks the chosen area filter
       shoppingCity: "Osaka",
+      shoppingArea: "All", // Tracks the chosen area filter
       actionsOpen: true,
-      openPhraseCategory: "Greetings & Politeness", // Sets the default open category
+      openPhraseCategory: "Greetings & Politeness", 
       doneItems: loadDoneItems()
     };
 
@@ -3667,14 +3669,25 @@ const HOTELS = [
       },
       setFoodCity(city) {
         STATE.foodCity = city;
+        STATE.foodArea = "All"; // Resets area filter to prevent ghost matches
         renderApp();
       },
       setFoodCategory(category) {
         STATE.foodCategory = category;
+        STATE.foodArea = "All"; // Resets area filter to prevent ghost matches
+        renderApp();
+      },
+      setFoodArea(area) {
+        STATE.foodArea = area;
         renderApp();
       },
       setShoppingCity(city) {
         STATE.shoppingCity = city;
+        STATE.shoppingArea = "All"; // Resets area filter to prevent ghost matches
+        renderApp();
+      },
+      setShoppingArea(area) {
+        STATE.shoppingArea = area;
         renderApp();
       },
       toggleActions() {
@@ -3972,13 +3985,17 @@ const HOTELS = [
         (place) =>
           place.section === "food" &&
           place.city === STATE.foodCity &&
-          place.category === STATE.foodCategory
+          place.category === STATE.foodCategory &&
+          (STATE.foodArea === "All" || place.area === STATE.foodArea)
       );
     }
 
     function getShoppingPlaces() {
       return PLACES.filter(
-        (place) => place.section === "shopping" && place.city === STATE.shoppingCity
+        (place) => 
+        place.section === "shopping" && 
+        place.city === STATE.shoppingCity && (STATE.shoppingArea === "All" || 
+        place.area === STATE.shoppingArea)
       );
     }
 
@@ -4016,6 +4033,18 @@ const HOTELS = [
           <div class="place-note">${escapeHtml(place.notes || "")}</div>
 
           ${
+            place.googleMapsUrl 
+              ? `
+                <div style="margin-top: 8px;">
+                  <a href="${escapeHtml(place.googleMapsUrl)}" target="_blank" rel="noreferrer" style="font-size: 12.5px; color: ${cfg.color}; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
+                    📍 View on Google Maps
+                  </a>
+                </div>
+              ` 
+              : ""
+          }
+
+          ${
             place.tags && place.tags.length
               ? `
                 <div class="tag-row">
@@ -4038,6 +4067,18 @@ const HOTELS = [
 
     function renderFoodTab() {
       const cards = getFoodPlaces();
+
+      // Extract all unique areas for the selected city and category combination
+      const uniqueAreas = [...new Set(
+        PLACES.filter(place => place.section === "food" && place.city === STATE.foodCity && place.category === STATE.foodCategory)
+              .map(place => place.area)
+      )].sort();
+
+      // Formulate dropdown option array strings
+      const areaOptions = [`<option value="All" ${STATE.foodArea === "All" ? "selected" : ""}>All Areas</option>`];
+      uniqueAreas.forEach(area => {
+        areaOptions.push(`<option value="${escapeHtml(area)}" ${STATE.foodArea === area ? "selected" : ""}>${escapeHtml(area)}</option>`);
+      });
 
       return `
         <section class="section-block fade-in">
@@ -4087,10 +4128,20 @@ const HOTELS = [
               .join("")}
           </div>
 
+          <!-- Dynamic Neighborhood Filter Dropdown -->
+          <div style="margin-bottom: 14px;">
+            <select 
+              onchange="appActions.setFoodArea(this.value)"
+              style="width: 100%; padding: 11px 14px; border-radius: var(--radius-md); border: 1.5px solid var(--line); font-family: inherit; font-size: 13.5px; color: var(--ink); background: var(--paper); cursor: pointer; outline: none; box-shadow: 0 1px 3px rgba(0,0,0,0.02);"
+            >
+              ${areaOptions.join("")}
+            </select>
+          </div>
+
           ${
             cards.length
               ? cards.map((place) => renderPlaceCard(place, STATE.foodCity)).join("")
-              : `<div class="empty-state">No places in this category yet. Add a new object inside the PLACES data block.</div>`
+              : `<div class="empty-state">No places found matching the filters. Try changing your selection!</div>`
           }
         </section>
       `;
@@ -4098,6 +4149,18 @@ const HOTELS = [
 
     function renderShoppingTab() {
       const places = getShoppingPlaces();
+
+      // 1. Extract all unique areas for the selected city in the Shopping section
+      const uniqueAreas = [...new Set(
+        PLACES.filter(place => place.section === "shopping" && place.city === STATE.shoppingCity)
+              .map(place => place.area)
+      )].sort();
+
+      // 2. Formulate dropdown option array strings
+      const areaOptions = [`<option value="All" ${STATE.shoppingArea === "All" ? "selected" : ""}>All Areas</option>`];
+      uniqueAreas.forEach(area => {
+        areaOptions.push(`<option value="${escapeHtml(area)}" ${STATE.shoppingArea === area ? "selected" : ""}>${escapeHtml(area)}</option>`);
+      });
 
       return `
         <section class="section-block fade-in">
@@ -4126,8 +4189,19 @@ const HOTELS = [
               .join("")}
           </div>
 
-          ${places
-            .map((place) => {
+          <!-- Dynamic Neighborhood Filter Dropdown -->
+          <div style="margin-bottom: 14px;">
+            <select 
+              onchange="appActions.setShoppingArea(this.value)"
+              style="width: 100%; padding: 11px 14px; border-radius: var(--radius-md); border: 1.5px solid var(--line); font-family: inherit; font-size: 13.5px; color: var(--ink); background: var(--paper); cursor: pointer; outline: none; box-shadow: 0 1px 3px rgba(0,0,0,0.02);"
+            >
+              ${areaOptions.join("")}
+            </select>
+          </div>
+
+          ${
+            places.length 
+            ? places.map((place) => {
               const cfg = getCityCfg(STATE.shoppingCity);
               return `
                 <div class="card compact-card" style="border-color:${cfg.border}55;">
@@ -4144,6 +4218,20 @@ const HOTELS = [
                     ${place.walk ? ` • ${escapeHtml(place.walk)}` : ""}
                   </div>
                   <div class="place-note">${escapeHtml(place.notes || "")}</div>
+                  
+                  <!-- Google Maps Link for Shopping Cards -->
+                  ${
+                    place.googleMapsUrl 
+                      ? `
+                        <div style="margin-top: 8px; margin-bottom: 8px;">
+                          <a href="${escapeHtml(place.googleMapsUrl)}" target="_blank" rel="noreferrer" style="font-size: 12.5px; color: ${cfg.color}; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
+                            📍 View on Google Maps
+                          </a>
+                        </div>
+                      ` 
+                      : ""
+                  }
+
                   ${
                     place.bestFor
                       ? `<span class="accent-label" style="background:${cfg.bg}; color:${cfg.color}; border-color:${cfg.border};">${escapeHtml(place.bestFor)}</span>`
@@ -4151,8 +4239,9 @@ const HOTELS = [
                   }
                 </div>
               `;
-            })
-            .join("")}
+            }).join("")
+            : `<div class="empty-state">No places found matching the filters. Try changing your selection!</div>`
+          }
         </section>
       `;
     }
