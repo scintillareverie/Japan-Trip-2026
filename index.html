@@ -2445,7 +2445,6 @@ const HOTELS = [
       { category: "Souvenirs", item: "Ippodo Matcha Powder", store: "Kyoto Teramachi / Daimaru", jpName: "一保堂茶舗 抹茶", igLink: "", taxFree: true }
     ];
 
-    // === JAPAN TRIP DATA: PHRASEBOOK & FLASHCARDS (START) ===
     const HOTEL_TAXI_DATA = [
       {
         city: "Osaka",
@@ -2453,7 +2452,8 @@ const HOTELS = [
         nameJp: "THE BASEMENT HOTEL 大阪本町",
         addressJp: "〒550-0005 大阪府大阪市西区西本町1丁目11-8",
         phone: "06-6586-6765",
-        dates: "Nov 25 - Nov 28"
+        dates: "25–28 Nov 2026 • 3 nights",
+        area: "Honmachi"
       },
       {
         city: "Kyoto",
@@ -2461,29 +2461,92 @@ const HOTELS = [
         nameJp: "KIORI Exec 室町",
         addressJp: "〒600-8434 京都府京都市下京区高辻町577",
         phone: "075-744-6149",
-        dates: "Nov 28 - Dec 2"
+        dates: "28 Nov–2 Dec 2026 • 4 nights",
+        area: "Muromachi / Shijo-Karasuma"
       },
       {
         city: "Tokyo",
         nameEn: "N+ Hotel No.2 Akihabara",
         nameJp: "N+HOTEL 秋葉原2号館 (東神田)",
         addressJp: "〒101-0031 東京都千代田区東神田2丁目4-2",
-        phone: "03-6284-2505", 
-        dates: "Dec 2 - Dec 7"
+        phone: "03-6284-2505",
+        dates: "2 Dec–7 Dec 2026 • 5 nights",
+        area: "Akihabara"
       }
     ];
 
-    const FLASHCARD_PHRASES = [
-      { category: "Hotel", english: "Could you keep my luggage?", romaji: "Nimotsu o azukatte moraemasu ka?", japanese: "荷物を預かってもらえますか？", icon: "🧳" },
-      { category: "Konbini", english: "No bag needed.", romaji: "Fukuro wa irimasen", japanese: "袋は不要です", icon: "🛍️" },
-      { category: "Konbini", english: "Please heat this up.", romaji: "Atatamete kudasai", japanese: "温めてください", icon: "🍱" },
-      { category: "Restaurant", english: "Two persons for dine in, please.", romaji: "Futari desu", japanese: "2人です", icon: "👥" },
-      { category: "Restaurant", english: "Check, please.", romaji: "Okaikei onegaishimasu", japanese: "お会計お願いします", icon: "💴" },
-      { category: "Transportation", english: "Paying with IC Card (Suica).", romaji: "IC kaado de onegaishimasu", japanese: "ICカードでお願いします", icon: "💳" },
-      { category: "General", english: "Where is the toilet?", romaji: "Toire wa doko desu ka?", japanese: "トイレはどこですか？", icon: "🚽" },
-      { category: "General", english: "Excuse me / Thank you", romaji: "Sumimasen", japanese: "すみません", icon: "🙏" }
+    const PHRASES = [
+      {
+        category: "Hotel",
+        english: "Could you keep my luggage?",
+        romaji: "Nimotsu o azukatte moraemasu ka?",
+        japanese: "荷物を預かってもらえますか？",
+        nuance: "Useful when arriving before check-in or after checking out."
+      },
+      {
+        category: "Hotel",
+        english: "What time is checkout?",
+        romaji: "Chekkuauto wa nanji desu ka?",
+        japanese: "チェックアウトは何時ですか？",
+        nuance: "Standard polite question at the front desk."
+      },
+      {
+        category: "Transportation",
+        english: "Does this train go to Kyoto?",
+        romaji: "Kono densha wa Kyōto ni ikimasu ka?",
+        japanese: "この電車は京都に行きますか？",
+        nuance: "Double-check train boards before boarding regional lines."
+      },
+      {
+        category: "Transportation",
+        english: "Please top up my IC card.",
+        romaji: "IC kaado o chaaji shite kudasai.",
+        japanese: "ICカードをチャージしてください。",
+        nuance: "Use at station ticket machines or convenience store registers."
+      },
+      {
+        category: "Konbini",
+        english: "No bag needed.",
+        romaji: "Fukuro wa irimasen.",
+        japanese: "袋は不要です。",
+        nuance: "Saves a few yen and plastic waste at Lawson, FamilyMart, or 7-Eleven."
+      },
+      {
+        category: "Konbini",
+        english: "Please heat this up.",
+        romaji: "Atatamete kudasai.",
+        japanese: "温めてください。",
+        nuance: "Essential when buying bento boxes or onigiri at convenience stores."
+      },
+      {
+        category: "Restaurant",
+        english: "Two persons for dine in, please.",
+        romaji: "Futari desu.",
+        japanese: "2人です。",
+        nuance: "Hold up two fingers while saying this when entering an izakaya."
+      },
+      {
+        category: "Restaurant",
+        english: "Check, please.",
+        romaji: "Okaikei onegaishimasu.",
+        japanese: "お会計お願いします。",
+        nuance: "Polite phrase when asking for the bill."
+      },
+      {
+        category: "General",
+        english: "Where is the restroom?",
+        romaji: "Toire wa doko desu ka?",
+        japanese: "トイレはどこですか？",
+        nuance: "Polite and direct question for finding restrooms in stations or stores."
+      },
+      {
+        category: "General",
+        english: "Excuse me / Thank you",
+        romaji: "Sumimasen.",
+        japanese: "すみません。",
+        nuance: "The ultimate polite all-purpose word in Japan."
+      }
     ];
-    // === JAPAN TRIP DATA: PHRASEBOOK & FLASHCARDS (END) ===
 
     // === EXPENSE TRACKER DATA & LOGIC ===
     let expenses = JSON.parse(localStorage.getItem('japan_expenses')) || [];
@@ -2512,11 +2575,12 @@ const HOTELS = [
       openDay: 1,
       foodCity: "Osaka",
       foodCategory: "cafe",
-      foodArea: "All", 
-      shoppingCategory: "All",
+      foodArea: "All",
+      shoppingCity: "Osaka",
+      shoppingArea: "All",
       actionsOpen: true,
-      phraseHotel: "Osaka",    // Controls Hotel Cards dropdown
-      phraseCategory: "All",   // Controls Phrase Categories dropdown
+      openHotelCard: "Osaka",             // Default open hotel accordion
+      openPhraseCategory: "Hotel",        // Default open phrase category accordion
       doneItems: loadDoneItems()
     };
 
@@ -2563,6 +2627,23 @@ const HOTELS = [
       },
       toggleDone(name) {
         toggleDone(name);
+      },
+      toggleHotelCard(city) {
+        STATE.openHotelCard = STATE.openHotelCard === city ? null : city;
+        renderApp();
+      },
+      togglePhraseCategory(category) {
+        STATE.openPhraseCategory = STATE.openPhraseCategory === category ? null : category;
+        renderApp();
+      },
+      setShoppingCity(city) {
+        STATE.shoppingCity = city;
+        STATE.shoppingArea = "All";
+        renderApp();
+      },
+      setShoppingArea(area) {
+        STATE.shoppingArea = area;
+        renderApp();
       }
     };
     window.appActions = appActions;
@@ -3027,81 +3108,82 @@ function renderTransitTab() {
 
 
     function renderPhrasebookTab() {
-      const selectedHotel = HOTEL_TAXI_DATA.find(h => h.city === STATE.phraseHotel) || HOTEL_TAXI_DATA[0];
-      const allPhraseCats = ["Hotel", "Konbini", "Restaurant", "General", "Transportation"];
-      const filteredPhrases = STATE.phraseCategory === "All"
-        ? FLASHCARD_PHRASES
-        : FLASHCARD_PHRASES.filter(p => p.category === STATE.phraseCategory);
+      const hotelCities = ["Osaka", "Kyoto", "Tokyo"];
+      const phraseCategories = ["Hotel", "Transportation", "Konbini", "Restaurant", "General"];
 
       return `
         <section class="section-block fade-in">
           ${renderSectionTitle({
-            eyebrow: "Japanese Helper",
-            title: "Language & Cards",
-            subtitle: "Hotel address cards and essential Japanese phrases.",
-            color: "#DC2626"
+            eyebrow: "Language & Logistics",
+            title: "Phrasebook & Hotels",
+            subtitle: "Taxi address cards and essential phrases organized in clean dropdowns.",
+            color: "#B91C1C"
           })}
 
-          <!-- 1. HOTEL CARDS WITH DROPDOWN -->
-          <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;">🏨 Hotel Cards</div>
-          
-          <div style="position: relative; margin-bottom: 12px;">
-            <select 
-              onchange="appActions.setPhraseHotel(this.value)"
-              style="width: 100%; appearance: none; -webkit-appearance: none; padding: 11px 36px 11px 14px; border-radius: var(--radius-md); border: 1.5px solid #FECACA; font-family: inherit; font-size: 13px; font-weight: 700; background: #fff; cursor: pointer; outline: none;"
-            >
-              ${HOTEL_TAXI_DATA.map(h => `<option value="${h.city}" ${STATE.phraseHotel === h.city ? "selected" : ""}>${escapeHtml(h.city)} -${escapeHtml(h.nameEn)}</option>`).join("")}
-            </select>
-            <span style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: #DC2626; font-size: 14px; font-weight: bold;">⌄</span>
+          <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin: 10px 0 10px 4px;">
+            🏨 Hotel Address Cards
           </div>
 
-          <div class="fade-in" style="background: white; border: 2px solid #E5E7EB; border-radius: 12px; padding: 18px; margin-bottom: 24px; box-shadow: 0 4px 6px rgba(0,0,0,0.04);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-              <span style="font-size: 11px; font-weight: bold; color: #DC2626; background: #FEE2E2; padding: 2px 8px; border-radius: 4px;">${escapeHtml(selectedHotel.city)}</span>
-              <span style="font-size: 11px; color: #6B7280;">${escapeHtml(selectedHotel.dates)}</span>
-            </div>
-            <div style="font-size: 20px; font-weight: 900; color: #111827; margin-bottom: 2px; line-height: 1.2;">${escapeHtml(selectedHotel.nameJp)}</div>
-            <div style="font-size: 13px; color: #6B7280; margin-bottom: 12px;">${escapeHtml(selectedHotel.nameEn)}</div>
-            <div style="font-size: 16px; font-weight: bold; color: #1F2937; margin-bottom: 12px; line-height: 1.3;">${escapeHtml(selectedHotel.addressJp)}</div>
-            <div style="background: #F3F4F6; padding: 10px; border-radius: 8px; text-align: center;">
-              <div style="font-size: 10px; color: #4B5563; text-transform: uppercase;">Driver Navigation Phone Number</div>
-              <div style="font-size: 20px; font-weight: 900; color: #000; letter-spacing: 1px;">📞 ${escapeHtml(selectedHotel.phone)}</div>
-            </div>
-          </div>
+          ${hotelCities.map(city => {
+            const hotel = HOTEL_TAXI_DATA.find(h => h.city === city);
+            const isOpen = STATE.openHotelCard === city;
+            const cfg = getCityCfg(city);
 
-          <!-- 2. PHRASES WITH CATEGORY DROPDOWN -->
-          <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;">💬 Phrases</div>
-          
-          <div style="position: relative; margin-bottom: 14px;">
-            <select 
-              onchange="appActions.setPhraseCategory(this.value)"
-              style="width: 100%; appearance: none; -webkit-appearance: none; padding: 11px 36px 11px 14px; border-radius: var(--radius-md); border: 1.5px solid #FECACA; font-family: inherit; font-size: 13px; font-weight: 700; background: #fff; cursor: pointer; outline: none;"
-            >
-              <option value="All" ${STATE.phraseCategory === "All" ? "selected" : ""}>All Categories</option>
-              ${allPhraseCats.map(cat => `<option value="${escapeHtml(cat)}" ${STATE.phraseCategory === cat ? "selected" : ""}>${escapeHtml(cat)}</option>`).join("")}
-            </select>
-            <span style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: #DC2626; font-size: 14px; font-weight: bold;">⌄</span>
-          </div>
-
-          <div class="fade-in" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;">
-            ${filteredPhrases.map(item => `
-              <div class="action-card" style="flex-direction: column; align-items: stretch; padding: 14px; border-left: 4px solid #DC2626; background: white;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                  <span style="font-size: 13px; font-weight: bold; color: #374151;">${escapeHtml(item.icon)} "${escapeHtml(item.english)}"</span>
-                  <span style="font-size: 10px; font-weight: bold; color: #DC2626; background: #FEF2F2; padding: 2px 6px; border-radius: 4px;">${escapeHtml(item.category)}</span>
+            return `
+              <div class="card phrase-card" style="border-color: ${isOpen ? cfg.border : '#EDE8E0'}; margin-bottom: 10px;">
+                <div class="phrase-cat-head pressable" style="background: ${isOpen ? cfg.bg : '#fff'};" onclick="appActions.toggleHotelCard('${escapeHtml(city)}')">
+                  <div class="phrase-cat-title" style="color: ${isOpen ? cfg.deep : '#8A7566'};">${escapeHtml(city)} —${escapeHtml(hotel.nameEn)}</div>
+                  <div class="chevron ${isOpen ? 'open' : ''}" style="color: ${isOpen ? cfg.color : '#b0a090'};">⌄</div>
                 </div>
-                
-                <div style="background: #FEF2F2; padding: 10px; border-radius: 8px; text-align: center; border: 1px solid #FECACA;">
-                  <div style="font-size: 20px; font-weight: 900; color: #991B1B; margin-bottom: 4px; line-height: 1.2;">
-                    ${escapeHtml(item.japanese)}
+
+                ${isOpen ? `
+                  <div class="fade-in phrase-list-wrap" style="background: ${cfg.bg}; padding: 14px; border-top: 1px solid ${cfg.border};">
+                    <div style="font-size: 11px; font-weight: bold; color: ${cfg.color}; margin-bottom: 4px;">${escapeHtml(hotel.dates)} • ${escapeHtml(hotel.area)}</div>
+                    <div style="font-size: 18px; font-weight: 900; color: ${cfg.deep}; margin-bottom: 4px; line-height: 1.2;">${escapeHtml(hotel.nameJp)}</div>
+                    <div style="font-size: 14px; font-weight: bold; color: var(--ink); margin-bottom: 12px; line-height: 1.3;">${escapeHtml(hotel.addressJp)}</div>
+                    <div style="background: #fff; padding: 10px; border-radius: 8px; text-align: center; border: 1px solid ${cfg.border};">
+                      <div style="font-size: 10px; color: #6B7280; text-transform: uppercase;">Taxi Driver Phone Number</div>
+                      <div style="font-size: 18px; font-weight: 900; color: #000; letter-spacing: 1px;">📞 ${escapeHtml(hotel.phone)}</div>
+                    </div>
                   </div>
-                  <div style="font-size: 13px; color: #B91C1C; font-style: italic;">
-                    🗣️ "${escapeHtml(item.romaji)}"
-                  </div>
-                </div>
+                ` : ""}
               </div>
-            `).join('')}
+            `;
+          }).join("")}
+
+          <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin: 24px 0 10px 4px;">
+            💬 Essential Phrases
           </div>
+
+          ${phraseCategories.map(category => {
+            const items = PHRASES.filter(p => p.category === category);
+            const isOpen = STATE.openPhraseCategory === category;
+
+            return `
+              <div class="card phrase-card" style="border-color: ${isOpen ? '#FCA5A5' : '#EDE8E0'}; margin-bottom: 10px;">
+                <div class="phrase-cat-head pressable" style="background: ${isOpen ? '#FEF2F2' : '#fff'};" onclick="appActions.togglePhraseCategory('${escapeHtml(category)}')">
+                  <div class="phrase-cat-title" style="color: ${isOpen ? '#B91C1C' : '#8A7566'};">${escapeHtml(category)}</div>
+                  <div class="chevron ${isOpen ? 'open' : ''}" style="color: ${isOpen ? '#B91C1C' : '#b0a090'};">⌄</div>
+                </div>
+
+                ${isOpen ? `
+                  <div class="fade-in phrase-list-wrap" style="padding-top: 10px;">
+                    ${items.map(phrase => `
+                      <div class="card compact-card" style="margin-bottom: 10px; border-color: #FEE2E2;">
+                        <div style="font-size: 14.5px; font-weight: 700; color: var(--ink);">${escapeHtml(phrase.english)}</div>
+                        <div style="font-size: 13px; font-weight: 600; color: #B91C1C; margin-top: 4px;">🗣️ "${escapeHtml(phrase.romaji)}"</div>
+                        <div style="font-size: 17px; font-weight: 900; color: #991B1B; margin-top: 4px;">${escapeHtml(phrase.japanese)}</div>${phrase.nuance ? `
+                          <div style="font-size: 12.5px; color: #6b5748; margin-top: 8px; padding-top: 8px; border-top: 1px solid #FEE2E2; line-height: 1.5;">
+                            <span style="font-weight:700;">Nuance:</span> ${escapeHtml(phrase.nuance)}
+                          </div>
+                        ` : ""}
+                      </div>
+                    `).join("")}
+                  </div>
+                ` : ""}
+              </div>
+            `;
+          }).join("")}
         </section>
       `;
     }
