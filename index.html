@@ -187,13 +187,13 @@
     }
 
     .tabs-wrap {
-      margin: 10px 14px 0; 
+      margin: 10px 14px 0;
     }
 
     .tab-pill {
-      padding: 7px 12px; 
+      padding: 6px 10px; 
       border: none;
-      font-size: 11.5px; 
+      font-size: 11px; 
       font-weight: 600;
       background: #ede8e0;
       color: #6b5748;
@@ -2811,22 +2811,22 @@ const HOTELS = [
       const isOpen = STATE.openFlight === flight.type;
 
       return `
-        <div class="flight-card" style="background:${flight.colors}; padding: 0; overflow: hidden;">
+        <div class="flight-card" style="background:${flight.colors}; padding: 0; overflow: hidden; margin-bottom: 10px;">
           <div 
             class="flight-top pressable" 
-            style="padding: 14px 15px; margin-bottom: 0; display: flex; justify-content: space-between; align-items: center;" 
+            style="padding: 12px 14px; margin-bottom: 0; display: flex; justify-content: space-between; align-items: center;" 
             onclick="appActions.toggleFlight('${flight.type}')"
           >
             <div style="display: flex; gap: 8px; align-items: center;">
-              <span class="flight-type" style="color:${typeColor};">${escapeHtml(flight.type)}</span>
-              <span class="flight-route">${escapeHtml(flight.route)}</span>
+              <span class="flight-type" style="color:${typeColor}; font-size: 11px; font-weight: 800; letter-spacing: 1.4px;">${escapeHtml(flight.type)}</span>
+              <span class="flight-route" style="font-size: 16px; font-weight: 800;">${escapeHtml(flight.route)}</span>
             </div>
-            <div class="chevron ${isOpen ? 'open' : ''}" style="color: rgba(255,255,255,0.6);">⌄</div>
+            <div class="chevron ${isOpen ? 'open' : ''}" style="color: rgba(255,255,255,0.6); font-size: 12px;">⌄</div>
           </div>
           ${
             isOpen
               ? `
-            <div class="fade-in flight-detail" style="padding: 0 15px 14px; border-top: 1px solid rgba(255,255,255,0.15); margin-top: 4px; padding-top: 10px;">
+            <div class="fade-in flight-detail" style="padding: 0 14px 12px; margin: 0; border-top: 1px solid rgba(255,255,255,0.15); font-size: 12.5px; color: rgba(255, 255, 255, 0.86); line-height: 1.6; white-space: pre-line;">
               ${escapeHtml(flight.detail)}
             </div>
           `
