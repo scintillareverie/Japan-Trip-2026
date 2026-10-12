@@ -883,6 +883,80 @@
         grid-template-columns: 1fr 1fr;
       }
     }
+
+    /* === BOTTOM NAVIGATION BAR === */
+:root {
+  --nav-bg: #ffffff;
+  --nav-text: #9CA3AF; /* Gray for inactive */
+  --nav-active: #2563EB; /* Blue for active */
+}
+
+/* Ensure the main content doesn't hide behind the nav bar */
+body {
+  padding-bottom: 90px; /* Space for the bottom nav */
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--nav-bg);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px 10px;
+  /* env() ensures it sits above the iPhone home bar */
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  z-index: 1000;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--nav-text);
+  cursor: pointer;
+  width: 70px;
+  /* Smooth transition for the elegant switch */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-icon {
+  font-size: 24px;
+  margin-bottom: 4px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Active State Styling */
+.nav-item.active {
+  color: var(--nav-active);
+}
+
+.nav-item.active .nav-icon {
+  transform: translateY(-4px) scale(1.15); /* Slight upward bounce */
+}
+
+/* Fade in animation for the content when switching tabs */
+.fade-in {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
   </style>
 </head>
 <body>
@@ -1961,2646 +2035,47 @@ const ITINERARY = [
 ];
 // === JAPAN TRIP DATA ITINERARY END ===
 
-    // === JAPAN TRIP DATA: PLACES (START) ===
-    const PLACES = [
-      {
-        id: "kyoto-cafe-arabica-higashiyama",
-        section: "food",
-        category: "cafe",
-        city: "Kyoto",
-        area: "Sannen-zaka",
-        name: "% Arabica Higashiyama",
-        icon: "☕",
-        priceRange: "¥¥",
-        openingHours: "08:00–18:00",
-        station: "Kiyomizu-Gojo Station",
-        walk: "15 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/XeLBUobkmCk4n1Ny9",
-        tags: ["iconic stop", "good route fit", "hill path"],
-        bestFor: "Latte",
-        notes: "Iconic hill-path café and a perfect Day 4 stop."
-      },
-      {
-        id: "kyoto-cafe-arabica-arashiyama",
-        section: "food",
-        category: "cafe",
-        city: "Kyoto",
-        area: "Arashiyama",
-        name: "% Arabica Arashiyama",
-        icon: "☕",
-        priceRange: "¥¥",
-        openingHours: "08:30–18:00",
-        station: "Arashiyama Station",
-        walk: "7 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/T2bnbDkiViqJ3Fb29",
-        tags: ["river view", "best morning", "popular"],
-        bestFor: "Iced latte",
-        notes: "River and mountain view café; best earlier in the day."
-      },
-      {
-        id: "kyoto-cafe-weekenders",
-        section: "food",
-        category: "cafe",
-        city: "Kyoto",
-        area: "Central Kyoto",
-        name: "Weekenders Coffee Tominokoji",
-        icon: "☕",
-        priceRange: "¥¥",
-        openingHours: "08:00–18:00",
-        station: "Karasuma Station",
-        walk: "6 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/HJ4awBfPrsF4jxZ97",
-        tags: ["serious coffee", "quiet alley", "good quick stop"],
-        bestFor: "Filter coffee",
-        notes: "Serious coffee in a quiet alley building."
-      },
-      {
-        id: "kyoto-cafe-elephant-factory",
-        section: "food",
-        category: "cafe",
-        city: "Kyoto",
-        area: "Sanjo",
-        name: "Elephant Factory Coffee",
-        icon: "☕",
-        priceRange: "¥¥",
-        openingHours: "10:00–18:00",
-        station: "Kyoto Shiyakusho-mae Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/JCFYLTZ5dCMJjxedA",
-        tags: ["basement café", "warm mood", "local feel"],
-        bestFor: "Cappuccino",
-        notes: "Dim, cozy basement café with old kissaten feeling."
-      },
-      {
-        id: "kyoto-cafe-walden-woods",
-        section: "food",
-        category: "cafe",
-        city: "Kyoto",
-        area: "Nakagyo",
-        name: "Walden Woods Kyoto",
-        icon: "☕",
-        priceRange: "¥¥",
-        openingHours: "09:00–18:00",
-        station: "Karasuma Oike Station",
-        walk: "8 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/1V6YJijVLZ5aMx7e9",
-        tags: ["minimal", "younger crowd", "photo friendly"],
-        bestFor: "Black coffee",
-        notes: "Minimal modern café popular with a younger Kyoto crowd."
-      },
-      {
-        id: "tokyo-cafe-kayaba",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Yanaka",
-        name: "KAYABA COFFEE",
-        icon: "☕",
-        priceRange: "¥¥",
-        openingHours: "08:00–18:00",
-        station: "Nippori Station",
-        walk: "8 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/5CmADyiCEdi1NeUT8",
-        tags: ["historic", "old Tokyo", "popular"],
-        bestFor: "Egg sandwich",
-        notes: "1938 wooden building café with true old Tokyo charm."
-      },
-      {
-        id: "tokyo-cafe-onibus",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Nakameguro",
-        name: "Onibus Coffee",
-        icon: "☕",
-        priceRange: "¥¥",
-        openingHours: "08:00–19:00",
-        station: "Nakameguro Station",
-        walk: "6 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/VirGTNRwkzuia2cM7",
-        tags: ["specialty coffee", "strong pick", "canal day"],
-        bestFor: "Flat white",
-        notes: "Strong specialty coffee stop for the Nakameguro canal day."
-      },
-      {
-        id: "tokyo-cafe-reserve-roastery",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Nakameguro",
-        name: "Starbucks Reserve Roastery",
-        icon: "☕",
-        priceRange: "¥¥¥",
-        openingHours: "07:00–22:00",
-        station: "Nakameguro Station",
-        walk: "13 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/QPabiCPnCEt4CvyJ7",
-        tags: ["large space", "good setting", "touristy but fun"],
-        bestFor: "Reserve pour-over",
-        notes: "Worth it more for the setting than the brand."
-      },
-      {
-        id: "tokyo-cafe-fuglen",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Tomigaya",
-        name: "Fuglen Tokyo",
-        icon: "☕",
-        priceRange: "¥¥",
-        openingHours: "08:00–23:00",
-        station: "Yoyogi-Koen Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/R6UjUw1eoSe9tAVy5",
-        tags: ["design-led", "day-to-night", "good near Yoyogi"],
-        bestFor: "Coffee + cinnamon bun",
-        notes: "Norwegian café by day, bar by night."
-      },
-      {
-        id: "tokyo-cafe-bear-pond",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Shimokitazawa",
-        name: "Bear Pond Espresso",
-        icon: "☕",
-        priceRange: "¥¥",
-        openingHours: "11:00–19:00",
-        station: "Shimokitazawa Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/n9xY4sUAehFr62xB9",
-        tags: ["cult favourite", "tiny", "espresso-first"],
-        bestFor: "Espresso",
-        notes: "Tiny cult espresso bar with a strong local reputation."
-      },
-      {
-        id: "tokyo-cafe-bread-espresso",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Omotesando",
-        name: "BREAD, ESPRESSO &",
-        icon: "☕",
-        priceRange: "¥¥",
-        openingHours: "08:00–19:00",
-        station: "Omotesando Station",
-        walk: "7 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/aLcQuGgTDXJScM2g9",
-        tags: ["famous toast", "design-heavy", "good morning option"],
-        bestFor: "Morning toast set",
-        notes: "Great Omotesando café option with a well-known toast set."
-      },
-      {
-        id: "tokyo-cafe-daikanyama-tsite",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Daikanyama",
-        name: "Daikanyama T-Site Cafés",
-        icon: "☕",
-        priceRange: "¥¥",
-        openingHours: "07:00–22:00",
-        station: "Daikanyama Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/7kDGb22ZxZDcdrFJ9",
-        tags: ["bookstore stop", "slow pace", "good break"],
-        bestFor: "Pastry + latte",
-        notes: "Perfect slow-down stop between bookstore browsing."
-      },
-      {
-        id: "tokyo-cafe-centre-the-bakery",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Ginza",
-        name: "Centre The Bakery",
-        icon: "☕",
-        priceRange: "¥¥",
-        openingHours: "10:00–19:00 • Closed Mondays",
-        station: "Ginza-Itchome Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/hv7KKq6QCSgqJkCe8",
-        tags: ["bread-focused", "popular", "good brunch"],
-        bestFor: "Shokupan toast set",
-        notes: "Famous for high-quality Japanese milk bread."
-      },
-      {
-        id: "tokyo-cafe-sarutahiko",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Ebisu / Daikanyama",
-        name: "Sarutahiko Coffee",
-        icon: "☕",
-        priceRange: "¥¥",
-        openingHours: "08:00–22:00",
-        station: "Ebisu Station",
-        walk: "7 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/jLyBCggn818vzqWB9",
-        tags: ["specialty roaster", "reliable", "easy route fit"],
-        bestFor: "Single-origin drip",
-        notes: "One of Tokyo’s best-known specialty coffee roasters."
-      },
-      {
-        id: "tokyo-cafe-number-sugar",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Omotesando",
-        name: "NUMBER SUGAR",
-        icon: "🍬",
-        priceRange: "¥¥",
-        openingHours: "11:00–19:00",
-        station: "Meiji-jingumae Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/f2YAkkiEiZBRdWz19",
-        tags: ["artisanal caramel", "minimalist", "gifts"],
-        bestFor: "Caramel tasting boxes",
-        notes: "Sleek, minimalist store for artisanal caramel candy in a host of flavors, plus gift packages."
-      },
-      {
-        id: "tokyo-cafe-mushinan",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Kamakura",
-        name: "Mushinan",
-        icon: "🍵",
-        priceRange: "¥¥",
-        openingHours: "10:00–17:00",
-        station: "Wadazuka Station",
-        walk: "1 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/dQE5QysTuj5s27E99",
-        tags: ["traditional", "wagashi", "railway view"],
-        bestFor: "Traditional sweets while watching the Enoden line",
-        notes: "Traditional Japanese cafe right next to the Enoden railway in Kamakura."
-      },
-      {
-        id: "tokyo-cafe-turret-coffee",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Tsukiji",
-        name: "Turret Coffee",
-        icon: "☕",
-        priceRange: "¥",
-        openingHours: "07:00–17:00",
-        station: "Tsukiji Station",
-        walk: "1 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/CcWGy1wvfGbe9RgK8",
-        tags: ["specialty coffee", "latte art", "compact"],
-        bestFor: "Turret Latte",
-        notes: "Artsy, compact cafe offering barista-made caffeinated drinks with fancy latte art."
-      },
-      {
-        id: "tokyo-cafe-le-ressort",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Komaba",
-        name: "Le Ressort",
-        icon: "🥖",
-        priceRange: "¥¥",
-        openingHours: "09:00–17:00",
-        station: "Komaba-Todaimae Station",
-        walk: "1 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/Gxfshk7xCZMpjqs8A",
-        tags: ["french bakery", "pastries", "takeaway"],
-        bestFor: "Baguettes and fruit tarts",
-        notes: "Compact, modern French bakery offering bread, filled baguettes, fruit tarts, and croissants."
-      },
-      {
-        id: "tokyo-cafe-mochi-oono",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Yoyogi-Uehara",
-        name: "Mochi Oono",
-        icon: "🍡",
-        priceRange: "¥",
-        openingHours: "09:00–17:00",
-        station: "Yoyogi-Uehara Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/4x9qYWLpJPMybNvF9",
-        tags: ["mochi", "traditional", "local sweets"],
-        bestFor: "Freshly made mochi",
-        notes: "A local shop specializing in freshly made mochi and traditional Japanese sweets."
-      },
-      {
-        id: "tokyo-cafe-harbs-lumine",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Yurakucho",
-        name: "HARBS LUMINE Yurakucho",
-        icon: "🍰",
-        priceRange: "¥¥",
-        openingHours: "11:00–21:00",
-        station: "Yurakucho Station",
-        walk: "1 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/ks4n6P9Vf5nH35f18",
-        tags: ["large cakes", "tea", "shopping break"],
-        bestFor: "Mille crêpes cake",
-        notes: "Popular cafe known for its generous portions of fresh, handmade cakes."
-      },
-      {
-        id: "tokyo-cafe-bricolage",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Roppongi",
-        name: "Bricolage bread & co.",
-        icon: "🥐",
-        priceRange: "¥¥",
-        openingHours: "07:00–19:00",
-        station: "Roppongi Station",
-        walk: "6 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/Hs5krp6TKAQJ6Aif6",
-        tags: ["artisanal bread", "patio seating", "brunch"],
-        bestFor: "Sourdough bread and open sandwiches",
-        notes: "Relaxed cafe & bakery supplying artisanal French bread & international bites, plus coffee."
-      },
-      {
-        id: "tokyo-cafe-hana",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Asakusa",
-        name: "Café Hana",
-        icon: "☕",
-        priceRange: "¥",
-        openingHours: "11:00–21:00",
-        station: "Asakusa Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/7eLt3xkj55tVbHtJ9",
-        tags: ["local cafe", "cozy", "relaxing"],
-        bestFor: "Coffee break in Asakusa",
-        notes: "A highly rated, cozy local cafe in the heart of Asakusa."
-      },
-      {
-        id: "osaka-cafe-amanto",
-        section: "food",
-        category: "cafe",
-        city: "Osaka",
-        area: "Nakazakicho",
-        name: "Salon de AManTo",
-        icon: "🏚️",
-        priceRange: "¥",
-        openingHours: "12:00–22:00",
-        station: "Nakazakicho Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/PM3DWaLJbPLaQxEs8",
-        tags: ["retro", "old house", "laid-back"],
-        bestFor: "Set meals and atmosphere",
-        notes: "Cakes, coffee & set meals inside a retro-style old house with a laid-back vibe."
-      },
-      {
-        id: "tokyo-cafe-garage-blue-bell",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Kamakura",
-        name: "Garage Blue Bell",
-        icon: "🫖",
-        priceRange: "¥¥",
-        openingHours: "12:00–17:00",
-        station: "Kamakura Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/L8PQ4u7CfqwvZaAn7",
-        tags: ["tea room", "english style", "garden"],
-        bestFor: "Scones and black tea",
-        notes: "A charming English-style tea room with a garden, hidden away in Kamakura."
-      },
-      {
-        id: "tokyo-cafe-cloud-club-matcha",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Ginza",
-        name: "Cloud Club Matcha",
-        icon: "🍵",
-        priceRange: "¥¥",
-        openingHours: "09:00–16:00",
-        station: "Higashi-Ginza Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/uZRnrkYGD9zZC6Vz9",
-        tags: ["matcha", "modern", "desserts"],
-        bestFor: "Matcha drinks and sweets",
-        notes: "A trendy spot in Ginza dedicated to high-quality matcha beverages and creative desserts."
-      },
-      {
-        id: "kyoto-cafe-lob-coffee-house",
-        section: "food",
-        category: "cafe",
-        city: "Kyoto",
-        area: "Okazaki",
-        name: "LOB COFFEE HOUSE",
-        icon: "☕",
-        priceRange: "¥¥",
-        openingHours: "09:00–20:30",
-        station: "Higashiyama Station",
-        walk: "10 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/YxNJawBddbwG3vWa7",
-        tags: ["specialty coffee", "relaxing", "stylish"],
-        bestFor: "Hand-drip coffee",
-        notes: "A stylish and peaceful coffee house near Heian Shrine offering excellent specialty coffee."
-      },
-      {
-        id: "kyoto-cafe-com-ion",
-        section: "food",
-        category: "cafe",
-        city: "Kyoto",
-        area: "Higashiyama",
-        name: "Com-ion",
-        icon: "🍰",
-        priceRange: "¥¥",
-        openingHours: "11:00–18:00",
-        station: "Higashiyama Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/zD5XuwVbLi3pu53v7",
-        tags: ["desserts", "quiet", "aesthetic"],
-        bestFor: "Elegant parfaits and sweets",
-        notes: "A beautifully designed cafe in Higashiyama known for its artistic desserts and serene atmosphere."
-      },
-      {
-        id: "osaka-cafe-chaniwa",
-        section: "food",
-        category: "cafe",
-        city: "Osaka",
-        area: "Minamihorie",
-        name: "CHANIWA",
-        icon: "🫖",
-        priceRange: "¥¥",
-        openingHours: "13:00–17:30",
-        station: "Yotsubashi Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/ytKSb8kMmejB1PDU6",
-        tags: ["tea", "traditional meets modern", "hidden gem"],
-        bestFor: "Japanese tea and sweets",
-        notes: "A refined tea room tucked away in Minamihorie offering a modern take on traditional Japanese tea."
-      },
-      {
-        id: "kyoto-cafe-cafe-du-pin",
-        section: "food",
-        category: "cafe",
-        city: "Kyoto",
-        area: "Amanohashidate",
-        name: "Cafe du pin",
-        icon: "☕",
-        priceRange: "¥¥",
-        openingHours: "09:00–18:00",
-        station: "Amanohashidate Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/sYHqV2zoJKnoWi569",
-        tags: ["view", "sandwiches", "scenic"],
-        bestFor: "Coffee with a view of Amanohashidate",
-        notes: "A scenic cafe offering beautiful waterfront views of the famous Amanohashidate sandbar."
-      },
-      {
-        id: "kyoto-cafe-miyabi-ine-boathouse",
-        section: "food",
-        category: "cafe",
-        city: "Kyoto",
-        area: "Ine",
-        name: "Miyabi Ine Boathouse",
-        icon: "🌊",
-        priceRange: "¥¥",
-        openingHours: "09:00–17:00",
-        station: "Amanohashidate Station",
-        walk: "60 min (by bus)",
-        googleMapsUrl: "https://maps.app.goo.gl/i6DQHfGjtWvtwyBQ9",
-        tags: ["funaya", "ocean view", "traditional"],
-        bestFor: "Relaxing by the water",
-        notes: "Located in a traditional 'funaya' (boathouse), this cafe offers stunning views of Ine Bay right from the water's edge."
-      },
-      {
-        id: "tokyo-cafe-bongen-nihonbashi",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Nihonbashi",
-        name: "BONGEN COFFEE Tokyo Nihonbashi",
-        icon: "🪴",
-        priceRange: "¥¥",
-        openingHours: "10:00–17:00",
-        station: "Takaracho Station",
-        walk: "1 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/xe6LvFfb6iocbg9h8",
-        tags: ["bonsai", "espresso", "takeaway"],
-        bestFor: "Espresso drinks",
-        notes: "A chic, minimalist coffee stand featuring a signature bonsai tree and serving expertly crafted coffee."
-      },
-      {
-        id: "tokyo-cafe-factory-labo-kanno",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Meguro",
-        name: "Factory & Labo Kanno Coffee",
-        icon: "🏭",
-        priceRange: "¥¥",
-        openingHours: "09:00–20:00",
-        station: "Gakugei-daigaku Station",
-        walk: "10 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/aNhFfpLnK4KcETmy5",
-        tags: ["roastery", "spacious", "pastries"],
-        bestFor: "Freshly roasted coffee and baked goods",
-        notes: "A spacious, laboratory-themed coffee roastery in Meguro offering a great atmosphere for studying or relaxing."
-      },
-      {
-        id: "osaka-cafe-brooklyn-roasting-kitahama",
-        section: "food",
-        category: "cafe",
-        city: "Osaka",
-        area: "Kitahama",
-        name: "Brooklyn Roasting Company Kitahama",
-        icon: "🏙️",
-        priceRange: "¥¥",
-        openingHours: "08:00–20:00",
-        station: "Kitahama Station",
-        walk: "1 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/HWjv2bcRcCgHouM5A",
-        tags: ["river view", "terrace", "ny style"],
-        bestFor: "Lattes by the river",
-        notes: "A vibrant New York-style coffee shop featuring a popular outdoor terrace overlooking the river."
-      },
-      {
-        id: "tokyo-cafe-truffle-bakery-lumine",
-        section: "food",
-        category: "bakery",
-        city: "Tokyo",
-        area: "Shinjuku",
-        name: "Truffle Bakery ルミネ新宿店",
-        icon: "🥐",
-        priceRange: "¥¥",
-        openingHours: "08:00–21:00",
-        station: "Shinjuku Station",
-        walk: "1 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/7eneJWwL5iBzsBa86",
-        tags: ["bakery", "truffle", "takeout"],
-        bestFor: "White truffle salt bread",
-        notes: "A wildly popular bakery in Shinjuku Station famous for its incredibly aromatic white truffle salt bread."
-      },
-      {
-        id: "tokyo-cafe-pudding-lab-ginza",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Ginza",
-        name: "PUDDING LAB Ginza",
-        icon: "🍮",
-        priceRange: "¥¥",
-        openingHours: "11:00–20:00",
-        station: "Ginza Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/CvwkpnKHu5jH4YfD6",
-        tags: ["pudding", "desserts", "premium"],
-        bestFor: "Gourmet puddings",
-        notes: "A specialty shop focusing on premium, melt-in-your-mouth puddings in a variety of rich flavors."
-      },
-      {
-        id: "tokyo-cafe-kielo-coffee",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Akihabara",
-        name: "KIELO COFFEE AKIHABARA",
-        icon: "☕",
-        priceRange: "¥¥",
-        openingHours: "08:00–18:00",
-        station: "Akihabara Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/4V2CtDeZGAHzdDzS8",
-        tags: ["specialty coffee", "minimalist", "nordic"],
-        bestFor: "Pour-over coffee",
-        notes: "A minimalist, Nordic-inspired specialty coffee shop offering a quiet retreat in the bustling Akihabara area."
-      },
-      {
-        id: "tokyo-cafe-5-crossties",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Shibuya",
-        name: "5 CROSSTIES COFFEE 渋谷スクランブルスクエア",
-        icon: "🏙️",
-        priceRange: "¥¥",
-        openingHours: "08:00–20:00",
-        station: "Shibuya Station",
-        walk: "1 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/Z5pmtTj3hiYUbuh97",
-        tags: ["city view", "modern", "convenient"],
-        bestFor: "Shibuya crossing view",
-        notes: "Shibuya crossing view. Go to Shibuya Scramble Square Mall, go to level 2F, will see a big area to stand in line to get tickets to the observatory, around the corner you’ll see a big glass door to enter the office building, walk through the door and go into the elevator, press floor 17, then just walk straight."
-      },
-      {
-        id: "tokyo-cafe-lazzy-coffee",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Meguro",
-        name: "LAZZY coffee",
-        icon: "☕",
-        priceRange: "¥¥",
-        openingHours: "09:00–18:00",
-        station: "Gakugei-daigaku Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/cr4QQ2T8EA1TjBrP7",
-        tags: ["aesthetic", "baked goods", "local"],
-        bestFor: "Coffee and baked treats",
-        notes: "A trendy and stylish local cafe serving great specialty coffee and delicious homemade baked goods."
-      },
-      {
-        id: "tokyo-cafe-higashiya-ginza",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Ginza",
-        name: "HIGASHIYA GINZA",
-        icon: "🍵",
-        priceRange: "¥¥¥",
-        openingHours: "11:00–19:00",
-        station: "Ginza-itchome Station",
-        walk: "1 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/TgLLVhCjyvMSYHXG6",
-        tags: ["traditional sweets", "elegant", "tea salon"],
-        bestFor: "Afternoon tea set (Wagashi)",
-        notes: "Elegant shop offering a refined selection of traditional Japanese sweets and tableware, complete with a luxurious tea salon."
-      },
-      {
-        id: "kyoto-cafe-excafe-arashiyama",
-        section: "food",
-        category: "cafe",
-        city: "Kyoto",
-        area: "Arashiyama",
-        name: "eXcafe Kyoto Arashiyama Main Store",
-        icon: "🍡",
-        priceRange: "¥¥",
-        openingHours: "09:00–18:00",
-        station: "Arashiyama Station",
-        walk: "1 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/b9N4Cg3cwaXSLJeN6",
-        tags: ["traditional", "garden", "matcha"],
-        bestFor: "DIY roasted dango and matcha",
-        notes: "Tranquil establishment serving coffee, tea, and classic local fare (like grill-it-yourself dango) amid vibrant artwork and a garden."
-      },
-      {
-        id: "kyoto-cafe-misable",
-        section: "food",
-        category: "cafe",
-        city: "Kyoto",
-        area: "Kita Ward",
-        name: "misable",
-        icon: "🍰",
-        priceRange: "¥¥",
-        openingHours: "12:00–18:00",
-        station: "Ryoanji Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/4c5en1Z2Dy5EuhN3A",
-        tags: ["hidden gem", "cakes", "cozy"],
-        bestFor: "Artisanal cakes",
-        notes: "A cozy, intimate cake shop operating on select days, offering beautifully crafted artisanal cakes and sweets."
-      },
-      {
-        id: "kyoto-cafe-root2-tofukuji",
-        section: "food",
-        category: "cafe",
-        city: "Kyoto",
-        area: "Higashiyama",
-        name: "ROOT2 COFFEE Tofukuji",
-        icon: "🥪",
-        priceRange: "¥¥",
-        openingHours: "08:00–20:00",
-        station: "Tofukuji Station",
-        walk: "2 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/Pq7gHN6y7FuheA9FA",
-        tags: ["modern", "spacious", "sandwiches"],
-        bestFor: "Morning coffee before temple visits",
-        notes: "A stylish and modern coffee shop right near Tofukuji Temple, perfect for grabbing espresso drinks and hearty sandwiches."
-      },
-      {
-        id: "kyoto-cafe-coffee-base-nashinoki",
-        section: "food",
-        category: "cafe",
-        city: "Kyoto",
-        area: "Kamigyo Ward",
-        name: "Coffee Base NASHINOKI",
-        icon: "⛩️",
-        priceRange: "¥¥",
-        openingHours: "10:00–17:00",
-        station: "Jingu-Marutamachi Station",
-        walk: "10 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/5tXae1RhEG7XBqH46",
-        tags: ["shrine grounds", "water source", "peaceful"],
-        bestFor: "Coffee brewed with sacred shrine water",
-        notes: "A unique coffee stand situated inside Nashinoki Shrine, famous for brewing specialty coffee using the shrine's pristine well water."
-      },
-      {
-        id: "osaka-food-mallory-pork-steak",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Namba",
-        name: "Mallory Pork Steak",
-        icon: "🍽️",
-        priceRange: "¥¥",
-        openingHours: "11:00–22:00",
-        station: "Namba Station",
-        walk: "1 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/D4JX22tbG2Gj93qa7",
-        tags: ["easy meal", "good value", "near transit"],
-        bestFor: "Pork steak set",
-        notes: "Easy Osaka meal near Namba."
-      },
-      {
-        id: "kyoto-food-701-taresoba",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Shimogyo",
-        name: "701 Taresoba Kyoto",
-        icon: "🍜",
-        priceRange: "¥¥",
-        openingHours: "Lunch 11:30–14:00 • Dinner 17:00–22:00 • Closed Sundays",
-        station: "Karasuma Station",
-        walk: "9 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/YxDsU21JsSVzYzSR7",
-        tags: ["popular", "queue possible", "good solo meal"],
-        bestFor: "Cold taresoba",
-        notes: "Popular spot; better to arrive early."
-      },
-      {
-        id: "tokyo-food-toriton",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Skytree",
-        name: "Kaiten Sushi Toriton",
-        icon: "🍣",
-        priceRange: "¥¥",
-        openingHours: "11:00–22:00",
-        station: "Oshiage Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/DC9g1Wp2dsbmQYxG9",
-        tags: ["reliable sushi", "good value", "queue likely"],
-        bestFor: "Uni",
-        notes: "Reliable Tokyo conveyor-belt sushi option."
-      },
-      {
-        id: "tokyo-food-tsukiji-itadori",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Tsukiji",
-        name: "Tsukiji Itadori Bekkan",
-        icon: "🐟",
-        priceRange: "¥¥¥",
-        openingHours: "07:00–21:00",
-        station: "Tsukiji Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/a2oUM8dZfFxdRnEW6",
-        tags: ["market breakfast", "seafood", "morning-friendly"],
-        bestFor: "Kaisendon",
-        notes: "Strong breakfast option in Tsukiji Outer Market."
-      },
-      {
-        id: "tokyo-food-tsujihan",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Nihonbashi",
-        name: "Tsujihan",
-        icon: "🍚",
-        priceRange: "¥¥",
-        openingHours: "11:00–15:00 • 17:00–21:00 • Closed Mondays",
-        station: "Mitsukoshimae Station",
-        walk: "2 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/WgtsCEpafDWZjEcB7",
-        tags: ["long queue", "signature bowl", "go early"],
-        bestFor: "Sashimi mountain don",
-        notes: "Known for a long queue, but great if timed well."
-      },
-      {
-        id: "tokyo-food-ginza-tenryu",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Ginza",
-        name: "Ginza Tenryu",
-        icon: "🥟",
-        priceRange: "¥¥",
-        openingHours: "11:30–21:30 • Closed Sundays / holidays",
-        station: "Ginza Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/LBVXMtPy59p2pNhk6",
-        tags: ["jumbo gyoza", "classic", "casual"],
-        bestFor: "Gyoza teishoku",
-        notes: "Known for giant gyoza."
-      },
-      {
-        id: "tokyo-food-menya-musashi",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Akihabara / Shinjuku",
-        name: "Menya Musashi",
-        icon: "🍜",
-        priceRange: "¥¥",
-        openingHours: "11:00–22:00",
-        station: "Akihabara Station",
-        walk: "6 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/xkKH19dMx2AMLKpC6",
-        tags: ["ramen", "convenient", "easy dinner"],
-        bestFor: "Tsukemen",
-        notes: "Akihabara branch is convenient for your hotel area."
-      },
+// === JAPAN TRIP DATA: SHOPPING BUCKET LIST ===
+const SHOPPING_LIST = [
+  { 
+    category: "Skincare & Pharmacy", 
+    item: "Melano CC Vitamin C Serum", 
+    store: "Don Quijote / Matsukiyo", 
+    jpName: "メラノCC 薬用しみ集中対策美容液",
+    igLink: "",
+    taxFree: true 
+  },
+  { 
+    category: "Fashion & Goods", 
+    item: "Onitsuka Tiger Mexico 66", 
+    store: "Omotesando / Shibuya", 
+    jpName: "オニツカタイガー メキシコ66",
+    igLink: "",
+    taxFree: true 
+  },
+  { 
+    category: "Snacks & Souvenirs", 
+    item: "Ichiran Ramen Gift Box", 
+    store: "Don Quijote", 
+    jpName: "一蘭ラーメン 博多細麺",
+    igLink: "",
+    taxFree: false 
+  },
+  { 
+    category: "Snacks & Souvenirs", 
+    item: "Ippodo Matcha Powder", 
+    store: "Kyoto Teramachi / Daimaru", 
+    jpName: "一保堂茶舗 抹茶",
+    igLink: "",
+    taxFree: true 
+  }
+];
 
-      {
-        id: "osaka-shop-shinsaibashi-arcade",
-        section: "shopping",
-        category: "shop",
-        city: "Osaka",
-        area: "Shinsaibashi",
-        name: "Shinsaibashi Shopping Arcade",
-        icon: "🛍️",
-        priceRange: "¥¥",
-        openingHours: "10:00–21:00",
-        station: "Shinsaibashi Station",
-        walk: "2 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/YoF5ZqPubj8tpkxB6",
-        tags: ["fashion", "souvenirs", "covered arcade"],
-        bestFor: "Fashion, cosmetics, souvenirs",
-        notes: "Long covered arcade with a mix of boutiques, drugstores, and souvenir shops."
-      },
-      {
-        id: "osaka-shop-donki-shinsaibashi",
-        section: "shopping",
-        category: "shop",
-        city: "Osaka",
-        area: "Shinsaibashi",
-        name: "Don Quijote Shinsaibashi",
-        icon: "🛒",
-        priceRange: "¥",
-        openingHours: "24 hours",
-        station: "Namba Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/JbLcZFKKTHfyicBL8",
-        tags: ["late night", "snacks", "budget buys"],
-        bestFor: "Cosmetics, snacks, travel goods",
-        notes: "Multi-floor treasure hunt store; great for affordable souvenirs."
-      },
-      {
-        id: "osaka-shop-daimaru-takashimaya",
-        section: "shopping",
-        category: "shop",
-        city: "Osaka",
-        area: "Shinsaibashi / Namba",
-        name: "Daimaru Shinsaibashi / Takashimaya",
-        icon: "🎁",
-        priceRange: "¥¥¥",
-        openingHours: "10:00–20:00",
-        station: "Shinsaibashi / Namba Station",
-        walk: "3–5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/5CEzKuvujjENuZQH6",
-        tags: ["depachika", "premium omiyage", "food gifts"],
-        bestFor: "High-end souvenirs, depachika food gifts",
-        notes: "Reliable premium department stores with excellent basement food halls."
-      },
-      {
-        id: "osaka-shop-umeda-loft",
-        section: "shopping",
-        category: "shop",
-        city: "Osaka",
-        area: "Umeda",
-        name: "Osaka Umeda Loft",
-        icon: "✏️",
-        priceRange: "¥¥",
-        openingHours: "10:00–20:30",
-        station: "Umeda Station",
-        walk: "6 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/Sf2E2oGEHJokxBoaA",
-        tags: ["stationery", "design goods", "great gifts"],
-        bestFor: "Stationery, design goods, unique gifts",
-        notes: "Seven floors of lifestyle and design goods."
-      },
-      {
-        id: "osaka-shop-grand-front",
-        section: "shopping",
-        category: "shop",
-        city: "Osaka",
-        area: "Umeda",
-        name: "Grand Front Osaka",
-        icon: "🏬",
-        priceRange: "¥¥¥",
-        openingHours: "10:00–21:00",
-        station: "Osaka / Umeda Station",
-        walk: "2 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/STXmtd2WvpqsMeNz9",
-        tags: ["modern complex", "tech", "easy stop"],
-        bestFor: "Lifestyle brands, tech goods",
-        notes: "Modern shopping complex directly above Osaka Station."
-      },
-      {
-        id: "kyoto-shop-nishiki",
-        section: "shopping",
-        category: "shop",
-        city: "Kyoto",
-        area: "Shijo",
-        name: "Nishiki Market Shopping",
-        icon: "🛍️",
-        priceRange: "¥¥",
-        openingHours: "09:00–18:00 (varies)",
-        station: "Shijo Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/UXaGgNSubEKG9LDW6",
-        tags: ["food gifts", "market", "good omiyage"],
-        bestFor: "Kyoto pickles, tofu, yatsuhashi sweets",
-        notes: "Known as Kyoto’s Kitchen; a good stop for Kyoto-specific food gifts."
-      },
-      {
-        id: "kyoto-shop-teramachi",
-        section: "shopping",
-        category: "shop",
-        city: "Kyoto",
-        area: "Central Kyoto",
-        name: "Teramachi-dori Shopping Street",
-        icon: "🛍️",
-        priceRange: "¥¥",
-        openingHours: "10:00–19:00",
-        station: "Shijo Station",
-        walk: "8 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/7sYTizooaCTD6qn8A",
-        tags: ["locals", "stationery", "antiques"],
-        bestFor: "Stationery, antiques, local crafts",
-        notes: "Long covered arcade popular with locals."
-      },
-      {
-        id: "kyoto-shop-daimaru",
-        section: "shopping",
-        category: "shop",
-        city: "Kyoto",
-        area: "Karasuma / Shijo",
-        name: "Daimaru Kyoto",
-        icon: "🎁",
-        priceRange: "¥¥¥",
-        openingHours: "10:00–20:00",
-        station: "Shijo Station",
-        walk: "2 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/dZitp1y6ZHm8EnqD8",
-        tags: ["department store", "depachika", "reliable"],
-        bestFor: "Kyoto sweets, cosmetics, fashion",
-        notes: "Reliable department store with a strong basement food hall."
-      },
-      {
-        id: "kyoto-shop-ochanokosaisai",
-        section: "shopping",
-        category: "shop",
-        city: "Kyoto",
-        area: "Nishiki / Kyoto Tower",
-        name: "Ochanokosaisai",
-        icon: "🌶️",
-        priceRange: "¥",
-        openingHours: "10:00–18:00",
-        station: "Shijo Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/eL1UdSU6UfuiPAuk7",
-        tags: ["food souvenirs", "spice blend", "great omiyage"],
-        bestFor: "Signature furikake, yuzu spice blend, sansho pepper",
-        notes: "Great Kyoto omiyage stop for spice and seasoning souvenirs."
-      },
-      {
-        id: "tokyo-shop-tokyo-station-character",
-        section: "shopping",
-        category: "shop",
-        city: "Tokyo",
-        area: "Marunouchi",
-        name: "Tokyo Station Character Street / Ramen Street",
-        icon: "🎁",
-        priceRange: "¥¥",
-        openingHours: "10:00–20:30",
-        station: "Tokyo Station",
-        walk: "B1 direct access",
-        googleMapsUrl: "https://maps.app.goo.gl/e7UWBLHXYSiF7wU4A",
-        tags: ["omiyage", "character shops", "last-day friendly"],
-        bestFor: "Character goods, regional omiyage, KitKats, Tokyo Banana",
-        notes: "Packed with official shops and Japan-wide regional sweets."
-      },
-      {
-        id: "tokyo-shop-shibuya-109",
-        section: "shopping",
-        category: "shop",
-        city: "Tokyo",
-        area: "Shibuya",
-        name: "Shibuya 109",
-        icon: "👗",
-        priceRange: "¥¥",
-        openingHours: "10:00–21:00",
-        station: "Shibuya Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/ZLn1fqF4zowGLg9U9",
-        tags: ["youth fashion", "trend-heavy", "quick browse"],
-        bestFor: "Fashion and accessories",
-        notes: "Iconic youth fashion building with Japanese trend brands."
-      },
-      {
-        id: "tokyo-shop-ginza-itoya",
-        section: "shopping",
-        category: "shop",
-        city: "Tokyo",
-        area: "Ginza",
-        name: "Itoya Ginza",
-        icon: "✏️",
-        priceRange: "¥¥",
-        openingHours: "10:00–20:00 Mon–Sat • 10:00–19:00 Sun",
-        station: "Ginza Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/WqDvKyZuB45xnk8L8",
-        tags: ["stationery", "design", "must-stop"],
-        bestFor: "Premium stationery, pens, notebooks, postcards",
-        notes: "A must if you like design, paper goods, or gifts."
-      },
-      {
-        id: "osaka-food-fukutaro",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Namba",
-        name: "Fukutaro Honten",
-        icon: "🍳",
-        priceRange: "¥¥",
-        openingHours: "Mon-Fri: 17:00–22:45 • Sat-Sun: 12:00–22:45",
-        station: "Namba / Nippombashi Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/speSa5SxuPK8jy4W8",
-        tags: ["okonomiyaki", "popular", "queue likely"],
-        bestFor: "Negiyaki and Okonomiyaki",
-        notes: "Busy main outlet serving okonomiyaki. Expect a queue but the griddle-side atmosphere is fantastic."
-      },
-      {
-        id: "kyoto-food-shofukutei-ukyo",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Ukyo",
-        name: "Shofukutei (Ukyo)",
-        icon: "🍜",
-        priceRange: "¥¥",
-        openingHours: "11:00–17:00 • Closed Wednesdays",
-        station: "Ryoanji Station (Randen Line)",
-        walk: "8 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/Zq6EYJyikZrRSDTz7",
-        tags: ["traditional", "quiet lunch", "scenic"],
-        bestFor: "Traditional lunch after temple walks",
-        notes: "Serene, old-school diner aesthetic near western Kyoto temples. Daytime only."
-      },
-      {
-        id: "kyoto-food-shofukutei-shimogyo",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Shimogyo",
-        name: "Shofukutei (Shimogyo)",
-        icon: "🥢",
-        priceRange: "¥¥",
-        openingHours: "11:00–16:00, 16:30–19:00",
-        station: "Shijo / Karasuma Station",
-        walk: "6 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/TCMBMRXHDPKbPmLQA",
-        tags: ["soba", "near hotel", "convenient"],
-        bestFor: "Soba near the hotel",
-        notes: "Excellent, relaxed soba spot extremely close to your Kyoto home base."
-      },
-      {
-        id: "kyoto-food-sanbaka-omiya",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Omiya",
-        name: "Sanbaka - Omiya",
-        icon: "🍽️",
-        priceRange: "¥¥",
-        openingHours: "10:30–20:00",
-        station: "Omiya Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/ozE346euc7N691Aw6",
-        tags: ["local favorite", "casual", "flexible hours"],
-        bestFor: "Casual central Kyoto meals",
-        notes: "Highly rated local retreat providing a flexible dining stop without afternoon closures."
-      },
-      {
-        id: "kyoto-food-enen-gion",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Gion",
-        name: "Kyoto Gyoza enen Gion Main Branch",
-        icon: "🥟",
-        priceRange: "¥¥",
-        openingHours: "11:30–14:30, 17:00–22:00",
-        station: "Gion-Shijo Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/MqfXKJRjLPBBmLQg6",
-        tags: ["gyoza", "high rating", "dinner spot"],
-        bestFor: "Gyoza and drinks",
-        notes: "Excellent value-focused dinner option amid the historic streets of Higashiyama. Reserve ahead if possible."
-      },
-      {
-        id: "tokyo-food-mukai",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Tomigaya",
-        name: "Mukai",
-        icon: "🍱",
-        priceRange: "¥¥",
-        openingHours: "10:45–14:00, 17:00–20:00",
-        station: "Yoyogi-Koen Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/gA7WF33iXWbQeoKn8",
-        tags: ["refined", "backstreets", "quality"],
-        bestFor: "High-quality local meal",
-        notes: "A sophisticated but low-key neighborhood spot offering a great escape from the main Shibuya crowds."
-      },
-      {
-        id: "tokyo-food-tenkazushi",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Shibuya",
-        name: "Tenkazushi Shibuya Dogenzaka",
-        icon: "🍣",
-        priceRange: "¥",
-        openingHours: "11:00–21:30",
-        station: "Shibuya Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/UNzsp8L9akScmyqXA",
-        tags: ["kaitenzushi", "budget", "fast turnover"],
-        bestFor: "Conveyor belt sushi",
-        notes: "Legendary, fast-paced sushi joint. High value and extremely popular—expect a fast-moving queue."
-      },
-      {
-        id: "kyoto-food-odai-sushi",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Arashiyama / Ukyo",
-        name: "Odai Sushi",
-        icon: "🍣",
-        priceRange: "¥¥",
-        openingHours: "Tue-Sun: 11:00–15:00",
-        station: "Saga-Arashiyama Station",
-        walk: "10 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/ykbNt7EQzZbsEz5f8",
-        tags: ["lunch only", "local sushi", "quiet"],
-        bestFor: "Sushi lunch after bamboo grove",
-        notes: "Great local spot in Ukyo Ward to escape the main Arashiyama tourist crowds."
-      },
-      {
-        id: "tokyo-food-kanda-yakiniku",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Kanda",
-        name: "Yakiniku Kanda Seinikuten",
-        icon: "🥩",
-        priceRange: "¥¥",
-        openingHours: "11:00–23:00 (Hours vary)",
-        station: "Kanda Station",
-        walk: "1 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/woNi7ifF1Bz2sPpQA",
-        tags: ["yakiniku", "near hotel", "meat-focused"],
-        bestFor: "Casual yakiniku near Akihabara",
-        notes: "Easy train hop from your Akihabara base for a fulfilling meat dinner."
-      },
-      {
-        id: "tokyo-food-ginza-duck-soba",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Ginza",
-        name: "Ginza Duck Soba Kyudaime Keisuke",
-        icon: "🍜",
-        priceRange: "¥¥",
-        openingHours: "11:00–22:00",
-        station: "Higashi-Ginza Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/iD4G9VK3tZ1gWbNs5",
-        tags: ["duck ramen", "rich broth", "ginza stroll"],
-        bestFor: "Duck ramen or tsukemen",
-        notes: "A fantastic low-key alternative to standard pork ramen, fitting perfectly into a Sunday Ginza walk."
-      },
-      {
-        id: "tokyo-food-tachi-sushi-kichijoji",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Kichijoji",
-        name: "Tachi Sushi Yokocho Kichijoji",
-        icon: "🍣",
-        priceRange: "¥¥",
-        openingHours: "11:30–22:30",
-        station: "Kichijoji Station",
-        walk: "1 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/Hw658pNHF76cQBdPA",
-        tags: ["standing sushi", "casual", "fast"],
-        bestFor: "Quick, quality nigiri",
-        notes: "Perfect, budget-friendly standing sushi spot to hit before exploring the indie alleys of Kichijoji."
-      },
-      {
-        id: "tokyo-food-tachi-sushi-shinjuku",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Shinjuku",
-        name: "Tachi Sushi Yokocho Shinjuku West Gate",
-        icon: "🍣",
-        priceRange: "¥¥",
-        openingHours: "11:30–22:30",
-        station: "Shinjuku Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/atj3MNFscFeKKa488",
-        tags: ["standing sushi", "value", "shinjuku night"],
-        bestFor: "Casual standing sushi",
-        notes: "An excellent value sushi spot right by the Shinjuku West exit; great before heading up to the Metro Gov Building."
-      },
-      {
-        id: "tokyo-food-torikizoku-kabukicho",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Shinjuku",
-        name: "Torikizoku Shinjuku Kabukicho",
-        icon: "🍢",
-        priceRange: "¥",
-        openingHours: "15:00–04:00",
-        station: "Shinjuku Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/9PKT1ujct6qcE9uB7",
-        tags: ["yakitori", "budget", "late night"],
-        bestFor: "Cheap yakitori and drinks",
-        notes: "Famous chain offering everything for a flat low price. A fun, loud vibe in the heart of Kabukicho."
-      },
-      {
-        id: "kyoto-food-torikizoku-kiyamachi",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Kiyamachi / Nakagyo",
-        name: "Torikizoku Kiyamachi Dori",
-        icon: "🍢",
-        priceRange: "¥",
-        openingHours: "17:00–05:00",
-        station: "Kyoto-Kawaramachi Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/JSuo4JsjZY7Zuyoy9",
-        tags: ["yakitori", "budget", "riverside area"],
-        bestFor: "Flat-rate yakitori plates",
-        notes: "A fantastic wallet-saver right near the Kamo River. Extremely popular with locals and students."
-      },
-      {
-        id: "kyoto-food-kirameki-aozora",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Shijo Muromachi",
-        name: "Kirameki no Aozora",
-        icon: "🍜",
-        priceRange: "¥¥",
-        openingHours: "11:00–00:30",
-        station: "Shijo Station",
-        walk: "2 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/wWhKLTiHQUfvrqLWA",
-        tags: ["ramen", "late night", "near hotel"],
-        bestFor: "Chicken paitan ramen",
-        notes: "Highly rated ramen literally steps away from your Kiori Exec hotel. Perfect late-night safety net."
-      },
-      {
-        id: "tokyo-food-tsujihan-midtown",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Roppongi",
-        name: "Tsujihan Tokyo Midtown",
-        icon: "🐟",
-        priceRange: "¥¥",
-        openingHours: "11:00–20:30",
-        station: "Roppongi Station",
-        walk: "Inside Midtown",
-        googleMapsUrl: "https://maps.app.goo.gl/kPBjiDrEDHWDpUFx9",
-        tags: ["kaisendon", "seafood bowl", "premium feel"],
-        bestFor: "Sashimi mountain bowl",
-        notes: "Enjoy the legendary Tsujihan seafood bowl without the massive Nihonbashi queue. Easy add for Day 12."
-      },
-      {
-        id: "tokyo-food-tsujihan-kagurazaka",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Kagurazaka",
-        name: "Tsujihan Kagurazaka",
-        icon: "🐟",
-        priceRange: "¥¥",
-        openingHours: "11:00–21:00",
-        station: "Iidabashi Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/CWUb36XnKVgdGS6VA",
-        tags: ["kaisendon", "seafood bowl", "historic street"],
-        bestFor: "Sashimi mountain bowl",
-        notes: "Perfectly slots into your Day 9 Kagurazaka evening stroll. Shorter wait times than the main branch."
-      },
-      {
-        id: "tokyo-food-sushi-dai-honkan",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Tsukiji",
-        name: "Tsukiji Sushi Dai Honkan",
-        icon: "🍣",
-        priceRange: "¥¥¥",
-        openingHours: "10:30–21:30",
-        station: "Tsukiji Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/JtEhrkjhCEPdHdrB8",
-        tags: ["high quality", "tsukiji outer", "omakase"],
-        bestFor: "Premium sushi sets",
-        notes: "Exceptional quality in the Tsukiji Outer Market area. (Note: different from the Toyosu market Sushi Dai)."
-      },
-      {
-        id: "kyoto-food-shunsai-imari",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Nakagyo",
-        name: "Shunsai Imari",
-        icon: "🍱",
-        priceRange: "¥¥",
-        openingHours: "07:30–11:00, 17:30–23:00 • Closed Tue/Wed",
-        station: "Karasuma Oike Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/QRyA77s9sHxd4wEp7",
-        tags: ["obanzai", "traditional", "breakfast"],
-        bestFor: "Kyoto-style breakfast (needs reservation)",
-        notes: "Small, relaxed eatery serving traditional Kyoto home-style dishes."
-      },
-      {
-        id: "osaka-food-red-rock",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Americamura",
-        name: "Red Rock Amemura",
-        icon: "🥩",
-        priceRange: "¥¥",
-        openingHours: "11:30–15:00, 17:00–21:30",
-        station: "Yotsubashi / Shinsaibashi Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/7TgxpxS4eJ7euCZ38",
-        tags: ["meat bowls", "casual", "fast"],
-        bestFor: "Roast beef and steak bowls",
-        notes: "Extremely popular spot in Amemura for towering meat bowls. Expect a fast-moving queue."
-      },
-      {
-        id: "kobe-food-mouriya",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka", // Grouped under Osaka base for filtering, but noted as Kobe
-        area: "Kobe",
-        name: "Mouriya Honten",
-        icon: "🥩",
-        priceRange: "¥¥¥¥",
-        openingHours: "11:00–21:00",
-        station: "Sannomiya Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/sT7suZi4aLG4Ezne6",
-        tags: ["kobe beef", "teppanyaki", "premium"],
-        bestFor: "A5 Kobe beef teppanyaki",
-        notes: "Legendary, historic Kobe beef restaurant. Reservations are highly recommended."
-      },
-      {
-        id: "tokyo-food-kagari-ginza",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Ginza",
-        name: "Ginza Kagari - Soba",
-        icon: "🍜",
-        priceRange: "¥¥",
-        openingHours: "11:00–22:00",
-        station: "Ginza Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/VnigZEh1mf7f7Aqs9",
-        tags: ["ramen", "tori paitan", "popular"],
-        bestFor: "Creamy chicken paitan ramen",
-        notes: "Renowned ramen shop serving a rich, potage-like chicken broth. Long queues are standard."
-      },
-      {
-        id: "tokyo-food-kagari-roppongi",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Roppongi",
-        name: "Ginza Kagari Roppongi Hills",
-        icon: "🍜",
-        priceRange: "¥¥",
-        openingHours: "11:00–22:00",
-        station: "Roppongi Station",
-        walk: "2 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/osYZa8tpnyvDeQpn6",
-        tags: ["ramen", "tori paitan", "convenient"],
-        bestFor: "Creamy chicken paitan ramen",
-        notes: "An excellent alternative to the Ginza branch, located indoors at Metro Hat."
-      },
-      {
-        id: "kyoto-food-makino-teramachi-north",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Teramachi",
-        name: "Tendon Makino Kyoto Teramachi North",
-        icon: "🍤",
-        priceRange: "¥¥",
-        openingHours: "11:00–21:00",
-        station: "Kyoto Shiyakusho-mae Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/UQPjxcwpbwbe9kRa7",
-        tags: ["tempura", "tendon", "value"],
-        bestFor: "Massive tempura rice bowls",
-        notes: "Hearty, highly photogenic tempura bowls cooked fresh. The sesame oil scent is strong."
-      },
-      {
-        id: "kyoto-food-makino-teramachi",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Teramachi",
-        name: "Tendon Makino Kyoto Teramachi",
-        icon: "🍤",
-        priceRange: "¥¥",
-        openingHours: "11:00–20:30",
-        station: "Kyoto-Kawaramachi Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/tX9cnCNQYZUjhfS36",
-        tags: ["tempura", "tendon", "value"],
-        bestFor: "Massive tempura rice bowls",
-        notes: "The main branch in the shopping arcade. Check both locations to find the shorter queue."
-      },
-      {
-        id: "tokyo-food-kouragumi-tsukiji",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Tsukiji",
-        name: "Kouragumi Tsukiji",
-        icon: "🦀",
-        priceRange: "¥¥",
-        openingHours: "08:00–15:00",
-        station: "Tsukiji Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/crEDh6CG6VLrVHq57",
-        tags: ["seafood", "crab", "market food"],
-        bestFor: "Grilled crab legs and scallops",
-        notes: "Excellent street-side stall in the outer market. Closes by 3:00 PM."
-      },
-      {
-        id: "tokyo-food-kouragumi-tsukiji-2",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Tsukiji",
-        name: "Kouragumi Tsukiji 2-goten",
-        icon: "🦀",
-        priceRange: "¥¥",
-        openingHours: "08:00–15:00",
-        station: "Tsukiji Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/v1KQ3S9xY9nummsHA",
-        tags: ["seafood", "crab", "market food"],
-        bestFor: "Grilled crab legs and scallops",
-        notes: "The second outpost of the popular crab vendor. Great backup if the main stall is packed."
-      },
-      {
-        id: "osaka-food-sushikin-umeda",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Umeda",
-        name: "Umeda Sakaba Sushi-Kin",
-        icon: "🍣",
-        priceRange: "¥¥",
-        openingHours: "11:00–22:00",
-        station: "Umeda Station",
-        walk: "Underground access",
-        googleMapsUrl: "https://maps.app.goo.gl/DFdraDqaxgD8VQM58",
-        tags: ["izakaya", "sushi", "underground"],
-        bestFor: "Casual sushi and drinks",
-        notes: "Bustling, local underground tavern atmosphere located in the Whity Umeda labyrinth."
-      },
-      {
-        id: "tokyo-food-hamasushi-akihabara-1",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Akihabara",
-        name: "Hamasushi Akihabara (BiTO AKIBA)",
-        icon: "🍣",
-        priceRange: "¥",
-        openingHours: "11:00–23:00",
-        station: "Akihabara Station",
-        walk: "1 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/FA5oVK1yJTdVBKBb8",
-        tags: ["kaitenzushi", "budget", "late night"],
-        bestFor: "Conveyor belt sushi",
-        notes: "Extremely budget-friendly and tech-forward. A perfect late-night safety net near your hotel."
-      },
-      {
-        id: "tokyo-food-hamasushi-akihabara-2",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Akihabara",
-        name: "Hamasushi Akihabara Center Place",
-        icon: "🍣",
-        priceRange: "¥",
-        openingHours: "11:00–23:00",
-        station: "Akihabara Station",
-        walk: "2 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/km6WfMok5ih7tRpD6",
-        tags: ["kaitenzushi", "budget", "late night"],
-        bestFor: "Conveyor belt sushi",
-        notes: "Second branch near your Tokyo hotel. Check both for the shortest queue."
-      },
-      {
-        id: "tokyo-food-hamasushi-takadanobaba",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Takadanobaba",
-        name: "Hama Sushi Takadanobaba",
-        icon: "🍣",
-        priceRange: "¥",
-        openingHours: "10:00–23:00",
-        station: "Takadanobaba Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/c7bTZ6X4ypt8sw9dA",
-        tags: ["kaitenzushi", "budget", "student area"],
-        bestFor: "Conveyor belt sushi",
-        notes: "Same reliable budget sushi in a lively student district. Keep as a backup if exploring north of Shinjuku."
-      },
-      {
-        id: "osaka-food-ramen-tsuji",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Chuo / Tanimachi",
-        name: "Ramen Tsuji",
-        icon: "🍜",
-        priceRange: "¥¥",
-        openingHours: "11:30–14:30, 17:30–21:15 • Closed Tuesdays",
-        station: "Tanimachi 4-chome Station",
-        walk: "2 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/UfzHVDhMGC6Zmx1h9",
-        tags: ["espuma ramen", "chicken broth", "popular"],
-        bestFor: "Foamy chicken and pork ramen",
-        notes: "Compact, no-frills shop famous for its creamy, foamy broth."
-      },
-      {
-        id: "osaka-food-nanairo",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Umeda",
-        name: "Nanairo (Grand Green Osaka)",
-        icon: "🐟",
-        priceRange: "¥¥",
-        openingHours: "11:00–23:00",
-        station: "Osaka / Umeda Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/RNGNuM5UNwHjVvC27",
-        tags: ["robatayaki", "seafood", "modern"],
-        bestFor: "Charcoal grilled seafood and yakitori",
-        notes: "Lively robatayaki izakaya located in the modern Umekita area."
-      },
-      {
-        id: "osaka-food-hishimitsu",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Kitahama",
-        name: "Hishimitsu Soy Sauce (Kitahama)",
-        icon: "🍱",
-        priceRange: "¥¥",
-        openingHours: "10:30–16:00",
-        station: "Kitahama Station",
-        walk: "1 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/ei94RfjGP4YWFNYZ8",
-        tags: ["lunch only", "ayce rice", "traditional sets"],
-        bestFor: "Japanese set meals (AYCE Rice)",
-        notes: "Specialty soy sauce set meals. **Note: Includes All-You-Can-Eat (AYCE) rice.** Closes by 4 PM."
-      },
-      {
-        id: "osaka-food-gyujiro-umeda",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Umeda / Sonezaki",
-        name: "Wagyu Yakiniku Gyujiro",
-        icon: "🥩",
-        priceRange: "¥¥¥",
-        openingHours: "Mon-Fri: 15:30–03:00 • Sat-Sun: 12:00–03:00",
-        station: "Higashi-Umeda Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/Zm7cubE8Hwhx8BPYA",
-        tags: ["yakiniku", "wagyu", "late night"],
-        bestFor: "A4/A5 Wagyu beef slices",
-        notes: "High-quality wagyu barbecue that stays open deep into the night."
-      },
-      {
-        id: "osaka-food-happy-pancake",
-        section: "food",
-        category: "cafe",
-        city: "Osaka",
-        area: "Shinsaibashi",
-        name: "A Happy Pancake Shinsaibashi",
-        icon: "🥞",
-        priceRange: "¥¥",
-        openingHours: "10:00–20:00 (Opens 11:00 on weekdays)",
-        station: "Shinsaibashi Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/EXqbpvSpiHoK4EUD7",
-        tags: ["souffle pancakes", "dessert", "popular"],
-        bestFor: "Fluffy Japanese soufflé pancakes",
-        notes: "Expect a wait. Put your name on the clipboard as soon as you arrive."
-      },
-      {
-        id: "kyoto-food-katsugyu-yodobashi",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Kyoto Station",
-        name: "Kyoto Katsugyu (Yodobashi)",
-        icon: "🥩",
-        priceRange: "¥¥",
-        openingHours: "11:00–23:00",
-        station: "Kyoto Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/Xv3c3YvmhYwEvXkC7",
-        tags: ["gyukatsu", "chain", "convenient"],
-        bestFor: "Breaded beef cutlet sets",
-        notes: "Super convenient location right across from Kyoto Station."
-      },
-      {
-        id: "kyoto-food-katsugyu-pontocho",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Pontocho",
-        name: "Kyoto Katsugyu (Pontocho Honten)",
-        icon: "🥩",
-        priceRange: "¥¥",
-        openingHours: "11:00–22:30",
-        station: "Kyoto-Kawaramachi Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/sAnFmPDcP72Z6WNu7",
-        tags: ["gyukatsu", "honten", "alleyway"],
-        bestFor: "Breaded beef cutlet sets",
-        notes: "The main branch located in the atmospheric Pontocho alley."
-      },
-      {
-        id: "kyoto-food-katsugyu-kawaramachi",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Shijo Kawaramachi",
-        name: "Kyoto Katsugyu (Shijo Kawaramachi)",
-        icon: "🥩",
-        priceRange: "¥¥",
-        openingHours: "10:30–23:00",
-        station: "Kyoto-Kawaramachi Station",
-        walk: "1 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/kFSEn58RMnWFhUWG7",
-        tags: ["gyukatsu", "chain", "late hours"],
-        bestFor: "Breaded beef cutlet sets",
-        notes: "Great backup branch if Pontocho is too busy."
-      },
-      {
-        id: "kyoto-food-katsugyu-gojozaka",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Higashiyama",
-        name: "Kyoto Katsugyu (Kiyomizu Gojozaka)",
-        icon: "🥩",
-        priceRange: "¥¥",
-        openingHours: "10:00–19:00",
-        station: "Kiyomizu-Gojo Station",
-        walk: "10 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/ie1zgQSwQ1qUxaaQA",
-        tags: ["gyukatsu", "sightseeing route", "early close"],
-        bestFor: "Lunch after Kiyomizudera",
-        notes: "Perfectly positioned on the walk down from Kiyomizudera. Closes early."
-      },
-      {
-        id: "kyoto-food-katsugyu-takoyakushi",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Nakagyo",
-        name: "Kyoto Katsugyu (Kawaramachi-Takoyakushi)",
-        icon: "🥩",
-        priceRange: "¥¥",
-        openingHours: "10:00–22:30",
-        station: "Kyoto Shiyakusho-mae",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/gQuqyuN2VHZ4PYSAA",
-        tags: ["gyukatsu", "chain", "central"],
-        bestFor: "Breaded beef cutlet sets",
-        notes: "Another excellent central Kyoto backup branch."
-      },
-      {
-        id: "kyoto-food-daiki-suisan-kyoto-tower",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Kyoto Station",
-        name: "Daiki-Suisan (Kyoto Tower Sando)",
-        icon: "🍣",
-        priceRange: "¥¥",
-        openingHours: "11:00–23:00",
-        station: "Kyoto Station",
-        walk: "2 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/pnFsaQtAXGzkSMtJ7",
-        tags: ["kaitenzushi", "convenient", "value"],
-        bestFor: "Conveyor belt sushi",
-        notes: "Fast, reliable sushi right under the Kyoto Tower."
-      },
-      {
-        id: "kyoto-food-daiki-suisan-sanjo",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Sanjo",
-        name: "Daiki-Suisan (Kawaramachi Sanjo)",
-        icon: "🍣",
-        priceRange: "¥¥",
-        openingHours: "11:00–22:00",
-        station: "Sanjo / Kyoto Shiyakusho-mae",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/V691YMXbdbsxryXs9",
-        tags: ["kaitenzushi", "central", "value"],
-        bestFor: "Conveyor belt sushi",
-        notes: "Great budget sushi stop near the Kamo River and shopping arcades."
-      },
-      {
-        id: "osaka-food-tsujita-shinsaibashi",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Shinsaibashi",
-        name: "Tsujita Shinsaibashi",
-        icon: "🍜",
-        priceRange: "¥¥",
-        openingHours: "11:00–00:00 (Closes 22:00 Sat-Sun)",
-        station: "Shinsaibashi Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/S2J6eFkCeZamP9458",
-        tags: ["tsukemen", "rich broth", "shopping area"],
-        bestFor: "Rich seafood and pork dipping noodles",
-        notes: "Legendary tsukemen (dipping ramen) spot right in the shopping district."
-      },
-      {
-        id: "tokyo-food-yamaharu",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Tsukiji",
-        name: "Tsukiji Sushi Yamaharu",
-        icon: "🍣",
-        priceRange: "¥¥¥",
-        openingHours: "08:00–17:00 • Closed Sundays",
-        station: "Tsukiji Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/urzWniPQ8aabfFbj8",
-        tags: ["market sushi", "fresh", "early close"],
-        bestFor: "Premium sushi sets",
-        notes: "Excellent sit-down option in the outer market. Keep the early closing time in mind."
-      },
-      {
-        id: "tokyo-food-manten-sushi",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Marunouchi",
-        name: "Manten Sushi Marunouchi",
-        icon: "🍣",
-        priceRange: "¥¥¥",
-        openingHours: "11:00–23:00",
-        station: "Tokyo Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/RwoZKJ3az9ndY6ie7",
-        tags: ["omakase", "premium", "needs reservation"],
-        bestFor: "High-value omakase course",
-        notes: "Incredible price-to-quality ratio for omakase. **Advanced online reservations are practically mandatory.**"
-      },
-      {
-        id: "tokyo-food-kiwagiwa-ginza",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Ginza",
-        name: "Japanese Restaurant Kiwagiwa Ginza",
-        icon: "🍱",
-        priceRange: "¥¥¥",
-        openingHours: "11:30–14:30, 17:30–23:00",
-        station: "Ginza Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/iPcmER1NqXwoa99N6",
-        tags: ["traditional", "ginza stroll", "refined"],
-        bestFor: "Japanese set courses",
-        notes: "Sophisticated dining option in Ginza, perfect for a Sunday stroll or upscale final dinner."
-      },
-      {
-        id: "tokyo-food-sushizanmai-shinjuku",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Shinjuku",
-        name: "Sushizanmai Shinjuku",
-        icon: "🍣",
-        priceRange: "¥¥",
-        openingHours: "11:00–23:00",
-        station: "Shinjuku Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/2f72kQjnSGb1kSjB7",
-        tags: ["sushi", "reliable", "late night"],
-        bestFor: "Fresh sushi and tuna sets",
-        notes: "Dependable, widely trusted sushi chain right in the heart of Shinjuku."
-      },
-      {
-        id: "tokyo-food-sushizanmai-shibuya",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Shibuya",
-        name: "Sushizanmai Shibuya",
-        icon: "🍣",
-        priceRange: "¥¥",
-        openingHours: "11:00–06:00",
-        station: "Shibuya Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/RRvEt89eLbxT9B7o8",
-        tags: ["sushi", "late night", "shibuya crossing"],
-        bestFor: "Late-night sushi after Shibuya exploration",
-        notes: "Open extremely late, making it a great safety net near Shibuya Crossing."
-      },
-      {
-        id: "kyoto-food-inoichi-hanare",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Shimogyo",
-        name: "Men-ya Inoichi Hanare",
-        icon: "🍜",
-        priceRange: "¥¥",
-        openingHours: "11:00–14:30, 17:30–21:00",
-        station: "Karasuma / Kawaramachi Station",
-        walk: "6 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/ah8PaA8pqvN725Yy6",
-        tags: ["dashi ramen", "michelin bib gourmand", "popular"],
-        bestFor: "Exquisite dashi-based ramen",
-        notes: "Renowned noodle shop with delicate broth. Expect a queue during peak meal times."
-      },
-      {
-        id: "kyoto-food-inoichi",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Shimogyo",
-        name: "Men-ya Inoichi",
-        icon: "🍜",
-        priceRange: "¥¥",
-        openingHours: "11:00–14:30, 17:30–21:00",
-        station: "Karasuma / Kawaramachi Station",
-        walk: "7 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/HKom9DLN8aWpQvmMA",
-        tags: ["dashi ramen", "flagship", "popular"],
-        bestFor: "Clear dashi ramen",
-        notes: "The main branch of Inoichi. Check lines here and at Hanare for the best timing."
-      },
-      {
-        id: "kyoto-food-arashiyama-yoshimura",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Arashiyama",
-        name: "Arashiyama Yoshimura",
-        icon: "🥢",
-        priceRange: "¥¥",
-        openingHours: "11:00–16:00 (Sat-Sun until 17:00)",
-        station: "Arashiyama Station",
-        walk: "8 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/GjV7dHXHJakq4GNo7",
-        tags: ["soba", "river view", "lunch stop"],
-        bestFor: "Hand-cut soba overlooking the river",
-        notes: "Stunning daytime setting right by Togetsukyo Bridge. Closes early afternoon."
-      },
-      {
-        id: "osaka-food-new-babe-tanimachi",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Tanimachi",
-        name: "Tonkatsu New Babe Tanimachi",
-        icon: "🥩",
-        priceRange: "¥¥",
-        openingHours: "11:00–14:30, 17:00–19:30",
-        station: "Tanimachi 4-chome Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/KpFqjVwRU1sSGa4V8",
-        tags: ["tonkatsu", "low-temp fried", "near hotel"],
-        bestFor: "Incredibly tender pork cutlet sets",
-        notes: "Main branch near your Honmachi/Tanimachi base. Outstanding quality."
-      },
-      {
-        id: "osaka-food-new-babe-namba",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Namba",
-        name: "Tonkatsu New Babe Namba",
-        icon: "🥩",
-        priceRange: "¥¥",
-        openingHours: "11:00–19:30 (Fri-Sun until 21:30)",
-        station: "Namba Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/43zxdXMBAeBQigQVA",
-        tags: ["tonkatsu", "shopping district", "juicy"],
-        bestFor: "Pork cutlet sets in Namba",
-        notes: "Convenient Namba branch for your shopping days."
-      },
-      {
-        id: "osaka-food-mannen-curry",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Tanimachi",
-        name: "Mannen Curry",
-        icon: "🍛",
-        priceRange: "¥",
-        openingHours: "11:30–15:00, 17:30–23:00 • Closed Sundays",
-        station: "Tanimachi 4-chome Station",
-        walk: "2 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/dSdCtSzMZeCHRC9k9",
-        tags: ["curry", "tsukemen", "local favorite"],
-        bestFor: "Curry tsukemen and spice bowls",
-        notes: "Lively local spot serving aromatic curry and dipping noodles near Osaka Castle."
-      },
-      {
-        id: "osaka-food-harukoma",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Tenjinbashi",
-        name: "Harukoma Main Store",
-        icon: "🍣",
-        priceRange: "¥¥",
-        openingHours: "11:00–21:30 • Closed Tuesdays",
-        station: "Tenjinbashisuji 6-chome Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/RNL1JrmXUX5k8yqc6",
-        tags: ["legendary sushi", "value", "queue likely"],
-        bestFor: "Fresh, affordable nigiri",
-        notes: "Famous historic sushi spot in Osaka's longest shopping arcade. Highly popular."
-      },
-      {
-        id: "osaka-food-uoichi-shokudo",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Kizu Market",
-        name: "Uoichi Shokudo",
-        icon: "🐟",
-        priceRange: "¥¥",
-        openingHours: "06:00–11:30 • Closed Wednesdays",
-        station: "Daikokucho Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/wg4jSrJjAcR3Uda69",
-        tags: ["market breakfast", "seafood bowls", "early morning"],
-        bestFor: "Fresh sashimi breakfast",
-        notes: "Located inside Kizu Wholesale Market. Strictly an early morning / brunch spot."
-      },
-      {
-        id: "osaka-food-chibo-sennichimae",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Namba",
-        name: "CHIBO Sennichimae Main Store",
-        icon: "🥞",
-        priceRange: "¥¥",
-        openingHours: "11:00–23:00",
-        station: "Namba / Nippombashi Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/NwgYQorZcchR7Rgv6",
-        tags: ["okonomiyaki", "flagship", "lively"],
-        bestFor: "Classic Osaka okonomiyaki",
-        notes: "The iconic flagship location for Chibo okonomiyaki in Namba's lively entertainment district."
-      },
-      {
-        id: "osaka-food-chibo-dotonbori",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Dotonbori",
-        name: "CHIBO Dotonbori",
-        icon: "🥞",
-        priceRange: "¥¥",
-        openingHours: "11:00–23:00",
-        station: "Namba Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/zXXnRZyiYhCYgChi7",
-        tags: ["okonomiyaki", "canal view", "tourist friendly"],
-        bestFor: "Teppanyaki and okonomiyaki",
-        notes: "Multi-story Dotonbori branch overlooking the canal. Great energy."
-      },
-      {
-        id: "tokyo-food-sushi-azabu",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Azabudai Hills",
-        name: "Sushi Azabu",
-        icon: "🍣",
-        priceRange: "¥¥¥",
-        openingHours: "11:00–16:00, 17:30–22:00",
-        station: "Kamiyacho Station",
-        walk: "2 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/rDXdxKt62PvyGqS2A",
-        tags: ["omakase", "azabudai hills", "high end"],
-        bestFor: "Premium sushi courses",
-        notes: "High-end sushi experience situated in the modern Azabudai Hills complex."
-      },
-      {
-        id: "tokyo-food-choshimaru-subnade",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Shinjuku",
-        name: "Sushi Choshimaru Shinjuku Subnade",
-        icon: "🍣",
-        priceRange: "¥¥",
-        openingHours: "11:00–22:00",
-        station: "Shinjuku-sanchome / Shinjuku Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/PbLPGdg8hAqjKRHL7",
-        tags: ["kaitenzushi", "underground mall", "weatherproof"],
-        bestFor: "Conveyor belt sushi in Shinjuku",
-        notes: "Conveniently tucked into the Subnade underground shopping arcade, sheltered from the cold."
-      },
-      {
-        id: "tokyo-food-nemuro-hanamaru-kitte",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Marunouchi",
-        name: "Kaitenzushi Nemuro Hanamaru KITTE Marunouchi",
-        icon: "🍣",
-        priceRange: "¥¥",
-        openingHours: "11:00–22:00",
-        station: "Tokyo Station",
-        walk: "2 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/VxY1aWupLoQGiNVd6",
-        tags: ["conveyor sushi", "popular", "station-adjacent"],
-        bestFor: "Hokkaido seasonal seafood & squid",
-        notes: "Extremely popular conveyor-belt sushi from Hokkaido located right by Tokyo Station."
-      },
-      {
-        id: "tokyo-food-nemuro-hanamaru-ginza",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Ginza",
-        name: "Kaitenzushi Nemuro Hanamaru Ginza",
-        icon: "🍣",
-        priceRange: "¥¥",
-        openingHours: "11:00–22:00",
-        station: "Ginza Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/rr1C1H5ynnEsTbkG8",
-        tags: ["conveyor sushi", "ginza", "queue expected"],
-        bestFor: "Fresh sushi plates",
-        notes: "Ginza branch of the famous Hokkaido conveyor-belt sushi chain."
-      },
-      {
-        id: "osaka-food-uotoyo",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Nipponbashi",
-        name: "Uotoyo",
-        icon: "🐟",
-        priceRange: "¥¥",
-        openingHours: "09:00–16:30 • Closed Sundays",
-        station: "Nipponbashi Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/tyQ22Tt9roS2QRhSA",
-        tags: ["local market", "seafood", "daytime"],
-        bestFor: "Fresh market seafood bowls",
-        notes: "Traditional local seafood spot near Nipponbashi."
-      },
-      {
-        id: "osaka-food-niku-no-asatsu",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Umeda",
-        name: "Shabu-shabu & Sukiyaki & Sushi Restaurant :Niku-no-Asatsu Umeda Ohatsu Tenjin",
-        icon: "🥩",
-        priceRange: "¥¥¥",
-        openingHours: "17:00–00:00 • Sat-Sun 12:00–15:00, 17:00–00:00",
-        station: "Higashi-Umeda Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/3XqrUDW9yf76eEh57",
-        tags: ["sukiyaki", "shabu-shabu", "dinner"],
-        bestFor: "Wagyu shabu-shabu and sushi sets",
-        notes: "Comprehensive meat and sushi dining experience in Umeda's Ohatsu Tenjin district."
-      },
-      {
-        id: "tokyo-food-donmaru",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Nihonbashi",
-        name: "Donmaru",
-        icon: "🍚",
-        priceRange: "¥",
-        openingHours: "10:00–20:00 • Sat 10:00–20:00 • Closed Sundays",
-        station: "Suitengumae Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/E3SXTM3G9pA95cfq6",
-        tags: ["kaisendon", "budget friendly", "quick meal"],
-        bestFor: "Takeout seafood rice bowls",
-        notes: "Popular and affordable seafood bowl specialty shop."
-      },
-      {
-        id: "tokyo-food-shiogama-ko-ginza",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Ginza",
-        name: "Sushi Shiogama-ko Ginza Kiwami",
-        icon: "🍣",
-        priceRange: "¥¥¥",
-        openingHours: "11:30–14:00, 18:00–22:00 • Closed Sundays",
-        station: "Ginza Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/UUurMJm2y57UbCmH8",
-        tags: ["premium sushi", "ginza", "omakase feel"],
-        bestFor: "High-end nigiri sets",
-        notes: "Refined sushi dining experience in Ginza."
-      },
-      {
-        id: "osaka-food-susuruka",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Shinsaibashi",
-        name: "Susuruka, Susuranka.",
-        icon: "🍜",
-        priceRange: "¥¥",
-        openingHours: "11:00–14:30, 18:00–22:30 • Fri-Sun late night",
-        station: "Shinsaibashi Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/scZfGXFRXCzsbdVG7",
-        tags: ["ramen", "trendy", "late night"],
-        bestFor: "Specialty ramen bowls",
-        notes: "Trendy ramen spot in Higashishinsaibashi with extended weekend hours."
-      },
-      {
-        id: "osaka-food-gyutan-no-lemon",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Namba",
-        name: "Shinjuku Yakiniku Gyutan no Lemon Osaka Main Store",
-        icon: "🥩",
-        priceRange: "¥¥",
-        openingHours: "11:00–14:30, 17:00–21:00",
-        station: "Namba Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/bcWaghRTNPKSnhTp8",
-        tags: ["yakiniku", "beef tongue", "popular queue"],
-        bestFor: "Lemon beef tongue sets",
-        notes: "Famous specialty yakiniku restaurant known for its signature lemon beef tongue."
-      },
-      {
-        id: "osaka-food-dearbros-omurice",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Namba",
-        name: "Dearbros Omurice",
-        icon: "🍳",
-        priceRange: "¥¥",
-        openingHours: "11:00–23:00",
-        station: "Namba Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/JstnCrqkWViEpnDC6",
-        tags: ["omurice", "comfort food", "casual"],
-        bestFor: "Fluffy Japanese omurice",
-        notes: "Cozy omurice specialty restaurant in Sennichimae."
-      },
-      {
-        id: "tokyo-food-kichijoji-spot",
-        section: "food",
-        category: "cafe",
-        city: "Tokyo",
-        area: "Kichijoji",
-        name: "Kichijoji Honcho Local Cafe",
-        icon: "☕",
-        priceRange: "¥¥",
-        openingHours: "10:00–19:00",
-        station: "Kichijoji Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/BdG1ePsvRTjCcZ5R7",
-        tags: ["neighborhood", "backstreets", "café stop"],
-        bestFor: "Coffee and neighborhood strolls",
-        notes: "Charming backstreet stop in Kichijoji Honcho."
-      },
-      {
-        id: "tokyo-food-sushiebisu-hana",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Ebisu",
-        name: "Sushiebisu HANA ebisu honten",
-        icon: "🍣",
-        priceRange: "¥¥",
-        openingHours: "16:00–23:00 • Sat-Sun from 12:00",
-        station: "Ebisu Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/wpjGja38jKCMTLhd6",
-        tags: ["sushi bar", "ebisu", "evening dining"],
-        bestFor: "Creative sushi plates and drinks",
-        notes: "Popular modern sushi establishment in Ebisu."
-      },
-      {
-        id: "osaka-food-daibokujou",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Dotonbori",
-        name: "Daibokujou",
-        icon: "🥩",
-        priceRange: "¥¥",
-        openingHours: "11:00–00:00",
-        station: "Namba Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/meq4dockaPGUxdix7",
-        tags: ["yakiniku", "meat lovers", "dotonbori"],
-        bestFor: "Grilled beef sets",
-        notes: "Highly rated yakiniku and meat dining right in Dotonbori."
-      },
-      {
-        id: "tokyo-food-sen-ikebukuro",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Ikebukuro",
-        name: "Sen",
-        icon: "🥢",
-        priceRange: "¥¥",
-        openingHours: "11:00–22:00",
-        station: "Ikebukuro Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/pt4J53rS9ndJZNmj6",
-        tags: ["casual dining", "ikebukuro", "local food"],
-        bestFor: "Izakaya dishes",
-        notes: "Convenient dining spot near Ikebukuro Station."
-      },
-      {
-        id: "tokyo-food-onigiri-marutoyo",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Tsukiji",
-        name: "Onigiri Marutoyo",
-        icon: "🍙",
-        priceRange: "¥",
-        openingHours: "07:00–13:00 • Wed/Sun Closed",
-        station: "Tsukiji Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/TmNqBnGJJUE9W1Jx9",
-        tags: ["market breakfast", "onigiri", "morning stop"],
-        bestFor: "Handmade Japanese rice balls",
-        notes: "Famous breakfast onigiri shop in Tsukiji Outer Market."
-      },
-      {
-        id: "tokyo-shop-mitsukoshi-ginza-b1",
-        section: "shopping",
-        category: "shop",
-        city: "Tokyo",
-        area: "Ginza",
-        name: "Mitsukoshi Ginza (Level B1 Depachika)",
-        icon: "🎁",
-        priceRange: "¥¥¥",
-        openingHours: "10:00–20:00",
-        station: "Ginza Station",
-        walk: "1 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/JfVwH4QprbTUk5nr7",
-        tags: ["depachika", "luxury sweets", "omiyage"],
-        bestFor: "High-end pastries, bento boxes, and gift omiyage",
-        notes: "Iconic basement food hall at Mitsukoshi Ginza featuring world-class confections and delicacies."
-      },
-      {
-        id: "osaka-food-hozenji-sakata",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Dotonbori",
-        name: "Hozenji Sushi Sakata",
-        icon: "🍣",
-        priceRange: "¥¥¥",
-        openingHours: "11:30–14:00, 17:30–22:30",
-        station: "Namba Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/GvNqdcyvgiDLTEZB7",
-        tags: ["hozenji alley", "intimate sushi", "traditional"],
-        bestFor: "Chef's selection sushi in historic alley",
-        notes: "Intimate, highly rated sushi restaurant tucked near the atmospheric Hozenji Yokocho alley."
-      },
-      {
-        id: "ginza-happo-seafood-buffet",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Ginza",
-        name: "Seafood Buffet Dining Ginza Happo",
-        icon: "🦀",
-        priceRange: "¥¥¥",
-        openingHours: "11:30–22:00",
-        station: "Ginza Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/hEQKVxqbJy44DPJm7",
-        tags: ["buffet", "seafood", "diverse"],
-        bestFor: "Seafood spread",
-        notes: "Fantastic mid-range option for a diverse seafood spread in Ginza."
-      },
-      {
-        id: "kyoto-kanigin-kawaramachi",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Kawaramachi",
-        name: "Kyoto KANI-GIN Kawaramachi Store",
-        icon: "🦀",
-        priceRange: "¥¥",
-        openingHours: "Mon-Fri: 16:00–23:00, Sat-Sun: 12:00–23:00",
-        station: "Kyoto-Kawaramachi Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/S8nH8f2LQdmsppcW9",
-        tags: ["crab", "specialty", "central"],
-        bestFor: "Crab dishes",
-        notes: "Perfect for crab lovers right off Kawaramachi."
-      },
-      {
-        id: "kyoto-steak-nandaimon-nishiki",
-        section: "food",
-        category: "restaurant",
-        city: "Kyoto",
-        area: "Nishiki",
-        name: "Kyoto Steak Nandaimon Nishiki",
-        icon: "🥩",
-        priceRange: "¥¥",
-        openingHours: "11:00–17:00 • Closed Mondays",
-        station: "Karasuma Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/8wZEwNh9YYLiPh2k6",
-        tags: ["steak", "meat", "market side"],
-        bestFor: "Steak set",
-        notes: "Hearty steak option near Nishiki Market."
-      },
-      {
-        id: "tokyo-ramen-oyster-and-shell",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Tsukiji",
-        name: "Ramen Oyster And Shell",
-        icon: "🍜",
-        priceRange: "¥¥",
-        openingHours: "06:00–05:00",
-        station: "Tsukiji Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/zQu5maqfRCRKXAz96",
-        tags: ["oyster ramen", "seafood broth", "unique"],
-        bestFor: "Oyster-infused ramen",
-        notes: "Exceptional oyster-infused ramen experience near Tsukiji."
-      },
-      {
-        id: "tokyo-sushi-no-midori-ginza",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Ginza",
-        name: "Sushi no Midori",
-        icon: "🍣",
-        priceRange: "¥¥",
-        openingHours: "Mon-Fri: 11:00–14:00, 17:00–20:30, Sat-Sun: 11:00–20:30",
-        station: "Ginza Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/Twny5c9gkRqURqVk8",
-        tags: ["popular sushi", "value", "queue expected"],
-        bestFor: "Fresh sushi sets",
-        notes: "Legendary for fresh, value-packed sushi sets in Ginza."
-      },
-      {
-        id: "tokyo-sushi-no-midori-shibuya",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Shibuya",
-        name: "Sushi no Midori Shibuya",
-        icon: "🍣",
-        priceRange: "¥¥",
-        openingHours: "Mon-Fri: 11:00–15:00, 17:00–21:00, Sat-Sun: 11:00–21:00",
-        station: "Shibuya Station",
-        walk: "2 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/b7EeajULSgFqpqB16",
-        tags: ["shibuya sushi", "popular", "fresh"],
-        bestFor: "Assorted sushi platters",
-        notes: "Convenient Shibuya branch of the famous sushi spot."
-      },
-      {
-        id: "tokyo-sushi-no-midori-nihonbashi",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Nihonbashi",
-        name: "Sushi no Midori Nihonbashi",
-        icon: "🍣",
-        priceRange: "¥¥",
-        openingHours: "10:30–21:00",
-        station: "Mitsukoshimae Station",
-        walk: "2 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/RxSQY77WUManprRh9",
-        tags: ["nihonbashi", "sushi", "reliable"],
-        bestFor: "Nigiri sets",
-        notes: "Another great, accessible location in Nihonbashi."
-      },
-      {
-        id: "tokyo-sushi-kakida",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Shinjuku",
-        name: "Sushi Kakida",
-        icon: "🍣",
-        priceRange: "¥¥¥",
-        openingHours: "12:00–22:30",
-        station: "Shinjuku Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/rrwaUmihwTRpX8Dt9",
-        tags: ["omakase", "shinjuku", "high quality"],
-        bestFor: "Omakase sushi",
-        notes: "High-end sushi experience near Shinjuku Station."
-      },
-      {
-        id: "tokyo-sushi-ginza-onodera-musuko-shibuya",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Shibuya",
-        name: "Sushi Ginza Onodera Musuko Shibuya",
-        icon: "🍣",
-        priceRange: "¥¥¥",
-        openingHours: "11:00–22:30",
-        station: "Shibuya Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/zkgZ973EUFoGegEz7",
-        tags: ["onodera", "premium", "shibuya"],
-        bestFor: "Top-tier sushi",
-        notes: "Renowned Onodera quality in a more accessible Shibuya setting."
-      },
-      {
-        id: "tokyo-sushi-ginza-onodera-musuko-akasaka",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Akasaka",
-        name: "Sushi Ginza Onodera Musuko Akasaka",
-        icon: "🍣",
-        priceRange: "¥¥¥",
-        openingHours: "Mon-Thu, Sun: 11:00–15:00, 17:00–22:00, Fri-Sat: 11:00–15:00, 17:00–22:30",
-        station: "Akasaka Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/FgXs7qtoPSvFKopCA",
-        tags: ["akasaka", "omakase", "refined"],
-        bestFor: "Crafted nigiri",
-        notes: "Akasaka branch of the celebrated Onodera group."
-      },
-      {
-        id: "tokyo-tsujihan-ark-hills",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Akasaka",
-        name: "Nihonbashi Kaisen Don Tsujihan - Ark Hills Branch",
-        icon: "🍚",
-        priceRange: "¥¥",
-        openingHours: "Mon-Fri: 11:00–21:30, Sat-Sun: 11:00–20:30",
-        station: "Roppongi-itchome Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/F5uk4ZLV1u51cLqT9",
-        tags: ["kaisen don", "tsujihan", "popular bowl"],
-        bestFor: "Seafood rice bowls",
-        notes: "Convenient Ark Hills branch of the famous kaisen don specialist."
-      },
-      {
-        id: "tokyo-jambo-hanare-hongo",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Hongo",
-        name: "Jambo Hanare",
-        icon: "🥩",
-        priceRange: "¥¥¥",
-        openingHours: "17:00–23:00",
-        station: "Hongo-sanchome Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/FNZguqzmvEQBXSN17",
-        tags: ["yakiniku", "wagyu", "top rated"],
-        bestFor: "Wagyu beef cuts",
-        notes: "Exceptional yakiniku dining experience known for premium Wagyu."
-      },
-      {
-        id: "kamakura-ginza-kagari",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Kamakura",
-        name: "Ginza Kagari Kamakura Branch",
-        icon: "🍜",
-        priceRange: "¥¥",
-        openingHours: "Mon-Fri: 11:30–15:00, 17:00–20:00, Sat-Sun: 11:30–20:00",
-        station: "Kamakura Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/D7oHRzXuD5Xz78U19",
-        tags: ["chicken paitan", "ramen", "kamakura"],
-        bestFor: "Creamy chicken ramen",
-        notes: "World-class creamy chicken paitan ramen tucked into Kamakura."
-      },
-      {
-        id: "tokyo-yamataro-onigiri",
-        section: "food",
-        category: "restaurant",
-        city: "Tokyo",
-        area: "Zoshigaya",
-        name: "Yamataro Onigiri",
-        icon: "🍙",
-        priceRange: "¥",
-        openingHours: "Mon-Tue: 11:00–14:30, Wed-Sun: 11:00–14:30, 18:00–21:00",
-        station: "Zoshigaya Station",
-        walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/AS6MaB6MAbyCNY2Y8",
-        tags: ["onigiri", "rice balls", "local favorite"],
-        bestFor: "Handcrafted onigiri",
-        notes: "Specialty rice ball shop offering gourmet fillings."
-      },
-      {
-        id: "osaka-tokito-karahori",
-        section: "food",
-        category: "restaurant",
-        city: "Osaka",
-        area: "Karahori",
-        name: "Tokito",
-        icon: "🏮",
-        priceRange: "¥¥",
-        openingHours: "11:00–15:00, 18:00–23:00",
-        station: "Matsuyamachi Station",
-        walk: "4 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/xurKmpUBAY2s9DBL6",
-        tags: ["karahori", "local dining", "hidden gem"],
-        bestFor: "Izakaya fare",
-        notes: "Hidden gem in Osaka's Karahori retro district."
-      },
-      {
-        id: "osaka-kizu-wholesale-market",
-        section: "food",
-        category: "market",
-        city: "Osaka",
-        area: "Namba",
-        name: "Osaka Kizu Wholesale Market",
-        icon: "🐟",
-        priceRange: "¥¥",
-        openingHours: "06:00–13:00 • Closed Wednesdays & Sundays",
-        station: "Daikokucho Station",
-        walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/99pEADMNJ22GcFnt9",
-        tags: ["market breakfast", "seafood", "historic"],
-        bestFor: "Morning seafood breakfast",
-        notes: "Historic regional wholesale food market ideal for an early morning seafood breakfast."
-      }
-    ];
-    // === JAPAN TRIP DATA: PLACES (END) ===
+// === JAPAN TRIP DATA: TRANSIT ===
+const TRANSIT_QUICK_LINKS = [
+  { name: "Tokyo Metro Map (English)", url: "https://www.tokyometro.jp/en/subwaymap/pdf/rosen_en_1702.pdf", color: "#0ea5e9" },
+  { name: "Osaka Metro Map (English)", url: "https://subway.osakametro.co.jp/img/osakametro_routemap_en.pdf", color: "#db2777" }
+];
 
     // === JAPAN TRIP DATA: HOTELS (START) ===
 const HOTELS = [
@@ -4966,83 +2441,68 @@ const HOTELS = [
     ];
     // === JAPAN TRIP DATA: PREP (END) ===
 
-   // === JAPAN TRIP DATA: PHRASEBOOK (START) ===
-    const PHRASES = [
+   // === JAPAN TRIP DATA: PHRASEBOOK & FLASHCARDS (START) ===
+    const HOTEL_TAXI_DATA = [
       {
-        category: "Greetings & Politeness",
-        english: "Excuse me / I'm sorry / Thank you",
-        romaji: "Sumimasen",
-        japanese: "すみません",
-        nuance: "The most versatile word in Japanese. Used to get a waiter's attention, apologize for bumping into someone, or express gratitude when someone goes out of their way for you."
+        city: "Osaka",
+        nameEn: "The Basement Hotel Honmachi",
+        nameJp: "THE BASEMENT HOTEL 大阪本町",
+        addressJp: "〒550-0005 大阪府大阪市西区西本町1丁目11-8",
+        phone: "06-6586-6765",
+        dates: "Nov 25 - Nov 28"
       },
       {
-        category: "Social & Casual Nuances",
-        english: "Good work today / Cheers",
-        romaji: "Otsukaresama desu",
-        japanese: "お疲れ様です",
-        nuance: "A highly versatile social greeting. Used constantly between colleagues or friends to acknowledge effort. It functions as a professional greeting, a goodbye, or a simple 'cheers'."
+        city: "Kyoto",
+        nameEn: "KIORI Exec Muromachi Hotel",
+        nameJp: "KIORI Exec 室町",
+        addressJp: "〒600-8434 京都府京都市下京区高辻町577",
+        phone: "075-744-6149",
+        dates: "Nov 28 - Dec 2"
       },
       {
-        category: "Social & Casual Nuances",
-        english: "Seriously? / Really?",
-        romaji: "Maji de?",
-        japanese: "マジで？",
-        nuance: "Strictly casual and slang-influenced. Use this only with friends or in relaxed social settings, never with service staff or professionals."
-      },
-      {
-        category: "Dining & Ordering",
-        english: "One of this, please.",
-        romaji: "Kore o hitotsu onegaishimasu.",
-        japanese: "これを一つお願いします。",
-        nuance: "Very polite. Point at the menu while saying this. To order two, replace 'hitotsu' with 'futatsu' (二つ)."
-      },
-      {
-        category: "Dining & Ordering",
-        english: "Check, please.",
-        romaji: "Okaikei onegaishimasu.",
-        japanese: "お会計お願いします。",
-        nuance: "Standard polite phrase for asking for the bill. You can also simply cross your index fingers into an 'X' to non-verbally signal for the check."
-      },
-      {
-        category: "Shopping & Stores",
-        english: "Do you have this in a larger size?",
-        romaji: "Kore no ookii saizu wa arimasu ka?",
-        japanese: "これの大きいサイズはありますか？",
-        nuance: "Standard polite. Useful when browsing the vintage shops in Shimokitazawa or boutiques in Harajuku."
-      },
-      {
-        category: "Photography & Portraits",
-        english: "Is it okay to take a photo?",
-        romaji: "Shashin o totte mo ii desu ka?",
-        japanese: "写真を撮ってもいいですか？",
-        nuance: "Crucial for street photography or inside smaller indie cafes where photography rules can be strict."
-      },
-      {
-        category: "Photography & Portraits",
-        english: "Could you stand over there?",
-        romaji: "Asoko ni tatte moraemasu ka?",
-        japanese: "あそこに立ってもらえますか？",
-        nuance: "Polite. Perfect for directing a subject into specific, dramatic lighting—like the shadows of Kagurazaka alleys or high-key spots in the gardens."
-      },
-      {
-        category: "Photography & Portraits",
-        english: "Just one more shot, please.",
-        romaji: "Mou ichimai onegaishimasu.",
-        japanese: "もう一枚お願いします。",
-        nuance: "Useful when you need to capture a backup frame or adjust your setup slightly."
+        city: "Tokyo",
+        nameEn: "N+ Hotel No.2 Akihabara",
+        nameJp: "N+HOTEL 秋葉原2号館 (東神田)",
+        addressJp: "〒101-0031 東京都千代田区東神田2丁目4-2",
+        phone: "03-6284-2505", 
+        dates: "Dec 2 - Dec 7"
       }
     ];
-    // === JAPAN TRIP DATA: PHRASEBOOK (END) ===
+
+    const FLASHCARD_PHRASES = [
+      { category: "Konbini", english: "No bag needed.", romaji: "Fukuro wa irimasen", japanese: "袋は不要です", icon: "🛍️" },
+      { category: "Konbini", english: "Please heat this up.", romaji: "Atatamete kudasai", japanese: "温めてください", icon: "🍱" },
+      { category: "Dining", english: "Separate checks, please.", romaji: "Betsu-betsu de onegaishimasu", japanese: "別々でお願いします", icon: "💴" },
+      { category: "Dining", english: "Does this contain pork/meat?", romaji: "Kore wa butaniku/niku ga haitte imasu ka?", japanese: "これには豚肉/肉が入っていますか？", icon: "🥩" },
+      { category: "Payment", english: "Paying with IC Card (Suica/Pasmo).", romaji: "IC kaado de onegaishimasu", japanese: "ICカードでお願いします", icon: "💳" }
+    ];
+    // === JAPAN TRIP DATA: PHRASEBOOK & FLASHCARDS (END) ===
+
+    // === EXPENSE TRACKER DATA & LOGIC ===
+    let expenses = JSON.parse(localStorage.getItem('japan_expenses')) || [];
+    let exchangeRate = parseFloat(localStorage.getItem('jpy_rate')) || 105.0; // Default JPY to IDR (e.g. 1 JPY ≈ 105 IDR)
+
+    function saveExpenses() {
+      localStorage.setItem('japan_expenses', JSON.stringify(expenses));
+    }
+
+    function addExpense(amount, category, note, date = new Date().toISOString().split('T')[0]) {
+      if (!amount || amount <= 0) return;
+      expenses.push({ id: Date.now(), amount: Number(amount), category, note: note || category, date });
+      saveExpenses();
+      renderApp(); // Triggers your app's built-in re-render instantly!
+    }
+
+    function deleteExpense(id) {
+      expenses = expenses.filter(item => item.id !== id);
+      saveExpenses();
+      renderApp();
+    }
 
    const STATE = {
       tab: "schedule",
       cityFilter: "All",
       openDay: 1,
-      foodCity: "Osaka",
-      foodCategory: "cafe",
-      foodArea: "All", // Tracks the chosen area filter
-      shoppingCity: "Osaka",
-      shoppingArea: "All", // Tracks the chosen area filter
       actionsOpen: true,
       openPhraseCategory: "Greetings & Politeness", 
       doneItems: loadDoneItems()
@@ -5095,6 +2555,7 @@ const HOTELS = [
     const appActions = {
       setTab(tab) {
         STATE.tab = tab;
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // Elegant scroll to top on tab switch
         renderApp();
       },
       setCityFilter(city) {
@@ -5116,35 +2577,11 @@ const HOTELS = [
         STATE.cityFilter = target ? target.city : "All";
         renderApp();
       },
-      setFoodCity(city) {
-        STATE.foodCity = city;
-        STATE.foodArea = "All"; // Resets area filter to prevent ghost matches
-        renderApp();
-      },
-      setFoodCategory(category) {
-        STATE.foodCategory = category;
-        STATE.foodArea = "All"; // Resets area filter to prevent ghost matches
-        renderApp();
-      },
-      setFoodArea(area) {
-        STATE.foodArea = area;
-        renderApp();
-      },
-      setShoppingCity(city) {
-        STATE.shoppingCity = city;
-        STATE.shoppingArea = "All"; // Resets area filter to prevent ghost matches
-        renderApp();
-      },
-      setShoppingArea(area) {
-        STATE.shoppingArea = area;
-        renderApp();
-      },
       toggleActions() {
         STATE.actionsOpen = !STATE.actionsOpen;
         renderApp();
       },
       togglePhraseCategory(category) {
-        // Toggles the clicked category open or closed
         STATE.openPhraseCategory = STATE.openPhraseCategory === category ? null : category;
         renderApp();
       },
@@ -5203,11 +2640,11 @@ const HOTELS = [
       const tabs = [
         { id: "schedule", label: "Schedule" },
         { id: "cities", label: "Cities" },
-        { id: "food", label: "Food & Cafés" },
         { id: "shopping", label: "Shopping" },
         { id: "phrasebook", label: "Phrasebook" },
         { id: "prep", label: "Prep" },
-        { id: "tips", label: "Tips" }
+        { id: "tips", label: "Tips" },
+        { id: "expense", label: "Expenses" }
       ];
 
       return `
@@ -5429,25 +2866,6 @@ const HOTELS = [
       `;
     }
 
-    function getFoodPlaces() {
-      return PLACES.filter(
-        (place) =>
-          place.section === "food" &&
-          place.city === STATE.foodCity &&
-          place.category === STATE.foodCategory &&
-          (STATE.foodArea === "All" || place.area === STATE.foodArea)
-      );
-    }
-
-    function getShoppingPlaces() {
-      return PLACES.filter(
-        (place) => 
-        place.section === "shopping" && 
-        place.city === STATE.shoppingCity && (STATE.shoppingArea === "All" || 
-        place.area === STATE.shoppingArea)
-      );
-    }
-
     function renderPlaceCard(place, city) {
       const cfg = getCityCfg(city);
 
@@ -5514,233 +2932,198 @@ const HOTELS = [
       `;
     }
 
-    function renderFoodTab() {
-      const cards = getFoodPlaces();
+function renderShoppingTab() {
+  // Fallback to prevent crashing if SHOPPING_LIST isn't pasted yet
+  if (typeof SHOPPING_LIST === 'undefined') return '';
+  
+  const categories = [...new Set(SHOPPING_LIST.map(item => item.category))];
 
-      // Extract all unique areas for the selected city and category combination
-      const uniqueAreas = [...new Set(
-        PLACES.filter(place => place.section === "food" && place.city === STATE.foodCity && place.category === STATE.foodCategory)
-              .map(place => place.area)
-      )].sort();
+  return `
+    <section class="section-block fade-in">
+      ${renderSectionTitle({
+        eyebrow: "Target Acquired",
+        title: "Shopping & Souvenirs",
+        subtitle: "Your specific buys. Show clerks exactly what you're looking for.",
+        color: "#9333EA"
+      })}
 
-      // Formulate dropdown option array strings
-      const areaOptions = [`<option value="All" ${STATE.foodArea === "All" ? "selected" : ""}>All Areas</option>`];
-      uniqueAreas.forEach(area => {
-        areaOptions.push(`<option value="${escapeHtml(area)}" ${STATE.foodArea === area ? "selected" : ""}>${escapeHtml(area)}</option>`);
-      });
-
-      return `
-        <section class="section-block fade-in">
-          ${renderSectionTitle({
-            eyebrow: "Curated Eats",
-            title: "Food & Cafés",
-            subtitle: "Specialty coffee roasters, retro kissatens, and local dining spots sorted by city.",
-            color: "#2563EB"
-          })}
-
-          <div class="filter-grid">
-            ${["Osaka", "Kyoto", "Tokyo"]
-              .map((city) => {
-                const cfg = getCityCfg(city);
-                const active = STATE.foodCity === city;
-                return `
-                  <button
-                    class="grid-pill pressable"
-                    style="background:${active ? cfg.color : "#EDE8E0"}; color:${active ? "#fff" : "#6B5748"};"
-                    onclick="appActions.setFoodCity('${city}')"
-                  >
-                    ${escapeHtml(city)}
-                  </button>
-                `;
-              })
-              .join("")}
+      ${categories.map(category => {
+        const items = SHOPPING_LIST.filter(i => i.category === category);
+        return `
+          <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin: 20px 0 10px 4px;">
+            ${escapeHtml(category)}
           </div>
-
-          <div class="filter-grid two">
-            ${[
-              { id: "cafe", label: "Cafés" },
-              { id: "restaurant", label: "Restaurants" }
-            ]
-              .map((segment) => {
-                const cfg = getCityCfg(STATE.foodCity);
-                const active = STATE.foodCategory === segment.id;
-                return `
-                  <button
-                    class="segment-pill pressable"
-                    style="border-color:${active ? cfg.color : "#EDE8E0"}; background:${active ? cfg.bg : "#fff"}; color:${active ? cfg.color : "#8A7566"};"
-                    onclick="appActions.setFoodCategory('${segment.id}')"
-                  >
-                    ${escapeHtml(segment.label)}
-                  </button>
-                `;
-              })
-              .join("")}
-          </div>
-
-          <!-- Dynamic Neighborhood Filter Dropdown -->
-          <div style="position: relative; margin-bottom: 14px;">
-            <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 14px;">📍</span>
-            <select 
-              onchange="appActions.setFoodArea(this.value)"
-              style="width: 100%; appearance: none; -webkit-appearance: none; padding: 11px 36px 11px 38px; border-radius: var(--radius-md); border: 1.5px solid ${getCityCfg(STATE.foodCity).border}; font-family: inherit; font-size: 13px; font-weight: 700; color: ${getCityCfg(STATE.foodCity).deep}; background: #fff; cursor: pointer; outline: none; box-shadow: 0 1px 3px rgba(0,0,0,0.02);"
-            >
-              ${areaOptions.join("")}
-            </select>
-            <span style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: ${getCityCfg(STATE.foodCity).color}; font-size: 14px; font-weight: bold;">⌄</span>
-          </div>
-
-          ${
-            cards.length
-              ? cards.map((place) => renderPlaceCard(place, STATE.foodCity)).join("")
-              : `<div class="empty-state">No places found matching the filters. Try changing your selection!</div>`
-          }
-        </section>
-      `;
-    }
-
-    function renderShoppingTab() {
-      const places = getShoppingPlaces();
-
-      // 1. Extract all unique areas for the selected city in the Shopping section
-      const uniqueAreas = [...new Set(
-        PLACES.filter(place => place.section === "shopping" && place.city === STATE.shoppingCity)
-              .map(place => place.area)
-      )].sort();
-
-      // 2. Formulate dropdown option array strings
-      const areaOptions = [`<option value="All" ${STATE.shoppingArea === "All" ? "selected" : ""}>All Areas</option>`];
-      uniqueAreas.forEach(area => {
-        areaOptions.push(`<option value="${escapeHtml(area)}" ${STATE.shoppingArea === area ? "selected" : ""}>${escapeHtml(area)}</option>`);
-      });
-
-      return `
-        <section class="section-block fade-in">
-          ${renderSectionTitle({
-            eyebrow: "By city",
-            title: "Shopping",
-            subtitle: "Opening hours, nearest station and walking distance, plus recommended items for each stop.",
-            color: "#7C3AED"
-          })}
-
-          <div class="filter-grid">
-            ${["Osaka", "Kyoto", "Tokyo"]
-              .map((city) => {
-                const cfg = getCityCfg(city);
-                const active = STATE.shoppingCity === city;
-                return `
-                  <button
-                    class="grid-pill pressable"
-                    style="background:${active ? cfg.color : "#EDE8E0"}; color:${active ? "#fff" : "#6B5748"};"
-                    onclick="appActions.setShoppingCity('${city}')"
-                  >
-                    ${escapeHtml(city)}
-                  </button>
-                `;
-              })
-              .join("")}
-          </div>
-
-          <!-- Dynamic Neighborhood Filter Dropdown -->
-          <div style="position: relative; margin-bottom: 14px;">
-            <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 14px;">📍</span>
-            <select 
-              onchange="appActions.setShoppingArea(this.value)"
-              style="width: 100%; appearance: none; -webkit-appearance: none; padding: 11px 36px 11px 38px; border-radius: var(--radius-md); border: 1.5px solid ${getCityCfg(STATE.shoppingCity).border}; font-family: inherit; font-size: 13px; font-weight: 700; color: ${getCityCfg(STATE.shoppingCity).deep}; background: #fff; cursor: pointer; outline: none; box-shadow: 0 1px 3px rgba(0,0,0,0.02);"
-            >
-              ${areaOptions.join("")}
-            </select>
-            <span style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: ${getCityCfg(STATE.shoppingCity).color}; font-size: 14px; font-weight: bold;">⌄</span>
-          </div>
-
-          ${
-            places.length 
-            ? places.map((place) => {
-              const cfg = getCityCfg(STATE.shoppingCity);
-              return `
-                <div class="card compact-card" style="border-color:${cfg.border}55;">
-                  <div class="place-head">
-                    <span class="place-icon">${escapeHtml(place.icon || "🛍️")}</span>
-                    <div>
-                      <div class="place-title">${escapeHtml(place.name)}</div>
-                      <div class="place-meta">${escapeHtml(place.area)}${place.priceRange ? ` • ${escapeHtml(place.priceRange)}` : ""}</div>
-                    </div>
-                  </div>
-                  <div class="place-line">
-                    ${escapeHtml(place.openingHours || "")}
-                    ${place.station ? `&nbsp;&nbsp;&nbsp;&nbsp;${escapeHtml(place.station)}` : ""}
-                    ${place.walk ? ` • ${escapeHtml(place.walk)}` : ""}
-                  </div>
-                  <div class="place-note">${escapeHtml(place.notes || "")}</div>
-                  
-                  <!-- Google Maps Link for Shopping Cards -->
-                  ${
-                    place.googleMapsUrl 
-                      ? `
-                        <div style="margin-top: 8px; margin-bottom: 8px;">
-                          <a href="${escapeHtml(place.googleMapsUrl)}" target="_blank" rel="noreferrer" style="font-size: 12.5px; color: ${cfg.color}; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
-                            📍 View on Google Maps
-                          </a>
-                        </div>
-                      ` 
-                      : ""
-                  }
-
-                  ${
-                    place.bestFor
-                      ? `<span class="accent-label" style="background:${cfg.bg}; color:${cfg.color}; border-color:${cfg.border};">${escapeHtml(place.bestFor)}</span>`
-                      : ""
-                  }
-                </div>
-              `;
-            }).join("")
-            : `<div class="empty-state">No places found matching the filters. Try changing your selection!</div>`
-          }
-        </section>
-      `;
-    }
-
-    function renderPhrasebookTab() {
-      const categories = [...new Set(PHRASES.map(p => p.category))];
-
-      return `
-        <section class="section-block fade-in">
-          ${renderSectionTitle({
-            eyebrow: "Language",
-            title: "Phrasebook",
-            subtitle: "Essential phrases with pronunciation and situational nuances.",
-            color: "#B91C1C"
-          })}
-
-          ${categories.map(category => {
-            const items = PHRASES.filter(p => p.category === category);
-            const isOpen = STATE.openPhraseCategory === category;
-            
+          ${items.map((item) => {
+            const checked = isDone(item.item);
+            const inputId = "shop-" + item.item.replace(/[^a-z0-9]+/gi, "-").toLowerCase();
             return `
-              <div class="card phrase-card" style="border-color: ${isOpen ? '#FCA5A5' : '#EDE8E0'};">
-                <div class="phrase-cat-head pressable" style="background: ${isOpen ? '#FEF2F2' : '#fff'};" onclick="appActions.togglePhraseCategory('${escapeHtml(category)}')">
-                  <div class="phrase-cat-title" style="color: ${isOpen ? '#B91C1C' : '#8A7566'};">${escapeHtml(category)}</div>
-                  <div class="chevron ${isOpen ? 'open' : ''}" style="color: ${isOpen ? '#B91C1C' : '#b0a090'};">⌄</div>
-                </div>
-                
-                ${isOpen ? `
-                  <div class="fade-in phrase-list-wrap">
-                    ${items.map(phrase => `
-                      <div class="card compact-card" style="margin-bottom: 10px; border-color: #FEE2E2;">
-                        <div style="font-size: 14.5px; font-weight: 700; color: var(--ink);">${escapeHtml(phrase.english)}</div>
-                        <div style="font-size: 13px; font-weight: 600; color: #B91C1C; margin-top: 4px;">${escapeHtml(phrase.romaji)}</div>
-                        <div style="font-size: 15px; margin-top: 2px;">${escapeHtml(phrase.japanese)}</div>
-                        ${phrase.nuance ? `
-                          <div style="font-size: 13px; color: #6b5748; margin-top: 8px; padding-top: 8px; border-top: 1px solid #FEE2E2; line-height: 1.5;">
-                            <span style="font-weight:700;">Nuance:</span> ${escapeHtml(phrase.nuance)}
-                          </div>
-                        ` : ""}
-                      </div>
-                    `).join("")}
+              <label for="${inputId}" class="check-row pressable ${checked ? "done" : ""}" style="align-items: flex-start;">
+                <input
+                  id="${inputId}"
+                  type="checkbox"
+                  ${checked ? "checked" : ""}
+                  style="margin-top: 4px;"
+                  onchange="appActions.toggleDone('${escapeHtml(item.item).replace(/'/g, "\\'")}')"
+                />
+                <div style="flex: 1;">
+                  <div class="check-title">${escapeHtml(item.item)}</div>
+                  <div class="check-sub">📍 ${escapeHtml(item.store)}</div>
+                  <div style="margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap;">
+                    ${item.taxFree ? `<span style="background: #FEE2E2; color: #991B1B; padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: bold;">🛂 AIRPORT REFUND</span>` : ''}
+                    ${item.igLink ? `<a href="${item.igLink}" target="_blank" style="background: #F3E8FF; color: #6B21A8; padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: bold; text-decoration: none;">📸 View IG</a>` : ''}
+                    ${item.jpName ? `<span style="background: #E0F2FE; color: #0369A1; padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;" onclick="alert('Show this to the clerk:\\n\\n${item.jpName}'); event.preventDefault();">🗣️ Show Clerk</span>` : ''}
                   </div>
-                ` : ""}
-              </div>
+                </div>
+              </label>
             `;
           }).join("")}
+        `;
+      }).join("")}
+    </section>
+  `;
+}
+
+function renderTransitTab() {
+  return `
+    <section class="section-block fade-in">
+      ${renderSectionTitle({
+        eyebrow: "Navigation Survival",
+        title: "Transit & Trains",
+        subtitle: "Cheat sheets for complex stations and high-contrast Shinkansen tickets.",
+        color: "#059669"
+      })}
+
+      <!-- HIGHLIGHT: SHINKANSEN TICKET (Update with your real details) -->
+      <div style="background: #064E3B; color: white; border-radius: 12px; padding: 16px; margin-bottom: 24px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div style="font-size: 12px; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Next Bullet Train</div>
+        <div style="font-size: 24px; font-weight: 900; margin-bottom: 4px;">NOZOMI 234</div>
+        <div style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 12px; margin-top: 8px;">
+          <div>
+            <div style="font-size: 10px; opacity: 0.8;">FROM</div>
+            <div style="font-weight: bold;">SHIN-OSAKA</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 10px; opacity: 0.8;">TO</div>
+            <div style="font-weight: bold;">TOKYO</div>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; background: #047857; border-radius: 8px; padding: 12px; margin-top: 16px;">
+          <div style="text-align: center;"><div style="font-size: 10px;">CAR</div><div style="font-size: 20px; font-weight: bold;">6</div></div>
+          <div style="text-align: center;"><div style="font-size: 10px;">SEAT</div><div style="font-size: 20px; font-weight: bold;">12-E</div></div>
+          <div style="text-align: center;"><div style="font-size: 10px;">TRACK</div><div style="font-size: 20px; font-weight: bold;">24</div></div>
+        </div>
+      </div>
+
+      <!-- HIGHLIGHT: STATION CHEAT SHEETS -->
+      <div style="margin-bottom: 24px;">
+        <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;">Station Labyrinths</div>
+        
+        <div class="action-card" style="margin-bottom: 8px; flex-direction: column; align-items: flex-start; gap: 8px;">
+          <div style="font-weight: bold; color: #1F2937;">🚇 Osaka: The Umeda Maze</div>
+          <div style="font-size: 13px; color: #4B5563; line-height: 1.4;">
+            "Osaka Station" (JR Lines) and "Umeda Station" (Subway/Hankyu) are connected underground. 
+            <strong>Rule of thumb:</strong> Look UP for the colored square signs. Red = Midosuji Line. Blue = JR Lines. Do not rely on compass directions underground.
+          </div>
+        </div>
+
+        <div class="action-card" style="margin-bottom: 8px; flex-direction: column; align-items: flex-start; gap: 8px;">
+          <div style="font-weight: bold; color: #1F2937;">🚌 Kyoto: Bus Mastery</div>
+          <div style="font-size: 13px; color: #4B5563; line-height: 1.4;">
+            Subways don't reach major temples. You will use the bus. <strong>Enter through the BACK door.</strong> Pay exactly 230¥ (or tap IC card) at the machine next to the driver when you <strong>EXIT through the FRONT door.</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- HIGHLIGHT: PDF MAPS -->
+      <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;">Official Route Maps</div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        ${TRANSIT_QUICK_LINKS.map(link => `
+          <a href="${link.url}" target="_blank" style="text-decoration: none;">
+            <div class="action-card pressable" style="justify-content: space-between; border-left: 4px solid ${link.color};">
+              <span style="font-weight: 500; color: #1F2937;">${link.name}</span>
+              <span style="color: ${link.color};">📄 PDF ↗</span>
+            </div>
+          </a>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
+
+    function renderPhrasebookTab() {
+      return `
+        <section class="section-block fade-in">
+          ${renderSectionTitle({
+            eyebrow: "Japanese Helper",
+            title: "Language & Cards",
+            subtitle: "Taxi cards, instant staff flashcards, and essential Japanese phrases.",
+            color: "#DC2626"
+          })}
+
+          <!-- 1. TAXI CARDS (Top Priority) -->
+          <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;">🚕 Show to Taxi Driver</div>
+          ${HOTEL_TAXI_DATA.map(hotel => `
+            <div style="background: white; border: 2px solid #E5E7EB; border-radius: 12px; padding: 18px; margin-bottom: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.04);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 11px; font-weight: bold; color: #DC2626; background: #FEE2E2; padding: 2px 8px; border-radius: 4px;">${escapeHtml(hotel.city)}</span>
+                <span style="font-size: 11px; color: #6B7280;">${escapeHtml(hotel.dates)}</span>
+              </div>
+              
+              <div style="font-size: 20px; font-weight: 900; color: #111827; margin-bottom: 2px; line-height: 1.2;">${escapeHtml(hotel.nameJp)}</div>
+              <div style="font-size: 13px; color: #6B7280; margin-bottom: 12px;">${escapeHtml(hotel.nameEn)}</div>
+              
+              <div style="font-size: 16px; font-weight: bold; color: #1F2937; margin-bottom: 12px; line-height: 1.3;">${escapeHtml(hotel.addressJp)}</div>
+              
+              <div style="background: #F3F4F6; padding: 10px; border-radius: 8px; text-align: center;">
+                <div style="font-size: 10px; color: #4B5563; text-transform: uppercase;">Driver Navigation Phone Number</div>
+                <div style="font-size: 20px; font-weight: 900; color: #000; letter-spacing: 1px;">📞 ${escapeHtml(hotel.phone)}</div>
+              </div>
+            </div>
+          `).join('')}
+
+          <!-- 2. HIGH-VISIBILITY STAFF FLASHCARDS -->
+          <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin: 24px 0 12px 0;">💬 Tap or Show to Staff</div>
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;">
+            ${FLASHCARD_PHRASES.map(item => `
+              <div class="action-card" style="flex-direction: column; align-items: stretch; padding: 14px; border-left: 4px solid #DC2626; background: white;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <span style="font-size: 13px; font-weight: bold; color: #374151;">${escapeHtml(item.icon)} "${escapeHtml(item.english)}"</span>
+                  <span style="font-size: 10px; font-weight: bold; color: #DC2626; background: #FEF2F2; padding: 2px 6px; border-radius: 4px;">${escapeHtml(item.category)}</span>
+                </div>
+                
+                <div style="background: #FEF2F2; padding: 10px; border-radius: 8px; text-align: center; border: 1px solid #FECACA;">
+                  <div style="font-size: 20px; font-weight: 900; color: #991B1B; margin-bottom: 4px; line-height: 1.2;">
+                    ${escapeHtml(item.japanese)}
+                  </div>
+                  <div style="font-size: 13px; color: #B91C1C; font-style: italic;">
+                    🗣️ "${escapeHtml(item.romaji)}"
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <!-- 3. GENERAL SURVIVAL PHRASES -->
+          <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;">📚 General Cheat Sheet</div>
+          <div style="background: white; border-radius: 12px; border: 1px solid #E5E7EB; overflow: hidden; margin-bottom: 10px;">
+            <div style="padding: 12px; border-bottom: 1px solid #F3F4F6;">
+              <div style="font-weight: bold; font-size: 14px; color: #1F2937;">Sumimasen (すみません)</div>
+              <div style="font-size: 12.5px; color: #4B5563; margin-top: 2px;">Excuse me / Sorry / Thank you (universal icebreaker)</div>
+            </div>
+            <div style="padding: 12px; border-bottom: 1px solid #F3F4F6;">
+              <div style="font-weight: bold; font-size: 14px; color: #1F2937;">Arigatou gozaimasu (ありがとうございます)</div>
+              <div style="font-size: 12.5px; color: #4B5563; margin-top: 2px;">Thank you very much</div>
+            </div>
+            <div style="padding: 12px; border-bottom: 1px solid #F3F4F6;">
+              <div style="font-weight: bold; font-size: 14px; color: #1F2937;">Okaikei onegaishimasu (お会計お願いします)</div>
+              <div style="font-size: 12.5px; color: #4B5563; margin-top: 2px;">Check/bill please (at restaurants)</div>
+            </div>
+            <div style="padding: 12px;">
+              <div style="font-weight: bold; font-size: 14px; color: #1F2937;">Toire wa doko desu ka? (トイレはどこですか？)</div>
+              <div style="font-size: 12.5px; color: #4B5563; margin-top: 2px;">Where is the restroom?</div>
+            </div>
+          </div>
         </section>
       `;
     }
@@ -5827,6 +3210,96 @@ const HOTELS = [
         </section>
       `;
     }
+    
+    function renderExpenseTab() {
+      const totalJPY = expenses.reduce((sum, item) => sum + item.amount, 0);
+      const totalIDR = (totalJPY * exchangeRate).toLocaleString('id-ID'); // Formatted to Indonesian Rupiah
+
+      const grouped = expenses.reduce((acc, item) => {
+        acc[item.date] = acc[item.date] || [];
+        acc[item.date].push(item);
+        return acc;
+      }, {});
+      const dates = Object.keys(grouped).sort().reverse();
+
+      return `
+        <section class="section-block fade-in">
+          ${renderSectionTitle({
+            eyebrow: "Budget & Cash",
+            title: "Expense Tracker",
+            subtitle: "Log small purchases instantly and track daily spending in IDR.",
+            color: "#059669"
+          })}
+
+          <!-- TOTAL SPENT SUMMARY CARD -->
+          <div style="background: linear-gradient(135deg, #065F46 0%, #047857 100%); color: white; padding: 20px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.85;">Total Trip Spending</div>
+            <div style="font-size: 32px; font-weight: 900; margin: 4px 0;">¥${totalJPY.toLocaleString()}</div>
+            <div style="font-size: 14px; opacity: 0.9;">≈ Rp ${totalIDR} (Rate: Rp ${exchangeRate})</div>
+          </div>
+
+          <!-- QUICK ADD PRESETS -->
+          <div style="margin-bottom: 20px;">
+            <div style="font-size: 11px; font-weight: 800; color: #6B7280; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">1-Tap Quick Log</div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
+              <button onclick="addExpense(160, 'Food', 'Vending Drink')" class="pressable" style="padding: 10px 4px; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 8px; font-weight: bold; color: #065F46; font-size: 12px;">🥤 ¥160</button>
+              <button onclick="addExpense(230, 'Transit', 'Bus Fare')" class="pressable" style="padding: 10px 4px; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 8px; font-weight: bold; color: #1E40AF; font-size: 12px;">🚌 ¥230</button>
+              <button onclick="addExpense(500, 'Food', 'Konbini Snack')" class="pressable" style="padding: 10px 4px; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 8px; font-weight: bold; color: #065F46; font-size: 12px;">🍙 ¥500</button>
+              <button onclick="addExpense(1000, 'Transit', 'IC Top-up')" class="pressable" style="padding: 10px 4px; background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 8px; font-weight: bold; color: #92400E; font-size: 12px;">💳 ¥1k</button>
+            </div>
+          </div>
+
+          <!-- CUSTOM EXPENSE FORM -->
+          <div style="background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 12px; padding: 16px; margin-bottom: 24px;">
+            <div style="font-weight: bold; font-size: 14px; margin-bottom: 12px; color: #1F2937;">Add Custom Expense</div>
+            <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+              <input id="exp-amount" type="number" placeholder="Amount (¥)" style="flex: 1; padding: 10px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 16px;" />
+              <select id="exp-cat" style="padding: 10px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 14px; background: white;">
+                <option value="Food">🍱 Food</option>
+                <option value="Transit">🚆 Transit</option>
+                <option value="Shopping">🛍️ Shop</option>
+                <option value="Stay">🏨 Stay</option>
+                <option value="Misc">✨ Misc</option>
+              </select>
+            </div>
+            <input id="exp-note" type="text" placeholder="Note (e.g. Don Quijote, Ichiran)" style="width: 100%; padding: 10px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 14px; margin-bottom: 8px; box-sizing: border-box;" />
+            <button onclick="addExpense(document.getElementById('exp-amount').value, document.getElementById('exp-cat').value, document.getElementById('exp-note').value)" style="width: 100%; padding: 12px; background: #059669; color: white; font-weight: bold; border: none; border-radius: 8px; cursor: pointer;">
+              Log Expense
+            </button>
+          </div>
+
+          <!-- DAILY BREAKDOWN -->
+          <div>
+            <div style="font-size: 11px; font-weight: 800; color: #6B7280; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Daily Breakdown</div>
+            ${dates.length === 0 ? `<div style="color: #9CA3AF; text-align: center; padding: 20px;">No expenses logged yet.</div>` : ''}
+            ${dates.map(date => {
+              const dayItems = grouped[date];
+              const dayTotal = dayItems.reduce((s, i) => s + i.amount, 0);
+              return `
+                <div style="margin-bottom: 16px;">
+                  <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 13px; color: #374151; padding-bottom: 4px; border-bottom: 2px solid #E5E7EB; margin-bottom: 8px;">
+                    <span>📅 ${date}</span>
+                    <span>¥${dayTotal.toLocaleString()}</span>
+                  </div>
+                  ${dayItems.map(item => `
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed #F3F4F6;">
+                      <div>
+                        <div style="font-weight: 600; font-size: 14px; color: #1F2937;">${escapeHtml(item.note)}</div>
+                        <div style="font-size: 11px; color: #6B7280;">${item.category}</div>
+                      </div>
+                      <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-weight: bold; color: #059669;">¥${item.amount.toLocaleString()}</span>
+                        <button onclick="deleteExpense(${item.id})" style="background: none; border: none; color: #EF4444; cursor: pointer; font-size: 14px;">✕</button>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </section>
+      `;
+    }
 
     function renderTipsTab() {
       return `
@@ -5859,13 +3332,39 @@ const HOTELS = [
       switch (STATE.tab) {
         case "schedule": return renderScheduleTab();
         case "cities": return renderCitiesTab();
-        case "food": return renderFoodTab();
         case "shopping": return renderShoppingTab();
         case "phrasebook": return renderPhrasebookTab();
         case "prep": return renderPrepTab(); 
         case "tips": return renderTipsTab();
+        case "expense": return renderExpenseTab();
         default: return renderScheduleTab();
       }
+    }
+
+    function renderBottomNav() {
+      return `
+        <nav class="bottom-nav">
+          <div class="nav-item ${STATE.tab === 'schedule' ? 'active' : ''}" onclick="appActions.setTab('schedule')">
+            <div class="nav-icon">📅</div>
+            <div class="nav-label">Itinerary</div>
+          </div>
+          
+          <div class="nav-item ${STATE.tab === 'shopping' ? 'active' : ''}" onclick="appActions.setTab('shopping')">
+            <div class="nav-icon">🛍️</div>
+            <div class="nav-label">Shopping</div>
+          </div>
+          
+          <div class="nav-item ${STATE.tab === 'phrasebook' ? 'active' : ''}" onclick="appActions.setTab('phrasebook')">
+            <div class="nav-icon">💬</div>
+            <div class="nav-label">Phrases</div>
+          </div>
+          
+          <div class="nav-item ${STATE.tab === 'expense' ? 'active' : ''}" onclick="appActions.setTab('expense')">
+            <div class="nav-icon">💴</div>
+            <div class="nav-label">Expenses</div>
+          </div>
+        </nav>
+      `;
     }
 
     function renderApp() {
@@ -5875,6 +3374,7 @@ const HOTELS = [
         <main class="content">
           ${renderActiveTab()}
         </main>
+        ${renderBottomNav()}
       `;
     }
 
