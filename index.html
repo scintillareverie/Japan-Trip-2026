@@ -187,22 +187,22 @@
     }
 
     .tabs-wrap {
-      margin: 8px 14px 0;
+      margin: 10px 14px 0;
     }
 
-    .tab-pill {
-      padding: 6px 11px; 
-      border: none;
-      font-size: 11.5px; 
-      font-weight: 600;
-      background: #ede8e0;
-      color: #6b5748;
-      border-radius: 999px;
+    .tab-row .tab-pill {
+      padding: 6px 11px !important;
+      border: none !important;
+      font-size: 11.5px !important;
+      font-weight: 600 !important;
+      background: #ede8e0 !important;
+      color: #6b5748 !important;
+      border-radius: 999px !important;
     }
 
-    .tab-pill.active {
-      background: #1a0800;
-      color: #ffd080;
+    .tab-row .tab-pill.active {
+      background: #1a0800 !important;
+      color: #ffd080 !important;
     }
 
     .content {
@@ -2827,7 +2827,7 @@ const HOTELS = [
           ${
             isOpen
               ? `
-            <div class="fade-in flight-detail" style="padding: 0 14px 12px; margin: 0; border-top: 1px solid rgba(255,255,255,0.15); font-size: 12.5px; color: rgba(255, 255, 255, 0.86); line-height: 1.5; white-space: pre-line;">${escapeHtml(flight.detail)}</div>
+            <div class="fade-in flight-detail" style="padding: 10px 14px 14px; margin: 0; border-top: 1px solid rgba(255,255,255,0.15); font-size: 12.5px; color: rgba(255, 255, 255, 0.86); line-height: 1.5; white-space: pre-line;">${escapeHtml(flight.detail)}</div>
           `
               : ""
           }
