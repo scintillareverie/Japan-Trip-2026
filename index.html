@@ -3074,17 +3074,18 @@ function renderTransitTab() {
       `;
     }
 
-    function renderExpenseTab() {
-      const totalJPY = expenses.reduce((sum, item) => sum + item.amount, 0);
-      const totalIDR = (totalJPY * exchangeRate).toLocaleString('id-ID');
+   function renderExpenseTab() {
+      const totalJPY = expenses.reduce((sum, item) => sum + (Number(item.amount) || 0), 0);
+      const totalIDR = Math.round(totalJPY * (exchangeRate || 105)).toLocaleString();
 
       const grouped = expenses.reduce((acc, item) => {
-        acc[item.date] = acc[item.date] || [];
-        acc[item.date].push(item);
+        const dateKey = item.date || new Date().toISOString().split('T')[0];
+        acc[dateKey] = acc[dateKey] || [];
+        acc[dateKey].push(item);
         return acc;
       }, {});
-      const dates = Object.keys(grouped).sort().reverse();
       
+      const dates = Object.keys(grouped).sort().reverse();
       const today = new Date().toISOString().split('T')[0];
 
       return `
@@ -3103,7 +3104,7 @@ function renderTransitTab() {
             <div style="font-size: 14px; opacity: 0.9;">≈ Rp ${totalIDR} (Rate: Rp ${exchangeRate})</div>
           </div>
 
-          <!-- CUSTOM EXPENSE FORM (Quick Log Removed, Added Jajan & Gifts Categories) -->
+          <!-- CUSTOM EXPENSE FORM -->
           <div style="background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 12px; padding: 16px; margin-bottom: 24px;">
             <div style="font-weight: bold; font-size: 14px; margin-bottom: 12px; color: #1F2937;">Add Expense</div>
             
@@ -3131,27 +3132,27 @@ function renderTransitTab() {
             </button>
           </div>
 
-          <!-- DAILY BREAKDOWN (Automatically groups and sums per day) -->
+          <!-- DAILY BREAKDOWN -->
           <div>
             <div style="font-size: 11px; font-weight: 800; color: #6B7280; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Daily Breakdown</div>
             ${dates.length === 0 ? `<div style="color: #9CA3AF; text-align: center; padding: 20px;">No expenses logged yet.</div>` : ''}
             ${dates.map(date => {
               const dayItems = grouped[date];
-              const dayTotal = dayItems.reduce((s, i) => s + i.amount, 0);
+              const dayTotal = dayItems.reduce((s, i) => s + (Number(i.amount) || 0), 0);
               return `
                 <div style="margin-bottom: 16px; background: #fff; border: 1.5px solid var(--line); border-radius: 12px; padding: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
                   <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 13px; color: #374151; padding-bottom: 8px; border-bottom: 2px solid #E5E7EB; margin-bottom: 8px;">
-                    <span>📅 ${date}</span>
+                    <span>📅 ${escapeHtml(date)}</span>
                     <span style="color: #059669;">¥${dayTotal.toLocaleString()}</span>
                   </div>
                   ${dayItems.map(item => `
                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px dashed #F3F4F6;">
                       <div>
                         <div style="font-weight: 600; font-size: 14px; color: #1F2937;">${escapeHtml(item.note)}</div>
-                        <div style="font-size: 11px; color: #6B7280;">${item.category}</div>
+                        <div style="font-size: 11px; color: #6B7280;">${escapeHtml(item.category)}</div>
                       </div>
                       <div style="display: flex; align-items: center; gap: 12px;">
-                        <span style="font-weight: 600; color: #374151;">¥${item.amount.toLocaleString()}</span>
+                        <span style="font-weight: 600; color: #374151;">¥${Number(item.amount).toLocaleString()}</span>
                         <button onclick="deleteExpense(${item.id})" style="background: #FEE2E2; border: none; color: #B91C1C; cursor: pointer; font-size: 10px; font-weight:bold; padding: 4px 8px; border-radius:4px;">✕</button>
                       </div>
                     </div>
@@ -3278,6 +3279,7 @@ function renderTransitTab() {
       switch (STATE.tab) {
         case "schedule": return renderScheduleTab();
         case "cities": return renderCitiesTab();
+        case "food": return renderFoodTab();
         case "shopping": return renderShoppingTab();
         case "phrasebook": return renderPhrasebookTab();
         case "prep": return renderPrepTab(); 
