@@ -972,6 +972,10 @@ body {
       Transit: { color: "#7C3AED", bg: "#F5F3FF", border: "#C4B5FD", deep: "#5B21B6", emoji: "🚅" }
     };
 
+    function getCityCfg(city) {
+      return CITY_CFG[city] || CITY_CFG.Transit;
+    }
+
     const TYPE_COLOR = {
       flight: "#B5281C",
       transit: "#6B7280",
