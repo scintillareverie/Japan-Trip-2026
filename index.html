@@ -2773,6 +2773,7 @@ const HOTELS = [
       const tabs = [
         { id: "schedule", label: "Schedule" },
         { id: "cities", label: "Cities" },
+        { id: "transit", label: "Transit" }, 
         { id: "shopping", label: "Shopping" },
         { id: "phrasebook", label: "Phrasebook" },
         { id: "prep", label: "Prep" },
@@ -3557,6 +3558,8 @@ function renderTransitTab() {
         case "phrasebook": return renderPhrasebookTab();
         case "prep": return renderPrepTab(); 
         case "tips": return renderTipsTab();
+        case "expense": return renderExpenseTab(); 
+        case "transit": return renderTransitTab();  
         default: return renderScheduleTab();
       }
     }
