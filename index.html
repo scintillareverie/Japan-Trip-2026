@@ -2474,6 +2474,19 @@ const HOTELS = [
       renderApp();
     }
 
+    function loadDoneItems() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+        return Array.isArray(saved) ? saved : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function saveDoneItems(items) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    }
+
    const STATE = {
       tab: "schedule",
       cityFilter: "All",
