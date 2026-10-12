@@ -2988,52 +2988,99 @@ const HOTELS = [
     }
 
 function renderShoppingTab() {
-  // Fallback to prevent crashing if SHOPPING_LIST isn't pasted yet
-  if (typeof SHOPPING_LIST === 'undefined') return '';
-  
-  const categories = [...new Set(SHOPPING_LIST.map(item => item.category))];
+  const places = getShoppingPlaces();
+
+  // Extract unique areas for the selected city in the Shopping section
+  const uniqueAreas = [...new Set(
+    PLACES.filter(place => place.section === "shopping" && place.city === STATE.shoppingCity)
+          .map(place => place.area)
+  )].sort();
+
+  const areaOptions = [`<option value="All" ${STATE.shoppingArea === "All" ? "selected" : ""}>All Areas</option>`];
+  uniqueAreas.forEach(area => {
+    areaOptions.push(`<option value="${escapeHtml(area)}" ${STATE.shoppingArea === area ? "selected" : ""}>${escapeHtml(area)}</option>`);
+  });
 
   return `
     <section class="section-block fade-in">
       ${renderSectionTitle({
-        eyebrow: "Target Acquired",
-        title: "Shopping & Souvenirs",
-        subtitle: "Your specific buys. Show clerks exactly what you're looking for.",
-        color: "#9333EA"
+        eyebrow: "By city",
+        title: "Shopping",
+        subtitle: "Opening hours, nearest station and walking distance, plus recommended items for each stop.",
+        color: "#7C3AED"
       })}
 
-      ${categories.map(category => {
-        const items = SHOPPING_LIST.filter(i => i.category === category);
-        return `
-          <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin: 20px 0 10px 4px;">
-            ${escapeHtml(category)}
-          </div>
-          ${items.map((item) => {
-            const checked = isDone(item.item);
-            const inputId = "shop-" + item.item.replace(/[^a-z0-9]+/gi, "-").toLowerCase();
+      <div class="filter-grid">
+        ${["Osaka", "Kyoto", "Tokyo"]
+          .map((city) => {
+            const cfg = getCityCfg(city);
+            const active = STATE.shoppingCity === city;
             return `
-              <label for="${inputId}" class="check-row pressable ${checked ? "done" : ""}" style="align-items: flex-start;">
-                <input
-                  id="${inputId}"
-                  type="checkbox"
-                  ${checked ? "checked" : ""}
-                  style="margin-top: 4px;"
-                  onchange="appActions.toggleDone('${escapeHtml(item.item).replace(/'/g, "\\'")}')"
-                />
-                <div style="flex: 1;">
-                  <div class="check-title">${escapeHtml(item.item)}</div>
-                  <div class="check-sub">📍 ${escapeHtml(item.store)}</div>
-                  <div style="margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap;">
-                    ${item.taxFree ? `<span style="background: #FEE2E2; color: #991B1B; padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: bold;">🛂 AIRPORT REFUND</span>` : ''}
-                    ${item.igLink ? `<a href="${item.igLink}" target="_blank" style="background: #F3E8FF; color: #6B21A8; padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: bold; text-decoration: none;">📸 View IG</a>` : ''}
-                    ${item.jpName ? `<span style="background: #E0F2FE; color: #0369A1; padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;" onclick="alert('Show this to the clerk:\\n\\n${item.jpName}'); event.preventDefault();">🗣️ Show Clerk</span>` : ''}
-                  </div>
-                </div>
-              </label>
+              <button
+                class="grid-pill pressable"
+                style="background:${active ? cfg.color : "#EDE8E0"}; color:${active ? "#fff" : "#6B5748"};"
+                onclick="appActions.setShoppingCity('${city}')"
+              >
+                ${escapeHtml(city)}
+              </button>
             `;
-          }).join("")}
-        `;
-      }).join("")}
+          })
+          .join("")}
+      </div>
+
+      <div style="position: relative; margin-bottom: 14px;">
+        <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 14px;">📍</span>
+        <select 
+          onchange="appActions.setShoppingArea(this.value)"
+          style="width: 100%; appearance: none; -webkit-appearance: none; padding: 11px 36px 11px 38px; border-radius: var(--radius-md); border: 1.5px solid ${getCityCfg(STATE.shoppingCity).border}; font-family: inherit; font-size: 13px; font-weight: 700; color: ${getCityCfg(STATE.shoppingCity).deep}; background: #fff; cursor: pointer; outline: none; box-shadow: 0 1px 3px rgba(0,0,0,0.02);"
+        >
+          ${areaOptions.join("")}
+        </select>
+        <span style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: ${getCityCfg(STATE.shoppingCity).color}; font-size: 14px; font-weight: bold;">⌄</span>
+      </div>
+
+      ${
+        places.length 
+        ? places.map((place) => {
+          const cfg = getCityCfg(STATE.shoppingCity);
+          return `
+            <div class="card compact-card" style="border-color:${cfg.border}55;">
+              <div class="place-head">
+                <span class="place-icon">${escapeHtml(place.icon || "🛍️")}</span>
+                <div>
+                  <div class="place-title">${escapeHtml(place.name)}</div>
+                  <div class="place-meta">${escapeHtml(place.area)}${place.priceRange ? ` • ${escapeHtml(place.priceRange)}` : ""}</div>
+                </div>
+              </div>
+              <div class="place-line">
+                ${escapeHtml(place.openingHours || "")}
+                ${place.station ? `&nbsp;&nbsp;&nbsp;&nbsp;${escapeHtml(place.station)}` : ""}
+                ${place.walk ? ` • ${escapeHtml(place.walk)}` : ""}
+              </div>
+              <div class="place-note">${escapeHtml(place.notes || "")}</div>
+              
+              ${
+                place.googleMapsUrl 
+                  ? `
+                    <div style="margin-top: 8px; margin-bottom: 8px;">
+                      <a href="${escapeHtml(place.googleMapsUrl)}" target="_blank" rel="noreferrer" style="font-size: 12.5px; color: ${cfg.color}; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
+                        📍 View on Google Maps
+                      </a>
+                    </div>
+                  ` 
+                  : ""
+              }
+
+              ${
+                place.bestFor
+                  ? `<span class="accent-label" style="background:${cfg.bg}; color:${cfg.color}; border-color:${cfg.border};">${escapeHtml(place.bestFor)}</span>`
+                  : ""
+              }
+            </div>
+          `;
+        }).join("")
+        : `<div class="empty-state">No places found matching the filters. Try changing your selection!</div>`
+      }
     </section>
   `;
 }
