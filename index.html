@@ -2437,12 +2437,88 @@ const HOTELS = [
     ];
     // === JAPAN TRIP DATA: PREP (END) ===
 
-   // === JAPAN TRIP DATA: SHOPPING BUCKET LIST ===
-    const SHOPPING_LIST = [
-      { category: "Beauty & Pharmacy", item: "Melano CC Vitamin C Serum", store: "Don Quijote / Matsukiyo", jpName: "メラノCC 薬用しみ集中対策美容液", igLink: "", taxFree: true },
-      { category: "Fashion & Goods", item: "Onitsuka Tiger Mexico 66", store: "Omotesando / Shibuya", jpName: "オニツカタイガー メキシコ66", igLink: "", taxFree: true },
-      { category: "Snacks", item: "Ichiran Ramen Gift Box", store: "Don Quijote", jpName: "一蘭ラーメン 博多細麺", igLink: "", taxFree: false },
-      { category: "Souvenirs", item: "Ippodo Matcha Powder", store: "Kyoto Teramachi / Daimaru", jpName: "一保堂茶舗 抹茶", igLink: "", taxFree: true }
+   // === JAPAN TRIP DATA: PLACES (SHOPPING) ===
+    const PLACES = [
+      {
+        id: "tokyo-number-sugar",
+        section: "shopping",
+        shoppingCategory: "Snacks",
+        city: "Tokyo",
+        area: "Omotesando",
+        name: "NUMBER SUGAR",
+        icon: "🍬",
+        priceRange: "¥¥",
+        openingHours: "11:00–19:00",
+        station: "Meiji-jingumae Station",
+        walk: "4 min walk",
+        googleMapsUrl: "https://maps.app.goo.gl/f2YAkkiEiZBRdWz19",
+        bestFor: "Artisanal numbered caramel boxes",
+        notes: "Perfect aesthetic gifts. Very popular, so arrive early for the best selection."
+      },
+      {
+        id: "tokyo-mega-donki",
+        section: "shopping",
+        shoppingCategory: "Beauty & Pharmacy",
+        city: "Tokyo",
+        area: "Shibuya",
+        name: "MEGA Don Quijote Shibuya",
+        icon: "🛒",
+        priceRange: "¥",
+        openingHours: "24 hours",
+        station: "Shibuya Station",
+        walk: "5 min walk",
+        googleMapsUrl: "https://maps.app.goo.gl/JbLcZFKKTHfyicBL8",
+        bestFor: "Skincare, cosmetics, and cheap snacks",
+        notes: "Tax-free available. Go early in the morning to avoid the massive evening tourist queues."
+      },
+      {
+        id: "tokyo-character-street",
+        section: "shopping",
+        shoppingCategory: "Souvenirs",
+        city: "Tokyo",
+        area: "Marunouchi",
+        name: "Tokyo Station Character Street",
+        icon: "🎁",
+        priceRange: "¥¥",
+        openingHours: "10:00–20:30",
+        station: "Tokyo Station",
+        walk: "B1 direct access",
+        googleMapsUrl: "https://maps.app.goo.gl/e7UWBLHXYSiF7wU4A",
+        bestFor: "Ghibli, Nintendo, and regional KitKats",
+        notes: "The ultimate one-stop shop for character goods and boxed omiyage before flying out."
+      },
+      {
+        id: "kyoto-kyukyodo",
+        section: "shopping",
+        shoppingCategory: "Souvenirs",
+        city: "Kyoto",
+        area: "Central Kyoto",
+        name: "Kyukyodo Teramachi",
+        icon: "📜",
+        priceRange: "¥¥",
+        openingHours: "10:00–18:00",
+        station: "Kyoto Shiyakusho-mae Station",
+        walk: "3 min walk",
+        googleMapsUrl: "https://maps.app.goo.gl/7sYTizooaCTD6qn8A",
+        bestFor: "Incense, washi paper, and postcards",
+        notes: "An elegant, centuries-old store offering traditional Japanese paper goods and premium incense."
+      },
+      {
+        id: "osaka-shinsaibashi",
+        section: "shopping",
+        shoppingCategory: "Fashion & Goods",
+        city: "Osaka",
+        area: "Shinsaibashi",
+        name: "Shinsaibashi Shopping Arcade",
+        icon: "🛍️",
+        priceRange: "¥¥",
+        openingHours: "10:00–21:00",
+        station: "Shinsaibashi Station",
+        walk: "2 min walk",
+        googleMapsUrl: "https://maps.app.goo.gl/YoF5ZqPubj8tpkxB6",
+        bestFor: "Apparel, sneakers, and boutique goods",
+        notes: "A massive covered arcade linking major department stores and flagship fashion brands."
+      }
     ];
 
     const HOTEL_TAXI_DATA = [
@@ -2608,10 +2684,6 @@ const HOTELS = [
         STATE.cityFilter = target ? target.city : "All";
         renderApp();
       },
-      setShoppingCategory(category) {
-        STATE.shoppingCategory = category;
-        renderApp();
-      },
       setPhraseHotel(hotel) {
         STATE.phraseHotel = hotel;
         renderApp();
@@ -2649,9 +2721,8 @@ const HOTELS = [
       setShoppingArea(area) {
         STATE.shoppingArea = area;
         renderApp();
-      },
-};
-    };
+      }
+    }; 
     window.appActions = appActions;
 
     function getFilteredDays() {
