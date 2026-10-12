@@ -95,7 +95,7 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      padding: 42px 22px 18px;
+      padding: 24px 22px 14px; 
       color: #fff;
       background: linear-gradient(155deg, var(--header-1) 0%, var(--header-2) 45%, var(--header-3) 80%, var(--header-4) 100%);
       border-bottom-left-radius: 22px;
@@ -113,11 +113,11 @@
 
     .hero-title {
       font-family: "Prata", serif;
-      font-size: 48px;
+      font-size: 34px; 
       font-weight: 400;
       line-height: 1.1;
       letter-spacing: -0.5px;
-      margin: 0 0 12px; /* Increased from 2px to 12px for perfect breathing room */
+      margin: 0 0 8px; 
     }
 
     .hero-subtitle {
@@ -172,12 +172,13 @@
     }
 
     .city-pill {
-      padding: 7px 14px;
-      font-size: 13px; 
+      padding: 5px 10px; 
+      font-size: 10.5px; 
       font-weight: 600;
       background: rgba(255, 255, 255, 0.06);
       color: rgba(255, 255, 255, 0.72);
       border-color: rgba(255, 255, 255, 0.18);
+      flex-shrink: 0;
     }
 
     .city-pill.active {
@@ -2760,7 +2761,6 @@ const HOTELS = [
 
       return `
         <header class="header">
-          <div class="eyebrow">Singapore Airlines • CGK → KIX • HND → CGK</div>
           <h1 class="hero-title">Japan 2026</h1>
           <div class="hero-subtitle">Osaka · Kyoto · Tokyo</div>
           <div class="hero-meta">25 Nov – 7 Dec 2026 • 13 Days • 12 Nights</div>
@@ -2773,11 +2773,12 @@ const HOTELS = [
       const tabs = [
         { id: "schedule", label: "Schedule" },
         { id: "cities", label: "Cities" },
-        { id: "transit", label: "Transit" }, 
+        { id: "transit", label: "Transit" },
         { id: "shopping", label: "Shopping" },
         { id: "phrasebook", label: "Phrasebook" },
         { id: "prep", label: "Prep" },
-        { id: "tips", label: "Tips" }
+        { id: "tips", label: "Tips" },
+        { id: "expense", label: "Expenses" }
       ];
 
       return `
