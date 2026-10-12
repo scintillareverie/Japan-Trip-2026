@@ -187,16 +187,17 @@
     }
 
     .tabs-wrap {
-      margin: 10px 14px 0;
+      margin: 8px 14px 0;
     }
 
     .tab-pill {
-      padding: 6px 10px; 
+      padding: 6px 11px; 
       border: none;
-      font-size: 11px; 
+      font-size: 11.5px; 
       font-weight: 600;
       background: #ede8e0;
       color: #6b5748;
+      border-radius: 999px;
     }
 
     .tab-pill.active {
@@ -2814,7 +2815,7 @@ const HOTELS = [
         <div class="flight-card" style="background:${flight.colors}; padding: 0; overflow: hidden; margin-bottom: 10px;">
           <div 
             class="flight-top pressable" 
-            style="padding: 12px 14px; margin-bottom: 0; display: flex; justify-content: space-between; align-items: center;" 
+            style="padding: 12px 14px; margin: 0; display: flex; justify-content: space-between; align-items: center;" 
             onclick="appActions.toggleFlight('${flight.type}')"
           >
             <div style="display: flex; gap: 8px; align-items: center;">
@@ -2826,9 +2827,7 @@ const HOTELS = [
           ${
             isOpen
               ? `
-            <div class="fade-in flight-detail" style="padding: 0 14px 12px; margin: 0; border-top: 1px solid rgba(255,255,255,0.15); font-size: 12.5px; color: rgba(255, 255, 255, 0.86); line-height: 1.6; white-space: pre-line;">
-              ${escapeHtml(flight.detail)}
-            </div>
+            <div class="fade-in flight-detail" style="padding: 0 14px 12px; margin: 0; border-top: 1px solid rgba(255,255,255,0.15); font-size: 12.5px; color: rgba(255, 255, 255, 0.86); line-height: 1.5; white-space: pre-line;">${escapeHtml(flight.detail)}</div>
           `
               : ""
           }
