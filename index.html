@@ -2699,8 +2699,7 @@ const HOTELS = [
         { id: "shopping", label: "Shopping" },
         { id: "phrasebook", label: "Phrasebook" },
         { id: "prep", label: "Prep" },
-        { id: "tips", label: "Tips" },
-        { id: "expense", label: "Expenses" }
+        { id: "tips", label: "Tips" }
       ];
 
       return `
@@ -3393,12 +3392,10 @@ function renderTransitTab() {
       switch (STATE.tab) {
         case "schedule": return renderScheduleTab();
         case "cities": return renderCitiesTab();
-        case "food": return renderFoodTab();
         case "shopping": return renderShoppingTab();
         case "phrasebook": return renderPhrasebookTab();
         case "prep": return renderPrepTab(); 
         case "tips": return renderTipsTab();
-        case "expense": return renderExpenseTab();
         default: return renderScheduleTab();
       }
     }
