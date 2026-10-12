@@ -187,13 +187,13 @@
     }
 
     .tabs-wrap {
-      margin: 14px 14px 0;
+      margin: 10px 14px 0; 
     }
 
     .tab-pill {
-      padding: 9px 14px;
+      padding: 7px 12px; 
       border: none;
-      font-size: 13.5px; 
+      font-size: 11.5px; 
       font-weight: 600;
       background: #ede8e0;
       color: #6b5748;
@@ -2650,13 +2650,14 @@ const HOTELS = [
       tab: "schedule",
       cityFilter: "All",
       openDay: 1,
+      openFlight: null, 
       foodCity: "Osaka",
       foodCategory: "cafe",
-      foodArea: "All",
+      foodArea: "All", 
       shoppingCity: "Osaka",
-      shoppingCategory: "All", 
-      shoppingArea: "All",
+      shoppingArea: "All", 
       actionsOpen: true,
+      openPhraseCategory: "Greetings & Politeness", 
       doneItems: loadDoneItems()
     };
 
@@ -2683,6 +2684,10 @@ const HOTELS = [
         STATE.openDay = dayNumber;
         const target = ITINERARY.find((day) => day.dayNumber === dayNumber);
         STATE.cityFilter = target ? target.city : "All";
+        renderApp();
+      },
+      toggleFlight(type) {
+        STATE.openFlight = STATE.openFlight === type ? null : type;
         renderApp();
       },
       setPhraseHotel(hotel) {
@@ -2803,13 +2808,30 @@ const HOTELS = [
 
     function renderFlightCard(flight) {
       const typeColor = flight.type === "DEPART" ? "#FFD080" : "#BFDBFE";
+      const isOpen = STATE.openFlight === flight.type;
+
       return `
-        <div class="flight-card" style="background:${flight.colors};">
-          <div class="flight-top">
-            <span class="flight-type" style="color:${typeColor};">${escapeHtml(flight.type)}</span>
-            <span class="flight-route">${escapeHtml(flight.route)}</span>
+        <div class="flight-card" style="background:${flight.colors}; padding: 0; overflow: hidden;">
+          <div 
+            class="flight-top pressable" 
+            style="padding: 14px 15px; margin-bottom: 0; display: flex; justify-content: space-between; align-items: center;" 
+            onclick="appActions.toggleFlight('${flight.type}')"
+          >
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <span class="flight-type" style="color:${typeColor};">${escapeHtml(flight.type)}</span>
+              <span class="flight-route">${escapeHtml(flight.route)}</span>
+            </div>
+            <div class="chevron ${isOpen ? 'open' : ''}" style="color: rgba(255,255,255,0.6);">⌄</div>
           </div>
-          <div class="flight-detail">${escapeHtml(flight.detail)}</div>
+          ${
+            isOpen
+              ? `
+            <div class="fade-in flight-detail" style="padding: 0 15px 14px; border-top: 1px solid rgba(255,255,255,0.15); margin-top: 4px; padding-top: 10px;">
+              ${escapeHtml(flight.detail)}
+            </div>
+          `
+              : ""
+          }
         </div>
       `;
     }
