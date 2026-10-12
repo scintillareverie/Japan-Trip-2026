@@ -965,6 +965,32 @@ body {
   <script>
     const STORAGE_KEY = "japan-trip-2026-checklist";
 
+    function loadDoneItems() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+        return Array.isArray(saved) ? saved : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function saveDoneItems(items) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    }
+
+    function getCityCfg(city) {
+      return CITY_CFG[city] || CITY_CFG.Transit;
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
     const CITY_CFG = {
       Osaka: { color: "#C44B0E", bg: "#FFF4EE", border: "#FDBA74", deep: "#7C2D12", emoji: "🏯" },
       Kyoto: { color: "#155E3E", bg: "#F0FDF4", border: "#6EE7B7", deep: "#14532D", emoji: "⛩️" },
@@ -972,9 +998,7 @@ body {
       Transit: { color: "#7C3AED", bg: "#F5F3FF", border: "#C4B5FD", deep: "#5B21B6", emoji: "🚅" }
     };
 
-    function getCityCfg(city) {
-      return CITY_CFG[city] || CITY_CFG.Transit;
-    }
+   
 
     const TYPE_COLOR = {
       flight: "#B5281C",
@@ -2476,19 +2500,6 @@ const HOTELS = [
       expenses = expenses.filter(item => item.id !== id);
       saveExpenses();
       renderApp();
-    }
-
-    function loadDoneItems() {
-      try {
-        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-        return Array.isArray(saved) ? saved : [];
-      } catch (error) {
-        return [];
-      }
-    }
-
-    function saveDoneItems(items) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     }
 
    const STATE = {
