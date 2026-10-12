@@ -2035,42 +2035,6 @@ const ITINERARY = [
 ];
 // === JAPAN TRIP DATA ITINERARY END ===
 
-// === JAPAN TRIP DATA: SHOPPING BUCKET LIST ===
-const SHOPPING_LIST = [
-  { 
-    category: "Skincare & Pharmacy", 
-    item: "Melano CC Vitamin C Serum", 
-    store: "Don Quijote / Matsukiyo", 
-    jpName: "メラノCC 薬用しみ集中対策美容液",
-    igLink: "",
-    taxFree: true 
-  },
-  { 
-    category: "Fashion & Goods", 
-    item: "Onitsuka Tiger Mexico 66", 
-    store: "Omotesando / Shibuya", 
-    jpName: "オニツカタイガー メキシコ66",
-    igLink: "",
-    taxFree: true 
-  },
-  { 
-    category: "Snacks & Souvenirs", 
-    item: "Ichiran Ramen Gift Box", 
-    store: "Don Quijote", 
-    jpName: "一蘭ラーメン 博多細麺",
-    igLink: "",
-    taxFree: false 
-  },
-  { 
-    category: "Snacks & Souvenirs", 
-    item: "Ippodo Matcha Powder", 
-    store: "Kyoto Teramachi / Daimaru", 
-    jpName: "一保堂茶舗 抹茶",
-    igLink: "",
-    taxFree: true 
-  }
-];
-
 // === JAPAN TRIP DATA: TRANSIT ===
 const TRANSIT_QUICK_LINKS = [
   { name: "Tokyo Metro Map (English)", url: "https://www.tokyometro.jp/en/subwaymap/pdf/rosen_en_1702.pdf", color: "#0ea5e9" },
@@ -2441,7 +2405,15 @@ const HOTELS = [
     ];
     // === JAPAN TRIP DATA: PREP (END) ===
 
-   // === JAPAN TRIP DATA: PHRASEBOOK & FLASHCARDS (START) ===
+   // === JAPAN TRIP DATA: SHOPPING BUCKET LIST ===
+    const SHOPPING_LIST = [
+      { category: "Beauty & Pharmacy", item: "Melano CC Vitamin C Serum", store: "Don Quijote / Matsukiyo", jpName: "メラノCC 薬用しみ集中対策美容液", igLink: "", taxFree: true },
+      { category: "Fashion & Goods", item: "Onitsuka Tiger Mexico 66", store: "Omotesando / Shibuya", jpName: "オニツカタイガー メキシコ66", igLink: "", taxFree: true },
+      { category: "Snacks", item: "Ichiran Ramen Gift Box", store: "Don Quijote", jpName: "一蘭ラーメン 博多細麺", igLink: "", taxFree: false },
+      { category: "Souvenirs", item: "Ippodo Matcha Powder", store: "Kyoto Teramachi / Daimaru", jpName: "一保堂茶舗 抹茶", igLink: "", taxFree: true }
+    ];
+
+    // === JAPAN TRIP DATA: PHRASEBOOK & FLASHCARDS (START) ===
     const HOTEL_TAXI_DATA = [
       {
         city: "Osaka",
@@ -2470,11 +2442,14 @@ const HOTELS = [
     ];
 
     const FLASHCARD_PHRASES = [
+      { category: "Hotel", english: "Could you keep my luggage?", romaji: "Nimotsu o azukatte moraemasu ka?", japanese: "荷物を預かってもらえますか？", icon: "🧳" },
       { category: "Konbini", english: "No bag needed.", romaji: "Fukuro wa irimasen", japanese: "袋は不要です", icon: "🛍️" },
       { category: "Konbini", english: "Please heat this up.", romaji: "Atatamete kudasai", japanese: "温めてください", icon: "🍱" },
-      { category: "Dining", english: "Separate checks, please.", romaji: "Betsu-betsu de onegaishimasu", japanese: "別々でお願いします", icon: "💴" },
-      { category: "Dining", english: "Does this contain pork/meat?", romaji: "Kore wa butaniku/niku ga haitte imasu ka?", japanese: "これには豚肉/肉が入っていますか？", icon: "🥩" },
-      { category: "Payment", english: "Paying with IC Card (Suica/Pasmo).", romaji: "IC kaado de onegaishimasu", japanese: "ICカードでお願いします", icon: "💳" }
+      { category: "Restaurant", english: "Two persons for dine in, please.", romaji: "Futari desu", japanese: "2人です", icon: "👥" },
+      { category: "Restaurant", english: "Check, please.", romaji: "Okaikei onegaishimasu", japanese: "お会計お願いします", icon: "💴" },
+      { category: "Transportation", english: "Paying with IC Card (Suica).", romaji: "IC kaado de onegaishimasu", japanese: "ICカードでお願いします", icon: "💳" },
+      { category: "General", english: "Where is the toilet?", romaji: "Toire wa doko desu ka?", japanese: "トイレはどこですか？", icon: "🚽" },
+      { category: "General", english: "Excuse me / Thank you", romaji: "Sumimasen", japanese: "すみません", icon: "🙏" }
     ];
     // === JAPAN TRIP DATA: PHRASEBOOK & FLASHCARDS (END) ===
 
@@ -2503,59 +2478,20 @@ const HOTELS = [
       tab: "schedule",
       cityFilter: "All",
       openDay: 1,
+      foodCity: "Osaka",
+      foodCategory: "cafe",
+      foodArea: "All", 
+      shoppingCategory: "All",
       actionsOpen: true,
-      openPhraseCategory: "Greetings & Politeness", 
+      phraseHotel: "Osaka",    // Controls Hotel Cards dropdown
+      phraseCategory: "All",   // Controls Phrase Categories dropdown
       doneItems: loadDoneItems()
     };
-
-    function loadDoneItems() {
-      try {
-        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-        return Array.isArray(saved) ? saved : [];
-      } catch (error) {
-        return [];
-      }
-    }
-
-    function saveDoneItems(items) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-    }
-
-    function getCityCfg(city) {
-      return CITY_CFG[city] || CITY_CFG.Transit;
-    }
-
-    function escapeHtml(value) {
-      return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;");
-    }
-
-    function hotelForCity(city) {
-      return HOTELS.find((hotel) => hotel.city === city);
-    }
-
-    function isDone(name) {
-      return STATE.doneItems.includes(name);
-    }
-
-    function toggleDone(name) {
-      if (isDone(name)) {
-        STATE.doneItems = STATE.doneItems.filter((item) => item !== name);
-      } else {
-        STATE.doneItems = [...STATE.doneItems, name];
-      }
-      saveDoneItems(STATE.doneItems);
-      renderApp();
-    }
 
     const appActions = {
       setTab(tab) {
         STATE.tab = tab;
-        window.scrollTo({ top: 0, behavior: 'smooth' }); // Elegant scroll to top on tab switch
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         renderApp();
       },
       setCityFilter(city) {
@@ -2577,19 +2513,26 @@ const HOTELS = [
         STATE.cityFilter = target ? target.city : "All";
         renderApp();
       },
-      toggleActions() {
-        STATE.actionsOpen = !STATE.actionsOpen;
+      setShoppingCategory(category) {
+        STATE.shoppingCategory = category;
         renderApp();
       },
-      togglePhraseCategory(category) {
-        STATE.openPhraseCategory = STATE.openPhraseCategory === category ? null : category;
+      setPhraseHotel(hotel) {
+        STATE.phraseHotel = hotel;
+        renderApp();
+      },
+      setPhraseCategory(category) {
+        STATE.phraseCategory = category;
+        renderApp();
+      },
+      toggleActions() {
+        STATE.actionsOpen = !STATE.actionsOpen;
         renderApp();
       },
       toggleDone(name) {
         toggleDone(name);
       }
     };
-
     window.appActions = appActions;
 
     function getFilteredDays() {
@@ -3052,40 +2995,64 @@ function renderTransitTab() {
 
 
     function renderPhrasebookTab() {
+      const selectedHotel = HOTEL_TAXI_DATA.find(h => h.city === STATE.phraseHotel) || HOTEL_TAXI_DATA[0];
+      const allPhraseCats = ["Hotel", "Konbini", "Restaurant", "General", "Transportation"];
+      const filteredPhrases = STATE.phraseCategory === "All"
+        ? FLASHCARD_PHRASES
+        : FLASHCARD_PHRASES.filter(p => p.category === STATE.phraseCategory);
+
       return `
         <section class="section-block fade-in">
           ${renderSectionTitle({
             eyebrow: "Japanese Helper",
             title: "Language & Cards",
-            subtitle: "Taxi cards, instant staff flashcards, and essential Japanese phrases.",
+            subtitle: "Hotel address cards and essential Japanese phrases.",
             color: "#DC2626"
           })}
 
-          <!-- 1. TAXI CARDS (Top Priority) -->
-          <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;">🚕 Show to Taxi Driver</div>
-          ${HOTEL_TAXI_DATA.map(hotel => `
-            <div style="background: white; border: 2px solid #E5E7EB; border-radius: 12px; padding: 18px; margin-bottom: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.04);">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                <span style="font-size: 11px; font-weight: bold; color: #DC2626; background: #FEE2E2; padding: 2px 8px; border-radius: 4px;">${escapeHtml(hotel.city)}</span>
-                <span style="font-size: 11px; color: #6B7280;">${escapeHtml(hotel.dates)}</span>
-              </div>
-              
-              <div style="font-size: 20px; font-weight: 900; color: #111827; margin-bottom: 2px; line-height: 1.2;">${escapeHtml(hotel.nameJp)}</div>
-              <div style="font-size: 13px; color: #6B7280; margin-bottom: 12px;">${escapeHtml(hotel.nameEn)}</div>
-              
-              <div style="font-size: 16px; font-weight: bold; color: #1F2937; margin-bottom: 12px; line-height: 1.3;">${escapeHtml(hotel.addressJp)}</div>
-              
-              <div style="background: #F3F4F6; padding: 10px; border-radius: 8px; text-align: center;">
-                <div style="font-size: 10px; color: #4B5563; text-transform: uppercase;">Driver Navigation Phone Number</div>
-                <div style="font-size: 20px; font-weight: 900; color: #000; letter-spacing: 1px;">📞 ${escapeHtml(hotel.phone)}</div>
-              </div>
-            </div>
-          `).join('')}
+          <!-- 1. HOTEL CARDS WITH DROPDOWN -->
+          <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;">🏨 Hotel Cards</div>
+          
+          <div style="position: relative; margin-bottom: 12px;">
+            <select 
+              onchange="appActions.setPhraseHotel(this.value)"
+              style="width: 100%; appearance: none; -webkit-appearance: none; padding: 11px 36px 11px 14px; border-radius: var(--radius-md); border: 1.5px solid #FECACA; font-family: inherit; font-size: 13px; font-weight: 700; background: #fff; cursor: pointer; outline: none;"
+            >
+              ${HOTEL_TAXI_DATA.map(h => `<option value="${h.city}" ${STATE.phraseHotel === h.city ? "selected" : ""}>${escapeHtml(h.city)} -${escapeHtml(h.nameEn)}</option>`).join("")}
+            </select>
+            <span style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: #DC2626; font-size: 14px; font-weight: bold;">⌄</span>
+          </div>
 
-          <!-- 2. HIGH-VISIBILITY STAFF FLASHCARDS -->
-          <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin: 24px 0 12px 0;">💬 Tap or Show to Staff</div>
-          <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;">
-            ${FLASHCARD_PHRASES.map(item => `
+          <div class="fade-in" style="background: white; border: 2px solid #E5E7EB; border-radius: 12px; padding: 18px; margin-bottom: 24px; box-shadow: 0 4px 6px rgba(0,0,0,0.04);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 11px; font-weight: bold; color: #DC2626; background: #FEE2E2; padding: 2px 8px; border-radius: 4px;">${escapeHtml(selectedHotel.city)}</span>
+              <span style="font-size: 11px; color: #6B7280;">${escapeHtml(selectedHotel.dates)}</span>
+            </div>
+            <div style="font-size: 20px; font-weight: 900; color: #111827; margin-bottom: 2px; line-height: 1.2;">${escapeHtml(selectedHotel.nameJp)}</div>
+            <div style="font-size: 13px; color: #6B7280; margin-bottom: 12px;">${escapeHtml(selectedHotel.nameEn)}</div>
+            <div style="font-size: 16px; font-weight: bold; color: #1F2937; margin-bottom: 12px; line-height: 1.3;">${escapeHtml(selectedHotel.addressJp)}</div>
+            <div style="background: #F3F4F6; padding: 10px; border-radius: 8px; text-align: center;">
+              <div style="font-size: 10px; color: #4B5563; text-transform: uppercase;">Driver Navigation Phone Number</div>
+              <div style="font-size: 20px; font-weight: 900; color: #000; letter-spacing: 1px;">📞 ${escapeHtml(selectedHotel.phone)}</div>
+            </div>
+          </div>
+
+          <!-- 2. PHRASES WITH CATEGORY DROPDOWN -->
+          <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;">💬 Phrases</div>
+          
+          <div style="position: relative; margin-bottom: 14px;">
+            <select 
+              onchange="appActions.setPhraseCategory(this.value)"
+              style="width: 100%; appearance: none; -webkit-appearance: none; padding: 11px 36px 11px 14px; border-radius: var(--radius-md); border: 1.5px solid #FECACA; font-family: inherit; font-size: 13px; font-weight: 700; background: #fff; cursor: pointer; outline: none;"
+            >
+              <option value="All" ${STATE.phraseCategory === "All" ? "selected" : ""}>All Categories</option>
+              ${allPhraseCats.map(cat => `<option value="${escapeHtml(cat)}" ${STATE.phraseCategory === cat ? "selected" : ""}>${escapeHtml(cat)}</option>`).join("")}
+            </select>
+            <span style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: #DC2626; font-size: 14px; font-weight: bold;">⌄</span>
+          </div>
+
+          <div class="fade-in" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;">
+            ${filteredPhrases.map(item => `
               <div class="action-card" style="flex-direction: column; align-items: stretch; padding: 14px; border-left: 4px solid #DC2626; background: white;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                   <span style="font-size: 13px; font-weight: bold; color: #374151;">${escapeHtml(item.icon)} "${escapeHtml(item.english)}"</span>
@@ -3103,26 +3070,95 @@ function renderTransitTab() {
               </div>
             `).join('')}
           </div>
+        </section>
+      `;
+    }
 
-          <!-- 3. GENERAL SURVIVAL PHRASES -->
-          <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;">📚 General Cheat Sheet</div>
-          <div style="background: white; border-radius: 12px; border: 1px solid #E5E7EB; overflow: hidden; margin-bottom: 10px;">
-            <div style="padding: 12px; border-bottom: 1px solid #F3F4F6;">
-              <div style="font-weight: bold; font-size: 14px; color: #1F2937;">Sumimasen (すみません)</div>
-              <div style="font-size: 12.5px; color: #4B5563; margin-top: 2px;">Excuse me / Sorry / Thank you (universal icebreaker)</div>
+    function renderExpenseTab() {
+      const totalJPY = expenses.reduce((sum, item) => sum + item.amount, 0);
+      const totalIDR = (totalJPY * exchangeRate).toLocaleString('id-ID');
+
+      const grouped = expenses.reduce((acc, item) => {
+        acc[item.date] = acc[item.date] || [];
+        acc[item.date].push(item);
+        return acc;
+      }, {});
+      const dates = Object.keys(grouped).sort().reverse();
+      
+      const today = new Date().toISOString().split('T')[0];
+
+      return `
+        <section class="section-block fade-in">
+          ${renderSectionTitle({
+            eyebrow: "Budget & Cash",
+            title: "Expense Tracker",
+            subtitle: "Log purchases instantly and track daily spending in IDR.",
+            color: "#059669"
+          })}
+
+          <!-- TOTAL SPENT SUMMARY CARD -->
+          <div style="background: linear-gradient(135deg, #065F46 0%, #047857 100%); color: white; padding: 20px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.85;">Total Trip Spending</div>
+            <div style="font-size: 32px; font-weight: 900; margin: 4px 0;">¥${totalJPY.toLocaleString()}</div>
+            <div style="font-size: 14px; opacity: 0.9;">≈ Rp ${totalIDR} (Rate: Rp ${exchangeRate})</div>
+          </div>
+
+          <!-- CUSTOM EXPENSE FORM (Quick Log Removed, Added Jajan & Gifts Categories) -->
+          <div style="background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 12px; padding: 16px; margin-bottom: 24px;">
+            <div style="font-weight: bold; font-size: 14px; margin-bottom: 12px; color: #1F2937;">Add Expense</div>
+            
+            <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+              <input id="exp-date" type="date" value="${today}" style="flex: 1; padding: 10px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 13px; background: white;" />
+              <select id="exp-cat" style="flex: 1; padding: 10px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 13px; background: white;">
+                <option value="Food">🍱 Food</option>
+                <option value="Jajan">🍢 Jajan</option>
+                <option value="Transit">🚆 Transit</option>
+                <option value="Shopping">🛍️ Shop</option>
+                <option value="Gifts">🎁 Gifts</option>
+                <option value="Stay">🏨 Stay</option>
+                <option value="Misc">✨ Misc</option>
+              </select>
             </div>
-            <div style="padding: 12px; border-bottom: 1px solid #F3F4F6;">
-              <div style="font-weight: bold; font-size: 14px; color: #1F2937;">Arigatou gozaimasu (ありがとうございます)</div>
-              <div style="font-size: 12.5px; color: #4B5563; margin-top: 2px;">Thank you very much</div>
+            
+            <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+              <input id="exp-amount" type="number" placeholder="Amount (¥)" style="width: 100%; padding: 10px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 16px;" />
             </div>
-            <div style="padding: 12px; border-bottom: 1px solid #F3F4F6;">
-              <div style="font-weight: bold; font-size: 14px; color: #1F2937;">Okaikei onegaishimasu (お会計お願いします)</div>
-              <div style="font-size: 12.5px; color: #4B5563; margin-top: 2px;">Check/bill please (at restaurants)</div>
-            </div>
-            <div style="padding: 12px;">
-              <div style="font-weight: bold; font-size: 14px; color: #1F2937;">Toire wa doko desu ka? (トイレはどこですか？)</div>
-              <div style="font-size: 12.5px; color: #4B5563; margin-top: 2px;">Where is the restroom?</div>
-            </div>
+            
+            <input id="exp-note" type="text" placeholder="Note (e.g. Lawson, Donki)" style="width: 100%; padding: 10px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 14px; margin-bottom: 8px; box-sizing: border-box;" />
+            
+            <button onclick="addExpense(document.getElementById('exp-amount').value, document.getElementById('exp-cat').value, document.getElementById('exp-note').value, document.getElementById('exp-date').value)" style="width: 100%; padding: 12px; background: #059669; color: white; font-weight: bold; border: none; border-radius: 8px; cursor: pointer;">
+              Log Expense
+            </button>
+          </div>
+
+          <!-- DAILY BREAKDOWN (Automatically groups and sums per day) -->
+          <div>
+            <div style="font-size: 11px; font-weight: 800; color: #6B7280; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Daily Breakdown</div>
+            ${dates.length === 0 ? `<div style="color: #9CA3AF; text-align: center; padding: 20px;">No expenses logged yet.</div>` : ''}
+            ${dates.map(date => {
+              const dayItems = grouped[date];
+              const dayTotal = dayItems.reduce((s, i) => s + i.amount, 0);
+              return `
+                <div style="margin-bottom: 16px; background: #fff; border: 1.5px solid var(--line); border-radius: 12px; padding: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                  <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 13px; color: #374151; padding-bottom: 8px; border-bottom: 2px solid #E5E7EB; margin-bottom: 8px;">
+                    <span>📅 ${date}</span>
+                    <span style="color: #059669;">¥${dayTotal.toLocaleString()}</span>
+                  </div>
+                  ${dayItems.map(item => `
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px dashed #F3F4F6;">
+                      <div>
+                        <div style="font-weight: 600; font-size: 14px; color: #1F2937;">${escapeHtml(item.note)}</div>
+                        <div style="font-size: 11px; color: #6B7280;">${item.category}</div>
+                      </div>
+                      <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="font-weight: 600; color: #374151;">¥${item.amount.toLocaleString()}</span>
+                        <button onclick="deleteExpense(${item.id})" style="background: #FEE2E2; border: none; color: #B91C1C; cursor: pointer; font-size: 10px; font-weight:bold; padding: 4px 8px; border-radius:4px;">✕</button>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              `;
+            }).join('')}
           </div>
         </section>
       `;
@@ -3207,96 +3243,6 @@ function renderTransitTab() {
             `;
           }).join("")}
 
-        </section>
-      `;
-    }
-    
-    function renderExpenseTab() {
-      const totalJPY = expenses.reduce((sum, item) => sum + item.amount, 0);
-      const totalIDR = (totalJPY * exchangeRate).toLocaleString('id-ID'); // Formatted to Indonesian Rupiah
-
-      const grouped = expenses.reduce((acc, item) => {
-        acc[item.date] = acc[item.date] || [];
-        acc[item.date].push(item);
-        return acc;
-      }, {});
-      const dates = Object.keys(grouped).sort().reverse();
-
-      return `
-        <section class="section-block fade-in">
-          ${renderSectionTitle({
-            eyebrow: "Budget & Cash",
-            title: "Expense Tracker",
-            subtitle: "Log small purchases instantly and track daily spending in IDR.",
-            color: "#059669"
-          })}
-
-          <!-- TOTAL SPENT SUMMARY CARD -->
-          <div style="background: linear-gradient(135deg, #065F46 0%, #047857 100%); color: white; padding: 20px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.85;">Total Trip Spending</div>
-            <div style="font-size: 32px; font-weight: 900; margin: 4px 0;">¥${totalJPY.toLocaleString()}</div>
-            <div style="font-size: 14px; opacity: 0.9;">≈ Rp ${totalIDR} (Rate: Rp ${exchangeRate})</div>
-          </div>
-
-          <!-- QUICK ADD PRESETS -->
-          <div style="margin-bottom: 20px;">
-            <div style="font-size: 11px; font-weight: 800; color: #6B7280; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">1-Tap Quick Log</div>
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
-              <button onclick="addExpense(160, 'Food', 'Vending Drink')" class="pressable" style="padding: 10px 4px; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 8px; font-weight: bold; color: #065F46; font-size: 12px;">🥤 ¥160</button>
-              <button onclick="addExpense(230, 'Transit', 'Bus Fare')" class="pressable" style="padding: 10px 4px; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 8px; font-weight: bold; color: #1E40AF; font-size: 12px;">🚌 ¥230</button>
-              <button onclick="addExpense(500, 'Food', 'Konbini Snack')" class="pressable" style="padding: 10px 4px; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 8px; font-weight: bold; color: #065F46; font-size: 12px;">🍙 ¥500</button>
-              <button onclick="addExpense(1000, 'Transit', 'IC Top-up')" class="pressable" style="padding: 10px 4px; background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 8px; font-weight: bold; color: #92400E; font-size: 12px;">💳 ¥1k</button>
-            </div>
-          </div>
-
-          <!-- CUSTOM EXPENSE FORM -->
-          <div style="background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 12px; padding: 16px; margin-bottom: 24px;">
-            <div style="font-weight: bold; font-size: 14px; margin-bottom: 12px; color: #1F2937;">Add Custom Expense</div>
-            <div style="display: flex; gap: 8px; margin-bottom: 8px;">
-              <input id="exp-amount" type="number" placeholder="Amount (¥)" style="flex: 1; padding: 10px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 16px;" />
-              <select id="exp-cat" style="padding: 10px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 14px; background: white;">
-                <option value="Food">🍱 Food</option>
-                <option value="Transit">🚆 Transit</option>
-                <option value="Shopping">🛍️ Shop</option>
-                <option value="Stay">🏨 Stay</option>
-                <option value="Misc">✨ Misc</option>
-              </select>
-            </div>
-            <input id="exp-note" type="text" placeholder="Note (e.g. Don Quijote, Ichiran)" style="width: 100%; padding: 10px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 14px; margin-bottom: 8px; box-sizing: border-box;" />
-            <button onclick="addExpense(document.getElementById('exp-amount').value, document.getElementById('exp-cat').value, document.getElementById('exp-note').value)" style="width: 100%; padding: 12px; background: #059669; color: white; font-weight: bold; border: none; border-radius: 8px; cursor: pointer;">
-              Log Expense
-            </button>
-          </div>
-
-          <!-- DAILY BREAKDOWN -->
-          <div>
-            <div style="font-size: 11px; font-weight: 800; color: #6B7280; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Daily Breakdown</div>
-            ${dates.length === 0 ? `<div style="color: #9CA3AF; text-align: center; padding: 20px;">No expenses logged yet.</div>` : ''}
-            ${dates.map(date => {
-              const dayItems = grouped[date];
-              const dayTotal = dayItems.reduce((s, i) => s + i.amount, 0);
-              return `
-                <div style="margin-bottom: 16px;">
-                  <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 13px; color: #374151; padding-bottom: 4px; border-bottom: 2px solid #E5E7EB; margin-bottom: 8px;">
-                    <span>📅 ${date}</span>
-                    <span>¥${dayTotal.toLocaleString()}</span>
-                  </div>
-                  ${dayItems.map(item => `
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed #F3F4F6;">
-                      <div>
-                        <div style="font-weight: 600; font-size: 14px; color: #1F2937;">${escapeHtml(item.note)}</div>
-                        <div style="font-size: 11px; color: #6B7280;">${item.category}</div>
-                      </div>
-                      <div style="display: flex; align-items: center; gap: 8px;">
-                        <span style="font-weight: bold; color: #059669;">¥${item.amount.toLocaleString()}</span>
-                        <button onclick="deleteExpense(${item.id})" style="background: none; border: none; color: #EF4444; cursor: pointer; font-size: 14px;">✕</button>
-                      </div>
-                    </div>
-                  `).join('')}
-                </div>
-              `;
-            }).join('')}
-          </div>
         </section>
       `;
     }
