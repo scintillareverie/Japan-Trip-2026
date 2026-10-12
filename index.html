@@ -893,7 +893,7 @@
 }
 
 body {
-      padding-bottom: 65px; 
+      padding-bottom: 55px; /* Keeps content clear of the fixed nav */
     }
 
     .bottom-nav {
@@ -907,11 +907,11 @@ body {
       display: flex;
       justify-content: space-around;
       align-items: center;
-      padding: 3px 6px; /* Further reduced */
-      padding-bottom: calc(3px + env(safe-area-inset-bottom));
-      box-shadow: 0 -4px 15px rgba(60, 20, 5, 0.06);
-      border-top-left-radius: 16px;
-      border-top-right-radius: 16px;
+      padding: 2px 4px; /* Slimmer by ~20% */
+      padding-bottom: calc(2px + env(safe-area-inset-bottom));
+      box-shadow: 0 -3px 12px rgba(60, 20, 5, 0.06);
+      border-top-left-radius: 14px;
+      border-top-right-radius: 14px;
       border-top: 1px solid var(--line);
       z-index: 1000;
     }
@@ -924,23 +924,23 @@ body {
       text-decoration: none;
       color: var(--muted);
       cursor: pointer;
-      padding: 2px 8px;
+      padding: 2px 6px;
       transition: all 0.2s ease;
     }
 
     .nav-icon {
-      font-size: 16px; /* Reduced by 10% from 18px */
+      font-size: 15px; /* Balanced standard icon size */
       margin-bottom: 1px;
     }
 
     .nav-icon.itinerary-icon {
-      font-size: 14px; /* Reduced by 20% from 18px */
+      font-size: 12.5px; /* Scaled down specifically so it optically matches the other emojis */
     }
 
     .nav-label {
-      font-size: 9px; /* Scaled down to match */
+      font-size: 9.5px; /* Text size kept comfortable and readable */
       font-weight: 600;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.2px;
     }
 
     .nav-item.active {
