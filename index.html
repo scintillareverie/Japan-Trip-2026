@@ -991,6 +991,10 @@ body {
         .replace(/'/g, "&#39;");
     }
 
+    function hotelForCity(city) {
+      return HOTELS.find((hotel) => hotel.city === city);
+    }
+
     const CITY_CFG = {
       Osaka: { color: "#C44B0E", bg: "#FFF4EE", border: "#FDBA74", deep: "#7C2D12", emoji: "🏯" },
       Kyoto: { color: "#155E3E", bg: "#F0FDF4", border: "#6EE7B7", deep: "#14532D", emoji: "⛩️" },
