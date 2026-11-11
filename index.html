@@ -1013,7 +1013,7 @@ body {
       color: var(--header-4);
     }
 
-    /* === UPGRADED SHOPPING CARDS & IG BUTTONS === */
+    /* === UPGRADED SHOPPING CARDS, PRODUCT BOX & IG BUTTONS === */
     .shop-progress-bar {
       display: flex;
       justify-content: space-between;
@@ -1031,7 +1031,7 @@ body {
     .shop-card {
       position: relative;
       padding: 15px;
-      margin-bottom: 11px;
+      margin-bottom: 12px;
       border-radius: var(--radius-lg);
       transition: opacity 0.2s ease, transform 0.15s ease;
     }
@@ -1053,14 +1053,20 @@ body {
       margin-bottom: 8px;
     }
 
-    .shop-check-btn {
+    .shop-top-btns {
+      display: flex;
+      gap: 5px;
       flex-shrink: 0;
+    }
+
+    .shop-check-btn,
+    .shop-edit-btn {
       border: 1.5px solid var(--line);
       background: #fff;
       color: var(--muted-2);
       font-size: 11px;
       font-weight: 700;
-      padding: 5px 10px;
+      padding: 5px 9px;
       border-radius: 999px;
     }
 
@@ -1068,6 +1074,47 @@ body {
       background: #dcfce7;
       border-color: #86efac;
       color: #15803d;
+    }
+
+    .product-box {
+      background: #faf8f3;
+      border: 1.5px solid var(--line);
+      border-left: 4px solid var(--header-4);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin: 9px 0;
+    }
+
+    .product-label {
+      font-size: 9.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .product-en {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
+    .product-jp {
+      font-size: 16px;
+      font-weight: 900;
+      color: #991b1b;
+      margin-top: 4px;
+      line-height: 1.35;
+    }
+
+    .product-romaji {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted-2);
+      font-style: italic;
+      margin-top: 2px;
     }
 
     .shop-actions {
@@ -2583,7 +2630,7 @@ const HOTELS = [
       {
         id: "tokyo-number-sugar",
         section: "shopping",
-        shoppingCategory: "Snacks & Souvenirs",
+        shoppingCategory: "Snacks",
         city: "Tokyo",
         area: "Omotesando",
         name: "NUMBER SUGAR",
@@ -2593,13 +2640,16 @@ const HOTELS = [
         station: "Meiji-jingumae Station",
         walk: "4 min walk",
         googleMapsUrl: "https://maps.app.goo.gl/f2YAkkiEiZBRdWz19",
+        productEn: "Numbered Artisanal Caramels (8-pc / 12-pc Box)",
+        productRomaji: "Nanbā Shugā Kyarameru Bokkusu",
+        productJp: "ナンバーシュガー キャラメル（8個・12個入り）",
         bestFor: "Artisanal numbered caramel boxes",
-        notes: "Perfect aesthetic gifts. Very popular, so arrive early for the best selection."
+        notes: "No.2 Salt and No.5 Raspberry are must-tries. Arrive early for full box sets."
       },
       {
         id: "tokyo-mega-donki",
         section: "shopping",
-        shoppingCategory: "Donki & General",
+        shoppingCategory: "Snacks",
         city: "Tokyo",
         area: "Shibuya",
         name: "MEGA Don Quijote Shibuya",
@@ -2609,13 +2659,16 @@ const HOTELS = [
         station: "Shibuya Station",
         walk: "5 min walk",
         googleMapsUrl: "https://maps.app.goo.gl/JbLcZFKKTHfyicBL8",
-        bestFor: "Skincare, cosmetics, and cheap snacks",
+        productEn: "Meiji Meltykiss, Kororo Gummies & Baked Sweet Potato",
+        productRomaji: "Merutīkisu / Kororo Gumi / Yakiimo",
+        productJp: "明治メルティーキッス・コロロ・ドンキ焼き芋",
+        bestFor: "Bulk snacks, chocolates, and late-night haul",
         notes: "Tax-free available. Go early in the morning to avoid the massive evening tourist queues."
       },
       {
         id: "tokyo-character-street",
         section: "shopping",
-        shoppingCategory: "Snacks & Souvenirs",
+        shoppingCategory: "Souvenirs",
         city: "Tokyo",
         area: "Marunouchi",
         name: "Tokyo Station Character Street",
@@ -2625,13 +2678,16 @@ const HOTELS = [
         station: "Tokyo Station",
         walk: "B1 direct access",
         googleMapsUrl: "https://maps.app.goo.gl/e7UWBLHXYSiF7wU4A",
-        bestFor: "Ghibli, Nintendo, and regional KitKats",
+        productEn: "Studio Ghibli Goods & Tokyo Banana / Regional KitKats",
+        productRomaji: "Jiburi Guzzu & Tōkyō Banana / Gotōchi Kitto Katto",
+        productJp: "ジブリグッズ・東京ばな奈・ご当地キットカット",
+        bestFor: "Ghibli, Nintendo, and boxed omiyage",
         notes: "The ultimate one-stop shop for character goods and boxed omiyage before flying out."
       },
       {
         id: "kyoto-kyukyodo",
         section: "shopping",
-        shoppingCategory: "Snacks & Souvenirs",
+        shoppingCategory: "Souvenirs",
         city: "Kyoto",
         area: "Central Kyoto",
         name: "Kyukyodo Teramachi",
@@ -2641,13 +2697,16 @@ const HOTELS = [
         station: "Kyoto Shiyakusho-mae Station",
         walk: "3 min walk",
         googleMapsUrl: "https://maps.app.goo.gl/7sYTizooaCTD6qn8A",
+        productEn: "Sandalwood Incense Sticks & Yuzen Washi Paper",
+        productRomaji: "Byakudan O-kō & Yūzen Washi Hagaki",
+        productJp: "白檀のお香・友禅和紙はがき",
         bestFor: "Incense, washi paper, and postcards",
         notes: "An elegant, centuries-old store offering traditional Japanese paper goods and premium incense."
       },
       {
         id: "osaka-shinsaibashi",
         section: "shopping",
-        shoppingCategory: "Fashion & Boutique",
+        shoppingCategory: "Fashion",
         city: "Osaka",
         area: "Shinsaibashi",
         name: "Shinsaibashi Shopping Arcade",
@@ -2657,61 +2716,73 @@ const HOTELS = [
         station: "Shinsaibashi Station",
         walk: "2 min walk",
         googleMapsUrl: "https://maps.app.goo.gl/YoF5ZqPubj8tpkxB6",
+        productEn: "Japanese Streetwear, Sneakers & Vintage Finds",
+        productRomaji: "Sutorīto Fasshon & Sunīkā",
+        productJp: "ストリートファッション・限定スニーカー",
         bestFor: "Apparel, sneakers, and boutique goods",
         notes: "A massive covered arcade linking major department stores and flagship fashion brands."
       },
       {
         id: "tokyo-ig-skinvestmentt",
         section: "shopping",
-        shoppingCategory: "Beauty & Skincare",
+        shoppingCategory: "Beauty",
         city: "Tokyo",
         area: "Harajuku",
-        name: "@cosme TOKYO (Viral Skincare)",
+        name: "@cosme TOKYO",
         icon: "🧴",
         priceRange: "¥¥",
         openingHours: "11:00–21:00",
         station: "Harajuku Station",
         walk: "1 min walk",
         googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=@cosme+TOKYO+Harajuku",
-        bestFor: "Trendy IG skincare finds",
-        notes: "Targeting items from @skin_vestmentt. Massive beauty flagship. Ref: https://www.instagram.com/skin_vestmentt/p/DfW9M0ZkYdt/"
+        productEn: "Rohto Melano CC Serum & Keana Nadeshiko Rice Mask",
+        productRomaji: "Merano CC Biyōeki & Keana Nadeshiko Okome no Masuku",
+        productJp: "メラノCC 薬用しみ集中対策プレミアム美容液・毛穴撫子 お米のマスク",
+        bestFor: "Top-ranked @cosme viral skincare",
+        notes: "Saved from @skin_vestmentt. Check the 1F @cosme Best Cosmetics Award wall first. Ref: https://www.instagram.com/skin_vestmentt/p/DfW9M0ZkYdt/"
       },
       {
         id: "tokyo-ig-kan7",
         section: "shopping",
-        shoppingCategory: "Home & Lifestyle",
+        shoppingCategory: "Lifestyle",
         city: "Tokyo",
         area: "Shibuya",
-        name: "Shibuya Loft (Lifestyle Finds)",
-        icon: "🛋️",
+        name: "Shibuya Loft",
+        icon: "📓",
         priceRange: "¥¥",
         openingHours: "11:00–21:00",
         station: "Shibuya Station",
         walk: "5 min walk",
         googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Shibuya+Loft+Tokyo",
-        bestFor: "Aesthetic lifestyle & stationery goods",
-        notes: "Targeting items from @ka.n__7. Ref: https://www.instagram.com/ka.n__7/reel/DfDpgsETezx/"
+        productEn: "Compact Travel Organizer Pouch & Japanese Stationery",
+        productRomaji: "Toraberu Shūnō Pōchi & Kinōsei Bungu",
+        productJp: "トラベル圧縮収納ポーチ・機能性文房具",
+        bestFor: "Aesthetic lifestyle & stationery gadgets",
+        notes: "Saved from @ka.n__7. Head to the stationery and travel goods floors. Ref: https://www.instagram.com/ka.n__7/reel/DfDpgsETezx/"
       },
       {
         id: "tokyo-ig-aiijapan",
         section: "shopping",
-        shoppingCategory: "Donki & General",
+        shoppingCategory: "Snacks",
         city: "Tokyo",
         area: "Shibuya",
-        name: "MEGA Don Quijote (IG Viral Finds)",
-        icon: "🐧",
+        name: "MEGA Don Quijote / Drugstores",
+        icon: "🍵",
         priceRange: "¥",
         openingHours: "24 Hours",
         station: "Shibuya Station",
         walk: "5 min walk",
         googleMapsUrl: "https://maps.app.goo.gl/JbLcZFKKTHfyicBL8",
-        bestFor: "Discount viral goods and snacks",
-        notes: "Targeting items from @aii.japan. Ref: https://www.instagram.com/aii.japan/reel/DeuDKncvae-/"
+        productEn: "Morinaga Bake Creamy Cheese & Rich Matcha Chocolates",
+        productRomaji: "Morinaga Beiku Kurīmī Chīzu & Koi Matcha Choko",
+        productJp: "森永 ベイク クリーミーチーズ・濃い抹茶チョコレート",
+        bestFor: "Viral Japan-exclusive snacks",
+        notes: "Saved from @aii.japan. Great for grabbing multiple packs as gifts. Ref: https://www.instagram.com/aii.japan/reel/DeuDKncvae-/"
       },
       {
         id: "tokyo-ig-parun",
         section: "shopping",
-        shoppingCategory: "Home & Lifestyle",
+        shoppingCategory: "Home Goods",
         city: "Tokyo",
         area: "Ginza",
         name: "MUJI Ginza Flagship",
@@ -2721,13 +2792,16 @@ const HOTELS = [
         station: "Ginza Station",
         walk: "3 min walk",
         googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=MUJI+Ginza+Flagship+Tokyo",
-        bestFor: "Minimalist home and kitchen items",
-        notes: "Targeting home goods from @parun_kurashi. Ref: https://www.instagram.com/parun_kurashi/reel/DeBUZ-fuQlH/"
+        productEn: "MUJI Silicone Cooking Spoon & Time-Saving Kitchen Tools",
+        productRomaji: "MujirushiShirīkōn Chōri Supūn & Jitan Kitchin Guzzu",
+        productJp: "無印良品 シリコーン調理スプーン・時短キッチングッズ",
+        bestFor: "Clever Japanese home & kitchen tools",
+        notes: "Saved from @parun_kurashi. Heat-resistant silicone tools on the kitchen floor. Ref: https://www.instagram.com/parun_kurashi/reel/DeBUZ-fuQlH/"
       },
       {
         id: "tokyo-ig-hinabeauty",
         section: "shopping",
-        shoppingCategory: "Beauty & Skincare",
+        shoppingCategory: "Beauty",
         city: "Tokyo",
         area: "Shibuya",
         name: "PLAZA Shibuya 109",
@@ -2737,24 +2811,144 @@ const HOTELS = [
         station: "Shibuya Station",
         walk: "3 min walk",
         googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=PLAZA+Shibuya+109+Tokyo",
-        bestFor: "Japanese cosmetics and makeup",
-        notes: "Targeting cosmetics from @hina_beauty_jpus. Ref: https://www.instagram.com/hina_beauty_jpus/reel/DdtpS1RuFpc/"
+        productEn: "Canmake Creamy Touch Liner & Cezanne Pearl Glow Highlight",
+        productRomaji: "Kyanmeiku Kurīmī Tatchi Rainā & Sezannu Pāru Gurō Hairaito",
+        productJp: "キャンメイク クリーミータッチライナー・セザンヌ パールグロウハイライト",
+        bestFor: "Cult-favorite Japanese point makeup",
+        notes: "Saved from @hina_beauty_jpus. Located on B2F of Shibuya 109. Ref: https://www.instagram.com/hina_beauty_jpus/reel/DdtpS1RuFpc/"
       },
       {
         id: "tokyo-ig-thenextselleb",
         section: "shopping",
-        shoppingCategory: "Fashion & Boutique",
+        shoppingCategory: "Fashion",
         city: "Tokyo",
         area: "Shibuya",
-        name: "Shibuya PARCO",
-        icon: "👗",
+        name: "Shibuya PARCO / Omotesando",
+        icon: "👟",
         priceRange: "¥¥¥",
         openingHours: "11:00–21:00",
         station: "Shibuya Station",
         walk: "5 min walk",
         googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Shibuya+PARCO+Tokyo",
-        bestFor: "High-end trending boutique items",
-        notes: "Targeting trendy items from @thenextselleb. Ref: https://www.instagram.com/thenextselleb/p/De9Mdj0CMvJ/"
+        productEn: "Onitsuka Tiger Mexico 66 SD / Nippon Made Edition",
+        productRomaji: "Onitsuka Taigā Mekishiko 66 SD (Nippon Meido)",
+        productJp: "オニツカタイガー メキシコ 66 SD（日本製モデル）",
+        bestFor: "Trending Tokyo fashion & footwear",
+        notes: "Saved from @thenextselleb. Bring passport for instant tax-free sizing check. Ref: https://www.instagram.com/thenextselleb/p/De9Mdj0CMvJ/"
+      },
+      {
+        id: "tokyo-ig-itsmejown",
+        section: "shopping",
+        shoppingCategory: "Fashion",
+        city: "Tokyo",
+        area: "Ginza",
+        name: "UNIQLO Tokyo / GU Flagship Ginza",
+        icon: "🧥",
+        priceRange: "¥¥",
+        openingHours: "11:00–21:00",
+        station: "Ginza Station",
+        walk: "3 min walk",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=UNIQLO+TOKYO+Ginza",
+        productEn: "PUFFTECH Outerwear, Heattech Ultra Warm & GU Barrel Leg Jeans",
+        productRomaji: "Pafutekku Autā & Hītotekku / GU Bareru Reggu Jīnzu",
+        productJp: "パフテックアウター・ヒートテック極暖・GU バレルレッグジーンズ",
+        bestFor: "Japan-priced winter layers & viral cuts",
+        notes: "Saved from @itsmejown_. Visit on Day 12 during Ginza Pedestrian Paradise. Ref: https://www.instagram.com/itsmejown_/reel/De0FSfkBtiz/"
+      },
+      {
+        id: "tokyo-ig-sakuramaya",
+        section: "shopping",
+        shoppingCategory: "Souvenirs",
+        city: "Tokyo",
+        area: "Shinjuku",
+        name: "Matsumoto Kiyoshi / Sundrug",
+        icon: "🩹",
+        priceRange: "¥",
+        openingHours: "10:00–22:00",
+        station: "Shinjuku Station",
+        walk: "2 min walk",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Matsumoto+Kiyoshi+Shinjuku+East",
+        productEn: "Roihi-Tsuboko Coin Plasters, Kyusoku Jikan Foot Sheets & MegRhythm",
+        productRomaji: "Roihi Tsuboko & Kyūsoku Jikan Ashi Sukkiri Shīto / Megurizumu",
+        productJp: "ロイヒつぼ膏・休足時間 足すっきりシート・めぐリズム 蒸気でホットアイマスク",
+        bestFor: "Practical drugstore souvenirs & walking recovery",
+        notes: "Saved from @sakuramaya_japantalk. Buy Kyusoku Jikan on Day 1 in Osaka for your 20k-step days! Ref: https://www.instagram.com/sakuramaya_japantalk/reel/Detw5J1v3vM/"
+      },
+      {
+        id: "tokyo-ig-oonism",
+        section: "shopping",
+        shoppingCategory: "Beauty",
+        city: "Tokyo",
+        area: "Harajuku",
+        name: "@cosme TOKYO / Matsumoto Kiyoshi",
+        icon: "💇‍♀️",
+        priceRange: "¥¥",
+        openingHours: "11:00–21:00",
+        station: "Harajuku Station",
+        walk: "1 min walk",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=@cosme+TOKYO+Harajuku",
+        productEn: "Orbis Essence In Hair Milk & Shiseido Tsubaki Premium Ex Mask",
+        productRomaji: "Orubisu Essensu In Hea Miruku & Tsubaki Puremiamu Hea Masuku",
+        productJp: "オルビス エッセンスインヘアミルク・椿 プレミアムEXリペアマスク",
+        bestFor: "Salon-approved Japanese hair repair",
+        notes: "Saved from hair stylist @oon_ism. Essential for dry winter air in Japan. Ref: https://www.instagram.com/oon_ism/reel/DcdOReGBFW7/"
+      },
+      {
+        id: "tokyo-ig-pypy",
+        section: "shopping",
+        shoppingCategory: "Snacks",
+        city: "Osaka",
+        area: "Honmachi",
+        name: "7-Eleven / Lawson / FamilyMart",
+        icon: "🍜",
+        priceRange: "¥",
+        openingHours: "24 Hours",
+        station: "Honmachi Station",
+        walk: "1 min walk",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=7-Eleven+Honmachi+Osaka",
+        productEn: "Nissin Donbei Kitsune Udon, Jersey Milk Pudding & Famichiki",
+        productRomaji: "Nisshin no Donbei Kitsune Udon & Jājī Gyūnyū Purin",
+        productJp: "日清のどん兵衛 きつねうどん・ジャージー牛乳プリン・ファミチキ",
+        bestFor: "Must-try konbini late-night snacks & cup ramen",
+        notes: "Saved from @pypy12_11. Note: West Japan (Osaka/Kyoto) Donbei broth has a special dashi flavor different from Tokyo! Ref: https://www.instagram.com/pypy12_11/reel/DeB4rNliuej/"
+      },
+      {
+        id: "tokyo-ig-kaori",
+        section: "shopping",
+        shoppingCategory: "Lifestyle",
+        city: "Tokyo",
+        area: "Harajuku",
+        name: "3COINS Harajuku Flagship",
+        icon: "🧺",
+        priceRange: "¥",
+        openingHours: "11:00–20:00",
+        station: "Meiji-jingumae Station",
+        walk: "3 min walk",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=3COINS+Harajuku+Flagship",
+        productEn: "2-Way Expandable Carry-On Bag & Transparent Storage Bags",
+        productRomaji: "Kyarī On Orたたみ Baggu & クリア収納バッグ (Kuria Shūnō Baggu)",
+        productJp: "キャリーオン折りたたみバッグ・クリアボックスバッグ",
+        bestFor: "¥300–¥800 smart travel & organization goods",
+        notes: "Saved from @kaori___japan. The Harajuku flagship has exclusive items and customization. Ref: https://www.instagram.com/kaori___japan/reel/Dd8zUKHsU6l/"
+      },
+      {
+        id: "tokyo-ig-evelyntrivena",
+        section: "shopping",
+        shoppingCategory: "Snacks",
+        city: "Tokyo",
+        area: "Ueno",
+        name: "Niki no Kashi (Ameyoko Market)",
+        icon: "🍘",
+        priceRange: "¥",
+        openingHours: "10:00–20:00",
+        station: "Ueno / Okachimachi Station",
+        walk: "2 min walk",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Niki+no+Kashi+Ameyoko+Ueno",
+        productEn: "Wholesale Dagashi, Umaibo Packs, Scallop Snacks & Matcha Treats",
+        productRomaji: "Niki no Kashi Otokuyō Dagashi・Hotate Kaihimo・Matcha Okashi",
+        productJp: "二木の菓子 大袋駄菓子・ホタテ貝ひも・抹茶お菓子詰め合わせ",
+        bestFor: "Tax-free wholesale Japanese candy & snacks",
+        notes: "Saved from @evelyntrivena. Just 2 stops from your Akihabara hotel—cheapest wholesale snack prices in Tokyo! Ref: https://www.instagram.com/evelyntrivena/reel/DdlhgzrOFCM/"
       }
     ];
 
@@ -2882,8 +3076,9 @@ const HOTELS = [
       renderApp();
     }
 
-    // === SHOPPING BOUGHT STATE & PREP CHECKLIST HELPERS ===
+    // === SHOPPING BOUGHT, CUSTOM OVERRIDES & PREP CHECKLIST HELPERS ===
     const SHOP_BOUGHT_KEY = "japan-trip-2026-bought";
+    const SHOP_CUSTOM_KEY = "japan-trip-2026-product-edits";
 
     function loadBoughtItems() {
       try {
@@ -2896,6 +3091,18 @@ const HOTELS = [
 
     function saveBoughtItems(items) {
       localStorage.setItem(SHOP_BOUGHT_KEY, JSON.stringify(items));
+    }
+
+    function loadProductEdits() {
+      try {
+        return JSON.parse(localStorage.getItem(SHOP_CUSTOM_KEY) || "{}");
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function saveProductEdits(edits) {
+      localStorage.setItem(SHOP_CUSTOM_KEY, JSON.stringify(edits));
     }
 
     function isDone(name) {
@@ -2924,6 +3131,7 @@ const HOTELS = [
       shoppingCategory: "All",
       shoppingArea: "All",
       boughtItems: loadBoughtItems(),
+      productEdits: loadProductEdits(),
       actionsOpen: true,
       openPhraseCategory: "Hotel",
       doneItems: loadDoneItems()
@@ -2980,6 +3188,21 @@ const HOTELS = [
           STATE.boughtItems.push(id);
         }
         saveBoughtItems(STATE.boughtItems);
+        renderApp();
+      },
+      editProduct(id) {
+        const place = PLACES.find((p) => p.id === id);
+        if (!place) return;
+        const current = STATE.productEdits[id] || {};
+        const en = prompt("Product Name (English):", current.productEn || place.productEn || "");
+        if (en === null) return;
+        const jp = prompt("Product Name (Japanese Kanji / Kana):", current.productJp || place.productJp || "");
+        if (jp === null) return;
+        const romaji = prompt("Product Name (Romaji):", current.productRomaji || place.productRomaji || "");
+        if (romaji === null) return;
+
+        STATE.productEdits[id] = { productEn: en, productJp: jp, productRomaji: romaji };
+        saveProductEdits(STATE.productEdits);
         renderApp();
       },
       toggleHotelCard(city) {
@@ -3405,11 +3628,15 @@ function getShoppingPlaces() {
         (p) => STATE.shoppingCity === "All" || p.city === STATE.shoppingCity
       );
 
-      // Dynamically extract categories from your PLACES data so new items never get hidden
-      const uniqueCategories = [...new Set(cityScoped.map((p) => p.shoppingCategory))];
+      // Fixed clean category order
+      const categoryOrder = ["Beauty", "Fashion", "Snacks", "Souvenirs", "Home Goods", "Lifestyle"];
+      const availableCategories = categoryOrder.filter((cat) =>
+        cityScoped.some((p) => p.shoppingCategory === cat)
+      );
+
       const categories = [
         { id: "All", label: `All (${cityScoped.length})` },
-        ...uniqueCategories.map((cat) => ({
+        ...availableCategories.map((cat) => ({
           id: cat,
           label: `${cat} (${cityScoped.filter((p) => p.shoppingCategory === cat).length})`
         }))
@@ -3417,7 +3644,7 @@ function getShoppingPlaces() {
 
       const places = getShoppingPlaces();
 
-      // Sort so unpurchased items stay at the top and bought items sink to the bottom
+      // Keep unpurchased items at the top
       const sortedPlaces = [...places].sort((a, b) => {
         const aBought = STATE.boughtItems.includes(a.id) ? 1 : 0;
         const bBought = STATE.boughtItems.includes(b.id) ? 1 : 0;
@@ -3449,7 +3676,7 @@ function getShoppingPlaces() {
           ${renderSectionTitle({
             eyebrow: "Curated & Viral Finds",
             title: "Shopping List",
-            subtitle: "Filter by city, category, or neighborhood—and tap IG links right in the aisle.",
+            subtitle: "Show the Japanese product box directly to store staff to find items fast.",
             color: "#7C3AED"
           })}
 
@@ -3459,7 +3686,7 @@ function getShoppingPlaces() {
             <span style="color:#7C3AED;">${boughtCount} / ${allShopping.length} Got It</span>
           </div>
 
-          <!-- 4-Button City Filter (Includes "All") -->
+          <!-- 4-Button City Filter -->
           <div class="filter-grid" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
             ${["All", "Osaka", "Kyoto", "Tokyo"]
               .map((city) => {
@@ -3478,7 +3705,7 @@ function getShoppingPlaces() {
               .join("")}
           </div>
 
-          <!-- Dynamic Category Pill Row -->
+          <!-- Clean Category Pill Row -->
           <div class="pill-row" style="margin-bottom: 12px; gap: 6px;">
             ${categories
               .map((cat) => {
@@ -3515,13 +3742,18 @@ function getShoppingPlaces() {
                   .map((place) => {
                     const cfg = getCityCfg(place.city);
                     const isBought = STATE.boughtItems.includes(place.id);
+                    const custom = STATE.productEdits[place.id] || {};
 
-                    // 1. Extract Instagram URL from notes automatically
+                    const productEn = custom.productEn || place.productEn || "";
+                    const productJp = custom.productJp || place.productJp || "";
+                    const productRomaji = custom.productRomaji || place.productRomaji || "";
+
+                    // Extract Instagram URL from notes automatically
                     const rawNotes = place.notes || "";
                     const igMatch = rawNotes.match(/https:\/\/www\.instagram\.com\/\S+/);
                     const igUrl = igMatch ? igMatch[0] : null;
 
-                    // 2. Strip "Ref: https://..." from visible note text
+                    // Strip "Ref: https://..." from visible note text
                     const cleanNotes = rawNotes
                       .replace(/Ref:\s*https:\/\/www\.instagram\.com\/\S+/i, "")
                       .trim();
@@ -3539,13 +3771,36 @@ function getShoppingPlaces() {
                             </div>
                           </div>
 
-                          <button
-                            class="shop-check-btn pressable ${isBought ? "bought" : ""}"
-                            onclick="appActions.toggleBought('${escapeHtml(place.id)}')"
-                          >
-                            ${isBought ? "✓ Got It" : "To Buy"}
-                          </button>
+                          <div class="shop-top-btns">
+                            <button
+                              class="shop-edit-btn pressable"
+                              title="Edit Product Name"
+                              onclick="appActions.editProduct('${escapeHtml(place.id)}')"
+                            >
+                              ✏️
+                            </button>
+                            <button
+                              class="shop-check-btn pressable ${isBought ? "bought" : ""}"
+                              onclick="appActions.toggleBought('${escapeHtml(place.id)}')"
+                            >
+                              ${isBought ? "✓ Got It" : "To Buy"}
+                            </button>
+                          </div>
                         </div>
+
+                        <!-- Bilingual Product Box (English + Japanese Kanji/Kana + Romaji) -->
+                        ${
+                          productEn || productJp
+                            ? `
+                              <div class="product-box" style="border-left-color:${cfg.color};">
+                                <div class="product-label">🎯 Target Product • 店員さんに見せる (Show Staff)</div>
+                                ${productEn ? `<div class="product-en">${escapeHtml(productEn)}</div>` : ""}
+                                ${productJp ? `<div class="product-jp">${escapeHtml(productJp)}</div>` : ""}
+                                ${productRomaji ? `<div class="product-romaji">🗣️ "${escapeHtml(productRomaji)}"</div>` : ""}
+                              </div>
+                            `
+                            : ""
+                        }
 
                         <div class="place-line">
                           🕒 ${escapeHtml(place.openingHours || "Check hours")}
@@ -3556,12 +3811,6 @@ function getShoppingPlaces() {
                         ${
                           cleanNotes
                             ? `<div class="place-note" style="margin-top:4px;">${escapeHtml(cleanNotes)}</div>`
-                            : ""
-                        }
-
-                        ${
-                          place.bestFor
-                            ? `<span class="accent-label" style="background:${cfg.bg}; color:${cfg.color}; border-color:${cfg.border};">✨ ${escapeHtml(place.bestFor)}</span>`
                             : ""
                         }
 
