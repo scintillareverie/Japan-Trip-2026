@@ -1013,6 +1013,91 @@ body {
       color: var(--header-4);
     }
 
+    /* === UPGRADED SHOPPING CARDS & IG BUTTONS === */
+    .shop-progress-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--muted-2);
+    }
+
+    .shop-card {
+      position: relative;
+      padding: 15px;
+      margin-bottom: 11px;
+      border-radius: var(--radius-lg);
+      transition: opacity 0.2s ease, transform 0.15s ease;
+    }
+
+    .shop-card.bought {
+      opacity: 0.62;
+      background: #f6f4ef;
+    }
+
+    .shop-card.bought .place-title {
+      text-decoration: line-through;
+    }
+
+    .shop-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .shop-check-btn {
+      flex-shrink: 0;
+      border: 1.5px solid var(--line);
+      background: #fff;
+      color: var(--muted-2);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 999px;
+    }
+
+    .shop-check-btn.bought {
+      background: #dcfce7;
+      border-color: #86efac;
+      color: #15803d;
+    }
+
+    .shop-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--line);
+    }
+
+    .shop-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .shop-btn-ig {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
+      box-shadow: 0 2px 6px rgba(220, 39, 67, 0.22);
+    }
+
   </style>
 </head>
 <body>
@@ -2498,7 +2583,7 @@ const HOTELS = [
       {
         id: "tokyo-number-sugar",
         section: "shopping",
-        shoppingCategory: "Snacks",
+        shoppingCategory: "Snacks & Souvenirs",
         city: "Tokyo",
         area: "Omotesando",
         name: "NUMBER SUGAR",
@@ -2514,7 +2599,7 @@ const HOTELS = [
       {
         id: "tokyo-mega-donki",
         section: "shopping",
-        shoppingCategory: "Beauty & Pharmacy",
+        shoppingCategory: "Donki & General",
         city: "Tokyo",
         area: "Shibuya",
         name: "MEGA Don Quijote Shibuya",
@@ -2530,7 +2615,7 @@ const HOTELS = [
       {
         id: "tokyo-character-street",
         section: "shopping",
-        shoppingCategory: "Souvenirs",
+        shoppingCategory: "Snacks & Souvenirs",
         city: "Tokyo",
         area: "Marunouchi",
         name: "Tokyo Station Character Street",
@@ -2546,7 +2631,7 @@ const HOTELS = [
       {
         id: "kyoto-kyukyodo",
         section: "shopping",
-        shoppingCategory: "Souvenirs",
+        shoppingCategory: "Snacks & Souvenirs",
         city: "Kyoto",
         area: "Central Kyoto",
         name: "Kyukyodo Teramachi",
@@ -2562,7 +2647,7 @@ const HOTELS = [
       {
         id: "osaka-shinsaibashi",
         section: "shopping",
-        shoppingCategory: "Fashion & Goods",
+        shoppingCategory: "Fashion & Boutique",
         city: "Osaka",
         area: "Shinsaibashi",
         name: "Shinsaibashi Shopping Arcade",
@@ -2578,7 +2663,7 @@ const HOTELS = [
       {
         id: "tokyo-ig-skinvestmentt",
         section: "shopping",
-        shoppingCategory: "Beauty",
+        shoppingCategory: "Beauty & Skincare",
         city: "Tokyo",
         area: "Harajuku",
         name: "@cosme TOKYO (Viral Skincare)",
@@ -2587,14 +2672,14 @@ const HOTELS = [
         openingHours: "11:00–21:00",
         station: "Harajuku Station",
         walk: "1 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/uX3L7wBqC5cXY7rC8",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=@cosme+TOKYO+Harajuku",
         bestFor: "Trendy IG skincare finds",
         notes: "Targeting items from @skin_vestmentt. Massive beauty flagship. Ref: https://www.instagram.com/skin_vestmentt/p/DfW9M0ZkYdt/"
       },
       {
         id: "tokyo-ig-kan7",
         section: "shopping",
-        shoppingCategory: "Lifestyle",
+        shoppingCategory: "Home & Lifestyle",
         city: "Tokyo",
         area: "Shibuya",
         name: "Shibuya Loft (Lifestyle Finds)",
@@ -2603,71 +2688,71 @@ const HOTELS = [
         openingHours: "11:00–21:00",
         station: "Shibuya Station",
         walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/9m2nZqR9R5hR6tL98",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Shibuya+Loft+Tokyo",
         bestFor: "Aesthetic lifestyle & stationery goods",
         notes: "Targeting items from @ka.n__7. Ref: https://www.instagram.com/ka.n__7/reel/DfDpgsETezx/"
       },
       {
         id: "tokyo-ig-aiijapan",
         section: "shopping",
-        shoppingCategory: "General",
+        shoppingCategory: "Donki & General",
         city: "Tokyo",
         area: "Shibuya",
-        name: "MEGA Don Quijote Shibuya",
+        name: "MEGA Don Quijote (IG Viral Finds)",
         icon: "🐧",
         priceRange: "¥",
         openingHours: "24 Hours",
         station: "Shibuya Station",
         walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/r6aE2X3P7c9K5V4z8",
+        googleMapsUrl: "https://maps.app.goo.gl/JbLcZFKKTHfyicBL8",
         bestFor: "Discount viral goods and snacks",
         notes: "Targeting items from @aii.japan. Ref: https://www.instagram.com/aii.japan/reel/DeuDKncvae-/"
       },
       {
         id: "tokyo-ig-parun",
         section: "shopping",
-        shoppingCategory: "Home",
+        shoppingCategory: "Home & Lifestyle",
         city: "Tokyo",
         area: "Ginza",
-        name: "Muji Ginza Flagship",
+        name: "MUJI Ginza Flagship",
         icon: "🏠",
         priceRange: "¥¥",
         openingHours: "11:00–21:00",
         station: "Ginza Station",
         walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/cZ7X8Z6Y6Z6Z6Z6Z6",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=MUJI+Ginza+Flagship+Tokyo",
         bestFor: "Minimalist home and kitchen items",
         notes: "Targeting home goods from @parun_kurashi. Ref: https://www.instagram.com/parun_kurashi/reel/DeBUZ-fuQlH/"
       },
       {
         id: "tokyo-ig-hinabeauty",
         section: "shopping",
-        shoppingCategory: "Beauty",
+        shoppingCategory: "Beauty & Skincare",
         city: "Tokyo",
         area: "Shibuya",
-        name: "Plaza Shibuya109",
+        name: "PLAZA Shibuya 109",
         icon: "💄",
         priceRange: "¥¥",
         openingHours: "10:00–21:00",
         station: "Shibuya Station",
         walk: "3 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/b9Y7Z6X6Z6Z6Z6Z6Z",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=PLAZA+Shibuya+109+Tokyo",
         bestFor: "Japanese cosmetics and makeup",
         notes: "Targeting cosmetics from @hina_beauty_jpus. Ref: https://www.instagram.com/hina_beauty_jpus/reel/DdtpS1RuFpc/"
       },
       {
         id: "tokyo-ig-thenextselleb",
         section: "shopping",
-        shoppingCategory: "Boutique",
+        shoppingCategory: "Fashion & Boutique",
         city: "Tokyo",
         area: "Shibuya",
-        name: "Shibuya Parco",
+        name: "Shibuya PARCO",
         icon: "👗",
         priceRange: "¥¥¥",
         openingHours: "11:00–21:00",
         station: "Shibuya Station",
         walk: "5 min walk",
-        googleMapsUrl: "https://maps.app.goo.gl/c9X7Z6Y6Z6Z6Z6Z6Z",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Shibuya+PARCO+Tokyo",
         bestFor: "High-end trending boutique items",
         notes: "Targeting trendy items from @thenextselleb. Ref: https://www.instagram.com/thenextselleb/p/De9Mdj0CMvJ/"
       }
@@ -2778,7 +2863,7 @@ const HOTELS = [
 
     // === EXPENSE TRACKER DATA & LOGIC ===
     let expenses = JSON.parse(localStorage.getItem('japan_expenses')) || [];
-    let exchangeRate = parseFloat(localStorage.getItem('jpy_rate')) || 105.0; // Default JPY to IDR (e.g. 1 JPY ≈ 105 IDR)
+    let exchangeRate = parseFloat(localStorage.getItem('jpy_rate')) || 105.0;
 
     function saveExpenses() {
       localStorage.setItem('japan_expenses', JSON.stringify(expenses));
@@ -2788,7 +2873,7 @@ const HOTELS = [
       if (!amount || amount <= 0) return;
       expenses.push({ id: Date.now(), amount: Number(amount), category, note: note || category, date });
       saveExpenses();
-      renderApp(); // Triggers your app's built-in re-render instantly!
+      renderApp();
     }
 
     function deleteExpense(id) {
@@ -2797,18 +2882,50 @@ const HOTELS = [
       renderApp();
     }
 
-   const STATE = {
+    // === SHOPPING BOUGHT STATE & PREP CHECKLIST HELPERS ===
+    const SHOP_BOUGHT_KEY = "japan-trip-2026-bought";
+
+    function loadBoughtItems() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(SHOP_BOUGHT_KEY) || "[]");
+        return Array.isArray(saved) ? saved : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveBoughtItems(items) {
+      localStorage.setItem(SHOP_BOUGHT_KEY, JSON.stringify(items));
+    }
+
+    function isDone(name) {
+      return STATE.doneItems.includes(name);
+    }
+
+    function toggleDone(name) {
+      if (isDone(name)) {
+        STATE.doneItems = STATE.doneItems.filter((item) => item !== name);
+      } else {
+        STATE.doneItems.push(name);
+      }
+      saveDoneItems(STATE.doneItems);
+      renderApp();
+    }
+
+    const STATE = {
       tab: "schedule",
       cityFilter: "All",
       openDay: 1,
-      openFlight: null, 
+      openFlight: null,
       foodCity: "Osaka",
       foodCategory: "cafe",
-      foodArea: "All", 
-      shoppingCity: "Osaka",
-      shoppingArea: "All", 
+      foodArea: "All",
+      shoppingCity: "All",
+      shoppingCategory: "All",
+      shoppingArea: "All",
+      boughtItems: loadBoughtItems(),
       actionsOpen: true,
-      openPhraseCategory: "Greetings & Politeness", 
+      openPhraseCategory: "Hotel",
       doneItems: loadDoneItems()
     };
 
@@ -2856,6 +2973,15 @@ const HOTELS = [
       toggleDone(name) {
         toggleDone(name);
       },
+      toggleBought(id) {
+        if (STATE.boughtItems.includes(id)) {
+          STATE.boughtItems = STATE.boughtItems.filter((item) => item !== id);
+        } else {
+          STATE.boughtItems.push(id);
+        }
+        saveBoughtItems(STATE.boughtItems);
+        renderApp();
+      },
       toggleHotelCard(city) {
         STATE.openHotelCard = STATE.openHotelCard === city ? null : city;
         renderApp();
@@ -2879,7 +3005,7 @@ const HOTELS = [
         STATE.shoppingArea = area;
         renderApp();
       }
-    }; 
+    };
     window.appActions = appActions;
 
     function getFilteredDays() {
@@ -3265,52 +3391,79 @@ const HOTELS = [
 
 function getShoppingPlaces() {
       return PLACES.filter(
-        (place) => 
-          place.section === "shopping" && 
-          place.city === STATE.shoppingCity && 
+        (place) =>
+          place.section === "shopping" &&
+          (STATE.shoppingCity === "All" || place.city === STATE.shoppingCity) &&
           (STATE.shoppingCategory === "All" || place.shoppingCategory === STATE.shoppingCategory) &&
           (STATE.shoppingArea === "All" || place.shoppingArea === STATE.shoppingArea)
       );
     }
 
-function renderShoppingTab() {
+    function renderShoppingTab() {
+      const allShopping = PLACES.filter((p) => p.section === "shopping");
+      const cityScoped = allShopping.filter(
+        (p) => STATE.shoppingCity === "All" || p.city === STATE.shoppingCity
+      );
+
+      // Dynamically extract categories from your PLACES data so new items never get hidden
+      const uniqueCategories = [...new Set(cityScoped.map((p) => p.shoppingCategory))];
       const categories = [
-        { id: "All", label: "All Categories" },
-        { id: "Fashion & Goods", label: "Fashion & Goods" },
-        { id: "Beauty & Pharmacy", label: "Beauty & Pharmacy" },
-        { id: "Snacks", label: "Snacks" },
-        { id: "Souvenirs", label: "Souvenirs" }
+        { id: "All", label: `All (${cityScoped.length})` },
+        ...uniqueCategories.map((cat) => ({
+          id: cat,
+          label: `${cat} (${cityScoped.filter((p) => p.shoppingCategory === cat).length})`
+        }))
       ];
 
       const places = getShoppingPlaces();
 
-      // Extract unique areas for the selected city and category combination
-      const uniqueAreas = [...new Set(
-        PLACES.filter(place => 
-          place.section === "shopping" && 
-          place.city === STATE.shoppingCity && 
-          (STATE.shoppingCategory === "All" || place.shoppingCategory === STATE.shoppingCategory)
-        ).map(place => place.area)
-      )].sort();
-
-      const areaOptions = [`<option value="All" ${STATE.shoppingArea === "All" ? "selected" : ""}>All Areas</option>`];
-      uniqueAreas.forEach(area => {
-        areaOptions.push(`<option value="${escapeHtml(area)}" ${STATE.shoppingArea === area ? "selected" : ""}>${escapeHtml(area)}</option>`);
+      // Sort so unpurchased items stay at the top and bought items sink to the bottom
+      const sortedPlaces = [...places].sort((a, b) => {
+        const aBought = STATE.boughtItems.includes(a.id) ? 1 : 0;
+        const bBought = STATE.boughtItems.includes(b.id) ? 1 : 0;
+        return aBought - bBought;
       });
+
+      const uniqueAreas = [
+        ...new Set(
+          cityScoped
+            .filter((p) => STATE.shoppingCategory === "All" || p.shoppingCategory === STATE.shoppingCategory)
+            .map((p) => p.area)
+        )
+      ].sort();
+
+      const areaOptions = [
+        `<option value="All" ${STATE.shoppingArea === "All" ? "selected" : ""}>All Neighborhoods</option>`
+      ];
+      uniqueAreas.forEach((area) => {
+        areaOptions.push(
+          `<option value="${escapeHtml(area)}" ${STATE.shoppingArea === area ? "selected" : ""}>${escapeHtml(area)}</option>`
+        );
+      });
+
+      const boughtCount = allShopping.filter((p) => STATE.boughtItems.includes(p.id)).length;
+      const activeCfg = STATE.shoppingCity === "All" ? CITY_CFG.Transit : getCityCfg(STATE.shoppingCity);
 
       return `
         <section class="section-block fade-in">
           ${renderSectionTitle({
-            eyebrow: "By city & category",
-            title: "Shopping",
-            subtitle: "Filter your shopping spots by category and neighborhood.",
+            eyebrow: "Curated & Viral Finds",
+            title: "Shopping List",
+            subtitle: "Filter by city, category, or neighborhood—and tap IG links right in the aisle.",
             color: "#7C3AED"
           })}
 
-          <div class="filter-grid">
-            ${["Osaka", "Kyoto", "Tokyo"]
+          <!-- Progress Counter -->
+          <div class="shop-progress-bar">
+            <span>🛍️ Shopping Progress</span>
+            <span style="color:#7C3AED;">${boughtCount} / ${allShopping.length} Got It</span>
+          </div>
+
+          <!-- 4-Button City Filter (Includes "All") -->
+          <div class="filter-grid" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
+            ${["All", "Osaka", "Kyoto", "Tokyo"]
               .map((city) => {
-                const cfg = getCityCfg(city);
+                const cfg = city === "All" ? CITY_CFG.Transit : getCityCfg(city);
                 const active = STATE.shoppingCity === city;
                 return `
                   <button
@@ -3325,74 +3478,119 @@ function renderShoppingTab() {
               .join("")}
           </div>
 
-          <!-- Shopping Category Pill Selector -->
+          <!-- Dynamic Category Pill Row -->
           <div class="pill-row" style="margin-bottom: 12px; gap: 6px;">
-            ${categories.map(cat => {
-              const active = STATE.shoppingCategory === cat.id;
-              return `
-                <button
-                  class="city-pill pressable"
-                  style="background:${active ? '#7C3AED' : '#EDE8E0'}; color:${active ? '#fff' : '#6B5748'}; border-color:${active ? '#7C3AED' : 'transparent'}; font-size:12px; padding:7px 12px;"
-                  onclick="appActions.setShoppingCategory('${cat.id}')"
-                >
-                  ${escapeHtml(cat.label)}
-                </button>
-              `;
-            }).join("")}
+            ${categories
+              .map((cat) => {
+                const active = STATE.shoppingCategory === cat.id;
+                return `
+                  <button
+                    class="city-pill pressable"
+                    style="background:${active ? "#7C3AED" : "#EDE8E0"}; color:${active ? "#fff" : "#6B5748"}; border-color:${active ? "#7C3AED" : "transparent"}; font-size:12px; padding:7px 12px;"
+                    onclick="appActions.setShoppingCategory('${escapeHtml(cat.id)}')"
+                  >
+                    ${escapeHtml(cat.label)}
+                  </button>
+                `;
+              })
+              .join("")}
           </div>
 
+          <!-- Neighborhood Dropdown -->
           <div style="position: relative; margin-bottom: 14px;">
             <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 14px;">📍</span>
             <select 
               onchange="appActions.setShoppingArea(this.value)"
-              style="width: 100%; appearance: none; -webkit-appearance: none; padding: 11px 36px 11px 38px; border-radius: var(--radius-md); border: 1.5px solid ${getCityCfg(STATE.shoppingCity).border}; font-family: inherit; font-size: 13px; font-weight: 700; color: ${getCityCfg(STATE.shoppingCity).deep}; background: #fff; cursor: pointer; outline: none; box-shadow: 0 1px 3px rgba(0,0,0,0.02);"
+              style="width: 100%; appearance: none; -webkit-appearance: none; padding: 11px 36px 11px 38px; border-radius: var(--radius-md); border: 1.5px solid ${activeCfg.border}; font-family: inherit; font-size: 13px; font-weight: 700; color: ${activeCfg.deep}; background: #fff; cursor: pointer; outline: none; box-shadow: 0 1px 3px rgba(0,0,0,0.02);"
             >
               ${areaOptions.join("")}
             </select>
-            <span style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: ${getCityCfg(STATE.shoppingCity).color}; font-size: 14px; font-weight: bold;">⌄</span>
+            <span style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: ${activeCfg.color}; font-size: 14px; font-weight: bold;">⌄</span>
           </div>
 
+          <!-- Shopping Cards -->
           ${
-            places.length 
-            ? places.map((place) => {
-              const cfg = getCityCfg(STATE.shoppingCity);
-              return `
-                <div class="card compact-card" style="border-color:${cfg.border}55;">
-                  <div class="place-head">
-                    <span class="place-icon">${escapeHtml(place.icon || "🛍️")}</span>
-                    <div>
-                      <div class="place-title">${escapeHtml(place.name)}</div>
-                      <div class="place-meta">${escapeHtml(place.area)}${place.priceRange ? ` • ${escapeHtml(place.priceRange)}` : ""}</div>
-                    </div>
-                  </div>
-                  <div class="place-line">
-                    ${escapeHtml(place.openingHours || "")}
-                    ${place.station ? `&nbsp;&nbsp;&nbsp;&nbsp;${escapeHtml(place.station)}` : ""}
-                    ${place.walk ? ` • ${escapeHtml(place.walk)}` : ""}
-                  </div>
-                  <div class="place-note">${escapeHtml(place.notes || "")}</div>
-                  
-                  ${
-                    place.googleMapsUrl 
-                      ? `
-                        <div style="margin-top: 8px; margin-bottom: 8px;">
-                          <a href="${escapeHtml(place.googleMapsUrl)}" target="_blank" rel="noreferrer" style="font-size: 12.5px; color: ${cfg.color}; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
-                            📍 View on Google Maps
-                          </a>
-                        </div>
-                      ` 
-                      : ""
-                  }
+            sortedPlaces.length
+              ? sortedPlaces
+                  .map((place) => {
+                    const cfg = getCityCfg(place.city);
+                    const isBought = STATE.boughtItems.includes(place.id);
 
-                  ${
-                    place.bestFor
-                      ? `<span class="accent-label" style="background:${cfg.bg}; color:${cfg.color}; border-color:${cfg.border};">${escapeHtml(place.bestFor)}</span>`
-                      : ""
-                  }
-                </div>
-              `;
-            }).join("")
-            : `<div class="empty-state">No places found matching the filters. Try changing your selection!</div>`
+                    // 1. Extract Instagram URL from notes automatically
+                    const rawNotes = place.notes || "";
+                    const igMatch = rawNotes.match(/https:\/\/www\.instagram\.com\/\S+/);
+                    const igUrl = igMatch ? igMatch[0] : null;
+
+                    // 2. Strip "Ref: https://..." from visible note text
+                    const cleanNotes = rawNotes
+                      .replace(/Ref:\s*https:\/\/www\.instagram\.com\/\S+/i, "")
+                      .trim();
+
+                    return `
+                      <div class="card shop-card ${isBought ? "bought" : ""}" style="border-color:${cfg.border}66;">
+                        <div class="shop-top-row">
+                          <div class="place-head" style="margin-bottom:0;">
+                            <span class="place-icon">${escapeHtml(place.icon || "🛍️")}</span>
+                            <div>
+                              <div class="place-title">${escapeHtml(place.name)}</div>
+                              <div class="place-meta">
+                                <span style="color:${cfg.color}; font-weight:700;">${escapeHtml(place.city)}</span> • ${escapeHtml(place.area)} • ${escapeHtml(place.shoppingCategory)}${place.priceRange ? ` • ${escapeHtml(place.priceRange)}` : ""}
+                              </div>
+                            </div>
+                          </div>
+
+                          <button
+                            class="shop-check-btn pressable ${isBought ? "bought" : ""}"
+                            onclick="appActions.toggleBought('${escapeHtml(place.id)}')"
+                          >
+                            ${isBought ? "✓ Got It" : "To Buy"}
+                          </button>
+                        </div>
+
+                        <div class="place-line">
+                          🕒 ${escapeHtml(place.openingHours || "Check hours")}
+                          ${place.station ? ` • 🚇 ${escapeHtml(place.station)}` : ""}
+                          ${place.walk ? ` (${escapeHtml(place.walk)})` : ""}
+                        </div>
+
+                        ${
+                          cleanNotes
+                            ? `<div class="place-note" style="margin-top:4px;">${escapeHtml(cleanNotes)}</div>`
+                            : ""
+                        }
+
+                        ${
+                          place.bestFor
+                            ? `<span class="accent-label" style="background:${cfg.bg}; color:${cfg.color}; border-color:${cfg.border};">✨ ${escapeHtml(place.bestFor)}</span>`
+                            : ""
+                        }
+
+                        <!-- Dual Action Bar: Maps + IG Reel/Post -->
+                        <div class="shop-actions">
+                          ${
+                            place.googleMapsUrl
+                              ? `
+                                <a href="${escapeHtml(place.googleMapsUrl)}" target="_blank" rel="noopener noreferrer" class="shop-btn pressable" style="background:${cfg.bg}; color:${cfg.deep}; border:1px solid ${cfg.border};">
+                                  📍 Google Maps
+                                </a>
+                              `
+                              : ""
+                          }
+                          ${
+                            igUrl
+                              ? `
+                                <a href="${escapeHtml(igUrl)}" target="_blank" rel="noopener noreferrer" class="shop-btn shop-btn-ig pressable">
+                                  📸 View IG Post
+                                </a>
+                              `
+                              : ""
+                          }
+                        </div>
+                      </div>
+                    `;
+                  })
+                  .join("")
+              : `<div class="empty-state">No shopping spots match this filter. Tap "All" above to reset!</div>`
           }
         </section>
       `;
