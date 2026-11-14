@@ -4051,6 +4051,13 @@ function renderTransitTab() {
       
       const dates = Object.keys(grouped).sort().reverse();
       const today = new Date().toISOString().split('T')[0];
+      
+      // Calculate Category Totals for the new widget
+      const catTotals = expenses.reduce((acc, item) => {
+        const cat = item.category || 'Other/Misc';
+        acc[cat] = (acc[cat] || 0) + (Number(item.amount) || 0);
+        return acc;
+      }, {});
 
       return `
         <section class="section-block fade-in">
@@ -4062,11 +4069,26 @@ function renderTransitTab() {
           })}
 
           <!-- TOTAL SPENT SUMMARY CARD -->
-          <div style="background: linear-gradient(135deg, #065F46 0%, #047857 100%); color: white; padding: 20px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+          <div style="background: linear-gradient(135deg, #065F46 0%, #047857 100%); color: white; padding: 20px; border-radius: 16px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
             <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.85;">Total Trip Spending</div>
             <div style="font-size: 32px; font-weight: 900; margin: 4px 0;">¥${totalJPY.toLocaleString()}</div>
             <div style="font-size: 14px; opacity: 0.9;">≈ Rp ${totalIDR} (Rate: Rp ${exchangeRate})</div>
           </div>
+
+          <!-- CATEGORY TOTALS WIDGET -->
+          ${Object.keys(catTotals).length > 0 ? `
+          <div style="background: #fff; border: 1.5px solid var(--line); border-radius: 14px; padding: 14px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+            <div style="font-weight: 800; font-size: 11.5px; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;">Category Totals</div>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+              ${Object.keys(catTotals).sort((a,b) => catTotals[b] - catTotals[a]).map(cat => `
+                <div style="display: flex; justify-content: space-between; align-items: center; background: #faf8f3; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line);">
+                  <span style="font-size: 11.5px; font-weight: 700; color: #6b5748;">${escapeHtml(cat)}</span>
+                  <span style="font-size: 12.5px; font-weight: 800; color: #059669;">¥${catTotals[cat].toLocaleString()}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          ` : ''}
 
           <!-- CUSTOM EXPENSE FORM -->
           <div style="background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 12px; padding: 16px; margin-bottom: 24px;">
@@ -4076,12 +4098,12 @@ function renderTransitTab() {
               <input id="exp-date" type="date" value="${today}" style="flex: 1; padding: 10px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 13px; background: white;" />
               <select id="exp-cat" style="flex: 1; padding: 10px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 13px; background: white;">
                 <option value="Food">🍱 Food</option>
-                <option value="Jajan">🍢 Jajan</option>
-                <option value="Transit">🚆 Transit</option>
-                <option value="Shopping">🛍️ Shop</option>
-                <option value="Gifts">🎁 Gifts</option>
-                <option value="Stay">🏨 Stay</option>
-                <option value="Misc">✨ Misc</option>
+                <option value="Snacks & Drinks">🍢 Snacks & Drinks</option>
+                <option value="Transportation">🚆 Transportation</option>
+                <option value="Shopping">🛍️ Shopping</option>
+                <option value="Souvenirs">🎁 Souvenirs</option>
+                <option value="Tickets & Attractions">🎫 Tickets & Attractions</option>
+                <option value="Other/Misc">✨ Other/Misc</option>
               </select>
             </div>
             
