@@ -3707,7 +3707,7 @@ const HOTELS = [
       `;
     }
 
-function getShoppingPlaces() {
+    function getShoppingPlaces() {
       return PLACES.filter(
         (place) =>
           place.section === "shopping" &&
@@ -3785,7 +3785,7 @@ function getShoppingPlaces() {
                 return `
                   <button
                     class="grid-pill pressable"
-                    style="background:${active ? var(--ink) : "#EAE2D6"}; color:${active ? "#fff" : "#6B5748"}; font-weight: ${active ? '800' : '700'};"
+                    style="background:${active ? 'var(--ink)' : '#EAE2D6'}; color:${active ? '#fff' : '#6B5748'}; font-weight: ${active ? '800' : '700'};"
                     onclick="appActions.setShoppingCity('${city}')"
                   >
                     ${escapeHtml(city)}
