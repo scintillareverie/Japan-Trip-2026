@@ -7,24 +7,39 @@
   <style>
    @import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&family=Prata&display=swap");
 
-    :root {
-      --bg: #faf8f3;
+   :root {
+      /* Base Colors */
+      --bg: #Faf9f6;
       --paper: #ffffff;
       --ink: #1a1208;
       --muted: #8a7566;
-      --muted-2: #6b5748;
-      --line: #ede8e0;
-      --gold: #ffd080;
-      --header-1: #1a0800;
-      --header-2: #3b1306;
-      --header-3: #6a1f0e;
-      --header-4: #8c3514;
-      --shadow: 0 10px 30px rgba(60, 20, 5, 0.12);
+      --line: #EAE2D6;
+      
+      /* Coordinated Theme Accents */
+      --theme-itinerary: #9C5140; /* Terracotta */
+      --theme-shopping: #853A42;  /* Muted Burgundy */
+      --theme-transit: #2B455E;   /* Slate Navy */
+      --theme-phrases: #5E4E46;   /* Warm Charcoal */
+      --theme-expense: #2E5A44;   /* Forest Green */
+      --theme-prep: #A36B36;      /* Burnt Umber */
+
       --radius-lg: 16px;
-      --radius-md: 14px;
-      --radius-sm: 12px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
     }
 
+    /* SVG Icon utility */
+    .icon-chevron {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.2s ease;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    
+    .chevron.open .icon-chevron {
+      transform: rotate(180deg);
+    }
     * {
       box-sizing: border-box;
     }
@@ -1279,10 +1294,10 @@ body {
     }
 
     const CITY_CFG = {
-      Osaka: { color: "#C44B0E", bg: "#FFF4EE", border: "#FDBA74", deep: "#7C2D12", emoji: "🏯" },
-      Kyoto: { color: "#155E3E", bg: "#F0FDF4", border: "#6EE7B7", deep: "#14532D", emoji: "⛩️" },
-      Tokyo: { color: "#1E3A8A", bg: "#EFF6FF", border: "#93C5FD", deep: "#172554", emoji: "🗼" },
-      Transit: { color: "#7C3AED", bg: "#F5F3FF", border: "#C4B5FD", deep: "#5B21B6", emoji: "🚅" }
+      Osaka: { color: "#9C5140", bg: "#FDF9F7", border: "#E8D3CE", deep: "#5C2E23", emoji: "🏯" },
+      Kyoto: { color: "#3C5A48", bg: "#F6F9F7", border: "#CFDBD4", deep: "#203328", emoji: "⛩️" },
+      Tokyo: { color: "#2B455E", bg: "#F4F7FA", border: "#CAD5E0", deep: "#152433", emoji: "🗼" },
+      Transit: { color: "#6B5748", bg: "#F9F8F6", border: "#EAE2D6", deep: "#3B2E25", emoji: "🚅" }
     };
 
    
@@ -3442,7 +3457,7 @@ const HOTELS = [
               <span class="flight-type" style="color:${typeColor}; font-size: 11px; font-weight: 800; letter-spacing: 1.4px;">${escapeHtml(flight.type)}</span>
               <span class="flight-route" style="font-size: 16px; font-weight: 800;">${escapeHtml(flight.route)}</span>
             </div>
-            <div class="chevron ${isOpen ? 'open' : ''}" style="color: rgba(255,255,255,0.6); font-size: 12px;">⌄</div>
+            <div class="chevron ${isOpen ? 'open' : ''}" style="color: rgba(255,255,255,0.6); font-size: 12px;"><svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
           </div>
           ${
             isOpen
@@ -3513,7 +3528,7 @@ const HOTELS = [
               <div class="day-theme">${escapeHtml(day.emoji)} ${escapeHtml(day.title)}</div>
             </div>
 
-            <div class="chevron ${isOpen ? "open" : ""}">⌄</div>
+            <div class="chevron ${isOpen ? "open" : ""}"><svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
           </div>
 
           ${
@@ -3589,7 +3604,7 @@ const HOTELS = [
             eyebrow: "Trip overview",
             title: "Cities",
             subtitle: "Your three bases and what makes each one worth lingering in.",
-            color: "#7C2D12"
+            color: "var(--theme-itinerary)"
           })}
 
           ${CITY_OVERVIEW.map((city) => {
@@ -3816,11 +3831,13 @@ const HOTELS = [
             <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 14px;">📍</span>
             <select 
               onchange="appActions.setShoppingArea(this.value)"
-              style="width: 100%; appearance: none; -webkit-appearance: none; padding: 12px 36px 12px 38px; border-radius: var(--radius-md); border: 1.5px solid var(--line); font-family: inherit; font-size: 13px; font-weight: 700; color: var(--ink); background: #fff; cursor: pointer; outline: none; box-shadow: 0 2px 4px rgba(0,0,0,0.02);"
+              style="width: 100%; appearance: none; -webkit-appearance: none; padding: 12px 40px 12px 38px; border-radius: var(--radius-md); border: 1.5px solid var(--line); font-family: inherit; font-size: 13px; font-weight: 700; color: var(--ink); background: #fff; cursor: pointer; outline: none; box-shadow: 0 2px 4px rgba(0,0,0,0.02);"
             >
               ${areaOptions.join("")}
             </select>
-            <span style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--ink); font-size: 14px; font-weight: bold;">⌄</span>
+            <div style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--muted); display: flex;">
+              <svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
           </div>
 
           ${
@@ -3898,7 +3915,7 @@ function renderTransitTab() {
         eyebrow: "Navigation Survival",
         title: "Transit & Trains",
         subtitle: "Cheat sheets for complex stations and high-contrast Shinkansen tickets.",
-        color: "#059669"
+        color: "var(--theme-transit)"
       })}
 
       <!-- HIGHLIGHT: SHINKANSEN TICKET -->
@@ -4013,7 +4030,7 @@ function renderTransitTab() {
             eyebrow: "Language & Logistics",
             title: "Phrasebook & Hotels",
             subtitle: "Taxi address cards and essential phrases.",
-            color: "#6a1f0e"
+            color: "var(--theme-phrases)"
           })}
 
           <div style="font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin: 10px 0 10px 4px;">
@@ -4028,7 +4045,7 @@ function renderTransitTab() {
               <div class="card phrase-card" style="border-color: var(--line); margin-bottom: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
                 <div class="phrase-cat-head pressable" style="background: ${isOpen ? '#faf8f3' : '#fff'};" onclick="appActions.toggleHotelCard('${escapeHtml(city)}')">
                   <div class="phrase-cat-title" style="color: var(--ink);">${escapeHtml(city)} — ${escapeHtml(hotel.nameEn)}</div>
-                  <div class="chevron ${isOpen ? 'open' : ''}" style="color: var(--muted);">⌄</div>
+                  <div class="chevron ${isOpen ? 'open' : ''}" style="color: var(--muted);"><svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
                 </div>
 
                 ${isOpen ? `
@@ -4058,7 +4075,7 @@ function renderTransitTab() {
               <div class="card phrase-card" style="border-color: var(--line); margin-bottom: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
                 <div class="phrase-cat-head pressable" style="background: ${isOpen ? '#faf8f3' : '#fff'};" onclick="appActions.togglePhraseCategory('${escapeHtml(category)}')">
                   <div class="phrase-cat-title" style="color: var(--ink);">${escapeHtml(category)}</div>
-                  <div class="chevron ${isOpen ? 'open' : ''}" style="color: var(--muted);">⌄</div>
+                  <div class="chevron ${isOpen ? 'open' : ''}" style="color: var(--muted);"><svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
                 </div>
 
                 ${isOpen ? `
@@ -4222,7 +4239,7 @@ function renderTransitTab() {
             eyebrow: "Before departure",
             title: "Prep",
             subtitle: "Action cards, a proper checkable to-do list, and hotel confirmations in one place.",
-            color: "#B45309"
+            color: "var(--theme-prep)"
           })}
 
           <div class="action-wrap">
@@ -4231,7 +4248,7 @@ function renderTransitTab() {
                 <span>⚠️</span>
                 <span class="action-head-title">Action Required</span>
               </div>
-              <span class="chevron ${STATE.actionsOpen ? "open" : ""}" style="color:#B45309;">⌄</span>
+              <span class="chevron ${STATE.actionsOpen ? "open" : ""}" style="color:#B45309;"><svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
             </div>
 
             ${
