@@ -3723,7 +3723,6 @@ function getShoppingPlaces() {
         (p) => STATE.shoppingCity === "All" || p.city === STATE.shoppingCity
       );
 
-      // Fixed clean category order
       const categoryOrder = ["Beauty", "Fashion", "Snacks", "Souvenirs", "Home Goods", "Lifestyle"];
       const availableCategories = categoryOrder.filter((cat) =>
         cityScoped.some((p) => p.shoppingCategory === cat)
@@ -3739,7 +3738,6 @@ function getShoppingPlaces() {
 
       const places = getShoppingPlaces();
 
-      // Keep unpurchased items at the top
       const sortedPlaces = [...places].sort((a, b) => {
         const aBought = STATE.boughtItems.includes(a.id) ? 1 : 0;
         const bBought = STATE.boughtItems.includes(b.id) ? 1 : 0;
@@ -3771,26 +3769,23 @@ function getShoppingPlaces() {
           ${renderSectionTitle({
             eyebrow: "Curated & Viral Finds",
             title: "Shopping List",
-            subtitle: "Show the Japanese product box directly to store staff to find items fast.",
+            subtitle: "Show the Japanese product box directly to store staff.",
             color: "#7C3AED"
           })}
 
-          <!-- Progress Counter -->
-          <div class="shop-progress-bar">
+          <div class="shop-progress-bar" style="border-radius: var(--radius-md); box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
             <span>🛍️ Shopping Progress</span>
-            <span style="color:#7C3AED;">${boughtCount} / ${allShopping.length} Got It</span>
+            <span style="color: var(--ink); font-weight: 800;">${boughtCount} / ${allShopping.length} Got It</span>
           </div>
 
-          <!-- 4-Button City Filter -->
           <div class="filter-grid" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
             ${["All", "Osaka", "Kyoto", "Tokyo"]
               .map((city) => {
-                const cfg = city === "All" ? CITY_CFG.Transit : getCityCfg(city);
                 const active = STATE.shoppingCity === city;
                 return `
                   <button
                     class="grid-pill pressable"
-                    style="background:${active ? cfg.color : "#EDE8E0"}; color:${active ? "#fff" : "#6B5748"};"
+                    style="background:${active ? var(--ink) : "#EAE2D6"}; color:${active ? "#fff" : "#6B5748"}; font-weight: ${active ? '800' : '700'};"
                     onclick="appActions.setShoppingCity('${city}')"
                   >
                     ${escapeHtml(city)}
@@ -3800,7 +3795,6 @@ function getShoppingPlaces() {
               .join("")}
           </div>
 
-          <!-- Clean Category Pill Row -->
           <div class="pill-row" style="margin-bottom: 12px; gap: 6px;">
             ${categories
               .map((cat) => {
@@ -3808,7 +3802,7 @@ function getShoppingPlaces() {
                 return `
                   <button
                     class="city-pill pressable"
-                    style="background:${active ? "#7C3AED" : "#EDE8E0"}; color:${active ? "#fff" : "#6B5748"}; border-color:${active ? "#7C3AED" : "transparent"}; font-size:12px; padding:7px 12px;"
+                    style="background:${active ? "#3b1306" : "transparent"}; color:${active ? "#fff" : "#8A7566"}; border: 1.5px solid ${active ? "#3b1306" : "var(--line)"}; font-size:12px; padding:7px 12px;"
                     onclick="appActions.setShoppingCategory('${escapeHtml(cat.id)}')"
                   >
                     ${escapeHtml(cat.label)}
@@ -3818,19 +3812,17 @@ function getShoppingPlaces() {
               .join("")}
           </div>
 
-          <!-- Neighborhood Dropdown -->
-          <div style="position: relative; margin-bottom: 14px;">
+          <div style="position: relative; margin-bottom: 16px;">
             <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 14px;">📍</span>
             <select 
               onchange="appActions.setShoppingArea(this.value)"
-              style="width: 100%; appearance: none; -webkit-appearance: none; padding: 11px 36px 11px 38px; border-radius: var(--radius-md); border: 1.5px solid ${activeCfg.border}; font-family: inherit; font-size: 13px; font-weight: 700; color: ${activeCfg.deep}; background: #fff; cursor: pointer; outline: none; box-shadow: 0 1px 3px rgba(0,0,0,0.02);"
+              style="width: 100%; appearance: none; -webkit-appearance: none; padding: 12px 36px 12px 38px; border-radius: var(--radius-md); border: 1.5px solid var(--line); font-family: inherit; font-size: 13px; font-weight: 700; color: var(--ink); background: #fff; cursor: pointer; outline: none; box-shadow: 0 2px 4px rgba(0,0,0,0.02);"
             >
               ${areaOptions.join("")}
             </select>
-            <span style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: ${activeCfg.color}; font-size: 14px; font-weight: bold;">⌄</span>
+            <span style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--ink); font-size: 14px; font-weight: bold;">⌄</span>
           </div>
 
-          <!-- Shopping Cards -->
           ${
             sortedPlaces.length
               ? sortedPlaces
@@ -3843,92 +3835,51 @@ function getShoppingPlaces() {
                     const productJp = custom.productJp || place.productJp || "";
                     const productRomaji = custom.productRomaji || place.productRomaji || "";
 
-                    // Extract Instagram URL from notes automatically
                     const rawNotes = place.notes || "";
                     const igMatch = rawNotes.match(/https:\/\/www\.instagram\.com\/\S+/);
                     const igUrl = igMatch ? igMatch[0] : null;
-
-                    // Strip "Ref: https://..." from visible note text
-                    const cleanNotes = rawNotes
-                      .replace(/Ref:\s*https:\/\/www\.instagram\.com\/\S+/i, "")
-                      .trim();
+                    const cleanNotes = rawNotes.replace(/Ref:\s*https:\/\/www\.instagram\.com\/\S+/i, "").trim();
 
                     return `
-                      <div class="card shop-card ${isBought ? "bought" : ""}" style="border-color:${cfg.border}66;">
+                      <div class="card shop-card ${isBought ? "bought" : ""}" style="border-color: var(--line); box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
                         <div class="shop-top-row">
                           <div class="place-head" style="margin-bottom:0;">
                             <span class="place-icon">${escapeHtml(place.icon || "🛍️")}</span>
                             <div>
                               <div class="place-title">${escapeHtml(place.name)}</div>
                               <div class="place-meta">
-                                <span style="color:${cfg.color}; font-weight:700;">${escapeHtml(place.city)}</span> • ${escapeHtml(place.area)} • ${escapeHtml(place.shoppingCategory)}${place.priceRange ? ` • ${escapeHtml(place.priceRange)}` : ""}
+                                <span style="color:var(--ink); font-weight:700;">${escapeHtml(place.city)}</span> • ${escapeHtml(place.area)} • ${escapeHtml(place.shoppingCategory)}
                               </div>
                             </div>
                           </div>
 
                           <div class="shop-top-btns">
-                            <button
-                              class="shop-edit-btn pressable"
-                              title="Edit Product Name"
-                              onclick="appActions.editProduct('${escapeHtml(place.id)}')"
-                            >
-                              ✏️
-                            </button>
-                            <button
-                              class="shop-check-btn pressable ${isBought ? "bought" : ""}"
-                              onclick="appActions.toggleBought('${escapeHtml(place.id)}')"
-                            >
+                            <button class="shop-edit-btn pressable" onclick="appActions.editProduct('${escapeHtml(place.id)}')">✏️</button>
+                            <button class="shop-check-btn pressable ${isBought ? "bought" : ""}" onclick="appActions.toggleBought('${escapeHtml(place.id)}')">
                               ${isBought ? "✓ Got It" : "To Buy"}
                             </button>
                           </div>
                         </div>
 
-                        <!-- Bilingual Product Box (English + Japanese Kanji/Kana + Romaji) -->
                         ${
                           productEn || productJp
                             ? `
-                              <div class="product-box" style="border-left-color:${cfg.color};">
-                                <div class="product-label">🎯 Target Product • 店員さんに見せる (Show Staff)</div>
-                                ${productEn ? `<div class="product-en">${escapeHtml(productEn)}</div>` : ""}
-                                ${productJp ? `<div class="product-jp">${escapeHtml(productJp)}</div>` : ""}
-                                ${productRomaji ? `<div class="product-romaji">🗣️ "${escapeHtml(productRomaji)}"</div>` : ""}
+                              <div class="product-box" style="border-left: none; background: #faf8f3; border: 1.5px solid var(--line); border-radius: var(--radius-md);">
+                                <div class="product-label" style="color: var(--muted);">🎯 Target Product • 店員さんに見せる</div>
+                                ${productEn ? `<div class="product-en" style="color: var(--ink);">${escapeHtml(productEn)}</div>` : ""}
+                                ${productJp ? `<div class="product-jp" style="color: #6a1f0e;">${escapeHtml(productJp)}</div>` : ""}
+                                ${productRomaji ? `<div class="product-romaji" style="color: var(--muted);">🗣️ "${escapeHtml(productRomaji)}"</div>` : ""}
                               </div>
                             `
                             : ""
                         }
 
-                        <div class="place-line">
-                          🕒 ${escapeHtml(place.openingHours || "Check hours")}
-                          ${place.station ? ` • 🚇 ${escapeHtml(place.station)}` : ""}
-                          ${place.walk ? ` (${escapeHtml(place.walk)})` : ""}
-                        </div>
+                        <div class="place-line">🕒 ${escapeHtml(place.openingHours || "Check hours")} ${place.station ? ` • 🚇 ${escapeHtml(place.station)}` : ""}</div>
+                        ${cleanNotes ? `<div class="place-note" style="margin-top:4px;">${escapeHtml(cleanNotes)}</div>` : ""}
 
-                        ${
-                          cleanNotes
-                            ? `<div class="place-note" style="margin-top:4px;">${escapeHtml(cleanNotes)}</div>`
-                            : ""
-                        }
-
-                        <!-- Dual Action Bar: Maps + IG Reel/Post -->
                         <div class="shop-actions">
-                          ${
-                            place.googleMapsUrl
-                              ? `
-                                <a href="${escapeHtml(place.googleMapsUrl)}" target="_blank" rel="noopener noreferrer" class="shop-btn pressable" style="background:${cfg.bg}; color:${cfg.deep}; border:1px solid ${cfg.border};">
-                                  📍 Google Maps
-                                </a>
-                              `
-                              : ""
-                          }
-                          ${
-                            igUrl
-                              ? `
-                                <a href="${escapeHtml(igUrl)}" target="_blank" rel="noopener noreferrer" class="shop-btn shop-btn-ig pressable">
-                                  📸 View IG Post
-                                </a>
-                              `
-                              : ""
-                          }
+                          ${place.googleMapsUrl ? `<a href="${escapeHtml(place.googleMapsUrl)}" target="_blank" rel="noopener noreferrer" class="shop-btn pressable" style="background:#fff; color:var(--ink); border:1.5px solid var(--line);">📍 Google Maps</a>` : ""}
+                          ${igUrl ? `<a href="${escapeHtml(igUrl)}" target="_blank" rel="noopener noreferrer" class="shop-btn shop-btn-ig pressable" style="border-radius: var(--radius-sm);">📸 View IG Post</a>` : ""}
                         </div>
                       </div>
                     `;
@@ -4061,34 +4012,33 @@ function renderTransitTab() {
           ${renderSectionTitle({
             eyebrow: "Language & Logistics",
             title: "Phrasebook & Hotels",
-            subtitle: "Taxi address cards and essential phrases organized in clean dropdowns.",
-            color: "#B91C1C"
+            subtitle: "Taxi address cards and essential phrases.",
+            color: "#6a1f0e"
           })}
 
-          <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin: 10px 0 10px 4px;">
+          <div style="font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin: 10px 0 10px 4px;">
             🏨 Hotel Address Cards
           </div>
 
           ${hotelCities.map(city => {
             const hotel = HOTEL_TAXI_DATA.find(h => h.city === city);
             const isOpen = STATE.openHotelCard === city;
-            const cfg = getCityCfg(city);
 
             return `
-              <div class="card phrase-card" style="border-color: ${isOpen ? cfg.border : '#EDE8E0'}; margin-bottom: 10px;">
-                <div class="phrase-cat-head pressable" style="background: ${isOpen ? cfg.bg : '#fff'};" onclick="appActions.toggleHotelCard('${escapeHtml(city)}')">
-                  <div class="phrase-cat-title" style="color: ${isOpen ? cfg.deep : '#8A7566'};">${escapeHtml(city)} —${escapeHtml(hotel.nameEn)}</div>
-                  <div class="chevron ${isOpen ? 'open' : ''}" style="color: ${isOpen ? cfg.color : '#b0a090'};">⌄</div>
+              <div class="card phrase-card" style="border-color: var(--line); margin-bottom: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                <div class="phrase-cat-head pressable" style="background: ${isOpen ? '#faf8f3' : '#fff'};" onclick="appActions.toggleHotelCard('${escapeHtml(city)}')">
+                  <div class="phrase-cat-title" style="color: var(--ink);">${escapeHtml(city)} — ${escapeHtml(hotel.nameEn)}</div>
+                  <div class="chevron ${isOpen ? 'open' : ''}" style="color: var(--muted);">⌄</div>
                 </div>
 
                 ${isOpen ? `
-                  <div class="fade-in phrase-list-wrap" style="background: ${cfg.bg}; padding: 14px; border-top: 1px solid ${cfg.border};">
-                    <div style="font-size: 11px; font-weight: bold; color: ${cfg.color}; margin-bottom: 4px;">${escapeHtml(hotel.dates)} • ${escapeHtml(hotel.area)}</div>
-                    <div style="font-size: 18px; font-weight: 900; color: ${cfg.deep}; margin-bottom: 4px; line-height: 1.2;">${escapeHtml(hotel.nameJp)}</div>
+                  <div class="fade-in phrase-list-wrap" style="background: #faf8f3; padding: 14px; border-top: 1.5px solid var(--line);">
+                    <div style="font-size: 11px; font-weight: bold; color: var(--muted); margin-bottom: 4px;">${escapeHtml(hotel.dates)} • ${escapeHtml(hotel.area)}</div>
+                    <div style="font-size: 18px; font-weight: 900; color: var(--ink); margin-bottom: 4px; line-height: 1.2;">${escapeHtml(hotel.nameJp)}</div>
                     <div style="font-size: 14px; font-weight: bold; color: var(--ink); margin-bottom: 12px; line-height: 1.3;">${escapeHtml(hotel.addressJp)}</div>
-                    <div style="background: #fff; padding: 10px; border-radius: 8px; text-align: center; border: 1px solid ${cfg.border};">
-                      <div style="font-size: 10px; color: #6B7280; text-transform: uppercase;">Taxi Driver Phone Number</div>
-                      <div style="font-size: 18px; font-weight: 900; color: #000; letter-spacing: 1px;">📞 ${escapeHtml(hotel.phone)}</div>
+                    <div style="background: #fff; padding: 12px; border-radius: var(--radius-sm); text-align: center; border: 1.5px solid var(--line);">
+                      <div style="font-size: 10px; color: var(--muted); text-transform: uppercase; font-weight: 700;">Taxi Driver Phone Number</div>
+                      <div style="font-size: 18px; font-weight: 900; color: var(--ink); letter-spacing: 1px; margin-top: 4px;">📞 ${escapeHtml(hotel.phone)}</div>
                     </div>
                   </div>
                 ` : ""}
@@ -4096,7 +4046,7 @@ function renderTransitTab() {
             `;
           }).join("")}
 
-          <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin: 24px 0 10px 4px;">
+          <div style="font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin: 24px 0 10px 4px;">
             💬 Essential Phrases
           </div>
 
@@ -4105,20 +4055,20 @@ function renderTransitTab() {
             const isOpen = STATE.openPhraseCategory === category;
 
             return `
-              <div class="card phrase-card" style="border-color: ${isOpen ? '#FCA5A5' : '#EDE8E0'}; margin-bottom: 10px;">
-                <div class="phrase-cat-head pressable" style="background: ${isOpen ? '#FEF2F2' : '#fff'};" onclick="appActions.togglePhraseCategory('${escapeHtml(category)}')">
-                  <div class="phrase-cat-title" style="color: ${isOpen ? '#B91C1C' : '#8A7566'};">${escapeHtml(category)}</div>
-                  <div class="chevron ${isOpen ? 'open' : ''}" style="color: ${isOpen ? '#B91C1C' : '#b0a090'};">⌄</div>
+              <div class="card phrase-card" style="border-color: var(--line); margin-bottom: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                <div class="phrase-cat-head pressable" style="background: ${isOpen ? '#faf8f3' : '#fff'};" onclick="appActions.togglePhraseCategory('${escapeHtml(category)}')">
+                  <div class="phrase-cat-title" style="color: var(--ink);">${escapeHtml(category)}</div>
+                  <div class="chevron ${isOpen ? 'open' : ''}" style="color: var(--muted);">⌄</div>
                 </div>
 
                 ${isOpen ? `
-                  <div class="fade-in phrase-list-wrap" style="padding-top: 10px;">
+                  <div class="fade-in phrase-list-wrap" style="padding-top: 12px; background: #faf8f3;">
                     ${items.map(phrase => `
-                      <div class="card compact-card" style="margin-bottom: 10px; border-color: #FEE2E2;">
-                        <div style="font-size: 14.5px; font-weight: 700; color: var(--ink);">${escapeHtml(phrase.english)}</div>
-                        <div style="font-size: 13px; font-weight: 600; color: #B91C1C; margin-top: 4px;">🗣️ "${escapeHtml(phrase.romaji)}"</div>
-                        <div style="font-size: 17px; font-weight: 900; color: #991B1B; margin-top: 4px;">${escapeHtml(phrase.japanese)}</div>${phrase.nuance ? `
-                          <div style="font-size: 12.5px; color: #6b5748; margin-top: 8px; padding-top: 8px; border-top: 1px solid #FEE2E2; line-height: 1.5;">
+                      <div class="card compact-card" style="margin-bottom: 10px; border-color: var(--line); background: #fff;">
+                        <div style="font-size: 14.5px; font-weight: 800; color: var(--ink);">${escapeHtml(phrase.english)}</div>
+                        <div style="font-size: 13px; font-weight: 600; color: #6a1f0e; margin-top: 4px;">🗣️ "${escapeHtml(phrase.romaji)}"</div>
+                        <div style="font-size: 17px; font-weight: 900; color: var(--ink); margin-top: 4px;">${escapeHtml(phrase.japanese)}</div>${phrase.nuance ? `
+                          <div style="font-size: 12.5px; color: var(--muted); margin-top: 10px; padding-top: 10px; border-top: 1.5px solid var(--line); line-height: 1.5;">
                             <span style="font-weight:700;">Nuance:</span> ${escapeHtml(phrase.nuance)}
                           </div>
                         ` : ""}
