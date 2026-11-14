@@ -3777,7 +3777,6 @@ const HOTELS = [
       });
 
       const boughtCount = allShopping.filter((p) => STATE.boughtItems.includes(p.id)).length;
-      const activeCfg = STATE.shoppingCity === "All" ? CITY_CFG.Transit : getCityCfg(STATE.shoppingCity);
 
       return `
         <section class="section-block fade-in">
@@ -3800,7 +3799,7 @@ const HOTELS = [
                 return `
                   <button
                     class="grid-pill pressable"
-                    style="background:${active ? 'var(--ink)' : '#EAE2D6'}; color:${active ? '#fff' : '#6B5748'}; font-weight: ${active ? '800' : '700'};"
+                    style="background:${active ? 'var(--ink)' : 'var(--line)'}; color:${active ? '#fff' : 'var(--muted)'}; font-weight: ${active ? '800' : '700'};"
                     onclick="appActions.setShoppingCity('${city}')"
                   >
                     ${escapeHtml(city)}
@@ -3817,7 +3816,7 @@ const HOTELS = [
                 return `
                   <button
                     class="city-pill pressable"
-                    style="background:${active ? "#3b1306" : "transparent"}; color:${active ? "#fff" : "#8A7566"}; border: 1.5px solid ${active ? "#3b1306" : "var(--line)"}; font-size:12px; padding:7px 12px;"
+                    style="background:${active ? 'var(--theme-shopping)' : 'transparent'}; color:${active ? '#fff' : 'var(--muted)'}; border: 1.5px solid ${active ? 'var(--theme-shopping)' : 'var(--line)'}; font-size:12px; padding:7px 12px;"
                     onclick="appActions.setShoppingCategory('${escapeHtml(cat.id)}')"
                   >
                     ${escapeHtml(cat.label)}
@@ -3858,21 +3857,21 @@ const HOTELS = [
                     const cleanNotes = rawNotes.replace(/Ref:\s*https:\/\/www\.instagram\.com\/\S+/i, "").trim();
 
                     return `
-                      <div class="card shop-card ${isBought ? "bought" : ""}" style="border-color: var(--line); box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+                      <div class="card shop-card ${isBought ? "bought" : ""}" style="border-color: ${cfg.border}; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
                         <div class="shop-top-row">
                           <div class="place-head" style="margin-bottom:0;">
                             <span class="place-icon">${escapeHtml(place.icon || "🛍️")}</span>
                             <div>
                               <div class="place-title">${escapeHtml(place.name)}</div>
                               <div class="place-meta">
-                                <span style="color:var(--ink); font-weight:700;">${escapeHtml(place.city)}</span> • ${escapeHtml(place.area)} • ${escapeHtml(place.shoppingCategory)}
+                                <span style="color:${cfg.color}; font-weight:700;">${escapeHtml(place.city)}</span> • ${escapeHtml(place.area)} • ${escapeHtml(place.shoppingCategory)}
                               </div>
                             </div>
                           </div>
 
                           <div class="shop-top-btns">
-                            <button class="shop-edit-btn pressable" onclick="appActions.editProduct('${escapeHtml(place.id)}')">✏️</button>
-                            <button class="shop-check-btn pressable ${isBought ? "bought" : ""}" onclick="appActions.toggleBought('${escapeHtml(place.id)}')">
+                            <button class="shop-edit-btn pressable" style="border-color: ${cfg.border}; color: ${cfg.deep};" onclick="appActions.editProduct('${escapeHtml(place.id)}')">✏️</button>
+                            <button class="shop-check-btn pressable ${isBought ? "bought" : ""}" style="border-color: ${cfg.border}; color: ${cfg.deep};" onclick="appActions.toggleBought('${escapeHtml(place.id)}')">
                               ${isBought ? "✓ Got It" : "To Buy"}
                             </button>
                           </div>
@@ -3881,11 +3880,11 @@ const HOTELS = [
                         ${
                           productEn || productJp
                             ? `
-                              <div class="product-box" style="border-left: none; background: #faf8f3; border: 1.5px solid var(--line); border-radius: var(--radius-md);">
-                                <div class="product-label" style="color: var(--muted);">🎯 Target Product • 店員さんに見せる</div>
-                                ${productEn ? `<div class="product-en" style="color: var(--ink);">${escapeHtml(productEn)}</div>` : ""}
-                                ${productJp ? `<div class="product-jp" style="color: #6a1f0e;">${escapeHtml(productJp)}</div>` : ""}
-                                ${productRomaji ? `<div class="product-romaji" style="color: var(--muted);">🗣️ "${escapeHtml(productRomaji)}"</div>` : ""}
+                              <div class="product-box" style="background: ${cfg.bg}; border: 1.5px solid ${cfg.border}; border-radius: var(--radius-md);">
+                                <div class="product-label" style="color: ${cfg.color};">🎯 Target Product • 店員さんに見せる</div>
+                                ${productEn ? `<div class="product-en" style="color: ${cfg.deep};">${escapeHtml(productEn)}</div>` : ""}
+                                ${productJp ? `<div class="product-jp" style="color: ${cfg.deep}; font-size: 16px; font-weight: 900; margin-top: 4px;">${escapeHtml(productJp)}</div>` : ""}
+                                ${productRomaji ? `<div class="product-romaji" style="color: ${cfg.color}; font-size: 12px; font-weight: 600; font-style: italic; margin-top: 2px;">🗣️ "${escapeHtml(productRomaji)}"</div>` : ""}
                               </div>
                             `
                             : ""
@@ -3895,7 +3894,7 @@ const HOTELS = [
                         ${cleanNotes ? `<div class="place-note" style="margin-top:4px;">${escapeHtml(cleanNotes)}</div>` : ""}
 
                         <div class="shop-actions">
-                          ${place.googleMapsUrl ? `<a href="${escapeHtml(place.googleMapsUrl)}" target="_blank" rel="noopener noreferrer" class="shop-btn pressable" style="background:#fff; color:var(--ink); border:1.5px solid var(--line);">📍 Google Maps</a>` : ""}
+                          ${place.googleMapsUrl ? `<a href="${escapeHtml(place.googleMapsUrl)}" target="_blank" rel="noopener noreferrer" class="shop-btn pressable" style="background:#fff; color:${cfg.deep}; border:1.5px solid ${cfg.border};">📍 Google Maps</a>` : ""}
                           ${igUrl ? `<a href="${escapeHtml(igUrl)}" target="_blank" rel="noopener noreferrer" class="shop-btn shop-btn-ig pressable" style="border-radius: var(--radius-sm);">📸 View IG Post</a>` : ""}
                         </div>
                       </div>
@@ -4120,16 +4119,46 @@ function renderTransitTab() {
         return acc;
       }, {});
 
-      // Mapping for the pill tags matching screenshot style
       const catEmojis = {
         "Food": "🍜",
         "Snacks & Drinks": "🧋",
-        "Transportation": "🚊",
+        "Transportation": "🚆",
         "Shopping": "🛍️",
         "Souvenirs": "🎁",
         "Tickets & Attractions": "🎫",
         "Other/Misc": "✨"
       };
+
+      // Generate Progress Bars HTML
+      let expenseBarsHtml = '';
+      if (totalJPY > 0 && Object.keys(catTotals).length > 0) {
+        expenseBarsHtml = `
+        <div style="background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius-lg); padding: 18px 16px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+          <div style="font-weight: 800; font-size: 15px; color: var(--ink); margin-bottom: 16px;">Expenses by Category</div>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            ${Object.keys(catTotals).sort((a,b) => catTotals[b] - catTotals[a]).map(cat => {
+              const amount = catTotals[cat];
+              const pct = ((amount / totalJPY) * 100).toFixed(1);
+              const emoji = catEmojis[cat] || "✨";
+              return `
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <span style="font-size: 14px; font-weight: 700; color: var(--ink);">${emoji} ${escapeHtml(cat)}</span>
+                  <span style="font-size: 14px; font-weight: 800; color: var(--ink);">¥${amount.toLocaleString()}</span>
+                </div>
+                <div style="width: 100%; height: 8px; background: var(--line); border-radius: 999px; overflow: hidden; margin-bottom: 4px;">
+                  <div style="width: ${pct}%; height: 100%; background: var(--theme-expense); border-radius: 999px;"></div>
+                </div>
+                <div style="text-align: right; font-size: 11.5px; color: var(--muted); font-weight: 600;">
+                  ${pct}% of expenses
+                </div>
+              </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+        `;
+      }
 
       return `
         <section class="section-block fade-in">
@@ -4140,29 +4169,14 @@ function renderTransitTab() {
             color: "var(--theme-expense)"
           })}
 
-          <!-- TOTAL SPENT SUMMARY CARD -->
           <div style="background: linear-gradient(135deg, var(--ink) 0%, #3b1306 100%); color: white; padding: 20px; border-radius: var(--radius-lg); margin-bottom: 16px; box-shadow: 0 6px 16px rgba(0,0,0,0.1);">
             <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.85;">Total Trip Spending</div>
             <div style="font-size: 32px; font-weight: 900; margin: 4px 0;">¥${totalJPY.toLocaleString()}</div>
             <div style="font-size: 14px; opacity: 0.9;">≈ Rp ${totalIDR} (Rate: Rp ${exchangeRate})</div>
           </div>
 
-          <!-- CATEGORY TOTALS WIDGET -->
-          ${Object.keys(catTotals).length > 0 ? `
-          <div style="background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius-lg); padding: 14px; margin-bottom: 24px;">
-            <div style="font-weight: 800; font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;">Category Totals</div>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
-              ${Object.keys(catTotals).sort((a,b) => catTotals[b] - catTotals[a]).map(cat => `
-                <div style="display: flex; justify-content: space-between; align-items: center; background: #faf8f3; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line);">
-                  <span style="font-size: 11.5px; font-weight: 700; color: #6b5748;">${escapeHtml(cat)}</span>
-                  <span style="font-size: 12.5px; font-weight: 800; color: var(--ink);">¥${catTotals[cat].toLocaleString()}</span>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-          ` : ''}
+          ${expenseBarsHtml}
 
-          <!-- CUSTOM EXPENSE FORM -->
           <div style="background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius-lg); padding: 16px; margin-bottom: 24px;">
             <div style="font-weight: 800; font-size: 14px; margin-bottom: 12px; color: var(--ink);">Add Expense</div>
             
@@ -4187,14 +4201,11 @@ function renderTransitTab() {
             </button>
           </div>
 
-          <!-- DAILY BREAKDOWN (MATCHING SCREENSHOT) -->
           <div>
             ${dates.length === 0 ? `<div style="color: var(--muted); text-align: center; padding: 20px;">No expenses logged yet.</div>` : ''}
             ${dates.map(date => {
               const dayItems = grouped[date];
               const dayTotal = dayItems.reduce((s, i) => s + (Number(i.amount) || 0), 0);
-              
-              // Formatting date to match screenshot (e.g., "17 Oct 2026")
               const dateObj = new Date(date);
               const formattedDate = dateObj.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
               
@@ -4216,7 +4227,9 @@ function renderTransitTab() {
                         </div>
                         <div class="expense-amount">¥${Number(item.amount).toLocaleString()}</div>
                       </div>
-                      <button onclick="deleteExpense(${item.id})" class="expense-delete">✕</button>
+                      <button onclick="deleteExpense(${item.id})" class="expense-delete">
+                        <svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                      </button>
                     </div>
                   `}).join('')}
                 </div>
@@ -4386,6 +4399,14 @@ function renderTransitTab() {
         </main>
         ${renderBottomNav()}
       `;
+
+      // Keep the active tab pill centered in the scrollable row
+      const tabRow = document.querySelector('.tab-row');
+      const activeTab = document.querySelector('.tab-pill.active');
+      if (tabRow && activeTab) {
+        const scrollLeftPos = activeTab.offsetLeft - (tabRow.offsetWidth / 2) + (activeTab.offsetWidth / 2);
+        tabRow.scrollLeft = scrollLeftPos > 0 ? scrollLeftPos : 0;
+      }
     }
 
     renderApp();
