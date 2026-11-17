@@ -1833,97 +1833,27 @@ const ITINERARY = [
       }
     ]
   },
-    // DAY 8 — Chill Central Kyoto Morning → Shinkansen to Tokyo
+   // DAY 8 — Shinkansen to Tokyo & Kuramae
 {
   dayNumber: 8,
   date: "2 Dec",
   dow: "Wed",
   city: "Kyoto",
-  title: "Chill Central Kyoto Morning → Shinkansen to Tokyo",
-  summary: "Slow central Kyoto morning, souvenirs and cafés, then shinkansen to Tokyo. Arrive in time for a first taste of Ginza, Tsukiji snacks, Yanaka old town, and a Shinjuku night view.",
+  title: "Shinkansen to Tokyo & Kuramae Riverside",
+  summary: "Transfer to Tokyo on the Nozomi, settling into Akihabara before exploring Sensoji and the artisan neighborhood of Kuramae.",
   emoji: "🚅",
-  tags: ["Chill Day", "Shinkansen", "Tokyo Arrival", "Ginza", "Yanaka"],
+  tags: ["Shinkansen", "Tokyo Arrival", "Sensoji", "Kuramae"],
   events: [
-    {
-      time: "09:00",
-      icon: "☕",
-      title: "Slow morning near the hotel",
-      sub: "Sleep in a bit, then head out around 09:00.",
-      type: "hotel"
-    },
-    {
-      time: "09:30",
-      icon: "🛍️",
-      title: "Nishiki / Teramachi souvenir run",
-      sub: "Revisit Nishiki Market and Teramachi for last gifts and snacks.",
-      type: "explore"
-    },
-    {
-      time: "10:30",
-      icon: "📚",
-      title: "Kawaramachi / Sanjo cafés and shops",
-      sub: "Cafés, bookshops, and small select stores in central Kyoto.",
-      type: "cafe"
-    },
-    {
-      time: "12:00",
-      icon: "🏨",
-      title: "Return to hotel, pack, and check out",
-      sub: "Head back, pack up, and check out from Kiori Exec Muromachi.",
-      type: "hotel"
-    },
-    {
-      time: "13:00",
-      icon: "🚆",
-      title: "Head to Kyoto Station",
-      sub: "Allow 30–45 minutes to reach Kyoto Station by walk or subway.",
-      type: "transit"
-    },
-    {
-      time: "14:30",
-      icon: "🚅",
-      title: "Shinkansen Kyoto → Tokyo",
-      sub: "Board a Nozomi train to Tokyo (Nozomi ~2h10). Aim for a 14:30–15:00 departure.",
-      type: "transit"
-    },
-    {
-      time: "17:00",
-      icon: "🏨",
-      title: "Arrive Tokyo — check in at N+ Akihabara No.2 hotel",
-      sub: "Alight at Tokyo Station, take JR Yamanote or Chūō-Sōbu to Akihabara (~10 min). Drop bags and check in.",
-      type: "hotel"
-    },
-    {
-      time: "17:30",
-      icon: "🏙️",
-      title: "Asakusa Culture Tourist Info Center",
-      sub: "Head to the 8th-floor observation deck for free, clear views of Nakamise Street and Tokyo Skytree (Open until 10:00 PM).",
-      type: "explore"
-    },
-    {
-      time: "18:00",
-      icon: "🏮",
-      title: "Sensoji Temple",
-      sub: "Experience the famous temple at night. The main hall is closed, but the grounds remain open and the dramatic lighting is perfect for photos.",
-      type: "highlight"
-    },
-    {
-      time: "19:00",
-      icon: "🍻",
-      title: "Asakusa Alleys & Hoppy Street",
-      sub: "Wander the lively backstreets next to the temple for dinner and drinks.",
-      type: "food"
-    },
-    {
-      time: "21:30",
-      icon: "🏨",
-      title: "Return to N+ Akihabara No.2 hotel",
-      sub: "Short Tsukuba Express or subway ride back to the hotel.",
-      type: "hotel"
-    }
+    { time: "09:00", icon: "☕", title: "Slow morning near the hotel", sub: "Sleep in a bit, pack up, and grab a coffee.", type: "hotel" },
+    { time: "11:30", icon: "🚆", title: "Head to Kyoto Station", sub: "Check out and transit to Kyoto Station. Grab a bento for the ride.", type: "transit" },
+    { time: "13:01", icon: "🚅", title: "Shinkansen Kyoto → Tokyo", sub: "Board Nozomi 20 (Car 15, Seats 1D-1E). Enjoy the 2h 14m ride to Tokyo.", type: "transit" },
+    { time: "16:00", icon: "🏨", title: "Check in at N+ Akihabara No.2", sub: "Take JR line from Tokyo Station to Akihabara. Drop bags and refresh.", type: "hotel" },
+    { time: "17:00", icon: "🏙️", title: "Asakusa Culture Tourist Info Center", sub: "8th-floor observation deck for free, clear views of Nakamise Street and Skytree.", type: "explore" },
+    { time: "17:30", icon: "🏮", title: "Sensoji Temple", sub: "Experience the temple grounds at night with dramatic lighting and zero crowds.", type: "highlight" },
+    { time: "18:30", icon: "☕", title: "Kuramae Riverside Walk", sub: "Walk 15 mins south along the river to Tokyo's artisan leathercraft and coffee district for a relaxed evening.", type: "explore" },
+    { time: "19:30", icon: "🍽️", title: "Dinner in Kuramae/Asakusabashi", sub: "Grab dinner at a local bistro or izakaya before heading back to Akihabara.", type: "food" }
   ]
 },
-
 // DAY 9 — Kawaguchiko day trip
 {
   dayNumber: 9,
@@ -2022,353 +1952,89 @@ const ITINERARY = [
   ]
 },
 
-// DAY 10 — Kamakura & Enoshima day trip
+// DAY 10 — Kamakura & Shinjuku Night View
 {
   dayNumber: 10,
   date: "4 Dec",
   dow: "Fri",
   city: "Tokyo",
-  title: "Kamakura & Enoshima Coastal Day Trip",
-  summary: "Seaside temples and beachfront train rides, finishing with retro izakaya dining under the brick arches of Yurakucho.",
+  title: "Kamakura Coast & Shinjuku Night View",
+  summary: "Seaside temples and beachfront train rides, returning to Shinjuku for neon skyline views.",
   emoji: "🌊",
-  tags: ["Day Trip", "Kamakura", "Enoshima", "Enoden", "Yurakucho"],
+  tags: ["Day Trip", "Kamakura", "Enoden", "Shinjuku Views"],
   events: [
-    {
-      time: "07:30",
-      icon: "☕",
-      title: "Breakfast near Akihabara",
-      sub: "Quick café breakfast before heading out.",
-      type: "cafe"
-    },
-    {
-      time: "08:00",
-      icon: "🚆",
-      title: "Akihabara → Tokyo Station → Kamakura",
-      sub: "JR Chūō-Sōbu to Tokyo Station (10 min), then JR Yokosuka Line direct to Kamakura (~55 min). Arrive ~09:15. Alternatively: JR Shōnan-Shinjuku Line from Shinjuku (~55 min).",
-      type: "transit"
-    },
-    {
-      time: "09:15",
-      icon: "🏘️",
-      title: "Komachi-dori side alleys",
-      sub: "Walk Komachi-dori once as a pass-through, then immediately duck into the parallel side alleys for quieter craft shops, local cafés, and no tourist-trap pricing.",
-      type: "explore"
-    },
-    {
-      time: "10:00",
-      icon: "⛩️",
-      title: "Tsurugaoka Hachiman-gū approach",
-      sub: "Walk the long, pond-flanked approach (Dankazura). Treat as an architecture + garden photo stop rather than a deep religious visit. Skip the main hall if not of interest.",
-      type: "explore"
-    },
-    {
-      time: "11:00",
-      icon: "🚃",
-      title: "Enoden to Hase Station",
-      sub: "Board the charming Enoshima Electric Railway (Enoden) from Kamakura Station to Hase (~10 min).",
-      type: "transit"
-    },
-    {
-      time: "11:15",
-      icon: "🌸",
-      title: "Hase-dera garden & sea view",
-      sub: "Visit Hase-dera for its beautiful tiered garden and viewing terrace overlooking Sagami Bay. One of Kamakura's most scenic spots.",
-      type: "explore"
-    },
-    {
-      time: "12:00",
-      icon: "🗿",
-      title: "Kōtoku-in Great Buddha",
-      sub: "5-min walk from Hase-dera. The 13-meter bronze Buddha is iconic — good for photos. Keep the visit short (~30 min).",
-      type: "highlight"
-    },
-    {
-      time: "12:45",
-      icon: "🍚",
-      title: "Lunch in Hase area",
-      sub: "Shirasu-don (whitebait rice bowl) is the local Kamakura specialty — highly recommended. Midrange ~¥1,200–1,800.",
-      type: "food"
-    },
-    {
-      time: "13:30",
-      icon: "🚃",
-      title: "Enoden coastal ride toward Enoshima",
-      sub: "Board Enoden and ride the spectacular beachfront stretch through Shichirigahama — the train running along the coast with Fuji in the background on clear days is one of the most scenic rail moments in Kanto.",
-      type: "transit"
-    },
-    {
-      time: "14:30",
-      icon: "🏝️",
-      title: "Enoshima Island",
-      sub: "Cross to Enoshima Island and walk the main spine to the western viewpoint over Sagami Bay. On clear days Mt. Fuji is visible. Explore the Benzaiten Nakamise shopping street on the way up.",
-      type: "highlight"
-    },
-    {
-      time: "16:00",
-      icon: "🌅",
-      title: "Sunset drinks at Enoshima",
-      sub: "Find a café or bar near the island's western tip for late-afternoon drinks with sea views. December sunset is around 16:30–17:00.",
-      type: "cafe"
-    },
-    {
-      time: "17:00",
-      icon: "🚆",
-      title: "Return to Tokyo",
-      sub: "Odakyū Line from Katase-Enoshima → Shinjuku (~60 min). Consider the Odakyū Enoshima-Kamakura Free Pass if not using Tokyo Wide Pass. JR/subway back to Akihabara.",
-      type: "transit"
-    },
-    {
-      time: "18:30",
-      icon: "🏮",
-      title: "Yurakucho Gado-shita Alleys",
-      sub: "Wander the cinematic dining alleys built directly under the historic brick train tracks.",
-      type: "explore"
-    },
-    {
-      time: "19:30",
-      icon: "🍻",
-      title: "Dinner under the Tracks",
-      sub: "Enjoy a casual, atmospheric izakaya or yakitori dinner under the glowing lanterns.",
-      type: "food"
-    },
-    {
-      time: "21:00",
-      icon: "🏨",
-      title: "Return to Hotel",
-      sub: "Head back to your accommodation for a well-deserved rest.",
-      type: "hotel"
-    }
+    { time: "08:00", icon: "🚆", title: "Akihabara → Kamakura", sub: "JR to Tokyo Station, then Yokosuka Line direct to Kamakura.", type: "transit" },
+    { time: "09:15", icon: "🏘️", title: "Komachi-dori side alleys", sub: "Explore the quieter craft shops and cafes parallel to the main tourist street.", type: "explore" },
+    { time: "10:30", icon: "🚃", title: "Enoden to Hase Station", sub: "Ride the Enoshima Electric Railway to Hase.", type: "transit" },
+    { time: "11:00", icon: "🌸", title: "Hase-dera garden & Great Buddha", sub: "Visit the tiered coastal garden and the iconic bronze Buddha.", type: "highlight" },
+    { time: "12:30", icon: "🍚", title: "Lunch in Hase", sub: "Try Shirasu-don (whitebait rice bowl), a Kamakura specialty.", type: "food" },
+    { time: "14:00", icon: "🏝️", title: "Enoshima Island", sub: "Ride the scenic coastal Enoden line to Enoshima. Explore the island viewpoints.", type: "highlight" },
+    { time: "17:00", icon: "🚆", title: "Odakyu Line to Shinjuku", sub: "Take the direct Odakyu Line from Katase-Enoshima back into Shinjuku.", type: "transit" },
+    { time: "18:30", icon: "🌆", title: "Tokyo Metropolitan Government Building", sub: "Head up to the 45th floor for free panoramic night views of the neon skyline.", type: "explore" },
+    { time: "19:30", icon: "🍻", title: "Dinner in Shinjuku", sub: "Grab dinner in the lively Shinjuku area before taking the JR Chuo-Sobu line back to Akihabara.", type: "food" }
   ]
 },
 
-// DAY 11 — Trendy west side
+// DAY 11 — West Tokyo: Ginkgo & Trendy Streets
 {
   dayNumber: 11,
   date: "5 Dec",
   dow: "Sat",
   city: "Tokyo",
-  title: "West Tokyo: Harajuku, Shibuya & Shinjuku",
-  summary: "Morning photo spots and shrine walks followed by cafe-hopping, Shibuya Crossing, and Shinjuku's neon nightlife.",
+  title: "Golden Leaves, Omotesando & Sangenjaya",
+  summary: "The ultimate autumn foliage walk, luxury streets of Harajuku, and authentic izakayas in Sangenjaya.",
   emoji: "📸",
-  tags: ["Harajuku", "Shibuya", "Shinjuku", "Shinjuku", "City Views", "Scramble Crossing", "Neon Lights"],
+  tags: ["Meiji Jingu Gaien", "Omotesando", "Daikanyama", "Sangenjaya"],
   events: [
-    {
-      time: "08:30",
-      icon: "🚉",
-      title: "Shiinamachi Station",
-      sub: "Early morning stop for that classic train crossing aesthetic. Great natural light in the morning.",
-      type: "transit"
-    },
-    {
-      time: "09:30",
-      icon: "🏪",
-      title: "7-11 Yoyogi Sendagaya 4-chome",
-      sub: "Quick stop for the famous street-corner photo stop.",
-      type: "explore"
-    },
-    {
-      time: "10:00",
-      icon: "⛩️",
-      title: "Meiji Jingu",
-      sub: "Classic first-timer forest walk to the shrine. No rituals needed, just enjoy the scale and atmosphere.",
-      type: "highlight"
-    },
-    {
-      time: "11:30",
-      icon: "☕",
-      title: "Cat Street & Omotesando",
-      sub: "Stroll aesthetic fashion lanes and boutique backstreets.",
-      type: "explore"
-    },
-    {
-      time: "12:30",
-      icon: "🌿",
-      title: "Starbucks Tokyu Plaza Omotesando 6F",
-      sub: "Chill on the outdoor terrace with elevated views over the Harajuku intersection.",
-      type: "highlight"
-    },
-    {
-      time: "14:00",
-      icon: "🚦",
-      title: "Shibuya Crossing & Hikarie Sky Lobby 11F",
-      sub: "Cross the scramble, then head up to Hikarie for free, elevated views of the crossing and city.",
-      type: "highlight"
-    },
-    {
-      time: "15:00",
-      icon: "🏡",
-      title: "Daikanyama & Kyu Asakura House",
-      sub: "Premium cafes, boutiques, and Meiji-era maple gardens.",
-      type: "explore" 
-    },
-    {
-      time: "16:30",
-      icon: "🌿",
-      title: "Nakameguro Canal Walk",
-      sub: "Dusk photography and coffee break along the water.",
-      type: "explore"
-    },
-    {
-      time: "18:00",
-      icon: "🌆",
-      title: "Tokyo Metropolitan Government Building",
-      sub: "Free panoramic sunset skyline views.",
-      type: "explore"
-    },
-    {
-      time: "19:00",
-      icon: "🥃",
-      title: "Shinjuku Omoide Yokocho",
-      sub: "Portrait-perfect dinner in lantern-lit neon alleys.",
-      type: "dinner"
-    },
-    {
-      time: "21:00",
-      icon: "🏨",
-      title: "Return to N+ Akihabara No.2 hotel",
-      sub: "R train back to the hotel.",
-      type: "hotel"
-    }
+    { time: "08:30", icon: "🍂", title: "Meiji Jingu Gaien Ginkgo Avenue", sub: "Arrive early to capture the brilliant golden trees in the morning light before the crowds.", type: "autumn" },
+    { time: "09:30", icon: "☕", title: "Omotesando & Cat Street", sub: "Walk through Tokyo's premier aesthetic fashion lanes and boutique backstreets.", type: "explore" },
+    { time: "12:30", icon: "🌿", title: "Starbucks Tokyu Plaza Omotesando 6F", sub: "Chill on the outdoor terrace with elevated views over the Harajuku intersection.", type: "highlight" },
+    { time: "13:30", icon: "🚦", title: "Shibuya Crossing", sub: "Experience the scramble and grab lunch in the area.", type: "highlight" },
+    { time: "15:00", icon: "🏡", title: "Daikanyama & Nakameguro", sub: "Walk the upscale, relaxed streets of Daikanyama and end up by the Nakameguro canal for dusk photos.", type: "explore" },
+    { time: "18:30", icon: "🏮", title: "Sangenjaya (Sankaku Chitai)", sub: "Short train hop. Dive into the maze of tiny, smoky izakayas for an authentic, unpretentious dinner.", type: "food" },
+    { time: "21:00", icon: "🏨", title: "Return to Akihabara hotel", sub: "Transit back to the hotel to rest.", type: "hotel" }
   ]
 },
 
-// DAY 12 — Trendy Cafes & Ginza Pedestrian Paradise
+// DAY 12 — Indie Culture & Ginza Paradise
 {
   dayNumber: 12,
   date: "6 Dec",
   dow: "Sun",
   city: "Tokyo",
-  title: "Trendy Cafes & Ginza Pedestrian Paradise",
-  summary: "Explore the indie cafes of Kichijoji and Shimokitazawa, visit the Lucky Cat temple, and head to Ginza for the car-free afternoon stroll.",
+  title: "Indie West to Ginza Pedestrian Paradise",
+  summary: "Start in relaxed parks and indie cafes, then transition to high-end Ginza before the roads reopen to cars.",
   emoji: "🛍️",
-  tags: ["Kichijoji", "Gotokuji", "Daikanyama", "Ginza", "Roppongi", "Cafe Culture", "Skyline Views", "Illuminations"],
+  tags: ["Inokashira Park", "Gotokuji", "Shimokitazawa", "Ginza", "Azabudai Hills"],
   events: [
-    {
-      time: "08:30",
-      icon: "🍂",
-      title: "Inokashira Park & Kichijoji Alleys",
-      sub: "Morning walk for autumn foliage, followed by a coffee in the neighborhood backstreets.",
-      type: "autumn"
-    },
-    {
-      time: "11:00",
-      icon: "🎵",
-      title: "Shimokitazawa alleys & indie shops",
-      sub: "Explore vintage fashion lanes and indie cafe culture.",
-      type: "explore"
-    },
-    {
-      time: "13:00",
-      icon: "🐱",
-      title: "Gotokuji Temple — the Lucky Cat Temple",
-      sub: "Iconic Lucky Cat photo stop amidst vibrant autumn leaves.",
-      type: "highlight"
-    },
-    {
-      time: "14:30",
-      icon: "🏙️",
-      title: "Ginza Pedestrian Paradise",
-      sub: "Take the train directly to Ginza. The main avenue (Chuo-dori) is strictly closed to cars until 5:00 PM. Stroll the middle of the street for amazing photos and architecture viewing.",
-      type: "explore"
-    },
-    {
-      time: "16:30",
-      icon: "🗼",
-      title: "Roppongi Hills Mori Tower & Tokyo City View",
-      sub: "Direct subway ride from Ginza. Head to the observation deck for a stunning, direct view of Tokyo Tower.",
-      type: "explore"
-    },
-    {
-      time: "19:00",
-      icon: "✨",
-      title: "Azabudai Hills Winter Illumination",
-      sub: "Explore the modern architecture, open-air gardens, and winter illuminations before grabbing dinner.",
-      type: "explore"
-    },
-    {
-      time: "21:00",
-      icon: "🏨",
-      title: "Return to Akihabara hotel",
-      sub: "Direct subway transit back to the hotel.",
-      type: "hotel"
-    }
+    { time: "08:30", icon: "🍂", title: "Inokashira Park & Kichijoji", sub: "Morning walk for autumn foliage, followed by a coffee in the neighborhood backstreets.", type: "autumn" },
+    { time: "11:00", icon: "🐱", title: "Gotokuji Temple", sub: "Visit the iconic Lucky Cat photo stop.", type: "highlight" },
+    { time: "12:00", icon: "🎵", title: "Shimokitazawa", sub: "Direct train on the Odakyu Line. Explore vintage fashion lanes and indie cafe culture.", type: "explore" },
+    { time: "15:30", icon: "🏙️", title: "Ginza Pedestrian Paradise", sub: "Arrive before 5 PM! Walk down the middle of Chuo-dori without cars for amazing photos.", type: "explore" },
+    { time: "16:30", icon: "🌳", title: "Hibiya Park", sub: "Rest your feet in this classic Western-style green space adjacent to Ginza.", type: "explore" },
+    { time: "18:00", icon: "✨", title: "Azabudai Hills Winter Illumination", sub: "Short subway ride to see modern architecture and evening illuminations.", type: "highlight" },
+    { time: "19:30", icon: "🍽️", title: "Dinner", sub: "Grab dinner around Azabudai or head back to central Tokyo.", type: "food" }
   ]
 },
 
-// DAY 13 — Late-Autumn Gardens & Haneda Departure
+// DAY 13 — Old Town & Departure
 {
   dayNumber: 13,
   date: "7 Dec",
   dow: "Mon",
   city: "Tokyo",
-  title: "Late-Autumn Gardens & Haneda Departure",
-  summary: "Late-autumn maple viewing and historic shopping streets followed by a bayside walk and final flight transit.",
+  title: "Old Town, Maples & Haneda Departure",
+  summary: "Uncrowded ginkgo trees, nostalgic shopping streets, and Tokyo Tower views before your flight.",
   emoji: "✈️",
-  tags: ["Rikugien", "Marunouchi", "Hamamatsucho", "Autumn Leaves", "Tokyo Tower", "Haneda Departure"],
+  tags: ["UTokyo", "Yanaka", "Rikugien", "Tokyo Tower", "Haneda"],
   events: [
-    {
-      time: "09:00",
-      icon: "🍁",
-      title: "Rikugien Gardens",
-      sub: "Peak early-December red maples in a traditional landscape setting.",
-      type: "autumn"
-    },
-    {
-      time: "10:15",
-      icon: "🏘️",
-      title: "Yanaka Ginza & backstreets",
-      sub: "Stroll retro wooden shophouses and historic shopping alleys.",
-      type: "explore"
-    },
-    {
-      time: "11:30",
-      icon: "🍂",
-      title: "SMarunouchi Street Park & Tokyo Station",
-      sub: "European-style avenue and brick architecture backdrop.",
-      type: "explore"
-    },
-    {
-      time: "12:30",
-      icon: "🍱",
-      title: "Tokyo Station Lunch",
-      sub: "Relaxed final lunch in the central dining hub.",
-      type: "food"
-    },
-    {
-      time: "13:30",
-      icon: "🏨",
-      title: "Return to Akihabara hotel, collect bags",
-      sub: "Quick transit back to retrieve luggage from the hotel.",
-      type: "hotel"
-    },
-    {
-      time: "14:15",
-      icon: "🚆",
-      title: "Hamamatsucho Station Locker Drop",
-      sub: "Store bags in lockers for hands-free exploring.",
-      type: "transit"
-    },
-    {
-      time: "14:30",
-      icon: "🌊",
-      title: "Hamarikyu Gardens & Zojoji Temple",
-      sub: "Bayside landscape walk and unobstructed Tokyo Tower framing.",
-      type: "explore"
-    },
-    {
-      time: "16:00",
-      icon: "🚝",
-      title: "Hamamatsucho → Haneda Airport",
-      sub: "Take the Tokyo Monorail direct to the terminal.",
-      type: "transit"
-    },
-    {
-      time: "Evening",
-      icon: "🛫",
-      title: "Depart Haneda → Singapore → Jakarta",
-      sub: "Check-in and board your flight home.",
-      type: "transit"
-    }
+    { time: "09:00", icon: "🍁", title: "UTokyo Hongo Campus", sub: "Explore historic red brick buildings and uncrowded ginkgo trees. (Free)", type: "autumn" },
+    { time: "10:30", icon: "🏘️", title: "Yanaka Ginza", sub: "Stroll retro wooden shophouses and grab some B-grade gourmet street food.", type: "explore" },
+    { time: "12:30", icon: "🍂", title: "Rikugien & Kyu-Furukawa Gardens", sub: "Peak early-December red maples and a stunning Western manor blending into a Japanese landscape.", type: "autumn" },
+    { time: "14:30", icon: "🏨", title: "Collect bags & head to Hamamatsucho", sub: "Grab luggage from the hotel and drop it in lockers at Hamamatsucho Station.", type: "transit" },
+    { time: "15:30", icon: "🗼", title: "Shibakoen & Zojoji Temple", sub: "Relax on the park lawns for iconic, unobstructed photos of Tokyo Tower as the sun sets.", type: "highlight" },
+    { time: "17:30", icon: "🚝", title: "Tokyo Monorail to Haneda", sub: "Grab your bags from the locker and ride directly to the airport terminal.", type: "transit" },
+    { time: "Evening", icon: "🛫", title: "Depart Haneda → Singapore → Jakarta", sub: "Check-in and board your flight home.", type: "transit" }
   ]
   }
 ];
@@ -3928,21 +3594,21 @@ function renderTransitTab() {
 
       <!-- HIGHLIGHT: SHINKANSEN TICKET -->
       <div style="background: #064E3B; color: white; border-radius: 12px; padding: 16px; margin-bottom: 24px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-        <div style="font-size: 12px; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Next Bullet Train</div>
-        <div style="font-size: 24px; font-weight: 900; margin-bottom: 4px;">NOZOMI 234</div>
+        <div style="font-size: 12px; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Next Bullet Train (Dec 2)</div>
+        <div style="font-size: 24px; font-weight: 900; margin-bottom: 4px;">NOZOMI 20</div>
         <div style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 12px; margin-top: 8px;">
           <div>
-            <div style="font-size: 10px; opacity: 0.8;">FROM</div>
-            <div style="font-weight: bold;">KYOTO</div>
+            <div style="font-size: 10px; opacity: 0.8;">KYOTO</div>
+            <div style="font-weight: bold; font-size: 16px;">13:01</div>
           </div>
           <div style="text-align: right;">
-            <div style="font-size: 10px; opacity: 0.8;">TO</div>
-            <div style="font-weight: bold;">TOKYO</div>
+            <div style="font-size: 10px; opacity: 0.8;">TOKYO</div>
+            <div style="font-weight: bold; font-size: 16px;">15:15</div>
           </div>
         </div>
         <div style="display: flex; justify-content: space-between; background: #047857; border-radius: 8px; padding: 12px; margin-top: 16px;">
-          <div style="text-align: center;"><div style="font-size: 10px;">CAR</div><div style="font-size: 20px; font-weight: bold;">6</div></div>
-          <div style="text-align: center;"><div style="font-size: 10px;">SEAT</div><div style="font-size: 20px; font-weight: bold;">12-E</div></div>
+          <div style="text-align: center;"><div style="font-size: 10px;">CAR</div><div style="font-size: 20px; font-weight: bold;">15</div></div>
+          <div style="text-align: center;"><div style="font-size: 10px;">SEAT</div><div style="font-size: 20px; font-weight: bold;">1D-E</div></div>
           <div style="text-align: center;"><div style="font-size: 10px;">TRACK</div><div style="font-size: 20px; font-weight: bold;">12</div></div>
         </div>
         <div style="font-size: 10px; text-align: center; margin-top: 12px; opacity: 0.75; letter-spacing: 0.5px;">
