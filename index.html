@@ -1411,66 +1411,26 @@ const ITINERARY = [
       }
     ]
   },
-  {
-    dayNumber: 2,
-    date: "26 Nov",
-    dow: "Thu",
-    city: "Osaka",
-    title: "Katsuoji Minoh Nakazakicho Yodogawa",
-    summary: "Temple and waterfall nature, then retro alleys, cafés, and a river sunset.",
-    emoji: "🍁",
-    tags: ["Katsuoji", "Minoh Waterfall", "Nakazakicho", "Yodogawa Sunset"],
-    events: [
-      {
-        time: "07:30",
-        icon: "🚆",
-        title: "Transit to Katsuoji Temple",
-        sub: "Honmachi → Umeda by subway, then Hankyu and bus toward Minoh-Kayano and Katsuoji. Allow 60–90 minutes.",
-        type: "transit"
-      },
-      {
-        time: "09:00",
-        icon: "🛕",
-        title: "Katsuoji Temple",
-        sub: "Explore hillside temple grounds, Daruma dolls, and autumn foliage.",
-        type: "autumn"
-      },
-      {
-        time: "10:30",
-        icon: "🌲",
-        title: "Minoh Waterfall walk",
-        sub: "Bus back to Minoh area, then walk the forest path (~45–50 minutes) to the waterfall. Light snack or early lunch near the trail (soba, udon, momiji tempura).",
-        type: "autumn"
-      },
-      {
-        time: "13:00",
-        icon: "🚆",
-        title: "Return to Osaka Umeda",
-        sub: "Hankyu line back toward Umeda, about 30–40 minutes.",
-        type: "transit"
-      },
-      {
-        time: "14:00",
-        icon: "☕",
-        title: "Nakazakicho cafés and retro alleys",
-        sub: "Walk from Umeda into Nakazakicho. Café hopping and exploring small streets and shops.",
-        type: "cafe"
-      },
-      {
-        time: "16:00",
-        icon: "🌇",
-        title: "Yodogawa River / Umeda sunset",
-        sub: "Walk or short taxi to riverside park north of Umeda for free sunset views over the river and skyline.",
-        type: "explore"
-      },
-      {
-        time: "18:30",
-        icon: "🍜",
-        title: "Dinner in Umeda and back to Honmachi",
-        sub: "Casual dinner near Umeda, then subway back to Honmachi.",
-        type: "food"
-      }
-    ]
+  // DAY 2 — Katsuoji Minoh Nakazakicho Yodogawa
+{
+  dayNumber: 2,
+  date: "26 Nov",
+  dow: "Thu",
+  city: "Osaka",
+  title: "Nature, Cafes & Ura-Tenma Lanterns",
+  summary: "Temple and waterfall nature, retro cafés, a river sunset, and a cyberpunk lantern street dinner.",
+  emoji: "🏮",
+  tags: ["Katsuoji", "Minoh", "Nakazakicho", "Ura-Tenma"],
+  events: [
+    { time: "07:30", icon: "🚆", title: "Transit to Katsuoji Temple", sub: "Honmachi → Umeda by subway, then Hankyu and bus.", type: "transit" },
+    { time: "09:00", icon: "🛕", title: "Katsuoji Temple", sub: "Explore hillside temple grounds, Daruma dolls, and autumn foliage.", type: "autumn" },
+    { time: "10:30", icon: "🌲", title: "Minoh Waterfall walk", sub: "Bus back to Minoh, walk the forest path (~45 mins) to the waterfall.", type: "autumn" },
+    { time: "13:00", icon: "🚆", title: "Return to Osaka Umeda", sub: "Hankyu line back toward Umeda.", type: "transit" },
+    { time: "14:00", icon: "☕", title: "Nakazakicho cafés", sub: "Walk from Umeda into Nakazakicho. Café hopping and exploring small streets.", type: "cafe" },
+    { time: "16:00", icon: "🌇", title: "Yodogawa River sunset", sub: "Riverside park north of Umeda for free sunset views over the skyline.", type: "explore" },
+    { time: "18:00", icon: "🏮", title: "Ura-Tenma Chochin-Dori", sub: "Take the train one stop from Umeda to Tenma. Eat dinner in the gritty, neon-lit lantern alleyways.", type: "food" },
+    { time: "21:00", icon: "🏨", title: "Return to Honmachi", sub: "Subway ride back to the hotel and rest.", type: "hotel" }
+  ]
   },
   {
     dayNumber: 3,
@@ -1547,148 +1507,49 @@ const ITINERARY = [
       }
     ]
   },
-  {
-    dayNumber: 4,
-    date: "28 Nov",
-    dow: "Sat",
-    city: "Osaka",
-    title: "Kitahama Brunch Transfer to Kyoto",
-    summary: "Slow riverside brunch, then Hankyu to Kyoto and a first Nishiki/Pontocho evening.",
-    emoji: "🥐",
-    tags: ["Kitahama", "Transfer", "Nishiki", "Pontocho"],
-    events: [
-      {
-        time: "09:00",
-        icon: "🧳",
-        title: "Check out and store luggage",
-        sub: "Check out of The Basement Hotel Honmachi and store luggage at the hotel.",
-        type: "hotel"
-      },
-      {
-        time: "09:15",
-        icon: "☕",
-        title: "Walk to Kitahama for brunch",
-        sub: "Walk about 10–15 minutes to Kitahama for riverside cafés like Brooklyn Roasting, MOUNT KITAHAMA, or &island.",
-        type: "cafe"
-      },
-      {
-        time: "11:00",
-        icon: "🚶",
-        title: "Walk back to hotel, pick up luggage",
-        sub: "Return on foot to the hotel and collect bags.",
-        type: "transit"
-      },
-      {
-        time: "11:30",
-        icon: "🚇",
-        title: "Honmachi → Umeda",
-        sub: "Short Osaka Metro Midosuji Line ride to Umeda (~4 minutes).",
-        type: "transit"
-      },
-      {
-        time: "12:00",
-        icon: "🚆",
-        title: "Hankyu Limited Express to Kyoto",
-        sub: "Take the Hankyu Kyoto Line Limited Express Umeda → Kawaramachi (~43 minutes).",
-        type: "transit"
-      },
-      {
-        time: "13:30",
-        icon: "🏨",
-        title: "Walk to Kiori Exec Muromachi and check in",
-        sub: "Walk from central Kyoto to the hotel, check in, and rest.",
-        type: "hotel"
-      },
-      {
-        time: "15:00",
-        icon: "🛍️",
-        title: "Nishiki Market and nearby streets",
-        sub: "10–15 minute walk from the hotel. Explore food stalls, arcades, and side streets.",
-        type: "explore"
-      },
-      {
-        time: "17:00",
-        icon: "🌊",
-        title: "Kamo River stroll (Shijo–Sanjo)",
-        sub: "Walk along the river from Shijo toward Sanjo as the light softens.",
-        type: "explore"
-      },
-      {
-        time: "19:00",
-        icon: "🍽️",
-        title: "Pontocho dinner and alley walk",
-        sub: "Lantern-lit Pontocho alley dinner and short post-meal stroll.",
-        type: "food"
-      }
-    ]
+  // DAY 4 — Kitahama Brunch Transfer to Kyoto
+{
+  dayNumber: 4,
+  date: "28 Nov",
+  dow: "Sat",
+  city: "Osaka",
+  title: "Kitahama Brunch & Kyoto Design",
+  summary: "Slow riverside brunch, Hankyu to Kyoto, Shin-Puh-Kan architecture, and a first Pontocho evening.",
+  emoji: "⛩️",
+  tags: ["Kitahama", "Shin-Puh-Kan", "Nishiki", "Pontocho"],
+  events: [
+    { time: "09:00", icon: "🧳", title: "Check out and store luggage", sub: "Check out of The Basement Hotel Honmachi and store luggage.", type: "hotel" },
+    { time: "09:15", icon: "☕", title: "Kitahama Riverside Brunch", sub: "Walk 10-15 mins to Kitahama for cafés like Brooklyn Roasting.", type: "cafe" },
+    { time: "11:00", icon: "🚶", title: "Pick up luggage", sub: "Return to the hotel and collect bags.", type: "transit" },
+    { time: "11:30", icon: "🚆", title: "Hankyu Limited Express to Kyoto", sub: "Midosuji line to Umeda, then Hankyu Limited Express to Kyoto.", type: "transit" },
+    { time: "13:30", icon: "🏨", title: "Check in at Kiori Exec Muromachi", sub: "Walk from central Kyoto to the hotel, check in, and refresh.", type: "hotel" },
+    { time: "14:30", icon: "🧱", title: "Shin-Puh-Kan (Karasuma Oike)", sub: "Walk 10 mins north to the Kengo Kuma-designed brick hub for coffee and boutique browsing.", type: "explore" },
+    { time: "15:30", icon: "🛍️", title: "Nishiki Market", sub: "Walk over to the kitchen of Kyoto for street food and souvenirs.", type: "explore" },
+    { time: "17:00", icon: "🌊", title: "Kamo River stroll", sub: "Walk along the river from Shijo toward Sanjo as the light softens.", type: "explore" },
+    { time: "19:00", icon: "🍽️", title: "Pontocho dinner", sub: "Lantern-lit Pontocho alley dinner and short post-meal stroll.", type: "food" }
+  ]
   },
-  {
-    dayNumber: 5,
-    date: "29 Nov",
-    dow: "Sun",
-    city: "Kyoto",
-    title: "Arashiyama and Kinkakuji",
-    summary: "Early Arashiyama for bamboo and river views, then Kinkakuji in the afternoon.",
-    emoji: "🎋",
-    tags: ["Arashiyama", "Bamboo Grove", "Kinkakuji"],
-    events: [
-      {
-        time: "06:45",
-        icon: "🚆",
-        title: "Transit to Arashiyama",
-        sub: "Hotel → Kyoto Station → JR San-in Line to Saga-Arashiyama (~30–45 minutes total).",
-        type: "transit"
-      },
-      {
-        time: "07:30",
-        icon: "🎍",
-        title: "Arashiyama Bamboo Grove",
-        sub: "Walk the main bamboo path before the big crowds (about 1 hour).",
-        type: "highlight"
-      },
-      {
-        time: "08:30",
-        icon: "🌉",
-        title: "Togetsukyo Bridge and riverbank",
-        sub: "River views and mountains with autumn colour along the Katsura River.",
-        type: "autumn"
-      },
-      {
-        time: "10:00",
-        icon: "🍱",
-        title: "Late breakfast / early lunch in Arashiyama",
-        sub: "Simple meal around the station or near the river.",
-        type: "food"
-      },
-      {
-        time: "11:30",
-        icon: "🚌",
-        title: "Transit Arashiyama → Kinkakuji",
-        sub: "About 35–45 minutes by bus or taxi across town.",
-        type: "transit"
-      },
-      {
-        time: "13:00",
-        icon: "🏯",
-        title: "Kinkakuji",
-        sub: "Visit for about 45–60 minutes and enjoy golden pavilion reflections.",
-        type: "highlight"
-      },
-      {
-        time: "15:00",
-        icon: "🚆",
-        title: "Return to central Kyoto",
-        sub: "Head back toward Shijo-Karasuma or the hotel, then keep the evening flexible.",
-        type: "transit"
-      },
-      {
-        time: "18:00",
-        icon: "🍽️",
-        title: "Dinner in central Kyoto",
-        sub: "Dinner near Shijo-Karasuma or around Nishiki as you prefer.",
-        type: "food"
-      }
-    ]
+  // DAY 5 — Arashiyama and Kinkakuji
+{
+  dayNumber: 5,
+  date: "29 Nov",
+  dow: "Sun",
+  city: "Kyoto",
+  title: "Arashiyama Boats & Kinkakuji",
+  summary: "Early bamboo grove, a 2-hour riverboat ride down the gorge, and the golden pavilion.",
+  emoji: "🛶",
+  tags: ["Arashiyama", "Hozugawa Kudari", "Kinkakuji"],
+  events: [
+    { time: "06:45", icon: "🚆", title: "Transit to Arashiyama", sub: "Hotel → Kyoto Station → JR San-in Line to Saga-Arashiyama.", type: "transit" },
+    { time: "07:30", icon: "🎍", title: "Arashiyama Bamboo Grove", sub: "Walk the main bamboo path early before the massive crowds arrive.", type: "highlight" },
+    { time: "09:00", icon: "🚆", title: "JR to Kameoka", sub: "Take the JR line from Saga-Arashiyama up through the mountains to Kameoka Station.", type: "transit" },
+    { time: "09:45", icon: "🛶", title: "Hozugawa Kudari Boat Ride", sub: "Board the traditional flat-bottomed boat for a scenic 2-hour ride down the river rapids back to Arashiyama.", type: "highlight" },
+    { time: "12:00", icon: "🍱", title: "Lunch by Togetsukyo Bridge", sub: "Arrive back in Arashiyama by boat. Grab lunch near the river.", type: "food" },
+    { time: "13:30", icon: "🚌", title: "Transit to Kinkakuji", sub: "Take a taxi or bus across town to the Golden Pavilion.", type: "transit" },
+    { time: "14:15", icon: "🏯", title: "Kinkakuji", sub: "Enjoy the golden pavilion reflecting in the pond.", type: "highlight" },
+    { time: "15:30", icon: "🚆", title: "Return to central Kyoto", sub: "Head back toward Shijo-Karasuma to rest.", type: "transit" },
+    { time: "18:00", icon: "🍽️", title: "Dinner in central Kyoto", sub: "Dinner near Shijo-Karasuma or around Nishiki.", type: "food" }
+  ]
   },
   {
     dayNumber: 6,
