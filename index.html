@@ -2701,6 +2701,41 @@ const HOTELS = [
         romaji: "Sumimasen.",
         japanese: "すみません。",
         nuance: "The ultimate polite all-purpose word in Japan."
+      },
+      {
+        category: "Shopping",
+        english: "Is this tax-free?",
+        romaji: "Menzei ni narimasu ka?",
+        japanese: "免税になりますか？",
+        nuance: "Essential for department stores and Don Quijote. Keep your e-passport ready."
+      },
+      {
+        category: "Shopping",
+        english: "Can I try this on?",
+        romaji: "Shichaku shite mo ii desu ka?",
+        japanese: "試着してもいいですか？",
+        nuance: "Always ask before entering a fitting room. Remove your shoes if stepping on a carpet."
+      },
+      {
+        category: "Shopping",
+        english: "Do you accept credit cards?",
+        romaji: "Kurejitto kaado wa tsukaemasu ka?",
+        japanese: "クレジットカードは使えますか？",
+        nuance: "Useful at vintage shops in Shimokitazawa or smaller indie boutiques."
+      },
+      {
+        category: "Restaurant",
+        english: "Do you have an English menu?",
+        romaji: "Eigo no menyū wa arimasu ka?",
+        japanese: "英語のメニューはありますか？",
+        nuance: "If not, fallback to your offline Google Translate camera."
+      },
+      {
+        category: "Transportation",
+        english: "Where is the station?",
+        romaji: "Eki wa doko desu ka?",
+        japanese: "駅はどこですか？",
+        nuance: "A lifesaver if you get turned around in massive hubs like Shinjuku or Umeda."
       }
     ];
 
@@ -3560,7 +3595,7 @@ function renderTransitTab() {
 
     function renderPhrasebookTab() {
       const hotelCities = ["Osaka", "Kyoto", "Tokyo"];
-      const phraseCategories = ["Hotel", "Transportation", "Konbini", "Restaurant", "General"];
+      const phraseCategories = ["Hotel", "Transportation", "Konbini", "Restaurant", "Shopping", "General"];
 
       return `
         <section class="section-block fade-in">
@@ -3634,6 +3669,36 @@ function renderTransitTab() {
               </div>
             `;
           }).join("")}
+
+          <div style="font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin: 24px 0 10px 4px;">
+            📞 Important Numbers
+          </div>
+
+          <div class="card" style="border-color: var(--line); margin-bottom: 24px; padding: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+            <div class="action-card" style="margin-bottom: 10px; border: 1px solid #FECACA; border-left: 4px solid #DC2626; background: #FEF2F2; display: flex; align-items: center; justify-content: space-between;">
+              <div>
+                <div style="font-size: 14px; font-weight: 800; color: #991B1B;">Police (Emergency)</div>
+                <div style="font-size: 11px; color: #7F1D1D; margin-top: 2px; font-weight: 600;">Theft, accidents, or crime</div>
+              </div>
+              <div style="font-size: 20px; font-weight: 900; color: #DC2626; letter-spacing: 1px;">110</div>
+            </div>
+            
+            <div class="action-card" style="margin-bottom: 10px; border: 1px solid #FFEDD5; border-left: 4px solid #EA580C; background: #FFF7ED; display: flex; align-items: center; justify-content: space-between;">
+              <div>
+                <div style="font-size: 14px; font-weight: 800; color: #9A3412;">Fire & Ambulance</div>
+                <div style="font-size: 11px; color: #7C2D12; margin-top: 2px; font-weight: 600;">Medical emergencies</div>
+              </div>
+              <div style="font-size: 20px; font-weight: 900; color: #EA580C; letter-spacing: 1px;">119</div>
+            </div>
+
+            <div class="action-card" style="border: 1px solid #DBEAFE; border-left: 4px solid #2563EB; background: #EFF6FF; display: flex; align-items: center; justify-content: space-between;">
+              <div>
+                <div style="font-size: 14px; font-weight: 800; color: #1E3A8A;">Japan Visitor Hotline</div>
+                <div style="font-size: 11px; color: #1E40AF; margin-top: 2px; font-weight: 600;">24/7 English tourist support</div>
+              </div>
+              <div style="font-size: 16px; font-weight: 900; color: #2563EB; letter-spacing: 0.5px;">050-3816-2787</div>
+            </div>
+          </div>
         </section>
       `;
     }
