@@ -1418,25 +1418,80 @@ const ITINERARY = [
       }
     ]
   },
- // DAY 2 — Katsuoji, Minoh Falls, Nakazakicho & Ura-Tenma
+ // DAY 2 — Katsuoji, Minoh Falls, Nakazakicho, Umeda Sky Building & Ura-Tenma
   {
     dayNumber: 2,
     date: "26 Nov",
     dow: "Thu",
     city: "Osaka",
-    title: "Katsuoji, Minoh Falls, Cafes & Ura-Tenma",
-    summary: "Direct Midosuji ride to Daruma temple, taxi-assisted waterfall descent, retro cafés, and a neon lantern alley dinner.",
+    title: "Katsuoji, Minoh, Umeda Sky Sunset & Ura-Tenma",
+    summary: "Direct Midosuji ride to Daruma temple, downhill waterfall walk, Nakazakicho cafés, Umeda Sky Building sunset, and a neon lantern alley dinner.",
     emoji: "🏮",
-    tags: ["Katsuoji", "Minoh Falls", "Nakazakicho", "Ura-Tenma"],
+    tags: ["Katsuoji", "Minoh Falls", "Nakazakicho", "Umeda Sky Building", "Ura-Tenma"],
     events: [
-      { time: "08:00", icon: "🚇", title: "Honmachi → Minoh-Kayano → Bus #30", sub: "Direct Midosuji/Kita-Osaka Kyuko train to Minoh-Kayano (~30 min), then Hankyu Bus #30 (Stop 8, ~22 min, ¥800). Note: Cashless IC card ONLY (top up first!).", type: "transit" },
-      { time: "09:15", icon: "🛕", title: "Katsuoji Temple", sub: "Explore hillside temple grounds, Daruma dolls, and late-November maples (~75–90 min).", type: "autumn" },
-      { time: "10:45", icon: "🚕", title: "Taxi to Minoh Falls → Riverside Walk", sub: "No direct bus! Take a 10-min taxi (~¥1,500) to the upper falls lot, walk 10 min down to Minoh Waterfall, then stroll the flat 40-min riverside Takimichi path to Hankyu Minoh Station.", type: "autumn" },
-      { time: "13:00", icon: "🚆", title: "Hankyu Line back to Umeda", sub: "Hankyu Minoh → Ishibashi-handaimae → Umeda (~30 min). Optional: hop off at Juso for a quick Yodogawa River view.", type: "transit" },
-      { time: "14:00", icon: "☕", title: "Nakazakicho Cafés & Backstreets", sub: "10-min walk east of Umeda into indie coffee houses, vintage shops, and wooden lanes.", type: "cafe" },
-      { time: "17:00", icon: "🛍️", title: "Tenjinbashisuji Shotengai Stroll", sub: "Walk 5 min from Nakazakicho into Japan's longest covered shopping arcade as dusk sets in.", type: "explore" },
-      { time: "18:00", icon: "🏮", title: "Ura-Tenma Chochin-Dori Dinner", sub: "Right beside Tenjinbashisuji — eat dinner under glowing red lanterns in gritty local izakaya alleys.", type: "food" },
-      { time: "21:00", icon: "🏨", title: "Return to Honmachi", sub: "Short subway ride back to the hotel and rest.", type: "hotel" }
+      {
+        time: "08:10",
+        icon: "🚇",
+        title: "Depart Hotel → Hommachi (Midosuji) → Minoh-Kayano",
+        sub: "Walk ~8 min east (or enter Exit 24 underground and follow red signs) to Hommachi Midosuji Line (Red) — skip Yotsubashi. Ride northbound train signed 'Minoh-Kayano' (~32 min, zero transfers).",
+        type: "transit"
+      },
+      {
+        time: "09:00",
+        icon: "🚌",
+        title: "Hokusetsu Cemetery Line 30 [Direct] → Katsuoji",
+        sub: "Walk 2 min at Minoh-Kayano to Bus Stop #8 for the first weekday Bus #30 (~22 min, ¥800). ⚠️ Cashless IC card ONLY — top up before boarding.",
+        type: "transit"
+      },
+      {
+        time: "09:25",
+        icon: "🛕",
+        title: "Katsuoji Temple",
+        sub: "Explore hillside temple grounds, Daruma dolls, and late-November autumn maples (~80 min).",
+        type: "autumn"
+      },
+      {
+        time: "10:45",
+        icon: "🚕",
+        title: "Taxi to Minoh Falls → Takimichi Riverside Walk",
+        sub: "Take a 10-min taxi (~¥1,500) from Katsuoji gate to the upper falls drop-off lot, walk 10 min down to Minoh Waterfall, then stroll the flat 40-min riverside Takimichi path downhill to Hankyu Minoh Station.",
+        type: "autumn"
+      },
+      {
+        time: "12:30",
+        icon: "🚆",
+        title: "Hankyu Line → Osaka-Umeda",
+        sub: "Ride Hankyu Minoh Line to Ishibashi-handaimae, transfer across platform to Hankyu Takarazuka Line to Osaka-Umeda (~35 min total).",
+        type: "transit"
+      },
+      {
+        time: "13:15",
+        icon: "☕",
+        title: "Lunch & Nakazakicho Cafés",
+        sub: "10-min walk east of Hankyu Umeda. Grab lunch and hop through retro wooden lanes and indie cafés.",
+        type: "cafe"
+      },
+      {
+        time: "15:45",
+        icon: "🏙️",
+        title: "Umeda Sky Building (Kuchu Teien Observatory)",
+        sub: "Walk ~15 min west from Nakazakicho (through Umeda) and redeem your Have Fun in Kansai Pass. Arrive by 16:05 for the 16:48 sunset over Yodogawa River and stay for the glowing Lumi Sky Walk.",
+        type: "highlight"
+      },
+      {
+        time: "18:15",
+        icon: "🏮",
+        title: "Ura-Tenma Chochin-Dori Dinner",
+        sub: "Walk to JR Osaka Station and take the JR Loop Line 1 stop to Tenma (~2 min). Eat dinner in the neon-lit lantern alleyways.",
+        type: "food"
+      },
+      {
+        time: "21:00",
+        icon: "🏨",
+        title: "Return to Hommachi Hotel",
+        sub: "Walk to Ogimachi Station (Sakaisuji Line → Sakaisuji-Hommachi → Chuo Line 1 stop to Hommachi), or JR Tenma → Osaka and Yotsubashi Line (Nishi-Umeda → Hommachi Exit 24).",
+        type: "hotel"
+      }
     ]
   },
   // DAY 3 — Kobe Hills, Gardens, Amerikamura & Shinsekai
