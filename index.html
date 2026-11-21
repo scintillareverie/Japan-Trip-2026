@@ -1698,25 +1698,25 @@ const ITINERARY = [
       }
     ]
   },
-   // DAY 8 — Shinkansen to Tokyo & Kuramae
+  // DAY 8 — Shinkansen to Tokyo, Sensoji & Tokyo Skytree Christmas Market
 {
   dayNumber: 8,
   date: "2 Dec",
   dow: "Wed",
   city: "Kyoto",
-  title: "Shinkansen to Tokyo & Kuramae Riverside",
-  summary: "Transfer to Tokyo on the Nozomi, settling into Akihabara before exploring Sensoji and the artisan neighborhood of Kuramae.",
+  title: "Shinkansen to Tokyo, Sensoji & Skytree Market",
+  summary: "Transfer to Tokyo on Nozomi 20, settle into Akihabara, catch crowd-free Sensoji at dusk, and cross the river for Tokyo Skytree Town's alpine Christmas Market.",
   emoji: "🚅",
-  tags: ["Shinkansen", "Tokyo Arrival", "Sensoji", "Kuramae"],
+  tags: ["Shinkansen", "Sensoji", "Skytree Christmas Market", "Kuramae"],
   events: [
     { time: "09:00", icon: "☕", title: "Slow morning near the hotel", sub: "Sleep in a bit, pack up, and grab a coffee.", type: "hotel" },
     { time: "11:30", icon: "🚆", title: "Head to Kyoto Station", sub: "Check out and transit to Kyoto Station. Grab a bento for the ride.", type: "transit" },
     { time: "13:01", icon: "🚅", title: "Shinkansen Kyoto → Tokyo", sub: "Board Nozomi 20 (Car 15, Seats 1D-1E). Enjoy the 2h 14m ride to Tokyo.", type: "transit" },
     { time: "16:00", icon: "🏨", title: "Check in at N+ Akihabara No.2", sub: "Take JR line from Tokyo Station to Akihabara. Drop bags and refresh.", type: "hotel" },
-    { time: "17:00", icon: "🏙️", title: "Asakusa Culture Tourist Info Center", sub: "8th-floor observation deck for free, clear views of Nakamise Street and Skytree.", type: "explore" },
-    { time: "17:30", icon: "🏮", title: "Sensoji Temple", sub: "Experience the temple grounds at night with dramatic lighting and zero crowds.", type: "highlight" },
-    { time: "18:30", icon: "☕", title: "Kuramae Riverside Walk", sub: "Walk 15 mins south along the river to Tokyo's artisan leathercraft and coffee district for a relaxed evening.", type: "explore" },
-    { time: "19:30", icon: "🍽️", title: "Dinner in Kuramae/Asakusabashi", sub: "Grab dinner at a local bistro or izakaya before heading back to Akihabara.", type: "food" }
+    { time: "17:00", icon: "🏙️", title: "Asakusa Culture Tourist Info Center", sub: "8th-floor observation deck for free, clear views of Nakamise Street and lit-up Skytree.", type: "explore" },
+    { time: "17:30", icon: "🏮", title: "Sensoji Temple", sub: "Experience the temple grounds at night with dramatic lighting and far fewer crowds.", type: "highlight" },
+    { time: "18:30", icon: "🎄", title: "Tokyo Skytree Town Christmas Market", sub: "Walk 15 min across the Sumida River Walk (or 1 train stop) to 4F Sky Arena. Free entry, alpine wooden huts, mulled wine & sausages under Skytree (open until 22:00, L.O. 21:00).", type: "food" },
+    { time: "20:30", icon: "🏨", title: "Return to Akihabara / Asakusabashi", sub: "Direct Toei Asakusa Line from Oshiage → Asakusabashi (~10 min) back to your hotel (or stroll Kuramae riverside en route).", type: "hotel" }
   ]
 },
 // DAY 9 — Kawaguchiko day trip
@@ -1841,70 +1841,250 @@ const ITINERARY = [
   ]
 },
 
-// DAY 11 — West Tokyo: Photo Spots, Ginkgo & Trendy Streets
+// DAY 11 — Oi Flea Market, Tsukiji, Ginza, Marunouchi, Azabudai & Roppongi Hills Lights
 {
   dayNumber: 11,
   date: "5 Dec",
   dow: "Sat",
   city: "Tokyo",
-  title: "Tokyo Aesthetics, Golden Leaves & Sangenjaya",
-  summary: "Early morning photo spots, the ultimate autumn foliage walk, luxury streets of Harajuku, and authentic izakayas.",
-  emoji: "📸",
-  tags: ["Shiinamachi", "Meiji Jingu Gaien", "Omotesando", "Sangenjaya"],
+  title: "Flea Market, Tsukiji, Ginza & Christmas Hills",
+  summary: "Morning treasure hunting at Oi Racecourse, Saturday sashimi at Tsukiji Uogashi, calmer Ginza shopping, then a triple illumination loop: Marunouchi, Azabudai Hills & Roppongi Keyakizaka.",
+  emoji: "🎄",
+  tags: ["Oi Flea Market", "Tsukiji Uogashi", "Ginza", "Marunouchi", "Azabudai", "Roppongi"],
   events: [
-    { time: "07:30", icon: "🚆", title: "Shiinamachi Station", sub: "Start early for that classic anime-style railway crossing aesthetic.", type: "explore" },
-    { time: "08:45", icon: "📸", title: "7-11 Sendagaya", sub: "Quick stop for the viral photo spot with the National Stadium in the background.", type: "explore" },
-    { time: "09:30", icon: "🍂", title: "Meiji Jingu Gaien Ginkgo Avenue", sub: "Just a short walk from Sendagaya. Capture the brilliant golden trees in the morning light.", type: "autumn" },
-    { time: "11:00", icon: "☕", title: "Omotesando & Cat Street", sub: "Walk through Tokyo's premier aesthetic fashion lanes and boutique backstreets.", type: "explore" },
-    { time: "13:30", icon: "🚦", title: "Shibuya Crossing", sub: "Experience the scramble and grab lunch in the area.", type: "highlight" },
-    { time: "15:00", icon: "🏡", title: "Daikanyama & Nakameguro", sub: "Walk the upscale streets of Daikanyama and end up by the Nakameguro canal for dusk photos.", type: "explore" },
-    { time: "18:30", icon: "🏮", title: "Sangenjaya (Sankaku Chitai)", sub: "Short train hop. Dive into the maze of tiny, smoky izakayas for an authentic, unpretentious dinner.", type: "food" },
-    { time: "21:00", icon: "🏨", title: "Return to Akihabara hotel", sub: "Transit back to the hotel to rest.", type: "hotel" }
+    {
+      time: "08:00",
+      icon: "🚝",
+      title: "Hotel → Oi Racecourse",
+      sub: "JR Yamanote/Keihin-Tohoku to Hamamatsucho (~10 min), then Tokyo Monorail to Oikeibajo-mae (~8 min). Check trx.jp if raining.",
+      type: "transit"
+    },
+    {
+      time: "08:45",
+      icon: "🧥",
+      title: "Tokyo City Flea Market (Oi Racecourse)",
+      sub: "Winter hours 08:45–14:15 (~700 stalls of vintage finds, ceramics, and antiques). Bring ¥1,000 bills & coins (cash only).",
+      type: "highlight"
+    },
+    {
+      time: "10:45",
+      icon: "🚇",
+      title: "Oi Racecourse → Tsukiji",
+      sub: "Monorail back to Hamamatsucho (~8 min), walk 2 min to Daimon, then Toei Oedo Line 2 stops to Tsukijishijo (~4 min).",
+      type: "transit"
+    },
+    {
+      time: "11:15",
+      icon: "🍣",
+      title: "Tsukiji Uogashi (Odawarabashi)",
+      sub: "Open Saturday! Fresh 1F sashimi on the rooftop terrace or seafood set lunch at 3F Uogashi Shokudo (Odayasu / Senriken).",
+      type: "food"
+    },
+    {
+      time: "13:00",
+      icon: "🏙️",
+      title: "Ginza Pedestrian Paradise & Calm Shopping",
+      sub: "12-min walk from Tsukiji. Car-free Chuo-dori (12:00–17:00), MUJI Flagship, Ginza Loft (much calmer than Shibuya!), UNIQLO/GU Ginza, and coffee at Café de l'Ambre or Tricolore.",
+      type: "explore"
+    },
+    {
+      time: "16:00",
+      icon: "✨",
+      title: "Marunouchi Street Park & Gyoko-dori Market",
+      sub: "10-min walk north from Ginza right as the champagne-gold lights turn on at 16:00! Free entry — 15-stall Christmas market & Harry Potter tree along Marunouchi Naka-dori and Gyoko-dori.",
+      type: "highlight"
+    },
+    {
+      time: "17:30",
+      icon: "🎄",
+      title: "Azabudai Hills Christmas Market",
+      sub: "Direct Hibiya Line from Hibiya → Kamiyacho (~5 min). Free 19-stall market (open until 21:00) & 10m Cartier tree — grab festive snacks or dinner here.",
+      type: "highlight"
+    },
+    {
+      time: "19:15",
+      icon: "🗼",
+      title: "Roppongi Hills Market & Keyakizaka Illumination",
+      sub: "1 stop on Hibiya Line (Kamiyacho → Roppongi, 2 min) or 15-min walk. Catch the iconic blue-and-white Keyakizaka-dori lights framing Tokyo Tower (until 22:00) and Stuttgart market (until 21:00).",
+      type: "explore"
+    },
+    {
+      time: "20:30",
+      icon: "🏨",
+      title: "Return to Akihabara hotel",
+      sub: "Direct Hibiya Line from Roppongi → Akihabara (~24 min) to drop off your flea market and Ginza haul.",
+      type: "hotel"
+    }
   ]
 },
 
-// DAY 12 — Indie Culture & Ginza Paradise
+// DAY 12 — Meiji Jingu Gaien, Omotesando, Shibuya, Gotokuji, Shimokitazawa, Nakameguro & Winter Lights
 {
   dayNumber: 12,
   date: "6 Dec",
   dow: "Sun",
   city: "Tokyo",
-  title: "Indie West to Ginza Pedestrian Paradise",
-  summary: "Start in relaxed parks and indie cafes, then transition to high-end Ginza before the roads reopen to cars.",
-  emoji: "🛍️",
-  tags: ["Inokashira Park", "Gotokuji", "Shimokitazawa", "Ginza", "Azabudai Hills"],
+  title: "Ginkgo, Shimokitazawa, Nakameguro & Pink River",
+  summary: "Early ginkgo trees, Omotesando/Shibuya, Gotokuji & a crisp 2-hour Shimokitazawa stop, then glowing Starbucks Reserve on Nakameguro Canal, Ebisu Baccarat Chandelier & the pink Meguro River lights.",
+  emoji: "🌸",
+  tags: ["Meiji Jingu Gaien", "Shimokitazawa", "Nakameguro", "Ebisu", "Pink Meguro River"],
   events: [
-    { time: "08:30", icon: "🍂", title: "Inokashira Park & Kichijoji", sub: "Morning walk for autumn foliage, followed by a coffee in the neighborhood backstreets.", type: "autumn" },
-    { time: "11:00", icon: "🐱", title: "Gotokuji Temple", sub: "Visit the iconic Lucky Cat photo stop.", type: "highlight" },
-    { time: "12:00", icon: "🎵", title: "Shimokitazawa", sub: "Direct train on the Odakyu Line. Explore vintage fashion lanes and indie cafe culture.", type: "explore" },
-    { time: "15:30", icon: "🏙️", title: "Ginza Pedestrian Paradise", sub: "Arrive before 5 PM! Walk down the middle of Chuo-dori without cars for amazing photos.", type: "explore" },
-    { time: "16:30", icon: "🌳", title: "Hibiya Park", sub: "Rest your feet in this classic Western-style green space adjacent to Ginza.", type: "explore" },
-    { time: "18:00", icon: "✨", title: "Azabudai Hills Winter Illumination", sub: "Short subway ride to see modern architecture and evening illuminations.", type: "highlight" },
-    { time: "19:30", icon: "🍽️", title: "Dinner", sub: "Grab dinner around Azabudai or head back to central Tokyo.", type: "food" }
+    {
+      time: "07:45",
+      icon: "🍂",
+      title: "Meiji Jingu Gaien Ginkgo Avenue",
+      sub: "Arrive before 08:30 to beat Sunday crowds and catch crisp golden morning light along the 300m ginkgo corridor.",
+      type: "autumn"
+    },
+    {
+      time: "08:45",
+      icon: "📸",
+      title: "7-11 Sendagaya",
+      sub: "Quick walk from Gaien for the viral National Stadium framing.",
+      type: "explore"
+    },
+    {
+      time: "09:30",
+      icon: "☕",
+      title: "Omotesando, Cat Street & Harajuku",
+      sub: "Morning coffee and aesthetic backstreets plus shopping stops (@cosme TOKYO, 3COINS Harajuku, NUMBER SUGAR).",
+      type: "explore"
+    },
+    {
+      time: "11:45",
+      icon: "🚦",
+      title: "Shibuya Crossing & Lunch",
+      sub: "Experience the scramble, grab lunch, and tick off PLAZA / PARCO stops.",
+      type: "food"
+    },
+    {
+      time: "13:45",
+      icon: "🐱",
+      title: "Gotokuji Temple",
+      sub: "Keio Inokashira Express to Shimokitazawa (4 min) → Odakyu to Gotokuji (3 min). Arrive comfortably before the strict 15:00 Maneki-neko office cutoff (cash only).",
+      type: "highlight"
+    },
+    {
+      time: "14:45",
+      icon: "🎵",
+      title: "Shimokitazawa, Reload & Bonus Track",
+      sub: "3 min back on Odakyu. Crisp 2-hour block for vintage browsing, indie cafes, and the Reload & Bonus Track courtyards.",
+      type: "cafe"
+    },
+    {
+      time: "17:00",
+      icon: "☕",
+      title: "Daikanyama T-Site → Glowing Starbucks Reserve (Nakameguro)",
+      sub: "15 min via Shibuya → Toyoko Line (1 stop to Daikanyama). Browse Daikanyama T-Site, then walk 12 min downhill to Nakameguro Canal to see the glowing Starbucks Reserve Roastery reflected on the water.",
+      type: "highlight"
+    },
+    {
+      time: "18:30",
+      icon: "🍜",
+      title: "Dinner in Nakameguro",
+      sub: "Canal-side dinner — try Seirinkan pizza, AFURI yuzu ramen, or local yakitori near Naka-Meguro Station.",
+      type: "food"
+    },
+    {
+      time: "19:45",
+      icon: "💎",
+      title: "Ebisu Garden Place (Baccarat Chandelier)",
+      sub: "1 stop on Hibiya Line from Naka-Meguro → Ebisu (2 min). Free entry — admire the massive Baccarat crystal chandelier & red Christmas tree (lit until 23:00; market stalls close at 20:00).",
+      type: "explore"
+    },
+    {
+      time: "20:30",
+      icon: "🌸",
+      title: "Meguro River Minna no Illumination (Pink Winter Sakura)",
+      sub: "2 stops on JR Yamanote from Ebisu → Gotanda (4 min), then 6-min walk to Gotanda Fureai Mizube Hiroba. 410,000 pink cherry-blossom LEDs along the river (17:00–22:00, free)!",
+      type: "highlight"
+    },
+    {
+      time: "21:15",
+      icon: "🏨",
+      title: "Direct Train back to Akihabara Hotel",
+      sub: "Board the Toei Asakusa Line at Gotanda → direct to Higashi-Nihombashi / Asakusabashi (~22 min, zero transfers) back to N+ Hotel.",
+      type: "hotel"
+    }
   ]
 },
 
-// DAY 13 — Old Town & Departure
+// DAY 13 — UTokyo Ginkgos, Rikugien Maples, Tokyo Tower Sunset & Hanayama Udon at Haneda
 {
   dayNumber: 13,
   date: "7 Dec",
   dow: "Mon",
   city: "Tokyo",
-  title: "Tsukiji, Old Town & Haneda Departure",
-  summary: "Morning sashimi, uncrowded ginkgo trees, nostalgic shopping streets, and Tokyo Tower views before your flight.",
+  title: "Autumn Gardens, Tokyo Tower & Haneda Flat Udon",
+  summary: "Unrushed final day with hotel bag storage, UTokyo ginkgos, peak Rikugien maples, Tokyo Tower sunset, and a quiet Hanayama Udon dinner at Haneda.",
   emoji: "✈️",
-  tags: ["Tsukiji Uogashi", "UTokyo", "Yanaka", "Tokyo Tower", "Haneda"],
+  tags: ["UTokyo", "Rikugien", "Tokyo Tower", "Hanayama Udon", "Haneda"],
   events: [
-    { time: "08:00", icon: "🍣", title: "Tsukiji Uogashi (Odawarabashi)", sub: "Early morning premium sashimi breakfast on the market terrace.", type: "food" },
-    { time: "10:00", icon: "🍁", title: "UTokyo Hongo Campus", sub: "Explore historic red brick buildings and uncrowded ginkgo trees. (Free)", type: "autumn" },
-    { time: "11:30", icon: "🏘️", title: "Yanaka Ginza", sub: "Stroll retro wooden shophouses and grab some B-grade gourmet street food.", type: "explore" },
-    { time: "13:30", icon: "🍂", title: "Rikugien & Kyu-Furukawa Gardens", sub: "Peak early-December red maples and a stunning Western manor blending into a Japanese landscape.", type: "autumn" },
-    { time: "15:30", icon: "🏨", title: "Collect bags & head to Hamamatsucho", sub: "Grab luggage from the hotel and drop it in lockers at Hamamatsucho Station.", type: "transit" },
-    { time: "16:15", icon: "🗼", title: "Shibakoen & Zojoji Temple", sub: "Relax on the park lawns for iconic, unobstructed photos of Tokyo Tower as the sun sets.", type: "highlight" },
-    { time: "17:30", icon: "🚝", title: "Tokyo Monorail to Haneda", sub: "Grab your bags from the locker and ride directly to the airport terminal.", type: "transit" },
-    { time: "Evening", icon: "🛫", title: "Depart Haneda → Singapore → Jakarta", sub: "Check-in and board your flight home.", type: "transit" }
+    {
+      time: "09:30",
+      icon: "🧳",
+      title: "Check out & leave luggage at hotel",
+      sub: "Sleep in slightly, check out of N+ Hotel Akihabara No.2, and store suitcases at reception until evening.",
+      type: "hotel"
+    },
+    {
+      time: "10:15",
+      icon: "🍁",
+      title: "UTokyo Hongo Campus",
+      sub: "Quiet Monday morning golden ginkgo trees framing historic red-brick Gothic arches (free).",
+      type: "autumn"
+    },
+    {
+      time: "12:00",
+      icon: "🍜",
+      title: "Relaxed Lunch near Hongo or Komagome",
+      sub: "Unrushed local lunch before heading into the garden.",
+      type: "food"
+    },
+    {
+      time: "13:15",
+      icon: "🍂",
+      title: "Rikugien Garden",
+      sub: "Open Mondays 09:00–17:00 (¥300). Peak early-December crimson red maples and matcha at Fukiage Chaya teahouse by the pond.",
+      type: "autumn"
+    },
+    {
+      time: "15:45",
+      icon: "🗼",
+      title: "Shibakoen & Zojoji Temple Sunset",
+      sub: "Head south bag-free for unobstructed golden-hour & dusk photos of Tokyo Tower (sunset ~16:28) from the temple grounds and park lawns.",
+      type: "highlight"
+    },
+    {
+      time: "17:15",
+      icon: "🏨",
+      title: "Back to Hotel to Collect Luggage",
+      sub: "Direct Toei Asakusa Line from Daimon → Higashi-Nihombashi / Asakusabashi (~12 min, zero transfers). Walk 6 min to N+ Hotel to pick up bags.",
+      type: "transit"
+    },
+    {
+      time: "18:00",
+      icon: "🚆",
+      title: "Direct Train to Haneda Terminal 3",
+      sub: "From Asakusabashi / Higashi-Nihombashi, take the Toei Asakusa → Keikyu Airport Line direct to Haneda T3 (~35–40 min, ¥600).",
+      type: "transit"
+    },
+    {
+      time: "18:55",
+      icon: "🍲",
+      title: "Dinner at Godaime Hanayama Udon (Haneda)",
+      sub: "4-min indoor walk from T3 to Haneda Airport Garden 1F (landside, open 17:30–22:00, L.O. 21:30). Eat before noodles sell out — try the wide flat Onikama udon!",
+      type: "food"
+    },
+    {
+      time: "20:00",
+      icon: "🛫",
+      title: "Check-in & Depart Haneda → Singapore → Jakarta",
+      sub: "4-min walk back up to Terminal 3 Departure Floor (3F) for your 22:55 SQ635 flight home.",
+      type: "flight"
+    }
   ]
-  }
+}
 ];
 // === JAPAN TRIP DATA ITINERARY END ===
 
