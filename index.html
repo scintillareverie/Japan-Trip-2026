@@ -2019,9 +2019,9 @@ const ITINERARY = [
       },
       {
         time: "16:00",
-        icon: "🚆",
-        title: "Tokyo Station → N+ Hotel Akihabara No.2 (Via Asakusabashi)",
-        sub: "No taxi, minimal walking: 1) Tokyo Station 1F: take Track 3/4 (Yamanote/Keihin-Tohoku) 2 stops to Akihabara. 2) Akihabara: take central lift up to Track 6 (JR Sobu Local) 1 stop to Asakusabashi. 3) At Asakusabashi, take East Exit (東口) ELEVATOR down to street. Walking path: Walk south across Asakusabashi bridge ~450m (5–6 min flat) to hotel. Note: West Exit has stairs only (save for daily trips).",
+        icon: "🏨",
+        title: "Check in at N+ Hotel Akihabara No.2 (15:50 Arrival)",
+        sub: "Nozomi 20 lands at Tokyo Station 15:15. Transfer: Yamanote (Track 3/4, 2 stops) → Akihabara, central lift up to Track 6 (Sobu Local, 1 stop) → Asakusabashi. Take East Exit (東口) ELEVATOR down, walk south across bridge ~450m (5–6 min flat) to hotel. Check in, drop bags, and refresh before Asakusa dusk.",
         type: "hotel"
       },
       {
@@ -4387,12 +4387,12 @@ const HOTELS = [
       },
       {
         city: "Tokyo",
-        nameEn: "N+ Hotel No.2 Akihabara",
+        nameEn: "N+ Hotel No.2 Akihabara (Higashi-Kanda)",
         nameJp: "N+HOTEL 秋葉原2号館 (東神田)",
         addressJp: "〒101-0031 東京都千代田区東神田2丁目4-2",
-        phone: "03-6284-2505",
+        phone: "03-5829-5730",
         dates: "2 Dec–7 Dec 2026 • 5 nights",
-        area: "Akihabara"
+        area: "Higashi-Kanda / Asakusabashi"
       }
     ];
 
@@ -5571,45 +5571,45 @@ function renderTransitTab() {
 
       <!-- HIGHLIGHT: STATION LABYRINTHS -->
       <div style="margin-bottom: 24px;">
-        <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;">Station Labyrinths</div>
+        <div style="font-size: 11px; font-weight: 800; color: #8A7566; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;">Station Labyrinths & Hotel Access</div>
         
-      <div class="action-card" style="margin-bottom: 8px; flex-direction: column; align-items: flex-start; gap: 8px;">
-          <div style="font-weight: bold; color: #1F2937;">🚇 Osaka: Hommachi Station & Hotel Access</div>
+        <!-- OSAKA HOTEL ACCESS -->
+        <div class="action-card" style="margin-bottom: 8px; flex-direction: column; align-items: flex-start; gap: 8px;">
+          <div style="font-weight: bold; color: #1F2937;">🚇 Osaka: Hommachi Station & The Basement Hotel</div>
           <div style="font-size: 13px; color: #4B5563; line-height: 1.45;">
-            <strong>Arriving at hotel from subway:</strong> Take <strong>Exit 24</strong> and ride the upward escalator straight to street level (pops up on the hotel's side of Chuo-odori, 160m walk, 0 street crossings). If carrying heavy luggage, use the <strong>Exit 23 Elevator</strong>.<br><br>
-            <strong>Departing hotel into subway:</strong> Walk 160m to <strong>Exit 24</strong> and take the stairs down (quickest), or cross Chuo-odori south to <strong>Exit 23</strong> to take the elevator down step-free.
+            <strong>Arriving from Subway (Day 1 with Luggage):</strong> Follow South-West Gate signs to <strong>Exit 23 (Elevator)</strong>. 100% step-free: exit lift facing north, cross Chuo-odori crosswalk north under elevated highway, turn left (west) ~200m (~3 min). Hotel is on your right.<br>
+            <strong>Daily Sightseeing (No Bags):</strong> Arriving at hotel, use <strong>Exit 24 (Upward Escalator)</strong> straight to hotel side (160m walk, 0 street crossings). Departing hotel, use Exit 24 stairs or cross south to Exit 23 elevator.
           </div>
         </div>
 
+        <!-- KYOTO HOTEL ACCESS -->
+        <div class="action-card" style="margin-bottom: 8px; flex-direction: column; align-items: flex-start; gap: 8px;">
+          <div style="font-weight: bold; color: #1F2937;">⛩️ Kyoto: Shijo Station & Kiori Exec Muromachi</div>
+          <div style="font-size: 13px; color: #4B5563; line-height: 1.45;">
+            <strong>Subway to Hotel (2 stops from Kyoto Station):</strong> Head to South Gate (南改札口). Take <strong>Exit 4 Elevator</strong> for 100% step-free route with luggage (~400m / 5 min walk: cross Karasuma-dori west, walk 1 block along Takatsuji-dori, turn south onto Muromachi-dori).<br>
+            <strong>Daily Sightseeing:</strong> Use <strong>Exit 6</strong> stairs directly onto southwest Karasuma (~320m / 4 min).<br>
+            <strong>Hotel to Shinkansen (Day 8):</strong> Hail street cab or GO App to <em>"Kyoto Eki Hachijo-guchi"</em> (~¥1,200, 8 mins) to roll bags straight into Shinkansen South Gates without subway stairs.
+          </div>
+        </div>
+
+        <!-- TOKYO HOTEL ACCESS (ALL 4 STATIONS) -->
+        <div class="action-card" style="margin-bottom: 8px; flex-direction: column; align-items: flex-start; gap: 8px;">
+          <div style="font-weight: bold; color: #1F2937;">🗼 Tokyo: N+ Hotel Akihabara No.2 — 4 Station Guide</div>
+          <div style="font-size: 13px; color: #4B5563; line-height: 1.45;">
+            ⚠️ <em>Rookie Trap:</em> Do NOT get off at JR Akihabara Station with bags (~1km / 12–15 min walk!). Use these 4 close stations instead:<br><br>
+            • <strong>JR Asakusabashi Station (Chūō-Sōbu):</strong> East Exit Elevator is <strong>~450m (~5–6 min flat walk)</strong> across bridge with luggage. West Exit stairs is <strong>~350m (~4 min walk)</strong> for daily trips.<br>
+            • <strong>Toei Asakusa Line Asakusabashi:</strong> Exit A1 Elevator is <strong>~400m (~5 min walk)</strong>. Best for direct rides to/from Haneda Airport, Ginza & Asakusa.<br>
+            • <strong>JR Bakurochō Station (Sōbu Rapid):</strong> <strong>~380m (~5 min walk)</strong>. Best when returning from Tokyo Station or Kamakura.<br>
+            • <strong>Toei Shinjuku Line Iwamotochō Station:</strong> <strong>~550m (~7 min walk)</strong>. Best when returning directly from Shinjuku.
+          </div>
+        </div>
+
+        <!-- ORIGINAL STATION CARDS -->
         <div class="action-card" style="margin-bottom: 8px; flex-direction: column; align-items: flex-start; gap: 8px;">
           <div style="font-weight: bold; color: #1F2937;">🚇 Osaka: The Umeda Maze</div>
           <div style="font-size: 13px; color: #4B5563; line-height: 1.4;">
             "Osaka Station" (JR Lines) and "Umeda Station" (Subway/Hankyu) are connected underground. 
             <strong>Rule of thumb:</strong> Look UP for colored square signs. Red = Midosuji Line. Blue = JR. Do not rely on compass directions.
-          </div>
-        </div>
-
-          <div class="action-card" style="margin-bottom: 8px; flex-direction: column; align-items: flex-start; gap: 8px;">
-          <div style="font-weight: bold; color: #1F2937;">⛩️ Kyoto: Shijo Station & Kiori Exec Muromachi Access</div>
-          <div style="font-size: 13px; color: #4B5563; line-height: 1.45;">
-            <strong>Subway to Hotel (2 stops from Kyoto Station):</strong> Head to South Gate (南改札口). Take <strong>Exit 4 Elevator</strong> for a 100% step-free route with suitcases (~400m / 5 min walk: cross Karasuma-dori west, walk 1 block along Takatsuji-dori, turn south onto Muromachi-dori). For daily trips without luggage, <strong>Exit 6</strong> has stairs directly to the west side (~320m / 4 min).<br><br>
-            <strong>Hotel to Shinkansen (Day 8):</strong> Take the subway: enter via Exit 4 lift, ride Karasuma Line 2 stops to Kyoto Station.
-          </div>
-        </div>
-
-        <div class="action-card" style="margin-bottom: 8px; flex-direction: column; align-items: flex-start; gap: 8px;">
-          <div style="font-weight: bold; color: #1F2937;">🚌 Kyoto: North vs South</div>
-          <div style="font-size: 13px; color: #4B5563; line-height: 1.4;">
-            The Bus Terminal is the <strong>Karasuma (North)</strong> exit. The Shinkansen is the <strong>Hachijo (South)</strong> exit. On buses: Enter through the BACK door. Tap IC card. Exit through the FRONT door.
-          </div>
-        </div>
-
-        <div class="action-card" style="margin-bottom: 8px; flex-direction: column; align-items: flex-start; gap: 8px;">
-          <div style="font-weight: bold; color: #1F2937;">🗼 Tokyo: Asakusabashi Station & N+ Hotel Access</div>
-          <div style="font-size: 13px; color: #4B5563; line-height: 1.45;">
-            <strong>Shinkansen Arrival (Day 8 with Luggage):</strong> Skip the deep B5F Sobu Rapid tunnel at Tokyo Station. Take Yamanote (2 stops) → Akihabara, elevator to Track 6 (Sobu Local, 1 stop) → JR Asakusabashi. Take the <strong>East Exit (東口) Elevator</strong> to street level, then walk south across Asakusabashi bridge ~450m (5–6 min flat walk) to hotel.<br><br>
-            <strong>Daily Sightseeing without Luggage:</strong> Use <strong>JR Asakusabashi West Exit (西口)</strong> stairs (saves ~100m, only 350m / 4 min walk to hotel) or Toei Asakusa Line Exit A2.<br><br>
-            <strong>Haneda Airport Departure (Day 13 with Luggage):</strong> Walk ~400m to Toei Asakusa Line Asakusabashi <strong>Exit A1 Elevator</strong>. Ride the direct through-train to Haneda Airport Terminal 3 (zero transfers, ~36 min), then elevator straight to 3F Departures.
           </div>
         </div>
 
@@ -5627,7 +5627,12 @@ function renderTransitTab() {
           </div>
         </div>
 
-       
+        <div class="action-card" style="margin-bottom: 8px; flex-direction: column; align-items: flex-start; gap: 8px;">
+          <div style="font-weight: bold; color: #1F2937;">🚌 Kyoto: North vs South</div>
+          <div style="font-size: 13px; color: #4B5563; line-height: 1.4;">
+            The Bus Terminal is the <strong>Karasuma (North)</strong> exit. The Shinkansen is the <strong>Hachijo (South)</strong> exit. On buses: Enter through the BACK door. Tap IC card. Exit through the FRONT door.
+          </div>
+        </div>
       </div>
 
       <!-- HIGHLIGHT: TRANSIT PRO-MOVES -->
