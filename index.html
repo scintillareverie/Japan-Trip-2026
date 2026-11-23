@@ -1174,6 +1174,123 @@ body {
       color: #fff;
       box-shadow: 0 2px 6px rgba(220, 39, 67, 0.22);
     }
+     
+    /* === STORE-GROUPED ACCORDION & COMPACT FILTERS === */
+    .shop-search-wrap {
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .shop-search-input {
+      width: 100%;
+      padding: 11px 36px 11px 36px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--line);
+      background: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      outline: none;
+    }
+
+    .shop-search-input:focus {
+      border-color: var(--theme-shopping);
+    }
+
+    .shop-dropdown-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .shop-select-wrap {
+      position: relative;
+    }
+
+    .shop-select {
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+      padding: 10px 30px 10px 30px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--line);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink);
+      background: #fff;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .store-group-card {
+      margin-bottom: 10px;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      border: 1.5px solid var(--line);
+      background: #fff;
+    }
+
+    .store-group-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 14px;
+      background: #fff;
+    }
+
+    .store-group-head.open {
+      background: #faf8f3;
+      border-bottom: 1.5px solid var(--line);
+    }
+
+    .store-group-left {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+    }
+
+    .store-group-name {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .store-group-sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .store-group-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .store-count-badge {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #f3efea;
+      color: var(--muted-2);
+    }
+
+    .store-count-badge.all-done {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .store-group-body {
+      padding: 10px 10px 2px;
+      background: #faf8f3;
+    }
 
     /* --- OVERRIDES FOR PREMIUM UI --- */
     :root {
@@ -4083,6 +4200,169 @@ const HOTELS = [
         productJp: "ダイソー 落ち落ちV アルカリ電解水 100%クリーナー（280mL）",
         bestFor: "Detergent-free degreasing spray for microwaves, fridges & kitchen counters",
         notes: "Saved from @moe_kurashi_. Clear 280mL spray bottle with the OchiOchi V mascot in the cleaning aisle. Checked luggage only (ziplock recommended)."
+      },
+      // === DAISO BESTSELLERS (5) ===
+      {
+        id: "shop-daiso-rice-paddle",
+        section: "shopping",
+        city: "Tokyo",
+        area: "Ginza",
+        shoppingCategory: "Home Goods",
+        icon: "🍚",
+        name: "Daiso Ginza Global Flagship",
+        productEn: "Self-Standing Rice Paddle (¥110)",
+        productJp: "立つしゃもじ",
+        productRomaji: "Tatsu Shamoji",
+        openingHours: "11:00 – 21:00",
+        station: "Ginza-itchome / Yurakucho",
+        notes: "Marronnier Gate Ginza 2 (6F). Wide base stands upright on the counter. Same floor as Standard Products & THREEPPY.",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=DAISO+Marronnier+Gate+Ginza+2"
+      },
+      {
+        id: "shop-daiso-coin-holder",
+        section: "shopping",
+        city: "Osaka",
+        area: "Namba",
+        shoppingCategory: "Lifestyle",
+        icon: "🪙",
+        name: "Daiso Namba",
+        productEn: "Japanese Coin Holder (¥110)",
+        productJp: "コインケース（コインホルダー）",
+        productRomaji: "Koin Horudaa",
+        openingHours: "10:00 – 21:00",
+        station: "Namba Station",
+        notes: "Organizes ¥1 to ¥500 coins by slot. Grab on Day 1 for cash-only ramen shops and vending machines.",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=DAISO+Namba+Osaka"
+      },
+      {
+        id: "shop-daiso-compression-bag",
+        section: "shopping",
+        city: "Tokyo",
+        area: "Ginza",
+        shoppingCategory: "Lifestyle",
+        icon: "🧳",
+        name: "Daiso Ginza Global Flagship",
+        productEn: "Travel Compression Bags (¥110–¥330)",
+        productJp: "旅行用圧縮袋",
+        productRomaji: "Ryokou-you Asshukubukuro",
+        openingHours: "11:00 – 21:00",
+        station: "Ginza-itchome / Yurakucho",
+        notes: "Roll-up clothes compression bags to maximize suitcase space before flying home.",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=DAISO+Marronnier+Gate+Ginza+2"
+      },
+      {
+        id: "shop-daiso-silicone-lid",
+        section: "shopping",
+        city: "Tokyo",
+        area: "Ginza",
+        shoppingCategory: "Home Goods",
+        icon: "🥣",
+        name: "Daiso Ginza Global Flagship",
+        productEn: "Silicone Food Covers & Lids (¥110)",
+        productJp: "シリコーン伸びラップ・蓋",
+        productRomaji: "Shirikoon Nobi Rappu",
+        openingHours: "11:00 – 21:00",
+        station: "Ginza-itchome / Yurakucho",
+        notes: "Reusable stretchable silicone lids for bowls and leftovers.",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=DAISO+Marronnier+Gate+Ginza+2"
+      },
+      {
+        id: "shop-daiso-konjac-jelly",
+        section: "shopping",
+        city: "Osaka",
+        area: "Namba",
+        shoppingCategory: "Snacks",
+        icon: "🍇",
+        name: "Daiso Namba",
+        productEn: "Orihiro Konjac Jelly & Dried Sweet Potatoes (~¥108)",
+        productJp: "オリヒロ ぷるんと蒟蒻ゼリー / 干し芋",
+        productRomaji: "Purunto Konnyaku Zerii / Hoshiimo",
+        openingHours: "10:00 – 21:00",
+        station: "Namba Station",
+        notes: "Great budget snack stash (grape, peach, muscat flavors) for hotel nights or souvenirs.",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=DAISO+Namba+Osaka"
+      },
+
+      // === 3COINS BESTSELLERS (5) ===
+      {
+        id: "shop-3coins-carryon-bag",
+        section: "shopping",
+        city: "Tokyo",
+        area: "Harajuku",
+        shoppingCategory: "Lifestyle",
+        icon: "👜",
+        name: "3COINS+plus Harajuku Flagship",
+        productEn: "3WAY Carry-On Foldable Bag L (¥1,650)",
+        productJp: "キャリーオン折りたたみバッグ",
+        productRomaji: "Kyarii-on Oritatami Baggu",
+        openingHours: "11:00 – 20:00",
+        station: "Meiji-jingumae / Harajuku",
+        notes: "Water-repellent, folds to palm size, slips over suitcase handle (holds up to 8kg). Lifesaver for extra shopping.",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=3COINS+Harajuku+Flagship+Store"
+      },
+      {
+        id: "shop-3coins-drink-holder",
+        section: "shopping",
+        city: "Osaka",
+        area: "Namba",
+        shoppingCategory: "Lifestyle",
+        icon: "🥤",
+        name: "3COINS+plus Namba",
+        productEn: "Suitcase Drink Holder (¥550)",
+        productJp: "キャリーケース用ドリンクホルダー",
+        productRomaji: "Kyarii Keesu-you Dorinku Horudaa",
+        openingHours: "10:00 – 21:00",
+        station: "Namba Station",
+        notes: "Slips over luggage handle; holds 2 cups + back pocket for phone/tickets.",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=3COINS+plus+Namba+Osaka"
+      },
+      {
+        id: "shop-3coins-jacket-holder",
+        section: "shopping",
+        city: "Osaka",
+        area: "Namba",
+        shoppingCategory: "Fashion",
+        icon: "🧥",
+        name: "3COINS+plus Namba",
+        productEn: "Jacket Holder Strap (¥330)",
+        productJp: "ジャケットホルダー",
+        productRomaji: "Jaketto Horudaa",
+        openingHours: "10:00 – 21:00",
+        station: "Namba Station",
+        notes: "Clips coats or cardigans onto your bag strap—super handy for heated trains and malls in late November.",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=3COINS+plus+Namba+Osaka"
+      },
+      {
+        id: "shop-3coins-oil-spray",
+        section: "shopping",
+        city: "Tokyo",
+        area: "Harajuku",
+        shoppingCategory: "Home Goods",
+        icon: "🍳",
+        name: "3COINS+plus Harajuku Flagship",
+        productEn: "KITINTO 2-Way Oil Spray Bottle 460ml (¥550)",
+        productJp: "2WAYオイルスプレーボトル（KITINTO）",
+        productRomaji: "Tsuu-wei Oiru Supuree Botoru",
+        openingHours: "11:00 – 20:00",
+        station: "Meiji-jingumae / Harajuku",
+        notes: "Viral kitchen gadget: fine mist spray (awesome for air fryer) + standard pour spout in one bottle.",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=3COINS+Harajuku+Flagship+Store"
+      },
+      {
+        id: "shop-3coins-clear-box",
+        section: "shopping",
+        city: "Tokyo",
+        area: "Harajuku",
+        shoppingCategory: "Home Goods",
+        icon: "📦",
+        name: "3COINS+plus Harajuku Flagship",
+        productEn: "Clear Box Bag L / Clear Storage Series (¥330)",
+        productJp: "クリアボックスバッグ：L",
+        productRomaji: "Kuria Bokkusu Baggu Eru",
+        openingHours: "11:00 – 20:00",
+        station: "Meiji-jingumae / Harajuku",
+        notes: "30.5L capacity, water-resistant, folds completely flat for packing, great for home closet storage.",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=3COINS+Harajuku+Flagship+Store"
       }
     ];
 
@@ -4418,6 +4698,9 @@ const HOTELS = [
       shoppingCity: "All",
       shoppingCategory: "All",
       shoppingArea: "All",
+      shoppingStore: "All",
+      shoppingSearch: "",
+      openShopStores: {},
       boughtItems: loadBoughtItems(),
       productEdits: loadProductEdits(),
       actionsOpen: true,
@@ -4505,15 +4788,46 @@ const HOTELS = [
         STATE.shoppingCity = city;
         STATE.shoppingCategory = "All";
         STATE.shoppingArea = "All";
+        STATE.shoppingStore = "All";
         renderApp();
       },
       setShoppingCategory(category) {
         STATE.shoppingCategory = category;
         STATE.shoppingArea = "All";
+        STATE.shoppingStore = "All";
         renderApp();
       },
       setShoppingArea(area) {
         STATE.shoppingArea = area;
+        STATE.shoppingStore = "All";
+        renderApp();
+      },
+      setShoppingStore(store) {
+        STATE.shoppingStore = store;
+        if (store !== "All") {
+          STATE.openShopStores[store] = true;
+        }
+        renderApp();
+      },
+      setShoppingSearch(query) {
+        STATE.shoppingSearch = query;
+        renderApp();
+        const input = document.getElementById("shop-search-input");
+        if (input) {
+          input.focus();
+          const len = input.value.length;
+          input.setSelectionRange(len, len);
+        }
+      },
+      toggleShopStore(store) {
+        STATE.openShopStores[store] = !STATE.openShopStores[store];
+        renderApp();
+      },
+      toggleAllShopStores(expand) {
+        const stores = [...new Set(getShoppingPlaces().map(getStoreGroup))];
+        stores.forEach((s) => {
+          STATE.openShopStores[s] = expand;
+        });
         renderApp();
       }
     };
@@ -4900,14 +5214,49 @@ const HOTELS = [
       `;
     }
 
+    function getStoreGroup(place) {
+      if (place.storeGroup) return place.storeGroup;
+      const n = (place.name || "").toLowerCase();
+      if (n.includes("3coins")) return "3COINS";
+      if (n.includes("daiso")) return "Daiso";
+      if (n.includes("don quijote") || n.includes("donki")) return "Don Quijote";
+      if (n.includes("@cosme")) return "@cosme";
+      if (n.includes("matsumoto kiyoshi") || n.includes("sundrug")) return "Drugstores (Matsukiyo / Sundrug)";
+      if (n.includes("muji")) return "MUJI";
+      if (n.includes("loft")) return "Loft";
+      if (n.includes("uniqlo") || n.includes("gu ")) return "UNIQLO / GU";
+      if (n.includes("7-eleven") || n.includes("lawson") || n.includes("familymart")) return "Konbini (7-11 / Lawson / FM)";
+      if (n.includes("plaza")) return "PLAZA";
+      return place.name;
+    }
+
     function getShoppingPlaces() {
-      return PLACES.filter(
-        (place) =>
-          place.section === "shopping" &&
-          (STATE.shoppingCity === "All" || place.city === STATE.shoppingCity) &&
-          (STATE.shoppingCategory === "All" || place.shoppingCategory === STATE.shoppingCategory) &&
-          (STATE.shoppingArea === "All" || place.area === STATE.shoppingArea)
-      );
+      const q = (STATE.shoppingSearch || "").trim().toLowerCase();
+      return PLACES.filter((place) => {
+        if (place.section !== "shopping") return false;
+        if (STATE.shoppingCity !== "All" && place.city !== STATE.shoppingCity) return false;
+        if (STATE.shoppingCategory !== "All" && place.shoppingCategory !== STATE.shoppingCategory) return false;
+        if (STATE.shoppingArea !== "All" && place.area !== STATE.shoppingArea) return false;
+        if (STATE.shoppingStore !== "All" && getStoreGroup(place) !== STATE.shoppingStore) return false;
+        if (q) {
+          const custom = STATE.productEdits[place.id] || {};
+          const haystack = [
+            place.name,
+            getStoreGroup(place),
+            place.area,
+            place.city,
+            place.shoppingCategory,
+            custom.productEn || place.productEn,
+            custom.productJp || place.productJp,
+            custom.productRomaji || place.productRomaji,
+            place.notes
+          ]
+            .join(" ")
+            .toLowerCase();
+          if (!haystack.includes(q)) return false;
+        }
+        return true;
+      });
     }
 
     function renderShoppingTab() {
@@ -4928,6 +5277,263 @@ const HOTELS = [
           label: `${cat} (${cityScoped.filter((p) => p.shoppingCategory === cat).length})`
         }))
       ];
+
+      const catScoped = cityScoped.filter(
+        (p) => STATE.shoppingCategory === "All" || p.shoppingCategory === STATE.shoppingCategory
+      );
+
+      const uniqueAreas = [...new Set(catScoped.map((p) => p.area))].sort();
+      const areaOptions = [
+        `<option value="All" ${STATE.shoppingArea === "All" ? "selected" : ""}>All Areas</option>`,
+        ...uniqueAreas.map(
+          (area) => `<option value="${escapeHtml(area)}" ${STATE.shoppingArea === area ? "selected" : ""}>${escapeHtml(area)}</option>`
+        )
+      ];
+
+      const areaScoped = catScoped.filter(
+        (p) => STATE.shoppingArea === "All" || p.area === STATE.shoppingArea
+      );
+      const storeCounts = areaScoped.reduce((acc, p) => {
+        const g = getStoreGroup(p);
+        acc[g] = (acc[g] || 0) + 1;
+        return acc;
+      }, {});
+      const uniqueStores = Object.keys(storeCounts).sort();
+      const storeOptions = [
+        `<option value="All" ${STATE.shoppingStore === "All" ? "selected" : ""}>All Stores (${uniqueStores.length})</option>`,
+        ...uniqueStores.map(
+          (store) => `<option value="${escapeHtml(store)}" ${STATE.shoppingStore === store ? "selected" : ""}>${escapeHtml(store)} (${storeCounts[store]})</option>`
+        )
+      ];
+
+      const places = getShoppingPlaces();
+
+      // Group filtered items by store
+      const groupedByStore = places.reduce((acc, place) => {
+        const store = getStoreGroup(place);
+        if (!acc[store]) acc[store] = [];
+        acc[store].push(place);
+        return acc;
+      }, {});
+
+      // Sort stores: stores with unbought items first, then alphabetically
+      const storeNames = Object.keys(groupedByStore).sort((a, b) => {
+        const aAllBought = groupedByStore[a].every((p) => STATE.boughtItems.includes(p.id)) ? 1 : 0;
+        const bAllBought = groupedByStore[b].every((p) => STATE.boughtItems.includes(p.id)) ? 1 : 0;
+        if (aAllBought !== bAllBought) return aAllBought - bAllBought;
+        return a.localeCompare(b);
+      });
+
+      const boughtCount = allShopping.filter((p) => STATE.boughtItems.includes(p.id)).length;
+      const isSearching = Boolean((STATE.shoppingSearch || "").trim());
+      const anyOpen = storeNames.some((s) => STATE.openShopStores[s]);
+
+      return `
+        <section class="section-block fade-in">
+          ${renderSectionTitle({
+            eyebrow: "Curated & Viral Finds",
+            title: "Shopping List",
+            subtitle: "Grouped by store — tap a store to expand and show the Japanese box to staff.",
+            color: "var(--theme-shopping)"
+          })}
+
+          <div class="shop-progress-bar" style="border-radius: var(--radius-md); box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+            <span>🛍️ ${boughtCount} / ${allShopping.length} Got It</span>
+            ${
+              storeNames.length > 0
+                ? `<button class="pressable" onclick="appActions.toggleAllShopStores(${!anyOpen})" style="border: none; background: transparent; color: var(--theme-shopping); font-size: 11.5px; font-weight: 800; padding: 0;">
+                    ${anyOpen ? "Collapse All" : "Expand All"}
+                  </button>`
+                : ""
+            }
+          </div>
+
+          <div class="shop-search-wrap">
+            <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 13px;">🔍</span>
+            <input
+              id="shop-search-input"
+              type="text"
+              class="shop-search-input"
+              placeholder="Search store or item (e.g. 3COINS, Daiso, matcha)..."
+              value="${escapeHtml(STATE.shoppingSearch || "")}"
+              oninput="appActions.setShoppingSearch(this.value)"
+            />
+            ${
+              isSearching
+                ? `<button onclick="appActions.setShoppingSearch('')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); border: none; background: transparent; color: var(--muted); font-size: 14px; cursor: pointer;">✕</button>`
+                : ""
+            }
+          </div>
+
+          <div class="filter-grid" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
+            ${["All", "Osaka", "Kyoto", "Tokyo"]
+              .map((city) => {
+                const active = STATE.shoppingCity === city;
+                return `
+                  <button
+                    class="grid-pill pressable"
+                    style="background:${active ? "var(--ink)" : "var(--line)"}; color:${active ? "#fff" : "var(--muted)"}; font-weight: ${active ? "800" : "700"};"
+                    onclick="appActions.setShoppingCity('${city}')"
+                  >
+                    ${escapeHtml(city)}
+                  </button>
+                `;
+              })
+              .join("")}
+          </div>
+
+          <div class="pill-row" style="margin-bottom: 10px; gap: 6px;">
+            ${categories
+              .map((cat) => {
+                const active = STATE.shoppingCategory === cat.id;
+                return `
+                  <button
+                    class="city-pill pressable"
+                    style="background:${active ? "var(--theme-shopping)" : "transparent"}; color:${active ? "#fff" : "var(--muted)"}; border: 1.5px solid ${active ? "var(--theme-shopping)" : "var(--line)"}; font-size:12px; padding:6px 11px;"
+                    onclick="appActions.setShoppingCategory('${escapeHtml(cat.id)}')"
+                  >
+                    ${escapeHtml(cat.label)}
+                  </button>
+                `;
+              })
+              .join("")}
+          </div>
+
+          <div class="shop-dropdown-row">
+            <div class="shop-select-wrap">
+              <span style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 12px;">🏪</span>
+              <select class="shop-select" onchange="appActions.setShoppingStore(this.value)">
+                ${storeOptions.join("")}
+              </select>
+              <div style="position: absolute; right: 9px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--muted); display: flex;">
+                <svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </div>
+            </div>
+
+            <div class="shop-select-wrap">
+              <span style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 12px;">📍</span>
+              <select class="shop-select" onchange="appActions.setShoppingArea(this.value)">
+                ${areaOptions.join("")}
+              </select>
+              <div style="position: absolute; right: 9px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--muted); display: flex;">
+                <svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </div>
+            </div>
+          </div>
+
+          ${
+            storeNames.length
+              ? storeNames
+                  .map((storeName) => {
+                    const storeItems = [...groupedByStore[storeName]].sort((a, b) => {
+                      const aBought = STATE.boughtItems.includes(a.id) ? 1 : 0;
+                      const bBought = STATE.boughtItems.includes(b.id) ? 1 : 0;
+                      return aBought - bBought;
+                    });
+                    const storeBought = storeItems.filter((p) => STATE.boughtItems.includes(p.id)).length;
+                    const allDone = storeBought === storeItems.length;
+                    const isOpen = isSearching || STATE.shoppingStore !== "All" || Boolean(STATE.openShopStores[storeName]);
+                    const areasSummary = [...new Set(storeItems.map((p) => p.area))].join(" · ");
+                    const storeIcon = storeItems[0]?.icon || "🛍️";
+                    const safeStoreArg = escapeHtml(storeName).replace(/'/g, "\\'");
+
+                    return `
+                      <div class="store-group-card">
+                        <div class="store-group-head pressable ${isOpen ? "open" : ""}" onclick="appActions.toggleShopStore('${safeStoreArg}')">
+                          <div class="store-group-left">
+                            <span style="font-size: 19px; line-height: 1;">${escapeHtml(storeIcon)}</span>
+                            <div style="min-width: 0;">
+                              <div class="store-group-name">${escapeHtml(storeName)}</div>
+                              <div class="store-group-sub">${escapeHtml(areasSummary)}</div>
+                            </div>
+                          </div>
+                          <div class="store-group-right">
+                            <span class="store-count-badge ${allDone ? "all-done" : ""}">
+                              ${allDone ? `✓ ${storeBought}/${storeItems.length}` : `${storeBought}/${storeItems.length}`}
+                            </span>
+                            <div class="chevron ${isOpen ? "open" : ""}">
+                              <svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                          </div>
+                        </div>
+
+                        ${
+                          isOpen
+                            ? `
+                              <div class="store-group-body fade-in">
+                                ${storeItems
+                                  .map((place) => {
+                                    const cfg = getCityCfg(place.city);
+                                    const isBought = STATE.boughtItems.includes(place.id);
+                                    const custom = STATE.productEdits[place.id] || {};
+
+                                    const productEn = custom.productEn || place.productEn || "";
+                                    const productJp = custom.productJp || place.productJp || "";
+                                    const productRomaji = custom.productRomaji || place.productRomaji || "";
+
+                                    const rawNotes = place.notes || "";
+                                    const igMatch = rawNotes.match(/https:\/\/www\.instagram\.com\/\S+/);
+                                    const igUrl = igMatch ? igMatch[0] : null;
+                                    const cleanNotes = rawNotes.replace(/Ref:\s*https:\/\/www\.instagram\.com\/\S+/i, "").trim();
+
+                                    return `
+                                      <div class="card shop-card ${isBought ? "bought" : ""}" style="border-color: ${cfg.border}; margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.02);">
+                                        <div class="shop-top-row">
+                                          <div class="place-head" style="margin-bottom:0;">
+                                            <span class="place-icon">${escapeHtml(place.icon || "🛍️")}</span>
+                                            <div>
+                                              <div class="place-title">${escapeHtml(place.name)}</div>
+                                              <div class="place-meta">
+                                                <span style="color:${cfg.color}; font-weight:700;">${escapeHtml(place.city)}</span> • ${escapeHtml(place.area)} • ${escapeHtml(place.shoppingCategory)}
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="shop-top-btns">
+                                            <button class="shop-edit-btn pressable" style="border-color: ${cfg.border}; color: ${cfg.deep};" onclick="appActions.editProduct('${escapeHtml(place.id)}')">✏️</button>
+                                            <button class="shop-check-btn pressable ${isBought ? "bought" : ""}" style="border-color: ${cfg.border}; color: ${cfg.deep};" onclick="appActions.toggleBought('${escapeHtml(place.id)}')">
+                                              ${isBought ? "✓ Got It" : "To Buy"}
+                                            </button>
+                                          </div>
+                                        </div>
+
+                                        ${
+                                          productEn || productJp
+                                            ? `
+                                              <div class="product-box" style="background: ${cfg.bg}; border: 1.5px solid ${cfg.border}; border-radius: var(--radius-md);">
+                                                <div class="product-label" style="color: ${cfg.color};">🎯 Target Product • 店員さんに見せる</div>
+                                                ${productEn ? `<div class="product-en" style="color: ${cfg.deep};">${escapeHtml(productEn)}</div>` : ""}
+                                                ${productJp ? `<div class="product-jp" style="color: ${cfg.deep}; font-size: 16px; font-weight: 900; margin-top: 4px;">${escapeHtml(productJp)}</div>` : ""}
+                                                ${productRomaji ? `<div class="product-romaji" style="color: ${cfg.color}; font-size: 12px; font-weight: 600; font-style: italic; margin-top: 2px;">🗣️ "${escapeHtml(productRomaji)}"</div>` : ""}
+                                              </div>
+                                            `
+                                            : ""
+                                        }
+
+                                        <div class="place-line">🕒 ${escapeHtml(place.openingHours || "Check hours")} ${place.station ? ` • 🚇 ${escapeHtml(place.station)}` : ""}</div>
+                                        ${cleanNotes ? `<div class="place-note" style="margin-top:4px;">${escapeHtml(cleanNotes)}</div>` : ""}
+
+                                        <div class="shop-actions">
+                                          ${place.googleMapsUrl ? `<a href="${escapeHtml(place.googleMapsUrl)}" target="_blank" rel="noopener noreferrer" class="shop-btn pressable" style="background:#fff; color:${cfg.deep}; border:1.5px solid ${cfg.border};">📍 Google Maps</a>` : ""}
+                                          ${igUrl ? `<a href="${escapeHtml(igUrl)}" target="_blank" rel="noopener noreferrer" class="shop-btn shop-btn-ig pressable" style="border-radius: var(--radius-sm);">📸 View IG Post</a>` : ""}
+                                        </div>
+                                      </div>
+                                    `;
+                                  })
+                                  .join("")}
+                              </div>
+                            `
+                            : ""
+                        }
+                      </div>
+                    `;
+                  })
+                  .join("")
+              : `<div class="empty-state">No shopping spots match this filter. Clear search or tap "All" above to reset!</div>`
+          }
+        </section>
+      `;
+    }
 
       const places = getShoppingPlaces();
 
